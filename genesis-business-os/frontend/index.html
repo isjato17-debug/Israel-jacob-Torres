@@ -48,7 +48,7 @@
         <button data-action="navigate" data-view="community"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.4 2.4-5.5 6-5.5s6 2.1 6 5.5M15 15c3.7-.3 6 1.4 6 4.5"/></svg><span>Community</span></button>
         <button data-action="navigate" data-view="ask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8"/><circle cx="12" cy="12" r="4"/></svg><span>Ask Genesis</span></button>
       </nav>
-      <div class="top-tools"><span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m16 16 4.5 4.5"/></svg></span><span class="tool-icon notification" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-2 7-2 9h16c0-2-2-2-2-9M10 21h4"/></svg></span><span class="profile-badge" aria-label="Founder profile">F</span></div>
+      <div class="top-tools"><span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m16 16 4.5 4.5"/></svg></span><span class="tool-icon notification" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-2 7-2 9h16c0-2-2-2-2-9M10 21h4"/></svg></span><div class="profile-menu-wrap"><button id="profileBadge" class="profile-badge" type="button" data-action="toggle" data-target="profileMenu" aria-expanded="false" aria-label="Open account menu">F</button><div id="profileMenu" class="profile-menu"><span id="profileName">Private workspace</span><button type="button" data-action="logout">Sign out</button></div></div></div>
     </header>
 
     <main class="wrap">
@@ -56,7 +56,7 @@
         <div class="home-layout">
           <div class="primary-column">
             <section class="hero-panel" aria-labelledby="homeHero">
-              <div class="hero-art" aria-hidden="true"><div class="horizon"></div><div class="route-line"><i class="route-dot dot-start"></i><i class="route-dot dot-setup"></i><i class="route-dot dot-launch"></i><i class="route-dot dot-grow"></i></div></div>
+              <div class="hero-art" aria-hidden="true"><div class="horizon"></div><div class="route-line"><i class="route-dot dot-start" data-step="0"></i><i class="route-dot dot-setup" data-step="1"></i><i class="route-dot dot-launch" data-step="2"></i><i class="route-dot dot-grow" data-step="3"></i></div></div>
               <div class="hero-content">
                 <div class="eyebrow">Your business, in motion</div>
                 <h1 class="hero" id="homeHero">Your Business<br><em>Made Possible.</em></h1>
@@ -82,7 +82,7 @@
                 <div class="move-metrics" id="homeMoveMetrics" data-bind="next-move-metrics">
                   <div class="metric-chip"><span class="metric-symbol mint">$</span><span><small>Maximum cash commitment</small><b id="homeMoveCost">Waiting for your route</b></span></div>
                   <div class="metric-chip"><span class="metric-symbol lilac">◷</span><span><small>Estimated time</small><b id="homeMoveTime">Not estimated</b></span></div>
-                  <div class="metric-chip"><span class="metric-symbol sea">↗</span><span><small>Potential outcome</small><b id="homeMoveOutcome">Not yet available</b></span></div>
+                  <div class="metric-chip"><span class="metric-symbol sea">↗</span><span><small>Evidence needed</small><b id="homeMoveOutcome">Not yet available</b></span></div>
                 </div>
                 <div class="card-actions">
                   <button class="cta" type="button" data-action="continue-next-turn">Do It With Genesis <span aria-hidden="true">→</span></button>
@@ -147,7 +147,7 @@
                   <button type="button" data-action="ask-suggestion" data-question="Analyze my business.">Analyze my business.</button>
                   <button type="button" data-action="ask-suggestion" data-question="How can I reach $5,000 per month?">How can I reach $5,000 per month?</button>
               </div>
-              <div id="homeAskPreview" class="preview-live-region" data-bind="ask-preview" aria-live="polite"><span class="muted">Your recent Genesis conversation will appear here.</span></div>
+               <div id="homeAskPreview" class="preview-live-region" data-bind="ask-preview" aria-live="polite"><span class="muted">A conversation preview appears here during this session.</span></div>
             </section>
             <section class="card community-preview" aria-labelledby="communityPreviewTitle">
               <div class="side-card-heading"><span class="heading-icon people" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.4 2.4-5.5 6-5.5s6 2.1 6 5.5M15 15c3.7-.3 6 1.4 6 4.5"/></svg></span><div><h2 id="communityPreviewTitle">Community</h2><p>Real founders. Real progress.</p></div><button class="quiet-link" type="button" data-action="navigate" data-view="community">View all <span aria-hidden="true">→</span></button></div>

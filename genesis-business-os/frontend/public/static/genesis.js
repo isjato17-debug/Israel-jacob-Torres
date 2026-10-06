@@ -443,6 +443,273 @@ async function seeEvolution() {
   }
 }
 
+async function saveTwinPatch(patch) {
+  const result = await api(`/api/businesses/${BUSINESS_ID}/twin`, {
+    method: 'PATCH',
+    body: JSON.stringify({ patch }),
+  });
+  BUSINESS_TWIN = result.twin || BUSINESS_TWIN;
+  if (BUSINESS) BUSINESS.twin = BUSINESS_TWIN;
+  return result;
+}
+
+function routeProofFlags() {
+  return Object.fromEntries(Object.entries(BUSINESS_TWIN.route_proofs || {})
+    .map(([name, record]) => [name, Boolean(record?.evidence_id)]));
+}
+
+async function refreshRoutes() {
+  const realityNow = reality();
+  const destinationNow = destination();
+  if (!BUSINESS_ID || !realityNow || !destinationNow) {
+    text('routePortfolioStatus', 'Save a founder reality and destination before calculating routes.');
+    return;
+  }
+  text('routePortfolioStatus', 'Calculating routes from your saved inputs…');
+  try {
+    const portfolio = await api('/api/route/portfolio', {
+      method: 'POST',
+      body: JSON.stringify({ reality: realityNow, destination: destinationNow }),
+    });
+    const next = await api('/api/route/next-turn', {
+      method: 'POST',
+      body: JSON.stringify({ reality: realityNow, destination: destinationNow, proofs: routeProofFlags() }),
+    });
+    NEXT_TURN = next;
+    await saveTwinPatch({
+      route_portfolio: portfolio.routes || [],
+      next_turn: next,
+      route_calculated_at: new Date().toISOString(),
+    });
+    renderBusinessState();
+  } catch (error) {
+    text('routePortfolioStatus', `Route calculation failed: ${error.message}`);
+  }
+}
+
+async function saveJourney(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const values = new FormData(form);
+  const realityNow = {
+    cash: Number(values.get('cash')),
+    reserve_floor: Number(values.get('reserve_floor')),
+    hours_per_week: Number(values.get('hours_per_week')),
+    skills: splitList(values.get('skills')),
+    assets: splitList(values.get('assets')),
+    location: String(values.get('location') || '').trim(),
+  };
+  const destinationNow = {
+    target_monthly_owner_income: Number(values.get('target_monthly_owner_income')),
+    horizon_months: Number(values.get('horizon_months')),
+    max_risk_cash: Number(values.get('max_risk_cash')),
+  };
+  const status = byId('journeyFormStatus');
+  text('journeyFormStatus', 'Saving your journey details…');
+  try {
+    await saveTwinPatch({
+      founder_reality: realityNow,
+      destination_contract: destinationNow,
+      route_portfolio: [],
+      next_turn: null,
+      route_proofs: {},
+      latest_evolution: null,
+    });
+    NEXT_TURN = null;
+    renderBusinessState();
+    if (status) status.textContent = 'Saved. Recalculating your route…';
+    await refreshRoutes();
+    if (status && byId('routePortfolioStatus')?.textContent.startsWith('3 routes')) {
+      status.textContent = 'Journey details saved and routes recalculated.';
+    }
+  } catch (error) {
+    if (status) status.textContent = `Journey details could not be saved: ${error.message}`;
+  }
+}
+
+async function saveActuals(event) {
+  event.preventDefault();
+  const fields = [
+    ['monthly_revenue', 'metricRevenue', 1],
+    ['customer_count', 'metricCustomers', 1],
+    ['gross_margin', 'metricMargin', 0.01],
+    ['repeat_customer_share', 'metricRepeat', 0.01],
+    ['capacity_used', 'metricCapacity', 0.01],
+    ['average_ticket', 'metricTicket', 1],
+    ['close_rate', 'metricCloseRate', 0.01],
+  ];
+  const updates = fields
+    .map(([key, id, scale]) => [key, byId(id)?.value, scale])
+    .filter(([, value]) => value !== undefined && value !== '')
+    .map(([key, value, scale]) => [key, Number(value) * scale]);
+  if (!updates.length) {
+    text('metricsStatus', 'Enter at least one actual value. Blank fields are not saved as zero.');
+    return;
+  }
+  text('metricsStatus', 'Saving owner-reported actuals…');
+  const saved = [];
+  try {
+    for (const [key, value] of updates) {
+      await api(`/api/businesses/${BUSINESS_ID}/actuals`, {
+        method: 'POST',
+        body: JSON.stringify({ key, value }),
+      });
+      BUSINESS_TWIN[key] = value;
+      saved.push(key.replaceAll('_', ' '));
+    }
+    if (BUSINESS) BUSINESS.twin = BUSINESS_TWIN;
+    renderBusinessState();
+    text('metricsStatus', `Owner-reported actuals saved: ${saved.join(', ')}.`);
+  } catch (error) {
+    text('metricsStatus', `Some actuals were saved (${saved.join(', ') || 'none'}). Save stopped after an error: ${error.message}`);
+  }
+}
+
+async function saveFounderDna(event) {
+  event.preventDefault();
+  const ids = ['dnaCapital', 'dnaHours', 'dnaExperience', 'dnaRisk'];
+  const inputs = ids.map(byId);
+  if (inputs.some((input) => !input?.value.trim())) {
+    text('dnaStatus', 'Enter all four founder profile values so the derived score does not rely on defaults.');
+    return;
+  }
+  const profile = {
+    capital: Number(byId('dnaCapital').value),
+    hours_per_week: Number(byId('dnaHours').value),
+    experience_years: Number(byId('dnaExperience').value),
+    risk_tolerance: Number(byId('dnaRisk').value),
+  };
+  text('dnaStatus', 'Saving founder profile…');
+  try {
+    FOUNDER_DNA = await api('/api/founder-dna', {
+      method: 'POST',
+      body: JSON.stringify({ profile }),
+    });
+    const dna = FOUNDER_DNA.dna || {};
+    text('businessDna', Object.entries(dna).length
+      ? `Derived from your saved founder profile: ${Object.entries(dna).map(([key, value]) => `${key.replaceAll('_', ' ')} ${value}`).join(' · ')}`
+      : 'No derived founder signals are available.');
+    text('dnaStatus', 'Founder profile saved.');
+    renderProgress();
+  } catch (error) {
+    text('dnaStatus', `Founder profile was not saved: ${error.message}`);
+  }
+}
+
+async function recordProof(event) {
+  event.preventDefault();
+  const proofName = byId('proofName')?.value || '';
+  const value = byId('proofNote')?.value.trim() || '';
+  if (!proofName || !value) {
+    text('proofStatus', 'Enter evidence for the currently active checkpoint.');
+    return;
+  }
+  text('proofStatus', 'Recording this as owner-reported evidence…');
+  try {
+    const evidence = await api('/api/evidence', {
+      method: 'POST',
+      body: JSON.stringify({
+        business_id: BUSINESS_ID,
+        classification: 'user_assertion',
+        value,
+        source_ref: `route_checkpoint:${proofName}`,
+        confidence: 60,
+      }),
+    });
+    const routeProofs = { ...(BUSINESS_TWIN.route_proofs || {}) };
+    routeProofs[proofName] = {
+      evidence_id: evidence.id,
+      classification: evidence.classification,
+      recorded_at: new Date().toISOString(),
+    };
+    await saveTwinPatch({ route_proofs: routeProofs });
+    byId('proofNote').value = '';
+    NEXT_TURN = null;
+    await refreshRoutes();
+    text('proofStatus', 'Evidence recorded as an owner assertion; it is not independently verified.');
+  } catch (error) {
+    text('proofStatus', `Evidence was not recorded: ${error.message}`);
+  }
+}
+
+async function runCounterfactual(event) {
+  event.preventDefault();
+  const d = destination();
+  const ticket = Number(BUSINESS_TWIN.average_ticket);
+  const margin = Number(BUSINESS_TWIN.gross_margin);
+  const closeRate = Number(BUSINESS_TWIN.close_rate);
+  if (!d || !hasValue(BUSINESS_TWIN, 'average_ticket') || !hasValue(BUSINESS_TWIN, 'gross_margin')
+      || !hasValue(BUSINESS_TWIN, 'close_rate') || ticket <= 0 || margin <= 0 || closeRate <= 0) {
+    text('counterfactualResult', 'Save a destination, average sale amount, gross margin above 0%, and close rate above 0% before calculating.');
+    return;
+  }
+  text('counterfactualResult', 'Calculating from saved actuals…');
+  try {
+    const result = await api('/api/route/counterfactual', {
+      method: 'POST',
+      body: JSON.stringify({
+        destination: d,
+        avg_ticket: ticket,
+        gross_margin: margin,
+        close_rate: closeRate,
+      }),
+    });
+    byId('counterfactualResult').innerHTML = `Model estimate based on your saved inputs:
+      <ul><li>Monthly revenue needed: <b>${escapeHtml(money(result.monthly_revenue_needed))}</b></li>
+      <li>Customers needed: <b>${escapeHtml(result.customers_needed)}</b></li>
+      <li>Qualified opportunities needed: <b>${escapeHtml(result.qualified_opportunities_needed)}</b></li></ul>
+      <small>This is a counterfactual estimate, not a guaranteed result.</small>`;
+  } catch (error) {
+    text('counterfactualResult', `Counterfactual could not be calculated: ${error.message}`);
+  }
+}
+
+async function compareReroute(event) {
+  event.preventDefault();
+  const oldReality = reality();
+  const d = destination();
+  if (!oldReality || !d) {
+    text('whatIfStatus', 'Save a founder reality and destination before comparing scenarios.');
+    return;
+  }
+  const cash = numberValue(byId('whatIfCash')?.value);
+  const hours = numberValue(byId('whatIfHours')?.value);
+  const newReality = {
+    ...oldReality,
+    cash: cash === null ? oldReality.cash : cash,
+    hours_per_week: hours === null ? oldReality.hours_per_week : hours,
+  };
+  text('whatIfStatus', 'Comparing the scenario. Your saved profile will not change…');
+  try {
+    const result = await api('/api/route/reroute', {
+      method: 'POST',
+      body: JSON.stringify({ old_reality: oldReality, new_reality: newReality, destination: d }),
+    });
+    const scenarioSpendable = Math.max(0, Math.min(d.max_risk_cash, newReality.cash - newReality.reserve_floor));
+    const changed = Array.isArray(result.changed) && result.changed.length ? result.changed.join(', ') : 'No route inputs changed';
+    text('whatIfStatus', `Scenario only — saved profile unchanged. Changed: ${changed}. Scenario spendable cash envelope: ${money(scenarioSpendable)}.`);
+  } catch (error) {
+    text('whatIfStatus', `Scenario could not be compared: ${error.message}`);
+  }
+}
+
+function continueNextTurn() {
+  if (!NEXT_TURN?.action) {
+    go('business');
+    byId('journeySettings')?.classList.add('on');
+    text('journeyFormStatus', 'Set your destination and founder reality to calculate a next turn.');
+    byId('journeyForm')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    return;
+  }
+  go('do');
+  text('executionStatus', `Next Turn: ${NEXT_TURN.action}. Choose an available EXECUTE, PREPARE or GUIDE action below. No action has been completed yet.`);
+}
+
+function showRoute() {
+  go('business');
+  byId('routePanel')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+
 async function loadExecution() {
   if (!BUSINESS_ID) return;
   text('executionStatus', 'Checking real execution connections…');
