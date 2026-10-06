@@ -10,6 +10,7 @@ let NEXT_TURN = null;
 let COMMUNITY_POSTS = [];
 let ASK_LAST_TURN = null;
 let ACTIONS = [];
+let COMMUNITY_PREVIEW_CATEGORY = 'ALL';
 
 const byId = (id) => document.getElementById(id);
 const text = (id, value) => {
@@ -977,6 +978,25 @@ function addCommunityPost(post) {
   </article>`;
 }
 
+function renderCommunityPreview() {
+  const output = byId('homeCommunityPreview');
+  if (!output) return;
+  const filtered = COMMUNITY_PREVIEW_CATEGORY === 'ALL'
+    ? COMMUNITY_POSTS
+    : COMMUNITY_POSTS.filter((post) => post.category === COMMUNITY_PREVIEW_CATEGORY);
+  output.innerHTML = filtered.length
+    ? filtered.slice(0, 2).map((post) => `<article class="preview-post">
+        <div><b>${escapeHtml(post.display_name)}</b><span>${escapeHtml(post.category)}</span></div>
+        <p>${escapeHtml(post.body)}</p>
+      </article>`).join('')
+    : '<div class="preview-empty"><span class="empty-orbit" aria-hidden="true"></span><b>No posts in this category yet.</b><span>Share a question or experience with the community.</span></div>';
+  document.querySelectorAll('.community-tabs [data-category]').forEach((button) => {
+    const active = button.dataset.category === COMMUNITY_PREVIEW_CATEGORY;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+}
+
 async function loadCommunity() {
   const output = byId('communityFeed');
   if (!output) return;
@@ -984,13 +1004,29 @@ async function loadCommunity() {
   try {
     const category = byId('communityFilter')?.value || 'ALL';
     const query = category === 'ALL' ? '' : `?category=${encodeURIComponent(category)}`;
-    const posts = await api(`/api/community${query}`);
-    output.innerHTML = Array.isArray(posts) && posts.length
-      ? posts.map(addCommunityPost).join('')
+    const [posts, allPosts] = await Promise.all([
+      api(`/api/community${query}`),
+      category === 'ALL' ? Promise.resolve(null) : api('/api/community'),
+    ]);
+    COMMUNITY_POSTS = Array.isArray(allPosts || posts) ? (allPosts || posts) : [];
+    renderCommunityPreview();
+    const filteredPosts = Array.isArray(posts) ? posts : [];
+    output.innerHTML = filteredPosts.length
+      ? filteredPosts.map(addCommunityPost).join('')
       : '<p class="muted">No community posts yet. Share an experience or ask a question to start the feed.</p>';
   } catch (error) {
     output.textContent = `Community unavailable: ${error.message}`;
+    const preview = byId('homeCommunityPreview');
+    if (preview) preview.textContent = 'Community feed is unavailable right now.';
   }
+}
+
+function openCommunityCategory(category) {
+  COMMUNITY_PREVIEW_CATEGORY = category || 'ALL';
+  const filter = byId('communityFilter');
+  if (filter) filter.value = COMMUNITY_PREVIEW_CATEGORY;
+  renderCommunityPreview();
+  go('community');
 }
 
 async function createCommunityPost(event) {
@@ -1078,6 +1114,28 @@ async function communityAction(action, postId) {
   }
 }
 
+async function logout() {
+  try {
+    await api('/api/auth/logout', { method: 'POST', body: '{}' });
+  } catch (error) {
+    text('authmsg', `Could not sign out: ${error.message}`);
+    return;
+  }
+  CSRF = '';
+  CURRENT_USER = null;
+  BUSINESS = null;
+  BUSINESS_ID = '';
+  BUSINESS_TWIN = {};
+  NEXT_TURN = null;
+  ACTIONS = [];
+  COMMUNITY_POSTS = [];
+  ASK_LAST_TURN = null;
+  byId('authgate')?.classList.remove('off');
+  byId('profileMenu')?.classList.remove('on');
+  byId('authForm')?.reset();
+  text('authmsg', 'You have signed out.');
+}
+
 document.addEventListener('click', (event) => {
   const origin = event.target instanceof Element ? event.target : null;
   const button = origin?.closest('[data-action]');
@@ -1085,10 +1143,20 @@ document.addEventListener('click', (event) => {
   const action = button.dataset.action;
   if (action === 'auth') authenticate(button.dataset.kind);
   else if (action === 'navigate') go(button.dataset.view);
-  else if (action === 'toggle') byId(button.dataset.target)?.classList.toggle('on');
+  else if (action === 'toggle') {
+    const target = byId(button.dataset.target);
+    const open = target?.classList.toggle('on');
+    button.setAttribute('aria-expanded', String(Boolean(open)));
+  }
   else if (action === 'see-evolution') seeEvolution();
   else if (action === 'start-action') startAction(button.dataset.key, Number(button.dataset.risk));
   else if (action === 'confirm-guided') confirmGuidedAction(button.dataset.id);
+  else if (action === 'continue-next-turn') continueNextTurn();
+  else if (action === 'see-route') showRoute();
+  else if (action === 'refresh-routes') refreshRoutes();
+  else if (action === 'ask-suggestion') askSuggestion(button.dataset.question);
+  else if (action === 'community-preview-filter') openCommunityCategory(button.dataset.category);
+  else if (action === 'logout') logout();
   else if (action === 'community-mode') {
     const category = button.dataset.category || 'ALL';
     if (category !== 'ALL') {
@@ -1097,9 +1165,10 @@ document.addEventListener('click', (event) => {
       select.dataset.selected = category;
     }
     byId('communityFilter').value = category;
+    COMMUNITY_PREVIEW_CATEGORY = category;
+    go('community');
     byId('communityForm')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
     byId('communityBody')?.focus();
-    loadCommunity();
   } else if (action.startsWith('community-')) {
     communityAction(action, button.dataset.postId);
   }
@@ -1112,11 +1181,20 @@ document.addEventListener('submit', (event) => {
   } else if (event.target.id === 'askForm') askGenesis(event);
   else if (event.target.id === 'communityForm') createCommunityPost(event);
   else if (event.target.matches('.reply-form')) submitReply(event);
+  else if (event.target.id === 'journeyForm') saveJourney(event);
+  else if (event.target.id === 'metricsForm') saveActuals(event);
+  else if (event.target.id === 'dnaForm') saveFounderDna(event);
+  else if (event.target.id === 'proofForm') recordProof(event);
+  else if (event.target.id === 'counterfactualForm') runCounterfactual(event);
+  else if (event.target.id === 'whatIfForm') compareReroute(event);
 });
 
 byId('communityCategory')?.addEventListener('change', (event) => {
   event.currentTarget.dataset.selected = event.currentTarget.value;
 });
-byId('communityFilter')?.addEventListener('change', loadCommunity);
+byId('communityFilter')?.addEventListener('change', (event) => {
+  COMMUNITY_PREVIEW_CATEGORY = event.currentTarget.value;
+  loadCommunity();
+});
 
 bootstrap();
