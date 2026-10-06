@@ -31,10 +31,17 @@ const displayStage = () => {
   if (!destination()) return { index: 0, label: 'You Are Here', detail: 'Set your destination' };
   if (!reality()) return { index: 1, label: 'Setup', detail: 'Save your founder reality' };
   if (!(BUSINESS_TWIN.route_portfolio || []).length) return { index: 2, label: 'Launch', detail: 'Compare possible routes' };
-  if (!NEXT_TURN && !BUSINESS_TWIN.next_turn) return { index: 2, label: 'Launch', detail: 'Choose a next turn' };
+  const turn = NEXT_TURN || BUSINESS_TWIN.next_turn;
+  if (!turn) return { index: 2, label: 'Launch', detail: 'Choose a next turn' };
   const routeProofs = BUSINESS_TWIN.route_proofs || {};
-  if (!Object.keys(routeProofs).length) return { index: 3, label: 'Grow', detail: 'Gather checkpoint evidence' };
-  return { index: 4, label: 'Destination', detail: 'Review evidence and adapt' };
+  if (turn.checkpoint === 'Route complete' && !(turn.proof_missing || []).length) {
+    return { index: 4, label: 'Destination', detail: 'Review evidence and adapt' };
+  }
+  return {
+    index: Object.keys(routeProofs).length ? 3 : 2,
+    label: Object.keys(routeProofs).length ? 'Grow' : 'Launch',
+    detail: Object.keys(routeProofs).length ? 'Gather checkpoint evidence' : 'Choose your next evidence-based move',
+  };
 };
 
 function cookie(name) {
@@ -192,7 +199,9 @@ function setInputValue(id, value, scale = 1) {
 function renderProgress() {
   const routeProofs = BUSINESS_TWIN.route_proofs || {};
   const routes = Array.isArray(BUSINESS_TWIN.route_portfolio) ? BUSINESS_TWIN.route_portfolio : [];
-  const verifiedAction = ACTIONS.some((action) => action.status === 'VERIFIED');
+  const verifiedExecution = ACTIONS.some((action) => action.mode === 'EXECUTE' && action.status === 'VERIFIED');
+  const hasActuals = ['monthly_revenue', 'customer_count', 'gross_margin', 'repeat_customer_share', 'capacity_used']
+    .some((key) => hasValue(BUSINESS_TWIN, key));
   const items = [
     { name: 'Destination', detail: 'Define what success means to you', done: Boolean(destination()) },
     { name: 'Founder reality', detail: 'Start with the resources you have', done: Boolean(reality()) },
@@ -200,7 +209,7 @@ function renderProgress() {
     { name: 'Next turn', detail: 'Choose an evidence-based move', done: Boolean(NEXT_TURN?.action || BUSINESS_TWIN.next_turn?.action) },
     { name: 'Proof checkpoints', detail: 'Record evidence for your active route', done: Object.keys(routeProofs).length > 0 },
     { name: 'Resource envelope', detail: 'Calculate risk cash from saved limits', done: routes.length > 0 && Boolean(reality() && destination()) },
-    { name: 'Results & evolution', detail: 'Use actuals or a verified action to adapt', done: Boolean(BUSINESS_TWIN.latest_evolution || verifiedAction) },
+    { name: 'Results & evolution', detail: 'Use actuals or verified execution to adapt', done: Boolean(BUSINESS_TWIN.latest_evolution || hasActuals || verifiedExecution) },
   ];
   const completed = items.filter((item) => item.done).length;
   const nextIndex = items.findIndex((item) => !item.done);
@@ -301,8 +310,6 @@ function renderOverview() {
   const output = byId('homeBusinessOverview');
   if (output) output.innerHTML = tiles.map(([label, value, detail]) =>
     `<div><small>${escapeHtml(label)}</small><b>${escapeHtml(value)}</b><span>${escapeHtml(detail)}</span></div>`).join('');
-  const title = byId('businessPageTitle');
-  if (title && BUSINESS?.name) title.textContent = BUSINESS.name;
 }
 
 function renderNextTurn() {
