@@ -736,7 +736,8 @@ async function compareReroute(event) {
 function continueNextTurn() {
   if (!NEXT_TURN?.action) {
     go('business');
-    byId('journeySettings')?.classList.add('on');
+    byId('journeyForm')?.classList.add('on');
+    document.querySelector('[data-target="journeyForm"]')?.setAttribute('aria-expanded', 'true');
     text('journeyFormStatus', 'Set your destination and founder reality to calculate a next turn.');
     byId('journeyForm')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
     return;
