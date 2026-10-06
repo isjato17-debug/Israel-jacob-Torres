@@ -13,14 +13,18 @@ def test_prod_accepts_secure_baseline():
     }
     production_guard('production','x'*64,'postgresql+psycopg://genesis@db.example/genesis',**secure)
     invalid_configs = [
-        {'database_url': 'postgresql://'},
+        {'database_url': 'postgresql+psycopg://'},
+        {'database_url': 'postgresql://genesis@db.example/genesis'},
         {'cookie_secure': False},
         {'allowed_origins': ''},
         {'allowed_origins': 'http://genesis.example'},
         {'allowed_origins': 'https://localhost'},
+        {'allowed_origins': 'https://genesis.example/path'},
         {'allowed_hosts': ''},
         {'allowed_hosts': '*'},
         {'allowed_hosts': 'localhost'},
+        {'allowed_hosts': 'https://genesis.example'},
+        {'allowed_hosts': '127.0.0.1'},
     ]
     for invalid in invalid_configs:
         values = {

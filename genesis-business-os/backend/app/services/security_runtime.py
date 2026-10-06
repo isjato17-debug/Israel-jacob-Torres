@@ -1,4 +1,4 @@
-import secrets, time
+import ipaddress, secrets, time
 from collections import defaultdict, deque
 from urllib.parse import urlsplit
 
@@ -22,6 +22,41 @@ def _csv_values(value):
         return [str(item).strip() for item in value if str(item).strip()]
     return []
 
+def _normalized_host(value):
+    if not isinstance(value, str) or not value or value != value.strip():
+        return None
+    if '://' in value or any(char.isspace() or char in '/?#@*' for char in value):
+        return None
+
+    if value.startswith('['):
+        closing = value.find(']')
+        if closing < 0:
+            return None
+        hostname = value[1:closing]
+        suffix = value[closing + 1:]
+        if suffix and (not suffix.startswith(':') or not suffix[1:].isdigit()):
+            return None
+    elif value.count(':') == 1:
+        hostname, port = value.rsplit(':', 1)
+        if not port.isdigit():
+            return None
+    elif ':' in value:
+        return None
+    else:
+        hostname = value
+
+    if not hostname:
+        return None
+    try:
+        address = ipaddress.ip_address(hostname)
+    except ValueError:
+        if any(char not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-' for char in hostname):
+            return None
+        return hostname.lower()
+    if address.is_loopback or address.is_unspecified:
+        return None
+    return hostname.lower()
+
 def production_guard(env, jwt_secret, database_url, cookie_secure=None, allowed_origins=None, allowed_hosts=None):
     if env != 'production':
         return
@@ -35,8 +70,8 @@ def production_guard(env, jwt_secret, database_url, cookie_secure=None, allowed_
         database = make_url(database_url)
     except (ArgumentError, TypeError, ValueError):
         raise RuntimeError('Refusing production startup with an invalid database URL') from None
-    if database.drivername not in ('postgresql', 'postgresql+psycopg'):
-        raise RuntimeError('Refusing production startup without PostgreSQL; SQLite is development-only')
+    if database.drivername != 'postgresql+psycopg':
+        raise RuntimeError('Refusing production startup without PostgreSQL using the configured psycopg driver; SQLite is development-only')
     if not database.host or not database.database or not database.username:
         raise RuntimeError('Refusing production startup with incomplete PostgreSQL connection settings')
 
@@ -47,15 +82,22 @@ def production_guard(env, jwt_secret, database_url, cookie_secure=None, allowed_
     if not origins:
         raise RuntimeError('Refusing production startup without allowed origins')
     for origin in origins:
-        parsed = urlsplit(origin)
+        if any(char.isspace() for char in origin):
+            raise RuntimeError('Refusing production startup with unsafe or missing allowed origins')
+        try:
+            parsed = urlsplit(origin)
+        except ValueError:
+            raise RuntimeError('Refusing production startup with unsafe or missing allowed origins') from None
         host = (parsed.hostname or '').lower()
-        if parsed.scheme != 'https' or not host or '*' in origin or host in ('localhost', '127.0.0.1', '::1'):
+        if (parsed.scheme != 'https' or not host or parsed.path or parsed.query or parsed.fragment
+                or parsed.username or parsed.password or '*' in origin
+                or host in ('localhost', '127.0.0.1', '::1')):
             raise RuntimeError('Refusing production startup with unsafe or missing allowed origins')
 
     hosts = _csv_values(allowed_hosts)
     if not hosts:
         raise RuntimeError('Refusing production startup without allowed hosts')
     for host in hosts:
-        normalized = host.lower().split(':', 1)[0].strip('[]')
-        if '*' in host or normalized in ('localhost', '127.0.0.1', '::1', 'testserver'):
+        normalized = _normalized_host(host)
+        if not normalized or normalized in ('localhost', 'testserver'):
             raise RuntimeError('Refusing production startup with unsafe or missing allowed hosts')
