@@ -390,10 +390,8 @@ function renderBusinessState() {
   setInputValue('metricTicket', twin.average_ticket);
   setInputValue('metricCloseRate', twin.close_rate, 100);
   const currentReality = reality();
-  if (currentReality) {
-    setInputValue('whatIfCash', currentReality.cash);
-    setInputValue('whatIfHours', currentReality.hours_per_week);
-  }
+  setInputValue('whatIfCash', currentReality?.cash);
+  setInputValue('whatIfHours', currentReality?.hours_per_week);
   renderRoutePortfolio();
 }
 
@@ -1141,6 +1139,7 @@ async function logout() {
   byId('profileMenu')?.classList.remove('on');
   byId('authForm')?.reset();
   text('authmsg', 'You have signed out.');
+  window.location.reload();
 }
 
 document.addEventListener('click', (event) => {
