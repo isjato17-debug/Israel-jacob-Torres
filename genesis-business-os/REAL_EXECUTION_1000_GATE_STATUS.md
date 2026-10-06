@@ -2,7 +2,7 @@
 
 **400 PASS · 0 FAIL · 600 RELEASE GATE**
 
-These totals are counted from the 1,000 rows in `REAL_EXECUTION_1000_GATE_MATRIX.json`. The eight concrete code FAIL findings from the re-audit have been fixed. A separate gates 201–1000 matrix reports different totals; see `1000_GATE_MASTER_STATUS.md` and do not combine those snapshots.
+These totals are counted from the 1,000 rows in `REAL_EXECUTION_1000_GATE_MATRIX.json`, the canonical current matrix. The eight concrete code FAIL findings from the re-audit have been fixed. `GATES_201_1000_MATRIX.json` is preserved as a historical subset snapshot with conflicting totals; see `1000_GATE_MASTER_STATUS.md` and do not combine those snapshots.
 
 ## Local verification — 2026-10-06
 
