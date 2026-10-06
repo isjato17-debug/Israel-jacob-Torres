@@ -139,7 +139,7 @@ def save_founder_dna(x:FounderProfileIn,u:User=Depends(current_user),db:Session=
     ensure_not_lockdown(db,u)
     prev=db.scalars(select(FounderProfile).where(FounderProfile.tenant_id==u.tenant_id,FounderProfile.user_id==u.id).order_by(FounderProfile.version.desc())).first()
     v=(prev.version+1) if prev else 1
-    p=FounderProfile(tenant_id=u.tenant_id,user_id=u.id,version=v,profile_json=json.dumps(x.profile)); db.add(p)
+    p=FounderProfile(tenant_id=u.tenant_id,user_id=u.id,version=v,profile_json=json.dumps(x.profile)); db.add(p); db.flush()
     audit(db,u,'save','founder_profile',p.id,{'version':v}); db.commit()
     return {'id':p.id,'version':v,'profile':x.profile,'dna':founder_score(x.profile)}
 @app.get('/api/founder-dna')
