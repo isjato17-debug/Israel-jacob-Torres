@@ -1,0 +1,35 @@
+{
+  "product": "Genesis Business OS",
+  "package_type": "one-shot Replit master",
+  "consumer_navigation": [
+    "Home",
+    "My Business",
+    "Do It",
+    "Community",
+    "Ask Genesis"
+  ],
+  "core_mechanism": [
+    "Founder Reality",
+    "Destination Contract",
+    "Route Portfolio",
+    "Next Turn",
+    "Proof Checkpoint",
+    "Resource Envelope",
+    "Real Execution Contract",
+    "Outcome Capture",
+    "Dependency Reroute"
+  ],
+  "execution_modes": [
+    "EXECUTE",
+    "PREPARE",
+    "GUIDE"
+  ],
+  "visual_authority": "docs/GENESIS_FULL_JOURNEY_VISUAL.png",
+  "provider_dependent_features": "must not claim live execution until connected and verified",
+  "tier4_autonomous_execution": false,
+  "audit_revision": "triple-check-2026-10-05",
+  "route_api_wired": true,
+  "community_ui_wired": true,
+  "backend_root_serves_consumer_ui": true,
+  "legacy_config_names_removed": true
+}

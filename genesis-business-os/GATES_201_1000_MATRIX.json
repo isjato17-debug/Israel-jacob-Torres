@@ -1,0 +1,4802 @@
+[
+  {
+    "gate": 201,
+    "domain": "Release packaging & provenance",
+    "check": "single authoritative root",
+    "status": "PASS"
+  },
+  {
+    "gate": 202,
+    "domain": "Release packaging & provenance",
+    "check": "ZIP CRC integrity",
+    "status": "PASS"
+  },
+  {
+    "gate": 203,
+    "domain": "Release packaging & provenance",
+    "check": "no cache artifacts",
+    "status": "PASS"
+  },
+  {
+    "gate": 204,
+    "domain": "Release packaging & provenance",
+    "check": "no archived duplicate runtime",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 205,
+    "domain": "Release packaging & provenance",
+    "check": "manifest present",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 206,
+    "domain": "Release packaging & provenance",
+    "check": "master status present",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 207,
+    "domain": "Release packaging & provenance",
+    "check": "audit documents versioned",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 208,
+    "domain": "Release packaging & provenance",
+    "check": "Genesis branding consistency",
+    "status": "PASS"
+  },
+  {
+    "gate": 209,
+    "domain": "Release packaging & provenance",
+    "check": "no stale executable copies",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 210,
+    "domain": "Release packaging & provenance",
+    "check": "deterministic entrypoint path",
+    "status": "PASS"
+  },
+  {
+    "gate": 211,
+    "domain": "Release packaging & provenance",
+    "check": "source files readable",
+    "status": "PASS"
+  },
+  {
+    "gate": 212,
+    "domain": "Release packaging & provenance",
+    "check": "no zero-byte critical files",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 213,
+    "domain": "Release packaging & provenance",
+    "check": "no duplicate critical filenames",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 214,
+    "domain": "Release packaging & provenance",
+    "check": "artifact checksum recorded",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 215,
+    "domain": "Release packaging & provenance",
+    "check": "release version identifiable",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 216,
+    "domain": "Release packaging & provenance",
+    "check": "generated assets included",
+    "status": "PASS"
+  },
+  {
+    "gate": 217,
+    "domain": "Release packaging & provenance",
+    "check": "design reference included",
+    "status": "PASS"
+  },
+  {
+    "gate": 218,
+    "domain": "Release packaging & provenance",
+    "check": "execution standard included",
+    "status": "PASS"
+  },
+  {
+    "gate": 219,
+    "domain": "Release packaging & provenance",
+    "check": "security standard included",
+    "status": "PASS"
+  },
+  {
+    "gate": 220,
+    "domain": "Release packaging & provenance",
+    "check": "release limitations disclosed",
+    "status": "PASS"
+  },
+  {
+    "gate": 221,
+    "domain": "Replit boot & environment",
+    "check": ".replit present",
+    "status": "PASS"
+  },
+  {
+    "gate": 222,
+    "domain": "Replit boot & environment",
+    "check": "run command targets backend",
+    "status": "PASS"
+  },
+  {
+    "gate": 223,
+    "domain": "Replit boot & environment",
+    "check": "entrypoint exists",
+    "status": "PASS"
+  },
+  {
+    "gate": 224,
+    "domain": "Replit boot & environment",
+    "check": "port binding explicit",
+    "status": "PASS"
+  },
+  {
+    "gate": 225,
+    "domain": "Replit boot & environment",
+    "check": "host binding explicit",
+    "status": "PASS"
+  },
+  {
+    "gate": 226,
+    "domain": "Replit boot & environment",
+    "check": "requirements path valid",
+    "status": "PASS"
+  },
+  {
+    "gate": 227,
+    "domain": "Replit boot & environment",
+    "check": "replit.nix present",
+    "status": "PASS"
+  },
+  {
+    "gate": 228,
+    "domain": "Replit boot & environment",
+    "check": "working directory deterministic",
+    "status": "PASS"
+  },
+  {
+    "gate": 229,
+    "domain": "Replit boot & environment",
+    "check": "startup fails on bad production config",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 230,
+    "domain": "Replit boot & environment",
+    "check": "health endpoint defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 231,
+    "domain": "Replit boot & environment",
+    "check": "readiness requirement documented",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 232,
+    "domain": "Replit boot & environment",
+    "check": "production env distinct from development",
+    "status": "PASS"
+  },
+  {
+    "gate": 233,
+    "domain": "Replit boot & environment",
+    "check": "no production debug docs endpoint",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 234,
+    "domain": "Replit boot & environment",
+    "check": "database URL configurable",
+    "status": "PASS"
+  },
+  {
+    "gate": 235,
+    "domain": "Replit boot & environment",
+    "check": "allowed hosts configurable",
+    "status": "PASS"
+  },
+  {
+    "gate": 236,
+    "domain": "Replit boot & environment",
+    "check": "allowed origins configurable",
+    "status": "PASS"
+  },
+  {
+    "gate": 237,
+    "domain": "Replit boot & environment",
+    "check": "secure cookies configurable",
+    "status": "PASS"
+  },
+  {
+    "gate": 238,
+    "domain": "Replit boot & environment",
+    "check": "lockdown configurable",
+    "status": "PASS"
+  },
+  {
+    "gate": 239,
+    "domain": "Replit boot & environment",
+    "check": "startup errors visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 240,
+    "domain": "Replit boot & environment",
+    "check": "deployment command documented",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 241,
+    "domain": "Dependency & supply-chain security",
+    "check": "dependency list explicit",
+    "status": "PASS"
+  },
+  {
+    "gate": 242,
+    "domain": "Dependency & supply-chain security",
+    "check": "major versions bounded",
+    "status": "PASS"
+  },
+  {
+    "gate": 243,
+    "domain": "Dependency & supply-chain security",
+    "check": "cryptography dependency transitive path",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 244,
+    "domain": "Dependency & supply-chain security",
+    "check": "Argon2 dependency",
+    "status": "PASS"
+  },
+  {
+    "gate": 245,
+    "domain": "Dependency & supply-chain security",
+    "check": "PostgreSQL driver",
+    "status": "PASS"
+  },
+  {
+    "gate": 246,
+    "domain": "Dependency & supply-chain security",
+    "check": "Alembic dependency",
+    "status": "PASS"
+  },
+  {
+    "gate": 247,
+    "domain": "Dependency & supply-chain security",
+    "check": "test dependencies identified",
+    "status": "PASS"
+  },
+  {
+    "gate": 248,
+    "domain": "Dependency & supply-chain security",
+    "check": "SBOM release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 249,
+    "domain": "Dependency & supply-chain security",
+    "check": "SCA scan release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 250,
+    "domain": "Dependency & supply-chain security",
+    "check": "known-CVE scan release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 251,
+    "domain": "Dependency & supply-chain security",
+    "check": "dependency lockfile release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 252,
+    "domain": "Dependency & supply-chain security",
+    "check": "hash pinning release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 253,
+    "domain": "Dependency & supply-chain security",
+    "check": "license review release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 254,
+    "domain": "Dependency & supply-chain security",
+    "check": "container scan release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 255,
+    "domain": "Dependency & supply-chain security",
+    "check": "base-image patch policy",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 256,
+    "domain": "Dependency & supply-chain security",
+    "check": "dependency update policy",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 257,
+    "domain": "Dependency & supply-chain security",
+    "check": "secret scan",
+    "status": "PASS"
+  },
+  {
+    "gate": 258,
+    "domain": "Dependency & supply-chain security",
+    "check": "malicious package name review",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 259,
+    "domain": "Dependency & supply-chain security",
+    "check": "build provenance release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 260,
+    "domain": "Dependency & supply-chain security",
+    "check": "reproducible build release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 261,
+    "domain": "Configuration & secrets",
+    "check": "no hardcoded API keys",
+    "status": "PASS"
+  },
+  {
+    "gate": 262,
+    "domain": "Configuration & secrets",
+    "check": "no hardcoded provider tokens",
+    "status": "PASS"
+  },
+  {
+    "gate": 263,
+    "domain": "Configuration & secrets",
+    "check": "JWT secret env-configured",
+    "status": "PASS"
+  },
+  {
+    "gate": 264,
+    "domain": "Configuration & secrets",
+    "check": "minimum JWT length",
+    "status": "PASS"
+  },
+  {
+    "gate": 265,
+    "domain": "Configuration & secrets",
+    "check": "development secret production rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 266,
+    "domain": "Configuration & secrets",
+    "check": "SQLite production rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 267,
+    "domain": "Configuration & secrets",
+    "check": "secure-cookie production rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 268,
+    "domain": "Configuration & secrets",
+    "check": "unsafe-origin production rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 269,
+    "domain": "Configuration & secrets",
+    "check": "unsafe-host production rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 270,
+    "domain": "Configuration & secrets",
+    "check": "secrets excluded from client",
+    "status": "PASS"
+  },
+  {
+    "gate": 271,
+    "domain": "Configuration & secrets",
+    "check": "secrets excluded from logs",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 272,
+    "domain": "Configuration & secrets",
+    "check": "provider keys server-side requirement",
+    "status": "PASS"
+  },
+  {
+    "gate": 273,
+    "domain": "Configuration & secrets",
+    "check": "secret rotation requirement",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 274,
+    "domain": "Configuration & secrets",
+    "check": "secrets manager release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 275,
+    "domain": "Configuration & secrets",
+    "check": "environment separation requirement",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 276,
+    "domain": "Configuration & secrets",
+    "check": "default credential scan",
+    "status": "PASS"
+  },
+  {
+    "gate": 277,
+    "domain": "Configuration & secrets",
+    "check": "configuration type validation",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 278,
+    "domain": "Configuration & secrets",
+    "check": "missing required production config fails closed",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 279,
+    "domain": "Configuration & secrets",
+    "check": "secret export prohibition",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 280,
+    "domain": "Configuration & secrets",
+    "check": "incident key rotation procedure",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 281,
+    "domain": "Authentication",
+    "check": "Argon2 hashing",
+    "status": "PASS"
+  },
+  {
+    "gate": 282,
+    "domain": "Authentication",
+    "check": "email normalization",
+    "status": "PASS"
+  },
+  {
+    "gate": 283,
+    "domain": "Authentication",
+    "check": "password minimum",
+    "status": "PASS"
+  },
+  {
+    "gate": 284,
+    "domain": "Authentication",
+    "check": "invalid login generic error",
+    "status": "PASS"
+  },
+  {
+    "gate": 285,
+    "domain": "Authentication",
+    "check": "login throttling",
+    "status": "PASS"
+  },
+  {
+    "gate": 286,
+    "domain": "Authentication",
+    "check": "inactive user rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 287,
+    "domain": "Authentication",
+    "check": "auth required on protected API",
+    "status": "PASS"
+  },
+  {
+    "gate": 288,
+    "domain": "Authentication",
+    "check": "registration duplicate email rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 289,
+    "domain": "Authentication",
+    "check": "password hash never returned",
+    "status": "PASS"
+  },
+  {
+    "gate": 290,
+    "domain": "Authentication",
+    "check": "login creates server record",
+    "status": "PASS"
+  },
+  {
+    "gate": 291,
+    "domain": "Authentication",
+    "check": "logout requires authenticated session",
+    "status": "PASS"
+  },
+  {
+    "gate": 292,
+    "domain": "Authentication",
+    "check": "logout revokes session",
+    "status": "PASS"
+  },
+  {
+    "gate": 293,
+    "domain": "Authentication",
+    "check": "credential stuffing release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 294,
+    "domain": "Authentication",
+    "check": "account enumeration release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 295,
+    "domain": "Authentication",
+    "check": "password reset release flow",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 296,
+    "domain": "Authentication",
+    "check": "reset token hashed release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 297,
+    "domain": "Authentication",
+    "check": "reset token single-use release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 298,
+    "domain": "Authentication",
+    "check": "reset expiry release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 299,
+    "domain": "Authentication",
+    "check": "compromised password policy release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 300,
+    "domain": "Authentication",
+    "check": "authentication audit events",
+    "status": "PASS"
+  },
+  {
+    "gate": 301,
+    "domain": "Session lifecycle",
+    "check": "cryptographic random session ID",
+    "status": "PASS"
+  },
+  {
+    "gate": 302,
+    "domain": "Session lifecycle",
+    "check": "session stored server-side",
+    "status": "PASS"
+  },
+  {
+    "gate": 303,
+    "domain": "Session lifecycle",
+    "check": "session cookie HttpOnly",
+    "status": "PASS"
+  },
+  {
+    "gate": 304,
+    "domain": "Session lifecycle",
+    "check": "SameSite strict",
+    "status": "PASS"
+  },
+  {
+    "gate": 305,
+    "domain": "Session lifecycle",
+    "check": "Secure in production",
+    "status": "PASS"
+  },
+  {
+    "gate": 306,
+    "domain": "Session lifecycle",
+    "check": "absolute expiry",
+    "status": "PASS"
+  },
+  {
+    "gate": 307,
+    "domain": "Session lifecycle",
+    "check": "idle expiry",
+    "status": "PASS"
+  },
+  {
+    "gate": 308,
+    "domain": "Session lifecycle",
+    "check": "revocation timestamp",
+    "status": "PASS"
+  },
+  {
+    "gate": 309,
+    "domain": "Session lifecycle",
+    "check": "last-seen update",
+    "status": "PASS"
+  },
+  {
+    "gate": 310,
+    "domain": "Session lifecycle",
+    "check": "CSRF binding per session",
+    "status": "PASS"
+  },
+  {
+    "gate": 311,
+    "domain": "Session lifecycle",
+    "check": "session fixation release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 312,
+    "domain": "Session lifecycle",
+    "check": "rotation after auth release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 313,
+    "domain": "Session lifecycle",
+    "check": "rotation after privilege change",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 314,
+    "domain": "Session lifecycle",
+    "check": "revoke-all release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 315,
+    "domain": "Session lifecycle",
+    "check": "device/session inventory release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 316,
+    "domain": "Session lifecycle",
+    "check": "concurrent session policy",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 317,
+    "domain": "Session lifecycle",
+    "check": "trusted proxy IP handling",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 318,
+    "domain": "Session lifecycle",
+    "check": "clock skew release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 319,
+    "domain": "Session lifecycle",
+    "check": "cookie domain/path production test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 320,
+    "domain": "Session lifecycle",
+    "check": "expired session rejection",
+    "status": "PASS"
+  },
+  {
+    "gate": 321,
+    "domain": "MFA/passkeys & recovery",
+    "check": "passkey design documented",
+    "status": "PASS"
+  },
+  {
+    "gate": 322,
+    "domain": "MFA/passkeys & recovery",
+    "check": "MFA dependency present",
+    "status": "PASS"
+  },
+  {
+    "gate": 323,
+    "domain": "MFA/passkeys & recovery",
+    "check": "step-up Tier3 requirement",
+    "status": "PASS"
+  },
+  {
+    "gate": 324,
+    "domain": "MFA/passkeys & recovery",
+    "check": "step-up Tier4 requirement",
+    "status": "PASS"
+  },
+  {
+    "gate": 325,
+    "domain": "MFA/passkeys & recovery",
+    "check": "passkey registration release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 326,
+    "domain": "MFA/passkeys & recovery",
+    "check": "passkey authentication release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 327,
+    "domain": "MFA/passkeys & recovery",
+    "check": "MFA enrollment release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 328,
+    "domain": "MFA/passkeys & recovery",
+    "check": "MFA recovery codes release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 329,
+    "domain": "MFA/passkeys & recovery",
+    "check": "recovery codes hashed",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 330,
+    "domain": "MFA/passkeys & recovery",
+    "check": "TOTP replay release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 331,
+    "domain": "MFA/passkeys & recovery",
+    "check": "passkey origin/RP validation",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 332,
+    "domain": "MFA/passkeys & recovery",
+    "check": "lost-device recovery",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 333,
+    "domain": "MFA/passkeys & recovery",
+    "check": "recovery anti-enumeration",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 334,
+    "domain": "MFA/passkeys & recovery",
+    "check": "recovery rate limit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 335,
+    "domain": "MFA/passkeys & recovery",
+    "check": "security-event session revoke",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 336,
+    "domain": "MFA/passkeys & recovery",
+    "check": "MFA disable step-up",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 337,
+    "domain": "MFA/passkeys & recovery",
+    "check": "new-device notification gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 338,
+    "domain": "MFA/passkeys & recovery",
+    "check": "phishing-resistant preference",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 339,
+    "domain": "MFA/passkeys & recovery",
+    "check": "backup factor policy",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 340,
+    "domain": "MFA/passkeys & recovery",
+    "check": "recovery audit trail",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 341,
+    "domain": "Authorization & RBAC",
+    "check": "current user dependency",
+    "status": "PASS"
+  },
+  {
+    "gate": 342,
+    "domain": "Authorization & RBAC",
+    "check": "owner/admin boundary",
+    "status": "PASS"
+  },
+  {
+    "gate": 343,
+    "domain": "Authorization & RBAC",
+    "check": "tenant object helper",
+    "status": "PASS"
+  },
+  {
+    "gate": 344,
+    "domain": "Authorization & RBAC",
+    "check": "404 on foreign resource design",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 345,
+    "domain": "Authorization & RBAC",
+    "check": "role not trusted from client",
+    "status": "PASS"
+  },
+  {
+    "gate": 346,
+    "domain": "Authorization & RBAC",
+    "check": "Tier0 policy",
+    "status": "PASS"
+  },
+  {
+    "gate": 347,
+    "domain": "Authorization & RBAC",
+    "check": "Tier1 policy",
+    "status": "PASS"
+  },
+  {
+    "gate": 348,
+    "domain": "Authorization & RBAC",
+    "check": "Tier2 policy",
+    "status": "PASS"
+  },
+  {
+    "gate": 349,
+    "domain": "Authorization & RBAC",
+    "check": "Tier3 explicit approval",
+    "status": "PASS"
+  },
+  {
+    "gate": 350,
+    "domain": "Authorization & RBAC",
+    "check": "Tier4 autonomous block",
+    "status": "PASS"
+  },
+  {
+    "gate": 351,
+    "domain": "Authorization & RBAC",
+    "check": "lockdown external write block",
+    "status": "PASS"
+  },
+  {
+    "gate": 352,
+    "domain": "Authorization & RBAC",
+    "check": "privilege escalation test gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 353,
+    "domain": "Authorization & RBAC",
+    "check": "IDOR test gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 354,
+    "domain": "Authorization & RBAC",
+    "check": "mass-assignment test gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 355,
+    "domain": "Authorization & RBAC",
+    "check": "function-level auth test gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 356,
+    "domain": "Authorization & RBAC",
+    "check": "admin endpoint inventory",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 357,
+    "domain": "Authorization & RBAC",
+    "check": "least privilege provider scope",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 358,
+    "domain": "Authorization & RBAC",
+    "check": "capability expiry requirement",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 359,
+    "domain": "Authorization & RBAC",
+    "check": "authorization recheck on material state",
+    "status": "PASS"
+  },
+  {
+    "gate": 360,
+    "domain": "Authorization & RBAC",
+    "check": "authorization audit event",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 361,
+    "domain": "Tenant isolation",
+    "check": "tenant_id on core records",
+    "status": "PASS"
+  },
+  {
+    "gate": 362,
+    "domain": "Tenant isolation",
+    "check": "tenant checks on business access",
+    "status": "PASS"
+  },
+  {
+    "gate": 363,
+    "domain": "Tenant isolation",
+    "check": "session tenant binding",
+    "status": "PASS"
+  },
+  {
+    "gate": 364,
+    "domain": "Tenant isolation",
+    "check": "user tenant consistency check",
+    "status": "PASS"
+  },
+  {
+    "gate": 365,
+    "domain": "Tenant isolation",
+    "check": "audit tenant binding",
+    "status": "PASS"
+  },
+  {
+    "gate": 366,
+    "domain": "Tenant isolation",
+    "check": "evidence tenant binding",
+    "status": "PASS"
+  },
+  {
+    "gate": 367,
+    "domain": "Tenant isolation",
+    "check": "decision tenant binding",
+    "status": "PASS"
+  },
+  {
+    "gate": 368,
+    "domain": "Tenant isolation",
+    "check": "community private-state separation",
+    "status": "PASS"
+  },
+  {
+    "gate": 369,
+    "domain": "Tenant isolation",
+    "check": "cross-tenant IDOR test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 370,
+    "domain": "Tenant isolation",
+    "check": "cross-tenant RAG test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 371,
+    "domain": "Tenant isolation",
+    "check": "cross-tenant cache test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 372,
+    "domain": "Tenant isolation",
+    "check": "cross-tenant export test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 373,
+    "domain": "Tenant isolation",
+    "check": "cross-tenant deletion test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 374,
+    "domain": "Tenant isolation",
+    "check": "DB RLS release gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 375,
+    "domain": "Tenant isolation",
+    "check": "tenant-scoped provider credentials",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 376,
+    "domain": "Tenant isolation",
+    "check": "tenant-scoped vector namespace",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 377,
+    "domain": "Tenant isolation",
+    "check": "tenant-scoped object storage",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 378,
+    "domain": "Tenant isolation",
+    "check": "tenant-scoped background jobs",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 379,
+    "domain": "Tenant isolation",
+    "check": "tenant-scoped logs access",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 380,
+    "domain": "Tenant isolation",
+    "check": "tenant deletion isolation",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 381,
+    "domain": "CSRF/CORS/browser security",
+    "check": "CSRF double-submit/binding",
+    "status": "PASS"
+  },
+  {
+    "gate": 382,
+    "domain": "CSRF/CORS/browser security",
+    "check": "CSRF required on writes",
+    "status": "PASS"
+  },
+  {
+    "gate": 383,
+    "domain": "CSRF/CORS/browser security",
+    "check": "CORS explicit origins",
+    "status": "PASS"
+  },
+  {
+    "gate": 384,
+    "domain": "CSRF/CORS/browser security",
+    "check": "credentials CORS enabled deliberately",
+    "status": "PASS"
+  },
+  {
+    "gate": 385,
+    "domain": "CSRF/CORS/browser security",
+    "check": "no wildcard origins",
+    "status": "PASS"
+  },
+  {
+    "gate": 386,
+    "domain": "CSRF/CORS/browser security",
+    "check": "trusted hosts middleware",
+    "status": "PASS"
+  },
+  {
+    "gate": 387,
+    "domain": "CSRF/CORS/browser security",
+    "check": "CSP",
+    "status": "PASS"
+  },
+  {
+    "gate": 388,
+    "domain": "CSRF/CORS/browser security",
+    "check": "frame ancestors denied",
+    "status": "PASS"
+  },
+  {
+    "gate": 389,
+    "domain": "CSRF/CORS/browser security",
+    "check": "X-Frame-Options",
+    "status": "PASS"
+  },
+  {
+    "gate": 390,
+    "domain": "CSRF/CORS/browser security",
+    "check": "nosniff",
+    "status": "PASS"
+  },
+  {
+    "gate": 391,
+    "domain": "CSRF/CORS/browser security",
+    "check": "Referrer-Policy",
+    "status": "PASS"
+  },
+  {
+    "gate": 392,
+    "domain": "CSRF/CORS/browser security",
+    "check": "Permissions-Policy",
+    "status": "PASS"
+  },
+  {
+    "gate": 393,
+    "domain": "CSRF/CORS/browser security",
+    "check": "HSTS production",
+    "status": "PASS"
+  },
+  {
+    "gate": 394,
+    "domain": "CSRF/CORS/browser security",
+    "check": "Cache-Control no-store",
+    "status": "PASS"
+  },
+  {
+    "gate": 395,
+    "domain": "CSRF/CORS/browser security",
+    "check": "secure redirect release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 396,
+    "domain": "CSRF/CORS/browser security",
+    "check": "host-header attack release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 397,
+    "domain": "CSRF/CORS/browser security",
+    "check": "origin attack release test",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 398,
+    "domain": "CSRF/CORS/browser security",
+    "check": "same-site browser matrix",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 399,
+    "domain": "CSRF/CORS/browser security",
+    "check": "CSP violation monitoring gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 400,
+    "domain": "CSRF/CORS/browser security",
+    "check": "third-party script inventory gate",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 401,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 402,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 403,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 404,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 405,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 406,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 407,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 408,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 409,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 410,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 411,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 412,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 413,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 414,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 415,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 416,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 417,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 418,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 419,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 420,
+    "domain": "HTTP/API protocol safety",
+    "check": "HTTP/API protocol safety: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 421,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 422,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 423,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 424,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 425,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 426,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 427,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 428,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 429,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 430,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 431,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 432,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 433,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 434,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 435,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 436,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 437,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 438,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 439,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 440,
+    "domain": "Input validation & malformed payloads",
+    "check": "Input validation & malformed payloads: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 441,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 442,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 443,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 444,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 445,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 446,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 447,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 448,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 449,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 450,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 451,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 452,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 453,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 454,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 455,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 456,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 457,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 458,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 459,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 460,
+    "domain": "Database schema integrity",
+    "check": "Database schema integrity: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 461,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 462,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 463,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 464,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 465,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 466,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 467,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 468,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 469,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 470,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 471,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 472,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 473,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 474,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 475,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 476,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 477,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 478,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 479,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 480,
+    "domain": "Migrations & rollback",
+    "check": "Migrations & rollback: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 481,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 482,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 483,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 484,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 485,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 486,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 487,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 488,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 489,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 490,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 491,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 492,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 493,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 494,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 495,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 496,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 497,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 498,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 499,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 500,
+    "domain": "Concurrency & transactions",
+    "check": "Concurrency & transactions: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 501,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 502,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 503,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 504,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 505,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 506,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 507,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 508,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 509,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 510,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 511,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 512,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 513,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 514,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 515,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 516,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 517,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 518,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 519,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 520,
+    "domain": "Audit ledger & tamper evidence",
+    "check": "Audit ledger & tamper evidence: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 521,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 522,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 523,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 524,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 525,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 526,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 527,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 528,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 529,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 530,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 531,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 532,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 533,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 534,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 535,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 536,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 537,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 538,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 539,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 540,
+    "domain": "AI prompt-injection defense",
+    "check": "AI prompt-injection defense: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 541,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 542,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 543,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 544,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 545,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 546,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 547,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 548,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 549,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 550,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 551,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 552,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 553,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 554,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 555,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 556,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 557,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 558,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 559,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 560,
+    "domain": "RAG/retrieval isolation",
+    "check": "RAG/retrieval isolation: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 561,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 562,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 563,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 564,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 565,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 566,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 567,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 568,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 569,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 570,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 571,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 572,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 573,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 574,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 575,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 576,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 577,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 578,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 579,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 580,
+    "domain": "Agent/tool authorization",
+    "check": "Agent/tool authorization: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 581,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 582,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 583,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 584,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 585,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 586,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 587,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 588,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 589,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 590,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 591,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 592,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 593,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 594,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 595,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 596,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 597,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 598,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 599,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 600,
+    "domain": "Uploads/SSRF/content safety",
+    "check": "Uploads/SSRF/content safety: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 601,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 602,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 603,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 604,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 605,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 606,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 607,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 608,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 609,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 610,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 611,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 612,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 613,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 614,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 615,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 616,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 617,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 618,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 619,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 620,
+    "domain": "Founder Reality model",
+    "check": "Founder Reality model: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 621,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 622,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 623,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 624,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 625,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 626,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 627,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 628,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 629,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 630,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 631,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 632,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 633,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 634,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 635,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 636,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 637,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 638,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 639,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 640,
+    "domain": "Destination Contract",
+    "check": "Destination Contract: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 641,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 642,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 643,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 644,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 645,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 646,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 647,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 648,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 649,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 650,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 651,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 652,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 653,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 654,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 655,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 656,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 657,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 658,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 659,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 660,
+    "domain": "Route Portfolio",
+    "check": "Route Portfolio: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 661,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 662,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 663,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 664,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 665,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 666,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 667,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 668,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 669,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 670,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 671,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 672,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 673,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 674,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 675,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 676,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 677,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 678,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 679,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 680,
+    "domain": "Proof Checkpoints",
+    "check": "Proof Checkpoints: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 681,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 682,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 683,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 684,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 685,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 686,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 687,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 688,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 689,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 690,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 691,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 692,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 693,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 694,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 695,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 696,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 697,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 698,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 699,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 700,
+    "domain": "Reroute/dependency graph",
+    "check": "Reroute/dependency graph: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 701,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 702,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 703,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 704,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 705,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 706,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 707,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 708,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 709,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 710,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 711,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 712,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 713,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 714,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 715,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 716,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 717,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 718,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 719,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 720,
+    "domain": "Financial arithmetic & precision",
+    "check": "Financial arithmetic & precision: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 721,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 722,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 723,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 724,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 725,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 726,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 727,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 728,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 729,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 730,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 731,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 732,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 733,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 734,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 735,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 736,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 737,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 738,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 739,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 740,
+    "domain": "Forecast/actual variance",
+    "check": "Forecast/actual variance: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 741,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 742,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 743,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 744,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 745,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 746,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 747,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 748,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 749,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 750,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 751,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 752,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 753,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 754,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 755,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 756,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 757,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 758,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 759,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 760,
+    "domain": "Resource Envelope & capital safety",
+    "check": "Resource Envelope & capital safety: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 761,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 762,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 763,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 764,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 765,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 766,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 767,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 768,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 769,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 770,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 771,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 772,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 773,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 774,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 775,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 776,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 777,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 778,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 779,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 780,
+    "domain": "Execution truth model",
+    "check": "Execution truth model: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 781,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 782,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 783,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 784,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 785,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 786,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 787,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 788,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 789,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 790,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 791,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 792,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 793,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 794,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 795,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 796,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 797,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 798,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 799,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 800,
+    "domain": "Provider adapters & idempotency",
+    "check": "Provider adapters & idempotency: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 801,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 802,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 803,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 804,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 805,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 806,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 807,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 808,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 809,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 810,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 811,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 812,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 813,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 814,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 815,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 816,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 817,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 818,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 819,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 820,
+    "domain": "Webhooks & reconciliation",
+    "check": "Webhooks & reconciliation: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 821,
+    "domain": "Community privacy",
+    "check": "Community privacy: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 822,
+    "domain": "Community privacy",
+    "check": "Community privacy: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 823,
+    "domain": "Community privacy",
+    "check": "Community privacy: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 824,
+    "domain": "Community privacy",
+    "check": "Community privacy: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 825,
+    "domain": "Community privacy",
+    "check": "Community privacy: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 826,
+    "domain": "Community privacy",
+    "check": "Community privacy: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 827,
+    "domain": "Community privacy",
+    "check": "Community privacy: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 828,
+    "domain": "Community privacy",
+    "check": "Community privacy: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 829,
+    "domain": "Community privacy",
+    "check": "Community privacy: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 830,
+    "domain": "Community privacy",
+    "check": "Community privacy: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 831,
+    "domain": "Community privacy",
+    "check": "Community privacy: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 832,
+    "domain": "Community privacy",
+    "check": "Community privacy: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 833,
+    "domain": "Community privacy",
+    "check": "Community privacy: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 834,
+    "domain": "Community privacy",
+    "check": "Community privacy: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 835,
+    "domain": "Community privacy",
+    "check": "Community privacy: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 836,
+    "domain": "Community privacy",
+    "check": "Community privacy: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 837,
+    "domain": "Community privacy",
+    "check": "Community privacy: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 838,
+    "domain": "Community privacy",
+    "check": "Community privacy: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 839,
+    "domain": "Community privacy",
+    "check": "Community privacy: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 840,
+    "domain": "Community privacy",
+    "check": "Community privacy: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 841,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 842,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 843,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 844,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 845,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 846,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 847,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 848,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 849,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 850,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 851,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 852,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 853,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 854,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 855,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 856,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 857,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 858,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 859,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 860,
+    "domain": "Community abuse/moderation",
+    "check": "Community abuse/moderation: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 861,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 862,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 863,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 864,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 865,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 866,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 867,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 868,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 869,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 870,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 871,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 872,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 873,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 874,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 875,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 876,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 877,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 878,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 879,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 880,
+    "domain": "Frontend API integration",
+    "check": "Frontend API integration: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 881,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 882,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 883,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 884,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 885,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 886,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 887,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 888,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 889,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 890,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 891,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 892,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 893,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 894,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 895,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 896,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 897,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 898,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 899,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 900,
+    "domain": "Mobile/responsive UX",
+    "check": "Mobile/responsive UX: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 901,
+    "domain": "Accessibility",
+    "check": "Accessibility: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 902,
+    "domain": "Accessibility",
+    "check": "Accessibility: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 903,
+    "domain": "Accessibility",
+    "check": "Accessibility: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 904,
+    "domain": "Accessibility",
+    "check": "Accessibility: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 905,
+    "domain": "Accessibility",
+    "check": "Accessibility: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 906,
+    "domain": "Accessibility",
+    "check": "Accessibility: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 907,
+    "domain": "Accessibility",
+    "check": "Accessibility: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 908,
+    "domain": "Accessibility",
+    "check": "Accessibility: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 909,
+    "domain": "Accessibility",
+    "check": "Accessibility: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 910,
+    "domain": "Accessibility",
+    "check": "Accessibility: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 911,
+    "domain": "Accessibility",
+    "check": "Accessibility: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 912,
+    "domain": "Accessibility",
+    "check": "Accessibility: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 913,
+    "domain": "Accessibility",
+    "check": "Accessibility: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 914,
+    "domain": "Accessibility",
+    "check": "Accessibility: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 915,
+    "domain": "Accessibility",
+    "check": "Accessibility: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 916,
+    "domain": "Accessibility",
+    "check": "Accessibility: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 917,
+    "domain": "Accessibility",
+    "check": "Accessibility: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 918,
+    "domain": "Accessibility",
+    "check": "Accessibility: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 919,
+    "domain": "Accessibility",
+    "check": "Accessibility: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 920,
+    "domain": "Accessibility",
+    "check": "Accessibility: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 921,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 922,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 923,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 924,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 925,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 926,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 927,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 928,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 929,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 930,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 931,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 932,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 933,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 934,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 935,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 936,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 937,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 938,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 939,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 940,
+    "domain": "Performance/load/resilience",
+    "check": "Performance/load/resilience: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 941,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 942,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 943,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 944,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 945,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 946,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 947,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 948,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 949,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 950,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 951,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 952,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 953,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 954,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 955,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 956,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 957,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 958,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 959,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 960,
+    "domain": "Observability/incident response",
+    "check": "Observability/incident response: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 961,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 962,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 963,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 964,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 965,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 966,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 967,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 968,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 969,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 970,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 971,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 972,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 973,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 974,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 975,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 976,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 977,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 978,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 979,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 980,
+    "domain": "Privacy/data lifecycle",
+    "check": "Privacy/data lifecycle: production-like test required",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 981,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: happy path defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 982,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: invalid input rejected",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 983,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: boundary minimum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 984,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: boundary maximum tested",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 985,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: null/missing behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 986,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: duplicate/replay behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 987,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: unauthorized behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 988,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: cross-tenant behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 989,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: lockdown behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 990,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: audit behavior defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 991,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: error is user-visible",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 992,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: failure is fail-safe",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 993,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: state transition is explicit",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 994,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: idempotency/concurrency considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 995,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: stale state considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 996,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: privacy impact considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 997,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: security abuse case considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 998,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: mobile/user experience considered",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 999,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: observability signal defined",
+    "status": "RELEASE GATE"
+  },
+  {
+    "gate": 1000,
+    "domain": "Backup/disaster recovery",
+    "check": "Backup/disaster recovery: production-like test required",
+    "status": "RELEASE GATE"
+  }
+]

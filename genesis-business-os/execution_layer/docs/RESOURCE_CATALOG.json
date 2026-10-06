@@ -1,0 +1,69 @@
+{
+  "categories": [
+    {
+      "name": "Formation & Government",
+      "examples": [
+        "business registration",
+        "EIN/tax ID guidance",
+        "licenses and permits",
+        "tax registrations"
+      ],
+      "rule": "Use authoritative government/regulator sources. Never invent a filing, fee, deadline, portal or completion."
+    },
+    {
+      "name": "Money",
+      "examples": [
+        "pricing",
+        "cash-flow model",
+        "payments",
+        "bookkeeping preparation",
+        "funding discovery"
+      ],
+      "rule": "Critical arithmetic deterministic; external financial actions approval-gated."
+    },
+    {
+      "name": "Customers & Sales",
+      "examples": [
+        "offer creation",
+        "prospect research",
+        "outreach preparation",
+        "CRM tracking",
+        "follow-up"
+      ],
+      "rule": "Respect provider terms, privacy, anti-spam rules and user authorization."
+    },
+    {
+      "name": "Marketing",
+      "examples": [
+        "website content",
+        "campaign drafts",
+        "social content",
+        "SEO plan",
+        "analytics"
+      ],
+      "rule": "Publish/send only through a connected provider with required approval."
+    },
+    {
+      "name": "Operations",
+      "examples": [
+        "SOPs",
+        "vendor comparison",
+        "scheduling",
+        "inventory plan",
+        "task execution"
+      ],
+      "rule": "Track outcome and evidence; do not mark complete from AI text alone."
+    },
+    {
+      "name": "Professional Help",
+      "examples": [
+        "lawyer",
+        "CPA",
+        "insurance professional",
+        "licensed specialist"
+      ],
+      "rule": "Escalate when professional judgment/authorization is required; do not impersonate professionals."
+    }
+  ],
+  "completion_rule": "No route milestone advances from an execution action until required evidence is present and verified."
+}

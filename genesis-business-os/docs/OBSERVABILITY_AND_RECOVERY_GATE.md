@@ -1,0 +1,2 @@
+# Observability & Recovery Gate
+Production requires structured request/action/security logs, request IDs, provider latency/error metrics, authentication anomaly alerts, rate-limit alerts, database health, queue/reconciliation monitoring, backup success alerts, encrypted backups, and a documented restore drill. Health and readiness must distinguish process-alive from dependency-ready. Lockdown Mode must remain available during incidents.

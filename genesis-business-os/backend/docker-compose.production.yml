@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: genesis_business_os
+      POSTGRES_USER: genesis_business_os
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes: [vc_pg:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U genesis_business_os"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db: {condition: service_healthy}
+    environment:
+      GENESIS_ENV: production
+      GENESIS_DATABASE_URL: postgresql+psycopg://genesis_business_os:${POSTGRES_PASSWORD}@db/genesis_business_os
+      GENESIS_JWT_SECRET: ${GENESIS_JWT_SECRET:?set GENESIS_JWT_SECRET}
+      GENESIS_ALLOWED_ORIGINS: ${GENESIS_ALLOWED_ORIGINS:?set GENESIS_ALLOWED_ORIGINS}
+      GENESIS_ALLOWED_HOSTS: ${GENESIS_ALLOWED_HOSTS:?set GENESIS_ALLOWED_HOSTS}
+      GENESIS_COOKIE_SECURE: "true"
+    ports: ["8000:8000"]
+volumes: {vc_pg: {}}

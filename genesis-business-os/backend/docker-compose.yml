@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      GENESIS_ENV: production
+      GENESIS_DATABASE_URL: sqlite:////data/genesis_business_os.db
+      GENESIS_JWT_SECRET: ${GENESIS_JWT_SECRET:?set GENESIS_JWT_SECRET}
+      GENESIS_ALLOWED_ORIGINS: ${GENESIS_ALLOWED_ORIGINS:-http://localhost:8000}
+    volumes: ["vcdata:/data"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+volumes: {vcdata: {}}

@@ -1,0 +1,2 @@
+# Production Database Migration Gate
+`Base.metadata.create_all()` is retained only for the reference/development build. Production release must use reviewed Alembic migrations against PostgreSQL. Deployment must run migrations as an explicit release step, support rollback/restore planning, and never silently mutate production schema at application startup. A migration is required for the Community moderation/report/block fields added by the 100-gate audit.
