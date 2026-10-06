@@ -104,8 +104,8 @@ async function bootstrap() {
   try {
     CURRENT_USER = await api('/api/me');
     CSRF = decodeURIComponent(cookie('genesis_csrf'));
-    byId('authgate')?.classList.add('off');
     await ensureBusiness();
+    byId('authgate')?.classList.add('off');
   } catch {
     text('authmsg', 'Sign in or create a workspace.');
   }
@@ -129,10 +129,10 @@ async function authenticate(kind) {
       method: 'POST',
       body: JSON.stringify(body),
     });
-    CURRENT_USER = result.user || CURRENT_USER;
     CSRF = result.csrf || decodeURIComponent(cookie('genesis_csrf'));
-    byId('authgate')?.classList.add('off');
+    CURRENT_USER = await api('/api/me');
     await ensureBusiness();
+    byId('authgate')?.classList.add('off');
   } catch (error) {
     text('authmsg', error.message);
   }
