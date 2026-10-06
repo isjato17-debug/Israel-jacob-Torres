@@ -2,11 +2,38 @@
 
 let CSRF = '';
 let BUSINESS_ID = '';
+let CURRENT_USER = null;
+let BUSINESS = null;
+let BUSINESS_TWIN = {};
+let FOUNDER_DNA = { profile: {}, dna: {} };
+let NEXT_TURN = null;
+let COMMUNITY_POSTS = [];
+let ASK_LAST_TURN = null;
+let ACTIONS = [];
 
 const byId = (id) => document.getElementById(id);
 const text = (id, value) => {
   const element = byId(id);
   if (element) element.textContent = value;
+};
+const hasValue = (object, key) => Object.prototype.hasOwnProperty.call(object || {}, key)
+  && object[key] !== null && object[key] !== undefined && object[key] !== '';
+const numberValue = (value) => value === '' || value === null || value === undefined ? null : Number(value);
+const money = (value) => Number.isFinite(Number(value))
+  ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Number(value))
+  : 'Not recorded';
+const percent = (value) => Number.isFinite(Number(value)) ? `${Math.round(Number(value) * 100)}%` : 'Not recorded';
+const splitList = (value) => String(value || '').split(',').map((item) => item.trim()).filter(Boolean);
+const reality = () => BUSINESS_TWIN.founder_reality || null;
+const destination = () => BUSINESS_TWIN.destination_contract || null;
+const displayStage = () => {
+  if (!destination()) return { index: 0, label: 'You Are Here', detail: 'Set your destination' };
+  if (!reality()) return { index: 1, label: 'Setup', detail: 'Save your founder reality' };
+  if (!(BUSINESS_TWIN.route_portfolio || []).length) return { index: 2, label: 'Launch', detail: 'Compare possible routes' };
+  if (!NEXT_TURN && !BUSINESS_TWIN.next_turn) return { index: 2, label: 'Launch', detail: 'Choose a next turn' };
+  const routeProofs = BUSINESS_TWIN.route_proofs || {};
+  if (!Object.keys(routeProofs).length) return { index: 3, label: 'Grow', detail: 'Gather checkpoint evidence' };
+  return { index: 4, label: 'Destination', detail: 'Review evidence and adapt' };
 };
 
 function cookie(name) {
@@ -50,6 +77,7 @@ async function api(path, options = {}) {
 }
 
 function go(id) {
+  if (!byId(id)) return;
   document.querySelectorAll('.view').forEach((view) => view.classList.remove('on'));
   byId(id)?.classList.add('on');
   document.querySelectorAll('nav button').forEach((button) => {
@@ -57,13 +85,16 @@ function go(id) {
   });
   if (id === 'do') loadExecution();
   if (id === 'community') loadCommunity();
-  if (id === 'business') loadBusinessDNA();
+  if (id === 'business') {
+    renderBusinessState();
+    loadBusinessDNA();
+  }
   window.scrollTo(0, 0);
 }
 
 async function bootstrap() {
   try {
-    await api('/api/me');
+    CURRENT_USER = await api('/api/me');
     CSRF = decodeURIComponent(cookie('genesis_csrf'));
     byId('authgate')?.classList.add('off');
     await ensureBusiness();
@@ -75,9 +106,14 @@ async function bootstrap() {
 async function authenticate(kind) {
   text('authmsg', 'Working…');
   try {
-    const tenantName = byId('tenant')?.value.trim() || 'My Business';
+    const tenantName = byId('tenant')?.value.trim() || '';
     const email = byId('email')?.value.trim() || '';
     const password = byId('password')?.value || '';
+    if (kind === 'register' && !tenantName) {
+      text('authmsg', 'Enter a business workspace name to create your account.');
+      byId('tenant')?.focus();
+      return;
+    }
     const body = kind === 'register'
       ? { tenant_name: tenantName, email, password }
       : { email, password };
@@ -85,6 +121,7 @@ async function authenticate(kind) {
       method: 'POST',
       body: JSON.stringify(body),
     });
+    CURRENT_USER = result.user || CURRENT_USER;
     CSRF = result.csrf || decodeURIComponent(cookie('genesis_csrf'));
     byId('authgate')?.classList.add('off');
     await ensureBusiness();
@@ -96,27 +133,50 @@ async function authenticate(kind) {
 async function ensureBusiness() {
   const businesses = await api('/api/businesses');
   if (!businesses.length) {
-    const name = byId('tenant')?.value.trim() || 'My Business';
+    const name = byId('tenant')?.value.trim() || CURRENT_USER?.business_name || '';
+    if (!name) throw new Error('No business workspace name is available.');
     const business = await api('/api/businesses', {
       method: 'POST',
       body: JSON.stringify({ name, twin: {} }),
     });
-    BUSINESS_ID = business.id;
+    BUSINESS = business;
   } else {
-    BUSINESS_ID = businesses[0].id;
+    BUSINESS = businesses[0];
   }
-  await loadExecution();
+  BUSINESS_ID = BUSINESS.id;
+  BUSINESS_TWIN = BUSINESS.twin || {};
+  NEXT_TURN = BUSINESS_TWIN.next_turn || null;
+  const profileName = CURRENT_USER?.email || '';
+  const badge = byId('profileBadge');
+  if (badge) badge.textContent = profileName ? profileName.slice(0, 1).toUpperCase() : 'F';
+  const name = byId('profileName');
+  if (name) name.textContent = profileName || 'Founder';
+  await Promise.allSettled([loadBusinessDNA(), loadActions(), loadCommunity()]);
+  renderBusinessState();
 }
 
 async function loadBusinessDNA() {
   const output = byId('businessDna');
   if (!output) return;
   try {
-    const result = await api('/api/founder-dna');
-    const entries = Object.entries(result.dna || {});
+    FOUNDER_DNA = await api('/api/founder-dna');
+    const profile = FOUNDER_DNA.profile || {};
+    const values = [
+      ['dnaCapital', profile.capital],
+      ['dnaHours', profile.hours_per_week],
+      ['dnaExperience', profile.experience_years],
+      ['dnaRisk', profile.risk_tolerance],
+    ];
+    values.forEach(([id, value]) => {
+      const input = byId(id);
+      if (input && !input.matches(':focus')) input.value = hasValue(profile, input.name) ? String(value) : '';
+    });
+    const dna = FOUNDER_DNA.dna || {};
+    const entries = Object.entries(dna);
     output.textContent = entries.length
-      ? entries.map(([key, value]) => `${key.replaceAll('_', ' ')}: ${value}`).join(' · ')
-      : 'No Business DNA profile has been saved yet.';
+      ? `Derived from your saved founder profile: ${entries.map(([key, value]) => `${key.replaceAll('_', ' ')} ${value}`).join(' · ')}`
+      : 'No Founder DNA profile has been saved yet.';
+    renderBusinessState();
   } catch (error) {
     output.textContent = `Business DNA unavailable: ${error.message}`;
   }
