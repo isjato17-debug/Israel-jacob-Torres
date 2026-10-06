@@ -98,7 +98,7 @@
                     <label>Hours per week<input id="whatIfHours" name="hours_per_week" type="number" min="0.1" max="168" step="0.5" inputmode="decimal"></label>
                   </div>
                   <button class="sec" type="submit">Compare this route</button>
-                  <div id="whatIfStatus" class="status" role="status"></div>
+                  <div id="whatIfStatus" class="status" role="status">No scenario has been compared.</div>
                 </form>
               </section>
               <section class="card progress-card" aria-labelledby="progressTitle">
@@ -127,7 +127,7 @@
               <section class="card route-card" aria-labelledby="routeTitle">
                 <span class="route-map-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m3 8 8-4 10 4 8-4v20l-8 4-10-4-8 4zM11 4v20m10-16v20M5 16h9l4-5h9"/></svg></span>
                 <div><div class="eyebrow">Look beyond the next step</div><h2 id="routeTitle">See Your Route</h2><p class="muted">Explore a full route, possible futures and alternative paths.</p></div>
-                <button class="sec" type="button" data-action="navigate" data-view="business">View route <span aria-hidden="true">→</span></button>
+                <button class="sec" type="button" data-action="see-route">View route <span aria-hidden="true">→</span></button>
               </section>
             </div>
           </div>
@@ -136,7 +136,7 @@
               <div class="side-card-heading"><span class="heading-icon sparkle large" aria-hidden="true">✧</span><div><h2 id="askPreviewTitle">Ask Genesis</h2><p>Your business consultant</p></div><button class="quiet-link" type="button" data-action="navigate" data-view="ask">Open Ask Genesis <span aria-hidden="true">→</span></button></div>
               <div class="preview-compose" id="homeAskPreviewForm">
                 <label class="sr" for="homeAskPreviewInput">Ask Genesis anything about your business</label>
-                <input id="homeAskPreviewInput" placeholder="Ask me anything about your business…" autocomplete="off" readonly>
+                <input id="homeAskPreviewInput" placeholder="Ask me anything about your business…" autocomplete="off" readonly data-action="navigate" data-view="ask">
                 <button type="button" class="send-arrow" data-action="navigate" data-view="ask" aria-label="Open Ask Genesis">→</button>
               </div>
               <div class="prompt-label">A few ways to begin</div>
@@ -160,7 +160,7 @@
               <div id="homeCommunityPreview" class="community-preview-feed" data-bind="community-preview" aria-live="polite">
                 <div class="preview-empty"><span class="empty-orbit" aria-hidden="true"></span><b>Founder voices, when you're ready.</b><span>Community conversations will appear here.</span></div>
               </div>
-              <div class="quick-post"><label class="sr" for="homeCommunityInput">Write a community post</label><input id="homeCommunityInput" placeholder="Write a post…" readonly><button type="button" class="post-shortcut" data-action="navigate" data-view="community">Post</button></div>
+               <div class="quick-post"><label class="sr" for="homeCommunityInput">Write a community post</label><input id="homeCommunityInput" placeholder="Write a post…" readonly data-action="navigate" data-view="community"><button type="button" class="post-shortcut" data-action="navigate" data-view="community">Post</button></div>
             </section>
           </aside>
         </div>
