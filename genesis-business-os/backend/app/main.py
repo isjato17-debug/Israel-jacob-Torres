@@ -17,10 +17,14 @@ from .config import settings
 from .services.product_engine import founder_score, battle_mode, failure_lab, execution_plan, variance_report
 from .services.consultant import generate_candidates, executive_board, financial_model, decision_hash
 from .services.security_runtime import production_guard, login_guard, login_failed, login_succeeded
+from .services.migration_runtime import assert_current_revision
 from .services.execution_hub import CATALOG, public_catalog, connection_status, prepare as prepare_execution, execute as execute_provider
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
-Base.metadata.create_all(engine)
+if settings.env == 'production':
+    assert_current_revision(engine)
+else:
+    Base.metadata.create_all(engine)
 app=FastAPI(title='Genesis Business OS',version='0.1.0',docs_url='/docs' if settings.env!='production' else None,redoc_url=None)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])

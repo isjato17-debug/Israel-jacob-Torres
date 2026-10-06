@@ -47,3 +47,8 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Local Genesis development database and SQLite sidecars
+/genesis-business-os/backend/genesis_business_os.db
+/genesis-business-os/backend/genesis_business_os.db-shm
+/genesis-business-os/backend/genesis_business_os.db-wal

@@ -509,7 +509,10 @@ document.addEventListener('click', (event) => {
 });
 
 document.addEventListener('submit', (event) => {
-  if (event.target.id === 'askForm') askGenesis(event);
+  if (event.target.id === 'authForm') {
+    event.preventDefault();
+    authenticate(event.submitter?.dataset.kind || 'login');
+  } else if (event.target.id === 'askForm') askGenesis(event);
   else if (event.target.id === 'communityForm') createCommunityPost(event);
   else if (event.target.matches('.reply-form')) submitReply(event);
 });

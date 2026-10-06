@@ -18,11 +18,13 @@
       <div class="eyebrow">Genesis Business OS</div>
       <h2>Open your business workspace</h2>
       <p class="muted">Sign in, or create an owner workspace. Genesis stores execution state on the server.</p>
-      <input id="tenant" aria-label="Business workspace name" placeholder="Business/workspace name">
-      <input id="email" aria-label="Email" type="email" autocomplete="email" placeholder="Email">
-      <input id="password" aria-label="Password" type="password" autocomplete="current-password" placeholder="Password (12+ characters)">
-      <button class="cta" type="button" data-action="auth" data-kind="login">Sign in</button>
-      <button class="sec" type="button" data-action="auth" data-kind="register">Create workspace</button>
+      <form id="authForm" class="auth-form" novalidate>
+        <input id="tenant" aria-label="Business workspace name" placeholder="Business/workspace name">
+        <input id="email" aria-label="Email" type="email" autocomplete="email" placeholder="Email">
+        <input id="password" aria-label="Password" type="password" autocomplete="current-password" placeholder="Password (12+ characters)">
+        <button class="cta" type="submit" data-kind="login">Sign in</button>
+        <button class="sec" type="submit" data-kind="register">Create workspace</button>
+      </form>
       <div id="authmsg" class="status" role="status">Checking session…</div>
     </div>
   </div>
