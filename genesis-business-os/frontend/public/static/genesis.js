@@ -181,9 +181,13 @@ async function loadBusinessDNA() {
     });
     const dna = FOUNDER_DNA.dna || {};
     const entries = Object.entries(dna);
-    output.textContent = entries.length
+    const completeProfile = ['capital', 'hours_per_week', 'experience_years', 'risk_tolerance']
+      .every((key) => hasValue(profile, key));
+    output.textContent = completeProfile && entries.length
       ? `Derived from your saved founder profile: ${entries.map(([key, value]) => `${key.replaceAll('_', ' ')} ${value}`).join(' · ')}`
-      : 'No Founder DNA profile has been saved yet.';
+      : entries.length
+        ? 'Founder profile is incomplete; complete all four values before using a derived score.'
+        : 'No Founder DNA profile has been saved yet.';
     renderBusinessState();
   } catch (error) {
     output.textContent = `Business DNA unavailable: ${error.message}`;
@@ -375,6 +379,31 @@ function renderRoutePortfolio() {
   renderNextTurn();
 }
 
+function renderSavedEvolution() {
+  const output = byId('evolutionResult');
+  const result = BUSINESS_TWIN.latest_evolution;
+  if (!output) return;
+  if (!result?.recommended_evolution) {
+    output.classList.remove('on');
+    output.textContent = '';
+    return;
+  }
+  const recommendation = result.recommended_evolution;
+  const futures = (result.possible_futures || []).map((future) => {
+    const score = Math.max(0, Math.min(100, Number(future.score) || 0));
+    return `<div><small>${escapeHtml(future.title)} · ${escapeHtml(score)}/100</small><div class="futurebar"><i style="width:${score}%"></i></div></div>`;
+  }).join('');
+  output.classList.add('on');
+  output.innerHTML = `<div class="eyebrow">${escapeHtml(result.generation)}</div>
+    <h3>Genesis recommends: ${escapeHtml(recommendation.title)}</h3>
+    <p>${escapeHtml(recommendation.why)}</p>
+    <div class="pills"><span class="pill">Fit score ${escapeHtml(recommendation.score)}/100</span>
+    <span class="pill">Cash envelope ${escapeHtml(money(recommendation.estimated_cash_needed))}</span></div>
+    <b>Next:</b> ${escapeHtml(recommendation.next_action)}
+    <div class="muted">Possible futures compared</div>${futures}
+    <small class="muted">${escapeHtml(result.disclaimer)} This is a model estimate, not a guaranteed outcome.</small>`;
+}
+
 function renderBusinessState() {
   if (!BUSINESS_ID) return;
   renderJourney();
@@ -393,6 +422,7 @@ function renderBusinessState() {
   setInputValue('whatIfCash', currentReality?.cash);
   setInputValue('whatIfHours', currentReality?.hours_per_week);
   renderRoutePortfolio();
+  renderSavedEvolution();
 }
 
 async function seeEvolution() {
@@ -558,6 +588,7 @@ async function saveActuals(event) {
   text('metricsStatus', 'Saving owner-reported actuals…');
   const saved = [];
   try {
+    if (BUSINESS_TWIN.latest_evolution) await saveTwinPatch({ latest_evolution: null });
     for (const [key, value] of updates) {
       await api(`/api/businesses/${BUSINESS_ID}/actuals`, {
         method: 'POST',
