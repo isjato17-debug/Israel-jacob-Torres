@@ -1,13 +1,13 @@
 kind = "api"
-previewPath = "/"
-title = "Genesis Business OS"
+previewPath = "/api"
+title = "Genesis API"
 version = "1.0.0"
 id = "3B4_FFSkEVBkAeYMFRJ2e"
 
 [[services]]
 localPort = 8080
-name = "Genesis Business OS"
-paths = ["/"]
+name = "Genesis API"
+paths = ["/api"]
 
 [services.development]
 run = 'cd genesis-business-os/backend && GENESIS_ALLOWED_HOSTS="localhost,127.0.0.1,testserver,${REPLIT_DEV_DOMAIN:-}" uvicorn app.main:app --host 0.0.0.0 --port $PORT'
@@ -25,4 +25,4 @@ PORT = "8080"
 GENESIS_ENV = "production"
 
 [services.production.health.startup]
-path = "/healthz"
+path = "/api/healthz"

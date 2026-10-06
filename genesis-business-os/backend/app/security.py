@@ -26,7 +26,10 @@ def current_session(request:Request,db:Session=Depends(get_db)):
     raw=request.cookies.get(COOKIE)
     if not raw: raise HTTPException(401,'Authentication required')
     rec=db.get(SessionRecord,token_hash(raw)); now=datetime.now(timezone.utc)
-    if not rec or rec.revoked_at or rec.expires_at<now: raise HTTPException(401,'Invalid or expired session')
+    if not rec or rec.revoked_at: raise HTTPException(401,'Invalid or expired session')
+    expires_at=rec.expires_at
+    if expires_at.tzinfo is None: expires_at=expires_at.replace(tzinfo=timezone.utc)
+    if expires_at<now: raise HTTPException(401,'Invalid or expired session')
     last=rec.last_seen_at
     if last.tzinfo is None: last=last.replace(tzinfo=timezone.utc)
     if now-last>timedelta(minutes=settings.session_idle_minutes): raise HTTPException(401,'Session timed out')

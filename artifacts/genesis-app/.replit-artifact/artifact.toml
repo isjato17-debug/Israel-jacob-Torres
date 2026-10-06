@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Genesis Business OS"
+description = "A founder-focused business operating system that helps people turn their current resources into a practical route, prepare safe next actions, and track verified outcomes."
+version = "1.0.0"
+id = "artifacts/genesis-app"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19183
+
+[services.development]
+run = "pnpm --filter @workspace/genesis-app run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/genesis-app", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/genesis-app/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19183"
+BASE_PATH = "/"
