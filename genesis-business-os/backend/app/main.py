@@ -1,8 +1,10 @@
 import json, secrets, time, hashlib, hmac, os
 from datetime import datetime, timezone
 from collections import defaultdict, deque
+from pathlib import Path
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from sqlalchemy.orm import Session
@@ -22,6 +24,9 @@ Base.metadata.create_all(engine)
 app=FastAPI(title='Genesis Business OS',version='0.1.0',docs_url='/docs' if settings.env!='production' else None,redoc_url=None)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
+PRODUCT_ROOT = Path(__file__).resolve().parents[2]
+FRONTEND_ROOT = PRODUCT_ROOT / 'frontend'
+app.mount('/static', StaticFiles(directory=FRONTEND_ROOT / 'public' / 'static'), name='static')
 
 buckets=defaultdict(deque)
 @app.middleware('http')
@@ -33,8 +38,7 @@ async def harden(request:Request, call_next):
     response=await call_next(request)
     response.headers['X-Content-Type-Options']='nosniff'; response.headers['X-Frame-Options']='DENY'
     response.headers['Referrer-Policy']='no-referrer'; response.headers['Cache-Control']='no-store'; response.headers['Permissions-Policy']='camera=(), microphone=(), geolocation=()'
-    script_policy = "'self'" if settings.env == 'production' else "'self' 'unsafe-inline'"
-    response.headers['Content-Security-Policy']=f"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src {script_policy}; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    response.headers['Content-Security-Policy']="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
     if settings.env=='production': response.headers['Strict-Transport-Security']='max-age=31536000; includeSubDomains'
     return response
 
@@ -44,7 +48,7 @@ def audit(db,user,action,rtype,rid,details=None):
 def business_for(db,bid,user): return ensure_tenant(db.get(Business,bid),user)
 
 @app.get('/')
-def home(): return FileResponse('app/static/index.html')
+def home(): return FileResponse(FRONTEND_ROOT / 'index.html')
 @app.get('/healthz')
 def health(): return {'status':'ok','lockdown':settings.lockdown}
 
@@ -178,7 +182,7 @@ def community_feed(category:str|None=None,u:User=Depends(current_user),db:Sessio
     q=select(CommunityPost).where(CommunityPost.deleted==False,CommunityPost.moderation_status=='visible').order_by(CommunityPost.created_at.desc()).limit(100)
     if category: q=q.where(CommunityPost.category==category.upper())
     xs=[x for x in db.scalars(q).all() if x.user_id not in blocked]
-    return [{'id':x.id,'display_name':x.display_name,'category':x.category,'body':x.body,'created_at':x.created_at} for x in xs]
+    return [{'id':x.id,'display_name':x.display_name,'category':x.category,'body':x.body,'created_at':x.created_at,'is_mine':x.user_id==u.id} for x in xs]
 
 @app.post('/api/community')
 def community_create(x:CommunityPostIn,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
@@ -218,6 +222,15 @@ def community_block(x:CommunityBlockIn,u:User=Depends(current_user),db:Session=D
     existing=db.scalar(select(CommunityBlock).where(CommunityBlock.blocker_user_id==u.id,CommunityBlock.blocked_user_id==x.blocked_user_id))
     if not existing: db.add(CommunityBlock(blocker_user_id=u.id,blocked_user_id=x.blocked_user_id))
     audit(db,u,'block','community_user',x.blocked_user_id); db.commit(); return {'ok':True}
+
+@app.post('/api/community/{post_id}/block-author')
+def community_block_author(post_id:str,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
+    p=db.get(CommunityPost,post_id)
+    if not p or p.deleted or p.moderation_status!='visible': raise HTTPException(404,'Post not found')
+    if p.user_id==u.id: raise HTTPException(400,'Cannot block yourself')
+    existing=db.scalar(select(CommunityBlock).where(CommunityBlock.blocker_user_id==u.id,CommunityBlock.blocked_user_id==p.user_id))
+    if not existing: db.add(CommunityBlock(blocker_user_id=u.id,blocked_user_id=p.user_id))
+    audit(db,u,'block','community_user',p.user_id,{'source_post_id':post_id}); db.commit(); return {'ok':True}
 
 @app.delete('/api/community/{post_id}')
 def community_delete(post_id:str,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):

@@ -385,7 +385,7 @@ async function loadCommunity() {
   if (!output) return;
   output.textContent = 'Loading community…';
   try {
-    const category = byId('communityCategory')?.value || 'ALL';
+    const category = byId('communityFilter')?.value || 'ALL';
     const query = category === 'ALL' ? '' : `?category=${encodeURIComponent(category)}`;
     const posts = await api(`/api/community${query}`);
     output.innerHTML = Array.isArray(posts) && posts.length
@@ -411,6 +411,7 @@ async function createCommunityPost(event) {
     });
     form.reset();
     byId('communityCategory').value = byId('communityCategory').dataset.selected || 'ASK';
+    text('communityStatus', 'Post shared with the community.');
     await loadCommunity();
   } catch (error) {
     text('communityStatus', `Post was not shared: ${error.message}`);
@@ -492,9 +493,13 @@ document.addEventListener('click', (event) => {
   else if (action === 'start-action') startAction(button.dataset.key, Number(button.dataset.risk));
   else if (action === 'confirm-guided') confirmGuidedAction(button.dataset.id);
   else if (action === 'community-mode') {
-    const select = byId('communityCategory');
-    select.value = button.dataset.category || 'ALL';
-    select.dataset.selected = select.value;
+    const category = button.dataset.category || 'ALL';
+    if (category !== 'ALL') {
+      const select = byId('communityCategory');
+      select.value = category;
+      select.dataset.selected = category;
+    }
+    byId('communityFilter').value = category;
     byId('communityForm')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
     byId('communityBody')?.focus();
     loadCommunity();
@@ -511,7 +516,7 @@ document.addEventListener('submit', (event) => {
 
 byId('communityCategory')?.addEventListener('change', (event) => {
   event.currentTarget.dataset.selected = event.currentTarget.value;
-  loadCommunity();
 });
+byId('communityFilter')?.addEventListener('change', loadCommunity);
 
 bootstrap();

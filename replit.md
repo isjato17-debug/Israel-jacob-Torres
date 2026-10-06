@@ -32,7 +32,7 @@ A founder-focused business operating system that turns a business goal and curre
 ## Architecture decisions
 
 - Keep the uploaded FastAPI app as the product source instead of rewriting its backend into the workspace's Express scaffold.
-- Allow the imported inline UI scripts only in development; the production Content Security Policy remains strict.
+- Keep the Genesis UI scripts external and compatible with a strict `script-src 'self'` Content Security Policy in every environment.
 - Treat provider-dependent actions as unavailable until a real, approved provider connection is configured and verified.
 
 ## Product
@@ -46,7 +46,7 @@ No additional user preferences recorded.
 ## Gotchas
 
 - Run each imported test suite from its own directory; the execution-layer test imports are relative to `execution_layer/app`.
-- The bundled UI uses inline scripts and event handlers. Production CSP compatibility must be resolved before production use.
+- The Genesis frontend is served from `genesis-business-os/frontend`; keep its product identity and feature set intact when wiring or fixing it.
 - External email, payment, AI, and other provider actions remain unavailable until their integrations and production configuration are established.
 
 ## Pointers
