@@ -300,3 +300,59 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 }
 @media(max-width:360px){.hero{font-size:34px}.hero-panel{height:252px}.hero-actions .cta,.hero-actions .sec{font-size:9px}.metric-symbol{display:none}.metric-chip{padding:5px 4px}.metric-chip small{font-size:6px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.profile-menu-wrap{position:relative}
+.profile-menu{display:none;position:absolute;right:0;top:calc(100% + 10px);z-index:20;min-width:190px;padding:10px;border:1px solid var(--line-bright);border-radius:9px;background:#111225;box-shadow:var(--shadow)}
+.profile-menu.on{display:grid;gap:8px}
+.profile-menu span{padding:4px 6px;color:var(--muted);font-size:10px;overflow-wrap:anywhere}
+.profile-menu button{border:1px solid #383852;border-radius:7px;background:#191a30;color:var(--text);padding:8px;text-align:left;cursor:pointer}
+.prompt-list button{display:block;border:1px solid #34324d;border-radius:20px;padding:5px 8px;font-size:8px;color:#c6c2d4;background:rgba(12,14,30,.68);cursor:pointer}
+.prompt-list button:hover{border-color:#8a77dc;color:#fff}
+.community-tabs button{border:0;border-bottom:2px solid transparent;background:transparent;text-align:center;color:#9290a8;padding:7px 2px 9px;font-size:9px;cursor:pointer}
+.community-tabs button.active{color:var(--gold-bright);border-bottom-color:var(--gold)}
+.preview-post{padding:8px 4px;border-bottom:1px solid #2d2c46}
+.preview-post>div{display:flex;justify-content:space-between;gap:8px;font-size:9px}
+.preview-post>div span{color:var(--gold);font-size:8px}
+.preview-post p{margin:5px 0 1px;color:#c4c0d0;font-size:9px;line-height:1.45;overflow-wrap:anywhere}
+.data-form{display:grid;gap:12px;margin-top:15px;padding:15px;border:1px solid #302f4d;border-radius:10px;background:rgba(8,10,22,.48)}
+.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.data-form label{display:grid;gap:5px;color:#c4c1d3;font-size:10px}
+.data-form input,.data-form textarea{width:100%;min-width:0;border:1px solid #33324e;border-radius:7px;background:#0a0c1a;color:var(--text);padding:9px 10px;font-size:11px}
+.data-form textarea{min-height:76px;resize:vertical}
+.data-form input::placeholder,.data-form textarea::placeholder{color:#77768e}
+.form-section-title{display:grid;gap:3px}
+.form-section-title p{margin:0;font-size:10px}
+.form-submit-row .muted{font-size:10px}
+.scenario-form .form-row{grid-template-columns:repeat(2,minmax(0,1fr));margin:12px 0}
+.scenario-form>p{font-size:10px}
+.scenario-form .status{margin:0;padding:8px 10px;font-size:10px}
+.proof-form{display:none}
+.proof-form.ready{display:grid}
+.route-detail-card{margin-bottom:14px}
+.route-detail-card>p{font-size:11px}
+.route-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}
+.route-option{padding:13px;border:1px solid #33324e;border-radius:9px;background:rgba(14,16,34,.72)}
+.route-option h3,.next-turn-card h3{font:400 16px var(--display);margin:7px 0}
+.route-option p,.next-turn-card p{font-size:10px;line-height:1.5;margin:5px 0}
+.next-turn-detail{margin-top:18px;padding:15px;border:1px solid #393653;border-radius:9px;background:rgba(14,15,33,.72)}
+.next-turn-detail>.eyebrow{margin-bottom:8px}
+.next-turn-detail .data-placeholder{padding:0}
+.next-turn-detail .data-placeholder .muted{max-width:none}
+.next-turn-card{display:grid;gap:4px}
+.next-turn-card h3{margin-top:0}
+.route-detail-card .form-submit-row{gap:10px}
+.progress-track[role=progressbar]{position:relative}
+.milestone.done .milestone-mark{border-color:#4bd4af;color:#4bd4af}
+.route-dot{transition:opacity .2s ease,transform .2s ease}
+.route-dot.complete{opacity:.58;box-shadow:0 0 0 4px rgba(242,179,95,.1)}
+.route-dot.active{transform:scale(1.2);box-shadow:0 0 0 7px rgba(242,179,95,.2),0 0 21px rgba(255,204,131,1)}
+@media(max-width:760px){
+  .profile-menu{right:-3px}
+  .form-grid{grid-template-columns:1fr}
+  .scenario-form .form-row{grid-template-columns:1fr}
+  .route-detail-card .journey-heading{align-items:stretch}
+  .route-detail-card .journey-heading .sec{align-self:flex-start}
+  .data-form{padding:12px}
+  .community-tabs button{font-size:8px}
+  .prompt-list button{font-size:8px}
+}
