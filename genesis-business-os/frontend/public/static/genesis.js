@@ -261,6 +261,7 @@ function renderJourney() {
     ['realityCash', r.cash],
     ['realityReserve', r.reserve_floor],
     ['realityHours', r.hours_per_week],
+    ['businessModelInput', BUSINESS_TWIN.business_model || BUSINESS_TWIN.industry],
     ['realitySkills', Array.isArray(r.skills) ? r.skills.join(', ') : ''],
     ['realityAssets', Array.isArray(r.assets) ? r.assets.join(', ') : ''],
     ['realityLocation', r.location],
@@ -504,12 +505,14 @@ async function saveJourney(event) {
     horizon_months: Number(values.get('horizon_months')),
     max_risk_cash: Number(values.get('max_risk_cash')),
   };
+  const businessModel = String(values.get('business_model') || '').trim();
   const status = byId('journeyFormStatus');
   text('journeyFormStatus', 'Saving your journey details…');
   try {
     await saveTwinPatch({
       founder_reality: realityNow,
       destination_contract: destinationNow,
+      business_model: businessModel,
       route_portfolio: [],
       next_turn: null,
       route_proofs: {},
@@ -864,6 +867,49 @@ function appendBubble(kind, value) {
   bubble.scrollIntoView({ block: 'nearest' });
 }
 
+function askConstraints(question) {
+  const constraints = { business_id: BUSINESS_ID };
+  if (BUSINESS?.name) constraints.business_name = BUSINESS.name;
+  const model = BUSINESS_TWIN.business_model || BUSINESS_TWIN.industry;
+  if (model) constraints.industry = model;
+  if (reality()) {
+    const available = Math.max(0, Math.min(
+      destination()?.max_risk_cash ?? reality().cash,
+      reality().cash - reality().reserve_floor,
+    ));
+    constraints.budget = available;
+    constraints.capital = available;
+    constraints.hours_per_week = reality().hours_per_week;
+    if (reality().location) constraints.location = reality().location;
+    if (reality().skills?.length) constraints.skills = reality().skills;
+    if (reality().assets?.length) constraints.assets = reality().assets;
+  } else {
+    const statedCash = question.match(/\$\s*([\d,]+(?:\.\d{1,2})?)/);
+    if (statedCash) {
+      const amount = Number(statedCash[1].replaceAll(',', ''));
+      if (Number.isFinite(amount)) {
+        constraints.budget = amount;
+        constraints.capital = amount;
+      }
+    }
+    const statedHours = question.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?)\s*(?:per|\/)\s*week/i);
+    if (statedHours) constraints.hours_per_week = Number(statedHours[1]);
+  }
+  if (destination()) constraints.destination = destination();
+  const actuals = {};
+  ['monthly_revenue', 'customer_count', 'gross_margin', 'repeat_customer_share', 'capacity_used']
+    .forEach((key) => { if (hasValue(BUSINESS_TWIN, key)) actuals[key] = BUSINESS_TWIN[key]; });
+  if (Object.keys(actuals).length) constraints.actuals = actuals;
+  return constraints;
+}
+
+function renderAskPreview(question, answer) {
+  const preview = byId('homeAskPreview');
+  if (!preview) return;
+  preview.innerHTML = `<b>Your question</b><p>${escapeHtml(question)}</p><b>Genesis planning options</b><p>${escapeHtml(answer)}</p>
+    <small class="muted">Shown for this browser session only.</small>`;
+}
+
 async function askGenesis(event) {
   event.preventDefault();
   const input = byId('askInput');
@@ -876,19 +922,35 @@ async function askGenesis(event) {
       method: 'POST',
       body: JSON.stringify({
         objective: question,
-        constraints: { business_id: BUSINESS_ID },
+        constraints: askConstraints(question),
       }),
     });
     const candidates = (result.candidates || []).map((candidate, index) => {
       const name = candidate.title || candidate.name || candidate.archetype || `Option ${index + 1}`;
-      const reason = candidate.rationale || candidate.reason || candidate.why || '';
-      return `${index + 1}. ${name}${reason ? ` — ${reason}` : ''}`;
+      const assumptions = Array.isArray(candidate.assumptions) ? candidate.assumptions : [];
+      return `${index + 1}. ${name} · ${candidate.industry || 'Planning model'} model
+Startup budget estimate: ${money(candidate.startup_budget)}
+Modeled monthly sales: ${money(candidate.estimated_monthly_revenue)}
+Modeled operating profit: ${money(candidate.estimated_operating_profit)}
+Assumptions: ${assumptions.join(' ') || 'Planning estimates; validate before acting.'}`;
     });
-    appendBubble('', candidates.length
-      ? `${result.notice || 'Planning values remain assumptions until verified.'}\n${candidates.join('\n')}`
-      : result.notice || 'Genesis returned no business candidates for this request.');
+    const answer = candidates.length
+      ? `${result.notice || 'Planning values remain assumptions until verified.'}\n\n${candidates.join('\n\n')}`
+      : result.notice || 'Genesis returned no business candidates for this request.';
+    appendBubble('', answer);
+    ASK_LAST_TURN = { question, answer };
+    renderAskPreview(question, answer);
   } catch (error) {
     appendBubble('', `Genesis could not answer this request: ${error.message}`);
+  }
+}
+
+function askSuggestion(question) {
+  go('ask');
+  const input = byId('askInput');
+  if (input) {
+    input.value = question || '';
+    input.focus();
   }
 }
 
