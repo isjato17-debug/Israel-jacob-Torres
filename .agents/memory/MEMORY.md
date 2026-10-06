@@ -1,1 +1,2 @@
 - [Gate matrix reconciliation](gate-matrix-reconciliation.md) — Compute Genesis totals from the current full matrix; keep conflicting subset snapshots separate until reconciled.
+- [Local verification constraints](local-verification-constraints.md) — Use accepted test email domains and an explicitly persistent disposable PostgreSQL role.
