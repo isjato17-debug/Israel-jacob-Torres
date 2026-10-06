@@ -6,156 +6,301 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
   <title>Genesis Business OS</title>
-  <style>
-    :root{--b:#07101c;--p:#111e30;--l:#27394f;--t:#f7f9fc;--m:#9cadc0;--g:#2be7b2;--u:#48a8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#153052,#07101c 35%);color:var(--t);font-family:system-ui,-apple-system,sans-serif}.wrap{max-width:1100px;margin:auto;padding:22px 20px 100px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}.brand{font-weight:900}.logo{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--g),var(--u));color:#04110e;margin-right:9px}.muted{color:var(--m)}.view{display:none}.view.on{display:block}.hero{font-size:clamp(38px,6vw,64px);line-height:1;letter-spacing:-.04em;max-width:780px;margin:8px 0 14px}.lead{font-size:18px;line-height:1.55;max-width:680px}.eyebrow{color:var(--g);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:1.5fr .7fr;gap:16px;margin-top:28px}.card{background:linear-gradient(180deg,#15243a,#0e1b2c);border:1px solid var(--l);border-radius:22px;padding:23px}.card h2{font-size:30px;margin:8px 0}.pills{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.pill{border:1px solid var(--l);border-radius:999px;padding:8px 10px;font-size:12px;color:#cbd7e4}.cta,.sec{padding:14px 16px;border-radius:14px;font-weight:900;cursor:pointer}.cta{border:0;background:var(--g);color:#03120d}.sec{border:1px solid var(--l);background:#0b1727;color:white}.ring{width:120px;height:120px;margin:18px auto;border-radius:50%;background:conic-gradient(var(--g) 42%,#26384d 0);display:grid;place-items:center}.ring:after{content:"42%";width:90px;height:90px;border-radius:50%;background:#111e30;display:grid;place-items:center;font-size:25px;font-weight:900}.center{text-align:center}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}.three .card{padding:18px}.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0}.stage{border:1px solid var(--l);border-radius:15px;padding:16px;background:#0d1929}.stage.now{border-color:var(--u);background:#10233a}.stage.done{border-color:#2b997d}.task{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:18px 0;border-bottom:1px solid var(--l)}.task:last-child{border:0}.task h3{margin:0 0 5px}.task p{margin:0;font-size:14px}.reveal{display:none;margin-top:14px;border:1px solid var(--l);border-radius:14px;padding:14px;background:#091522}.reveal.on{display:block}.chat{min-height:480px;display:flex;flex-direction:column}.bubble{padding:14px 16px;border-radius:17px;max-width:80%;margin:6px 0;line-height:1.5;background:#17283e;white-space:pre-wrap}.bubble.user{align-self:flex-end;background:#12352f}.compose{display:flex;gap:8px;margin-top:auto;padding-top:20px}.compose input{flex:1;background:#091522;color:white;border:1px solid var(--l);border-radius:14px;padding:14px}.navbox{position:fixed;bottom:0;left:0;right:0;background:#07101eef;border-top:1px solid var(--l);backdrop-filter:blur(14px)}nav{max-width:700px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:8px}nav button{border:0;background:transparent;color:var(--m);padding:12px 5px;font-weight:800}nav button.on{color:var(--g);background:#10241f;border-radius:12px}@media(max-width:720px){.wrap{padding:17px 15px 90px}.grid,.three{grid-template-columns:1fr}.journey{grid-template-columns:1fr 1fr}.hero{font-size:42px}.card h2{font-size:25px}.lead{font-size:16px}}
-    .authgate{position:fixed;inset:0;background:#07101cf5;z-index:20;display:grid;place-items:center;padding:20px}.authgate.off{display:none}.authcard{width:min(520px,100%);background:#111e30;border:1px solid var(--l);border-radius:22px;padding:24px}.authcard input{width:100%;margin:6px 0;background:#091522;color:white;border:1px solid var(--l);border-radius:12px;padding:13px}.status{padding:10px 12px;border-radius:12px;background:#091522;margin:8px 0;font-size:13px}.execgrid{display:grid;gap:12px;margin-top:16px}.execpoint{border:1px solid var(--l);border-radius:16px;padding:16px;background:#0b1727}.execpoint h3{margin:4px 0}.evo{border:1px solid #6d5bd0;background:linear-gradient(135deg,#171631,#0e1b2c)}.futurebar{height:8px;background:#26384d;border-radius:9px;overflow:hidden;margin:8px 0 14px}.futurebar i{display:block;height:100%;background:linear-gradient(90deg,#2be7b2,#48a8ff)}.good{color:var(--g)}.warn{color:#ffd166}.bad{color:#ff7b7b}.sr{position:absolute;left:-9999px}:focus-visible{outline:3px solid var(--u);outline-offset:3px}
-    .community-form input,.community-form select,.community-form textarea,.reply-form input{width:100%;margin:6px 0;background:#091522;color:white;border:1px solid var(--l);border-radius:12px;padding:12px;font:inherit}.community-form textarea{min-height:92px;resize:vertical}.community-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.community-replies{padding:8px 0}.reply-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}.reply-form input{flex:1;min-width:160px}.community-post-body{width:100%}.community-status{min-height:1.5em}
-  </style>
+  <link rel="stylesheet" href="/static/genesis.css">
 </head>
 <body>
   <div id="authgate" class="authgate">
-    <div class="authcard">
-      <div class="eyebrow">Genesis Business OS</div>
-      <h2>Open your business workspace</h2>
-      <p class="muted">Sign in, or create an owner workspace. Genesis stores execution state on the server.</p>
+    <section class="authcard" aria-labelledby="authTitle">
+      <div class="brand brand-auth">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M18 32V7m0 12C11 18 8 13 5 8c6 0 11 2 13 8m0 0c7-2 10-7 13-12-6 0-11 3-13 9M18 22c-4 0-7-2-9-5m9 1c4-1 7-4 9-7M13 32h10"/></svg></span>
+        <span><b>GENESIS</b><small>BUSINESS OS</small></span>
+      </div>
+      <div class="eyebrow">A clearer path forward</div>
+      <h1 id="authTitle">Open your business workspace</h1>
+      <p class="muted">Your plans, decisions and real progress — together in one place.</p>
       <form id="authForm" class="auth-form" novalidate>
-        <input id="tenant" aria-label="Business workspace name" placeholder="Business/workspace name">
-        <input id="email" aria-label="Email" type="email" autocomplete="email" placeholder="Email">
+        <label class="sr" for="tenant">Business workspace name</label>
+        <input id="tenant" aria-label="Business workspace name" placeholder="Business / workspace name" autocomplete="organization">
+        <label class="sr" for="email">Email</label>
+        <input id="email" aria-label="Email" type="email" autocomplete="email" placeholder="Email address">
+        <label class="sr" for="password">Password</label>
         <input id="password" aria-label="Password" type="password" autocomplete="current-password" placeholder="Password (12+ characters)">
-        <button class="cta" type="submit" data-kind="login">Sign in</button>
-        <button class="sec" type="submit" data-kind="register">Create workspace</button>
+        <div class="auth-buttons">
+          <button class="cta" type="submit" data-kind="login">Sign in <span aria-hidden="true">→</span></button>
+          <button class="sec" type="submit" data-kind="register">Create workspace</button>
+        </div>
       </form>
       <div id="authmsg" class="status" role="status">Checking session…</div>
-    </div>
+      <p class="auth-foot">Private by default <span>·</span> Built for evidence-based progress</p>
+    </section>
   </div>
 
-  <main class="wrap">
-    <header class="top">
-      <div class="brand"><span class="logo">G</span>Genesis Business OS</div>
-      <span class="muted">IJ</span>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Genesis Business OS home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M18 32V7m0 12C11 18 8 13 5 8c6 0 11 2 13 8m0 0c7-2 10-7 13-12-6 0-11 3-13 9M18 22c-4 0-7-2-9-5m9 1c4-1 7-4 9-7M13 32h10"/></svg></span>
+        <span class="brand-copy"><b>GENESIS</b><small>BUSINESS OS</small></span>
+      </a>
+      <nav class="topnav" aria-label="Main navigation">
+        <button class="on" data-action="navigate" data-view="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M5.5 10v10h5v-6h3v6h5V10"/></svg><span>Home</span></button>
+        <button data-action="navigate" data-view="business"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="14" rx="2"/><path d="M9 7V4h6v3M4 12h16M10 12v2h4v-2"/></svg><span>My Business</span></button>
+        <button data-action="navigate" data-view="do"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 17 4l3 3L7 20H4zM13 8l3 3M4 20h16M7 4l2 2"/></svg><span>Do It</span></button>
+        <button data-action="navigate" data-view="community"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.4 2.4-5.5 6-5.5s6 2.1 6 5.5M15 15c3.7-.3 6 1.4 6 4.5"/></svg><span>Community</span></button>
+        <button data-action="navigate" data-view="ask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8"/><circle cx="12" cy="12" r="4"/></svg><span>Ask Genesis</span></button>
+      </nav>
+      <div class="top-tools"><span class="tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m16 16 4.5 4.5"/></svg></span><span class="tool-icon notification" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-2 7-2 9h16c0-2-2-2-2-9M10 21h4"/></svg></span><span class="profile-badge" aria-label="Founder profile">F</span></div>
     </header>
 
-    <section id="home" class="view on">
-      <div class="eyebrow">Start with what you have</div>
-      <h1 class="hero">Build toward what you want.</h1>
-      <p class="lead muted">Genesis keeps business simple. Tell it your goal, see your best next move, and let Genesis help you get it done.</p>
-      <div class="grid">
-        <div class="card">
-          <div class="eyebrow">Your next best move</div>
-          <h2>Get your first 3 paying customers before spending more.</h2>
-          <p class="muted">You have enough to test demand now. Validate the service before using more of your startup money.</p>
-          <div class="pills"><span class="pill">Est. cost $40</span><span class="pill">1–3 days</span><span class="pill">Low risk</span></div>
-          <button class="cta" type="button" data-action="navigate" data-view="do">Do it with Genesis →</button>
-          <button class="sec" type="button" data-action="toggle" data-target="why">See why</button>
-          <div id="why" class="reveal">Genesis compared your capital, reserve, time, skills, startup costs and customer path. Real customers give you evidence before you make larger purchases.</div>
+    <main class="wrap">
+      <section id="home" class="view on">
+        <div class="home-layout">
+          <div class="primary-column">
+            <section class="hero-panel" aria-labelledby="homeHero">
+              <div class="hero-art" aria-hidden="true"><div class="horizon"></div><div class="route-line"><i class="route-dot dot-start"></i><i class="route-dot dot-setup"></i><i class="route-dot dot-launch"></i><i class="route-dot dot-grow"></i></div></div>
+              <div class="hero-content">
+                <div class="eyebrow">Your business, in motion</div>
+                <h1 class="hero" id="homeHero">Your Business<br><em>Made Possible.</em></h1>
+                <p class="lead">A clearer path. Smarter moves. Real results.</p>
+                <div class="hero-actions">
+                  <button class="cta" type="button" data-action="continue-next-turn">Continue My Path <span aria-hidden="true">→</span></button>
+                  <button class="sec" type="button" data-action="navigate" data-view="ask">Ask Genesis</button>
+                </div>
+              </div>
+              <div class="destination-tag"><span>Your destination</span><b id="homeDestination">Waiting for your destination</b></div>
+              <div class="route-caption caption-here"><b id="heroYouAreHere">You are here</b><span id="heroStageDetail">Your current stage</span></div>
+              <div class="route-caption caption-setup"><b>Setup</b><span>Build foundation</span></div>
+              <div class="route-caption caption-launch"><b>Launch</b><span>Get to market</span></div>
+              <div class="route-caption caption-grow"><b>Grow</b><span>Your next horizon</span></div>
+            </section>
+            <div class="home-main-grid">
+              <section class="card next-card" aria-labelledby="nextMoveTitle">
+                <div class="section-heading"><span class="heading-icon sparkle" aria-hidden="true">✧</span><div><div class="eyebrow">A move grounded in your reality</div><h2 id="nextMoveTitle">Your Next Best Move</h2></div></div>
+                <div id="homeNextMove" class="data-placeholder" data-bind="next-move" aria-live="polite">
+                  <span class="placeholder-title">Your next move will appear here</span>
+                  <span class="muted">Genesis will use your destination, current situation and available resources to find a practical next step.</span>
+                </div>
+                <div class="move-metrics" id="homeMoveMetrics" data-bind="next-move-metrics">
+                  <div class="metric-chip"><span class="metric-symbol mint">$</span><span><small>Maximum cash commitment</small><b id="homeMoveCost">Waiting for your route</b></span></div>
+                  <div class="metric-chip"><span class="metric-symbol lilac">◷</span><span><small>Estimated time</small><b id="homeMoveTime">Not estimated</b></span></div>
+                  <div class="metric-chip"><span class="metric-symbol sea">↗</span><span><small>Potential outcome</small><b id="homeMoveOutcome">Not yet available</b></span></div>
+                </div>
+                <div class="card-actions">
+                  <button class="cta" type="button" data-action="continue-next-turn">Do It With Genesis <span aria-hidden="true">→</span></button>
+                  <button class="sec" type="button" data-action="toggle" data-target="why">Why this?</button>
+                  <button class="text-button" type="button" data-action="toggle" data-target="whatIfPanel" aria-expanded="false">What if?</button>
+                </div>
+                <div id="why" class="reveal">Genesis will explain how a recommendation fits your stated destination, constraints and resources once your business context is available.</div>
+                <form id="whatIfForm" class="reveal scenario-form">
+                  <div class="eyebrow">Compare a changed reality</div>
+                  <p class="muted">Change the resources for this scenario. Genesis will compare it with your saved reality; it will not change your saved profile.</p>
+                  <div class="form-row">
+                    <label>Scenario cash available<input id="whatIfCash" name="cash" type="number" min="0" step="0.01" inputmode="decimal"></label>
+                    <label>Hours per week<input id="whatIfHours" name="hours_per_week" type="number" min="0.1" max="168" step="0.5" inputmode="decimal"></label>
+                  </div>
+                  <button class="sec" type="submit">Compare this route</button>
+                  <div id="whatIfStatus" class="status" role="status"></div>
+                </form>
+              </section>
+              <section class="card progress-card" aria-labelledby="progressTitle">
+                <div class="section-heading"><span class="heading-icon bars" aria-hidden="true"><i></i><i></i><i></i></span><div><div class="eyebrow">A steady view of the work</div><h2 id="progressTitle">Your Progress</h2></div></div>
+                <div class="progress-summary"><span id="homeProgressLabel">Checking saved progress</span><b id="homeProgressPercent">—</b></div>
+                <div class="progress-track" role="progressbar" aria-label="Completed Genesis milestones" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><span id="homeProgressBar"></span></div>
+                <div class="milestone-list" id="homeProgress" data-bind="progress">
+                  <div class="data-placeholder">Progress will appear after Genesis checks your saved business state.</div>
+                </div>
+              </section>
+              <section class="card overview-card" aria-labelledby="overviewTitle">
+                <div class="section-heading compact"><span class="heading-icon chart" aria-hidden="true">◔</span><div><div class="eyebrow">The essentials, at a glance</div><h2 id="overviewTitle">Business Overview</h2></div><button class="quiet-link" type="button" data-action="navigate" data-view="business">View details <span aria-hidden="true">→</span></button></div>
+                <div id="homeBusinessOverview" class="overview-metrics" data-bind="business-overview">
+                  <div><small>Business stage</small><b>Not set</b><span>Based on saved journey data</span></div>
+                  <div><small>Monthly revenue</small><b>Not recorded</b><span>Owner-reported actual</span></div>
+                  <div><small>Customers</small><b>Not recorded</b><span>Owner-reported actual</span></div>
+                  <div><small>Key focus</small><b>Not available</b><span>Route Engine recommendation</span></div>
+                </div>
+              </section>
+              <section class="card evolution-card evo" aria-labelledby="evolutionTitle">
+                <span class="evolution-star" aria-hidden="true">✧</span>
+                <div><div class="eyebrow">Genesis Evolution</div><h2 id="evolutionTitle">A better route may emerge.</h2><p class="muted">As your reality and evidence change, Genesis can compare new paths toward your destination.</p></div>
+                <div class="evolution-actions"><button class="cta" type="button" data-action="see-evolution">See My Best Future <span aria-hidden="true">→</span></button></div>
+                <div id="evolutionResult" class="reveal" role="status"></div>
+              </section>
+              <section class="card route-card" aria-labelledby="routeTitle">
+                <span class="route-map-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m3 8 8-4 10 4 8-4v20l-8 4-10-4-8 4zM11 4v20m10-16v20M5 16h9l4-5h9"/></svg></span>
+                <div><div class="eyebrow">Look beyond the next step</div><h2 id="routeTitle">See Your Route</h2><p class="muted">Explore a full route, possible futures and alternative paths.</p></div>
+                <button class="sec" type="button" data-action="navigate" data-view="business">View route <span aria-hidden="true">→</span></button>
+              </section>
+            </div>
+          </div>
+          <aside class="side-column">
+            <section class="card ask-preview" aria-labelledby="askPreviewTitle">
+              <div class="side-card-heading"><span class="heading-icon sparkle large" aria-hidden="true">✧</span><div><h2 id="askPreviewTitle">Ask Genesis</h2><p>Your business consultant</p></div><button class="quiet-link" type="button" data-action="navigate" data-view="ask">Open Ask Genesis <span aria-hidden="true">→</span></button></div>
+              <div class="preview-compose" id="homeAskPreviewForm">
+                <label class="sr" for="homeAskPreviewInput">Ask Genesis anything about your business</label>
+                <input id="homeAskPreviewInput" placeholder="Ask me anything about your business…" autocomplete="off" readonly>
+                <button type="button" class="send-arrow" data-action="navigate" data-view="ask" aria-label="Open Ask Genesis">→</button>
+              </div>
+              <div class="prompt-label">A few ways to begin</div>
+                <div class="prompt-list" id="homeAskPrompts" data-bind="ask-prompts">
+                  <button type="button" data-action="ask-suggestion" data-question="I have $300. What can I start?">I have $300. What can I start?</button>
+                  <button type="button" data-action="ask-suggestion" data-question="How do I get my first customer?">How do I get my first customer?</button>
+                  <button type="button" data-action="ask-suggestion" data-question="Do I need a license?">Do I need a license?</button>
+                  <button type="button" data-action="ask-suggestion" data-question="Analyze my business.">Analyze my business.</button>
+                  <button type="button" data-action="ask-suggestion" data-question="How can I reach $5,000 per month?">How can I reach $5,000 per month?</button>
+              </div>
+              <div id="homeAskPreview" class="preview-live-region" data-bind="ask-preview" aria-live="polite"><span class="muted">Your recent Genesis conversation will appear here.</span></div>
+            </section>
+            <section class="card community-preview" aria-labelledby="communityPreviewTitle">
+              <div class="side-card-heading"><span class="heading-icon people" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.4 2.4-5.5 6-5.5s6 2.1 6 5.5M15 15c3.7-.3 6 1.4 6 4.5"/></svg></span><div><h2 id="communityPreviewTitle">Community</h2><p>Real founders. Real progress.</p></div><button class="quiet-link" type="button" data-action="navigate" data-view="community">View all <span aria-hidden="true">→</span></button></div>
+               <div class="community-tabs" aria-label="Community categories">
+                 <button class="active" type="button" data-action="community-preview-filter" data-category="ALL">Feed</button>
+                 <button type="button" data-action="community-preview-filter" data-category="ASK">Ask</button>
+                 <button type="button" data-action="community-preview-filter" data-category="WIN">Wins</button>
+                 <button type="button" data-action="community-preview-filter" data-category="CONNECT">Connect</button>
+               </div>
+              <div id="homeCommunityPreview" class="community-preview-feed" data-bind="community-preview" aria-live="polite">
+                <div class="preview-empty"><span class="empty-orbit" aria-hidden="true"></span><b>Founder voices, when you're ready.</b><span>Community conversations will appear here.</span></div>
+              </div>
+              <div class="quick-post"><label class="sr" for="homeCommunityInput">Write a community post</label><input id="homeCommunityInput" placeholder="Write a post…" readonly><button type="button" class="post-shortcut" data-action="navigate" data-view="community">Post</button></div>
+            </section>
+          </aside>
         </div>
-        <div class="card center">
-          <div class="eyebrow">Business progress</div>
-          <div class="ring"></div>
-          <b>You're moving forward.</b>
-          <p class="muted">Genesis tracks the complicated parts in the background.</p>
+      </section>
+
+      <section id="business" class="view">
+        <div class="page-intro"><div class="eyebrow">My Business · The bigger picture</div><h1 class="hero" id="businessPageTitle">One clear journey.</h1><p class="lead muted">A destination worth reaching. A route shaped by your reality. Each next step becomes clear when it matters.</p></div>
+        <section class="journey-panel card">
+          <div class="journey-heading"><div><div class="eyebrow">Your route, from here</div><h2>The journey</h2></div><span class="journey-status" id="journeyStatus">Loading saved journey details…</span></div>
+          <div id="businessJourney" class="journey" data-bind="journey">
+            <div class="data-placeholder">Journey milestones will reflect your saved destination, founder reality, routes and evidence.</div>
+          </div>
+          <button class="sec" type="button" data-action="toggle" data-target="journeySettings" aria-expanded="false">Set up or update my journey</button>
+          <form id="journeyForm" class="reveal data-form">
+            <div class="form-section-title"><div class="eyebrow">Founder reality</div><p class="muted">Enter what is true now. Leave optional fields blank if they do not apply.</p></div>
+            <div class="form-grid">
+              <label>Cash available<input id="realityCash" name="cash" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+              <label>Protected reserve<input id="realityReserve" name="reserve_floor" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+              <label>Hours per week<input id="realityHours" name="hours_per_week" type="number" min="0.1" max="168" step="0.5" inputmode="decimal" required></label>
+              <label>Skills, separated by commas<input id="realitySkills" name="skills" autocomplete="off"></label>
+              <label>Assets, separated by commas<input id="realityAssets" name="assets" autocomplete="off"></label>
+              <label>Location (optional)<input id="realityLocation" name="location" autocomplete="address-level2"></label>
+            </div>
+            <div class="form-section-title"><div class="eyebrow">Destination contract</div><p class="muted">Set a target and the limits Genesis must respect.</p></div>
+            <div class="form-grid">
+              <label>Target monthly owner income<input id="destinationIncome" name="target_monthly_owner_income" type="number" min="0.01" step="0.01" inputmode="decimal" required></label>
+              <label>Time horizon, months<input id="destinationHorizon" name="horizon_months" type="number" min="1" max="240" step="1" inputmode="numeric" required></label>
+              <label>Maximum risk cash<input id="destinationRiskCash" name="max_risk_cash" type="number" min="0" step="0.01" inputmode="decimal" required></label>
+            </div>
+            <div class="form-submit-row"><span id="journeyFormStatus" class="muted" role="status">Saved changes update the business twin.</span><button class="cta" type="submit">Save journey details <span aria-hidden="true">→</span></button></div>
+          </form>
+        </section>
+        <section id="businessOverviewDetails" class="card detail-card" data-bind="business-overview-details">
+          <div class="section-heading"><span class="heading-icon chart" aria-hidden="true">◔</span><div><div class="eyebrow">A current snapshot</div><h2>Your Business at a Glance</h2></div></div>
+          <div id="businessFacts" class="business-facts">
+            <div><small>Business model</small><b>Not recorded</b><span>From your saved business profile</span></div>
+            <div><small>Available resources</small><b>Not recorded</b><span>Based on founder reality</span></div>
+            <div><small>Location</small><b>Not recorded</b><span>Requirements depend on location</span></div>
+          </div>
+          <form id="metricsForm" class="data-form">
+            <div class="form-section-title"><div class="eyebrow">Record business results</div><p class="muted">These values are owner-reported actuals, not independently verified. Blank fields are left unchanged.</p></div>
+            <div class="form-grid">
+              <label>Monthly revenue<input id="metricRevenue" name="monthly_revenue" type="number" min="0" step="0.01" inputmode="decimal"></label>
+              <label>Customers<input id="metricCustomers" name="customer_count" type="number" min="0" step="1" inputmode="numeric"></label>
+              <label>Gross margin (%)<input id="metricMargin" name="gross_margin" type="number" min="0" max="100" step="0.1" inputmode="decimal"></label>
+              <label>Repeat customers (%)<input id="metricRepeat" name="repeat_customer_share" type="number" min="0" max="100" step="0.1" inputmode="decimal"></label>
+              <label>Capacity used (%)<input id="metricCapacity" name="capacity_used" type="number" min="0" max="100" step="0.1" inputmode="decimal"></label>
+              <label>Average sale amount<input id="metricTicket" name="average_ticket" type="number" min="0.01" step="0.01" inputmode="decimal"></label>
+              <label>Close rate (%)<input id="metricCloseRate" name="close_rate" type="number" min="0.1" max="100" step="0.1" inputmode="decimal"></label>
+            </div>
+            <div class="form-submit-row"><span id="metricsStatus" class="muted" role="status"></span><button class="sec" type="submit">Save actuals</button></div>
+          </form>
+        </section>
+        <section id="routePanel" class="card detail-card route-detail-card">
+          <div class="journey-heading"><div><div class="eyebrow">Route Engine</div><h2>See your route</h2></div><button class="sec" type="button" data-action="refresh-routes">Recalculate from saved state</button></div>
+          <p class="muted">Routes are calculated from your saved founder reality and destination contract.</p>
+          <div id="routePortfolioStatus" class="status" role="status">Route portfolio is waiting for your saved journey details.</div>
+          <div id="routePortfolio" class="route-list" aria-live="polite"></div>
+          <div class="next-turn-detail">
+            <div class="eyebrow">Next Turn</div>
+            <div id="nextTurnDetail" class="data-placeholder">Your next turn appears after your route inputs are saved.</div>
+          </div>
+          <form id="proofForm" class="data-form proof-form">
+            <div class="form-section-title"><div class="eyebrow">Record checkpoint evidence</div><p class="muted">Describe evidence you have actually gathered. Owner-reported entries remain distinct from independently verified proof.</p></div>
+            <label id="proofPromptLabel" for="proofNote">Evidence for the current checkpoint</label>
+            <input id="proofName" name="proof_name" type="hidden">
+            <textarea id="proofNote" name="proof_note" maxlength="2000" placeholder="What happened, and what supports it?"></textarea>
+            <div class="form-submit-row"><span id="proofStatus" class="muted" role="status"></span><button class="sec" type="submit">Record evidence</button></div>
+          </form>
+          <form id="counterfactualForm" class="data-form">
+            <div class="form-section-title"><div class="eyebrow">Counterfactual</div><p class="muted">Estimate the volume needed for your saved destination using your actual average sale, margin and close rate.</p></div>
+            <button class="sec" type="submit">Calculate sales needed</button>
+            <div id="counterfactualResult" class="status" role="status">Enter the required metrics above to run this calculation.</div>
+          </form>
+        </section>
+        <section class="card evo dna-card">
+          <div class="eyebrow">Business DNA · Founder profile</div><h2>Keep your founder context current.</h2><p class="muted">Genesis derives these signals from the information you save. They are not a measure of your worth or a guarantee of results.</p>
+          <form id="dnaForm" class="data-form">
+            <div class="form-grid">
+              <label>Capital available<input id="dnaCapital" name="capital" type="number" min="0" step="0.01" inputmode="decimal"></label>
+              <label>Hours per week<input id="dnaHours" name="hours_per_week" type="number" min="0" max="168" step="0.5" inputmode="decimal"></label>
+              <label>Years of relevant experience<input id="dnaExperience" name="experience_years" type="number" min="0" max="80" step="0.5" inputmode="decimal"></label>
+              <label>Risk tolerance (1–10)<input id="dnaRisk" name="risk_tolerance" type="number" min="1" max="10" step="1" inputmode="numeric"></label>
+            </div>
+            <div class="form-submit-row"><span id="dnaStatus" class="muted" role="status"></span><button class="sec" type="submit">Save Business DNA</button></div>
+          </form>
+          <p id="businessDna" class="muted dna-status" role="status">Business DNA will appear after profile data is saved.</p>
+        </section>
+      </section>
+
+      <section id="do" class="view">
+        <div class="page-intro"><div class="eyebrow">Do It · Make the next move</div><h1 class="hero">Progress, with proof.</h1><p class="lead muted">Genesis distinguishes actions it can execute, work it can prepare, and official steps only you can complete.</p></div>
+        <div id="executionStatus" class="status" role="status">Execution connections will be checked when your workspace is ready.</div>
+        <div id="executionPoints" class="execgrid"></div>
+        <section class="card recent-card"><div class="section-heading"><div><div class="eyebrow">A record of what moved</div><h2>Recent execution</h2></div></div><div id="recentActions" class="muted">No recent actions to show.</div></section>
+      </section>
+
+      <section id="community" class="view">
+        <div class="page-intro"><div class="eyebrow">Community · Learn alongside founders</div><h1 class="hero">Build better, together.</h1><p class="lead muted">Ask practical questions, share progress or exchange hard-won experience. Your private business data stays yours unless you deliberately share it.</p></div>
+        <div class="community-intro-grid">
+          <article class="community-pillar"><span class="pillar-icon">01</span><div><div class="eyebrow">Ask</div><h3>Learn from experience</h3><p class="muted">Get practical perspective from people building too.</p></div><button class="sec" type="button" data-action="community-mode" data-category="ASK">Ask Community <span aria-hidden="true">→</span></button></article>
+          <article class="community-pillar"><span class="pillar-icon">02</span><div><div class="eyebrow">Wins</div><h3>Mark real progress</h3><p class="muted">Share a milestone without exposing private financial data.</p></div><button class="sec" type="button" data-action="community-mode" data-category="WIN">Share a Win <span aria-hidden="true">→</span></button></article>
+          <article class="community-pillar"><span class="pillar-icon">03</span><div><div class="eyebrow">Connect</div><h3>Find useful people</h3><p class="muted">Meet founders by interest, skill or experience.</p></div><button class="sec" type="button" data-action="community-mode" data-category="ALL">Explore <span aria-hidden="true">→</span></button></article>
         </div>
-      </div>
-      <div class="three">
-        <div class="card"><div class="eyebrow">Money available</div><h2>$300</h2><p class="muted">Genesis builds inside your real budget.</p></div>
-        <div class="card"><div class="eyebrow">Coming next</div><h3>Set up the business</h3><p class="muted">Requirements appear only when relevant.</p></div>
-        <div class="card"><div class="eyebrow">What if?</div><h3>What if I only spend $100?</h3><button class="sec" type="button" data-action="navigate" data-view="ask">Ask Genesis</button></div>
-      </div>
-      <div class="card evo" style="margin-top:16px">
-        <div class="eyebrow">Genesis Evolution</div>
-        <h2>Your business can change as the evidence changes.</h2>
-        <p class="muted">Genesis quietly compares possible futures, then shows you one recommended move. No extra dashboard.</p>
-        <button class="cta" type="button" data-action="see-evolution">See my best future →</button>
-        <div id="evolutionResult" class="reveal" role="status"></div>
-      </div>
-    </section>
+        <section class="card community-workspace">
+          <div class="community-workspace-head"><div><div class="eyebrow">Founder exchange</div><h2>Community feed</h2></div><span class="privacy-note">Share only what you choose</span></div>
+          <form id="communityForm" class="community-form">
+            <div class="form-row"><label class="sr" for="communityDisplayName">Community display name</label><input id="communityDisplayName" name="display_name" aria-label="Community display name" placeholder="Display name" value="Founder" maxlength="80" required>
+              <label class="sr" for="communityCategory">Post category</label><select id="communityCategory" aria-label="Post category"><option value="ASK">Ask</option><option value="WIN">Win</option><option value="EXPERIENCE">Experience</option><option value="CONNECT">Connect</option></select></div>
+            <label class="sr" for="communityBody">Community post</label><textarea id="communityBody" name="body" aria-label="Community post" placeholder="Share a question or experience" maxlength="2000" required></textarea>
+            <div class="form-submit-row"><span class="muted">Keep it useful. Keep it yours.</span><button class="cta" type="submit">Share with Community <span aria-hidden="true">→</span></button></div>
+          </form>
+          <div id="communityStatus" class="status community-status" role="status"></div>
+          <div class="feed-toolbar"><div><span class="eyebrow">Recent conversations</span><label for="communityFilter" class="sr">Filter community posts</label></div><select id="communityFilter" aria-label="Filter community posts"><option value="ALL">All categories</option><option value="ASK">Ask</option><option value="WIN">Win</option><option value="EXPERIENCE">Experience</option><option value="CONNECT">Connect</option></select></div>
+          <div id="communityFeed" aria-live="polite"><div class="empty-feed"><span class="empty-orbit" aria-hidden="true"></span><b>Conversations will meet you here.</b><span>Open the feed to see what founders are sharing.</span></div></div>
+        </section>
+      </section>
 
-    <section id="business" class="view">
-      <div class="eyebrow">My Business</div>
-      <h1 class="hero">One clear journey.</h1>
-      <p class="lead muted">No giant checklist. Genesis reveals each stage when you need it.</p>
-      <div class="journey">
-        <div class="stage done"><b>✓ Idea</b><br><small>Chosen</small></div>
-        <div class="stage now"><b>2 Setup</b><br><small>You're here</small></div>
-        <div class="stage"><b>3 Launch</b><br><small>Coming up</small></div>
-        <div class="stage"><b>4 Grow</b><br><small>After launch</small></div>
-      </div>
-      <div class="card">
-        <div class="eyebrow">Mobile detailing</div>
-        <h2>Your business at a glance</h2>
-        <div class="task"><div><h3>Business model</h3><p class="muted">Mobile service • low fixed overhead</p></div><button class="sec" type="button">View</button></div>
-        <div class="task"><div><h3>My money</h3><p class="muted">$300 capital • reserve protected • validate first</p></div><button class="sec" type="button">View</button></div>
-        <div class="task"><div><h3>Setup &amp; requirements</h3><p class="muted">Only supported requirements for your business and location.</p></div><button class="sec" type="button">Check</button></div>
-      </div>
-      <div class="card evo" style="margin-top:15px">
-        <div class="eyebrow">Business DNA · Behind the scenes</div>
-        <h3>Genesis learns what actually works for this business.</h3>
-        <p class="muted">Customer patterns, margins, capacity and verified results improve future recommendations. You only see the move that matters now.</p>
-        <p id="businessDna" class="muted" role="status">Loading Business DNA…</p>
-      </div>
-    </section>
-
-    <section id="do" class="view">
-      <div class="eyebrow">Do It</div>
-      <h1 class="hero">Real actions. Verified results.</h1>
-      <p class="lead muted">Genesis separates actions it can execute, work it can prepare, and official steps only you can complete.</p>
-      <div id="executionStatus" class="status" role="status">Loading execution points…</div>
-      <div id="executionPoints" class="execgrid"></div>
-      <div class="card" style="margin-top:15px"><div class="eyebrow">Recent execution</div><div id="recentActions" class="muted">No actions loaded.</div></div>
-    </section>
-
-    <section id="community" class="view">
-      <div class="eyebrow">Community</div>
-      <h1 class="hero">Connect. Learn. Share. Grow.</h1>
-      <p class="lead muted">Ask other founders, share a win, exchange experience, or make useful connections. Your private business data stays private unless you deliberately share it.</p>
-      <div class="three">
-        <div class="card"><div class="eyebrow">Ask</div><h3>Get founder experience</h3><p class="muted">Ask practical business questions and learn from people building too.</p><button class="sec" type="button" data-action="community-mode" data-category="ASK">Ask Community</button></div>
-        <div class="card"><div class="eyebrow">Wins</div><h3>Share progress</h3><p class="muted">Celebrate first customers, launches and milestones without exposing private financial data.</p><button class="sec" type="button" data-action="community-mode" data-category="WIN">Share a Win</button></div>
-        <div class="card"><div class="eyebrow">Connect</div><h3>Meet useful people</h3><p class="muted">Find founders by business interest, skill or experience.</p><button class="sec" type="button" data-action="community-mode" data-category="ALL">Explore</button></div>
-      </div>
-      <div class="card" style="margin-top:15px">
-        <div class="eyebrow">Founder feed</div>
-        <form id="communityForm" class="community-form">
-          <input name="display_name" aria-label="Community display name" placeholder="Display name" value="Founder" maxlength="80" required>
-          <select id="communityCategory" aria-label="Post category">
-            <option value="ASK">Ask</option><option value="WIN">Win</option><option value="EXPERIENCE">Experience</option><option value="CONNECT">Connect</option>
-          </select>
-          <textarea id="communityBody" name="body" aria-label="Community post" placeholder="Share a question or experience" maxlength="2000" required></textarea>
-          <button class="cta" type="submit">Share with Community</button>
-        </form>
-        <div id="communityStatus" class="status community-status" role="status"></div>
-        <label for="communityFilter" class="muted">Show</label>
-        <select id="communityFilter" aria-label="Filter community posts">
-          <option value="ALL">All categories</option><option value="ASK">Ask</option><option value="WIN">Win</option><option value="EXPERIENCE">Experience</option><option value="CONNECT">Connect</option>
-        </select>
-        <div id="communityFeed" aria-live="polite">Community posts load when you open this section.</div>
-      </div>
-    </section>
-
-    <section id="ask" class="view">
-      <div class="eyebrow">Ask Genesis</div>
-      <h1 class="hero">Your business consultant.</h1>
-      <div class="card chat">
-        <div id="askMessages">
-          <div class="bubble">Tell me what you're trying to accomplish. You can talk normally: “I have $300 and love cooking,” “I need more customers,” or “What should I do today?”</div>
-          <div class="bubble user">What if I only want to risk $100?</div>
-          <div class="bubble">Then we protect the other $200. I would redesign the first-customer plan around a $100 maximum and avoid purchases that aren't necessary to validate demand.</div>
-        </div>
-        <form id="askForm" class="compose">
-          <input id="askInput" maxlength="4000" aria-label="Ask Genesis" placeholder="Ask Genesis anything…" required>
-          <button class="cta" type="submit">Send</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
+      <section id="ask" class="view">
+        <div class="page-intro"><div class="eyebrow">Ask Genesis · A thinking partner</div><h1 class="hero">Bring the real question.</h1><p class="lead muted">Tell Genesis what you're trying to do, what you have and what feels uncertain. Better context makes for more useful possibilities.</p></div>
+        <section class="card chat" aria-label="Ask Genesis conversation">
+          <div class="chat-topline"><span class="genesis-orb" aria-hidden="true">✧</span><div><b>Genesis</b><small>Business guidance grounded in your context</small></div><span class="privacy-pill">Private workspace</span></div>
+          <div id="askMessages" aria-live="polite"><div class="ask-empty"><span class="empty-orbit" aria-hidden="true"></span><h2>Your conversation starts here.</h2><p>Ask about your next move, a decision you're weighing, or the destination you're working toward.</p><div class="prompt-list large-prompts" id="askSuggestedPrompts"><button type="button" data-action="ask-suggestion" data-question="I have $300. What can I start?">I have $300. What can I start?</button><button type="button" data-action="ask-suggestion" data-question="How do I get my first customer?">How do I get my first customer?</button><button type="button" data-action="ask-suggestion" data-question="Do I need a license?">Do I need a license?</button><button type="button" data-action="ask-suggestion" data-question="Analyze my business.">Analyze my business.</button><button type="button" data-action="ask-suggestion" data-question="How can I reach $5,000 per month?">How can I reach $5,000 per month?</button></div></div></div>
+          <form id="askForm" class="compose">
+            <label class="sr" for="askInput">Ask Genesis</label>
+            <input id="askInput" maxlength="4000" aria-label="Ask Genesis" placeholder="Ask Genesis anything…" required>
+            <button class="cta send-button" type="submit" aria-label="Send message">Send <span aria-hidden="true">→</span></button>
+          </form>
+          <p class="chat-disclaimer">Recommendations are starting points. Important decisions should be checked against verified information.</p>
+        </section>
+      </section>
+    </main>
+  </div>
   <div class="navbox">
     <nav aria-label="Main navigation">
-      <button class="on" data-action="navigate" data-view="home">⌂<br>Home</button>
-      <button data-action="navigate" data-view="business">▣<br>My Business</button>
-      <button data-action="navigate" data-view="do">▶<br>Do It</button>
-      <button data-action="navigate" data-view="community">◎<br>Community</button>
-      <button data-action="navigate" data-view="ask">✦<br>Ask Genesis</button>
+      <button class="on" data-action="navigate" data-view="home" aria-label="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M5.5 10v10h5v-6h3v6h5V10"/></svg><span>Home</span></button>
+      <button data-action="navigate" data-view="business" aria-label="My Business"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="14" rx="2"/><path d="M9 7V4h6v3M4 12h16M10 12v2h4v-2"/></svg><span>My Business</span></button>
+      <button data-action="navigate" data-view="do" aria-label="Do It"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 17 4l3 3L7 20H4zM13 8l3 3M4 20h16M7 4l2 2"/></svg><span>Do It</span></button>
+      <button data-action="navigate" data-view="community" aria-label="Community"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.4 2.4-5.5 6-5.5s6 2.1 6 5.5M15 15c3.7-.3 6 1.4 6 4.5"/></svg><span>Community</span></button>
+      <button data-action="navigate" data-view="ask" aria-label="Ask Genesis"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8"/><circle cx="12" cy="12" r="4"/></svg><span>Ask Genesis</span></button>
     </nav>
   </div>
   <script defer src="/static/genesis.js"></script>

@@ -1,0 +1,206 @@
+Yes. Give the coding agent the image I just created as the approved Home-screen visual reference, then paste this command:
+
+IMPLEMENT THIS APPROVED GENESIS BUSINESS OS DESIGN NOW.
+
+The supplied image is the approved visual target for the GENESIS BUSINESS OS Home experience. Reproduce it as closely as practical inside the existing working Genesis application.
+
+Do not create a mockup. Do not create a separate demo. Do not replace the backend. Do not rename or redesign Genesis. Modify the existing application.
+
+Preserve all existing backend, authentication, security, database, Route Engine, Evolution Engine, Business DNA, execution, Community, Ask Genesis, Proof, Resource Envelope and rerouting functionality.
+
+1. GLOBAL DESIGN
+
+Match the reference:
+
+* premium dark navy/black background
+* deep purple/blue surfaces
+* restrained gold accents
+* Genesis gold branding
+* premium typography
+* subtle glow and borders
+* responsive cards
+* polished animations/transitions where appropriate
+* professional desktop and iPhone layouts
+
+Keep the primary navigation exactly:
+
+Home | My Business | Do It | Community | Ask Genesis
+
+2. HOME HERO
+
+Reproduce the Your Business Made Possible hero.
+
+Display the user’s actual journey:
+
+You Are Here → Setup → Launch → Grow → Destination
+
+Destination must come from the user’s Destination Contract when available.
+
+The journey visualization must respond to real business state rather than being decorative only.
+
+Include:
+Continue My Path
+and
+Ask Genesis
+
+3. YOUR NEXT BEST MOVE
+
+Connect this directly to the existing Next Turn/Route Engine.
+
+Display:
+
+* next action
+* explanation
+* estimated cost
+* estimated time
+* potential outcome
+
+Buttons:
+Do It With Genesis
+Why This?
+What If?
+
+Do It With Genesis must enter the real EXECUTE/PREPARE/GUIDE workflow. Never mark an action completed merely because the button was clicked.
+
+4. YOUR PROGRESS
+
+Display the real Genesis progression:
+
+Destination
+Founder Reality
+Route Portfolio
+Next Turn
+Proof Checkpoints
+Resource Envelope
+Results & Evolution
+
+Completion must be based on persisted state/evidence—not fake percentages.
+
+5. BUSINESS OVERVIEW
+
+Connect to actual business state and show:
+
+* Business Stage
+* Monthly Revenue
+* Customers
+* Key Focus
+* current destination/target where appropriate.
+
+Never invent financial results.
+
+6. EVOLUTION
+
+Implement:
+
+Genesis Found a Better Move
+
+and
+
+See My Best Future
+
+Connect these to the existing Business Evolution Engine, Business DNA and Possible Futures.
+
+Do NOT create another primary navigation tab.
+
+7. SEE YOUR ROUTE
+
+Connect See Your Route to the existing Route Portfolio and counterfactual/reroute functionality.
+
+Users should be able to understand their current route and realistic alternatives without exposing unnecessary system complexity.
+
+8. ASK GENESIS
+
+Implement the reference Ask Genesis panel using the existing authenticated backend.
+
+Suggested questions can include:
+
+* I have $300. What can I start?
+* How do I get my first customer?
+* Do I need a license?
+* Analyze my business.
+* How can I reach $5,000 per month?
+
+Answers must use real business context where supported.
+
+9. COMMUNITY
+
+Implement the reference Community experience:
+
+Feed | Ask | Wins | Connect
+
+Preserve the existing working post/reply/filter functionality.
+
+Never automatically expose private financial, filing, route, document, AI conversation or business information.
+
+10. OTHER MAIN PAGES
+
+Build the same visual system consistently across:
+
+My Business
+Do It
+Community
+Ask Genesis
+
+Do not overload the interface. Keep advanced Genesis intelligence underneath the simple five-tab experience.
+
+11. REAL EXECUTION
+
+Preserve:
+
+EXECUTE = actual supported provider action
+PREPARE = finished usable deliverable
+GUIDE = verified guidance/official destination
+
+Preserve approvals, receipts, evidence, verification, reconciliation and provider status.
+
+Missing provider credentials must continue displaying NEEDS_CONNECTION.
+
+Never simulate provider success.
+
+12. SECURITY
+
+Keep production CSP strict.
+
+Use external CSP-compatible JavaScript.
+
+Preserve authentication, authorization, tenant isolation, CSRF protection, secure sessions, validation, Trusted Host protections and the security fixes already completed.
+
+Do not weaken security to reproduce the design.
+
+13. MOBILE
+
+Treat iPhone as a first-class interface.
+
+On narrow screens, intelligently stack/reflow the dashboard while preserving the five primary destinations through an appropriate mobile navigation treatment.
+
+No horizontal overflow, clipped controls, microscopic text or unusable desktop-only components.
+
+14. VERIFY THE IMPLEMENTATION
+
+After implementation run:
+
+* complete backend test suite
+* execution tests
+* production frontend build
+* register → logout → sign-in regression
+* authenticated Chromium flows
+* Home
+* My Business
+* Do It
+* Community post/reply/filter
+* Ask Genesis
+* Route/Next Turn
+* Business DNA/Evolution
+* PREPARE → evidence → verification
+* responsive/mobile checks
+* CSP/browser console/network checks
+
+Preserve the canonical 1,000-gate framework. Never change RELEASE GATE to PASS without evidence.
+
+Do not deploy yet.
+
+When finished, show me the actual running Genesis interface, not just code changes, and provide exact test results and remaining blockers.
+
+Then attach the image I just generated with that command.
+
+That tells it very clearly: make the real working Genesis app look like this, while keeping all the functioning backend work we’ve already gotten completed.
