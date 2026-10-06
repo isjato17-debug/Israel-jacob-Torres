@@ -117,8 +117,10 @@ class GenesisRouteEngine:
         """
         revenue=max(0.0,float(metrics.get('monthly_revenue',0) or 0))
         repeat_share=min(1.0,max(0.0,float(metrics.get('repeat_customer_share',0) or 0)))
-        gross_margin=min(1.0,max(0.0,float(metrics.get('gross_margin',0.5) or 0.5)))
-        capacity=min(1.0,max(0.0,float(metrics.get('capacity_used',0.5) or 0.5)))
+        gross_margin_raw=metrics.get('gross_margin')
+        gross_margin=min(1.0,max(0.0,float(0.5 if gross_margin_raw is None else gross_margin_raw)))
+        capacity_raw=metrics.get('capacity_used')
+        capacity=min(1.0,max(0.0,float(0.5 if capacity_raw is None else capacity_raw)))
         spendable=self.spendable(reality,dest)
         futures=[]
         def add(key,title,score,cost,why,action):

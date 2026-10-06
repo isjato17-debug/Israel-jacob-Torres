@@ -7,10 +7,18 @@ def industry(s):
   if any(w in s for w in ws): return k
  return "general"
 def generate_candidates(objective:str,constraints:dict[str,Any]):
- k=industry(objective+" "+json.dumps(constraints)); gm,floor,fixed,ticket=TEMPLATES[k]; cap=float(constraints.get("capital",constraints.get("budget",10000)) or 10000); hrs=float(constraints.get("hours_per_week",40) or 40); out=[]
+ k=industry(objective+" "+json.dumps(constraints)); gm,floor,fixed,ticket=TEMPLATES[k]
+ raw_cap=constraints.get("capital",constraints.get("budget")); raw_hours=constraints.get("hours_per_week")
+ missing_cap=raw_cap is None; missing_hours=raw_hours is None
+ cap=10000.0 if missing_cap else max(0.0,float(raw_cap))
+ hrs=40.0 if missing_hours else max(0.0,float(raw_hours))
+ out=[]
  for name,spend,capacity in [("Lean Validation",.55,.7),("Balanced Launch",1,1),("Growth Launch",1.45,1.3)]:
   startup=round(max(floor,min(cap*.72,floor*spend)),2); units=max(1,round(hrs*4.33*capacity/2)); revenue=round(ticket*units,2); op=round(revenue*gm-fixed*spend,2)
-  out.append({"name":name,"industry":k,"startup_budget":startup,"monthly_fixed_cost":round(fixed*spend,2),"average_ticket":ticket,"estimated_monthly_units":units,"estimated_monthly_revenue":revenue,"gross_margin":gm,"estimated_operating_profit":op,"break_even_revenue":round(fixed*spend/max(gm,.01),2),"feasible":startup<=cap,"assumptions":["Planning economics are assumptions until verified.","Taxes, debt service and owner compensation are excluded unless supplied."]})
+  assumptions=["Planning economics are assumptions until verified.","Taxes, debt service and owner compensation are excluded unless supplied."]
+  if missing_cap: assumptions.append("Capital defaulted to $10,000 because no saved or user-stated amount was supplied.")
+  if missing_hours: assumptions.append("Time availability defaulted to 40 hours/week because no saved or user-stated amount was supplied.")
+  out.append({"name":name,"industry":k,"startup_budget":startup,"monthly_fixed_cost":round(fixed*spend,2),"average_ticket":ticket,"estimated_monthly_units":units,"estimated_monthly_revenue":revenue,"gross_margin":gm,"estimated_operating_profit":op,"break_even_revenue":round(fixed*spend/max(gm,.01),2),"feasible":startup<=cap,"assumptions":assumptions})
  return out
 def financial_model(t):
  rev=float(t.get("monthly_revenue",t.get("estimated_monthly_revenue",0)) or 0); gm=float(t.get("gross_margin",.5) or .5); fixed=float(t.get("monthly_fixed_cost",3000) or 0); cash=float(t.get("cash",t.get("starting_cash",10000)) or 0); op=rev*gm-fixed; burn=max(0,-op)
