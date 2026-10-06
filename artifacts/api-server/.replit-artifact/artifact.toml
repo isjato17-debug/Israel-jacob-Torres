@@ -7,22 +7,22 @@ id = "3B4_FFSkEVBkAeYMFRJ2e"
 [[services]]
 localPort = 8080
 name = "Genesis API"
-paths = ["/api"]
+paths = ["/api", "/healthz", "/static"]
 
 [services.development]
-run = 'cd genesis-business-os/backend && GENESIS_ALLOWED_HOSTS="localhost,127.0.0.1,testserver,${REPLIT_DEV_DOMAIN:-}" uvicorn app.main:app --host 0.0.0.0 --port $PORT'
+run = 'cd ../../genesis-business-os/backend && GENESIS_ALLOWED_HOSTS="localhost,127.0.0.1,testserver,${REPLIT_DEV_DOMAIN:-}" uvicorn app.main:app --host 0.0.0.0 --port $PORT'
 
 [services.production]
 
 [services.production.build]
-args = ["sh", "-c", "cd genesis-business-os/backend && python -m compileall -q app"]
+args = ["sh", "-c", "cd ../../genesis-business-os/backend && python -m compileall -q app"]
 
 [services.production.run]
-args = ["sh", "-c", "cd genesis-business-os/backend && exec python -m uvicorn app.main:app --host 0.0.0.0 --port \"$PORT\""]
+args = ["sh", "-c", "cd ../../genesis-business-os/backend && exec python -m uvicorn app.main:app --host 0.0.0.0 --port \"$PORT\""]
 
 [services.production.run.env]
 PORT = "8080"
 GENESIS_ENV = "production"
 
 [services.production.health.startup]
-path = "/api/healthz"
+path = "/healthz"
