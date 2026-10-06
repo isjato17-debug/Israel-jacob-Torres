@@ -182,51 +182,238 @@ async function loadBusinessDNA() {
   }
 }
 
-async function seeEvolution() {
-  if (!BUSINESS_ID) return;
-  const askNumber = (label, fallback) => {
-    const value = window.prompt(label, String(fallback));
-    return value === null ? null : Number(value || fallback);
-  };
-  const revenue = askNumber('Current monthly revenue (0 if not launched yet)', 0);
-  if (revenue === null) return;
-  const repeatPercent = askNumber('About what % of customers are repeat customers? (0–100)', 0);
-  if (repeatPercent === null) return;
-  const marginPercent = askNumber('Estimated gross margin % (example: 60)', 50);
-  if (marginPercent === null) return;
-  const capacityPercent = askNumber('About what % of your current capacity is being used?', 50);
-  if (capacityPercent === null) return;
-  const cash = askNumber('Cash available for the business', 300);
-  if (cash === null) return;
-  const reserve = askNumber('Amount you want Genesis to protect', 200);
-  if (reserve === null) return;
-  const goal = askNumber('Monthly income destination', 5000);
-  if (goal === null) return;
+function setInputValue(id, value, scale = 1) {
+  const input = byId(id);
+  if (!input || input.matches(':focus')) return;
+  input.value = hasValue({ value }, 'value') ? String(Number(value) * scale) : '';
+}
 
+function renderProgress() {
+  const routeProofs = BUSINESS_TWIN.route_proofs || {};
+  const routes = Array.isArray(BUSINESS_TWIN.route_portfolio) ? BUSINESS_TWIN.route_portfolio : [];
+  const verifiedAction = ACTIONS.some((action) => action.status === 'VERIFIED');
+  const items = [
+    { name: 'Destination', detail: 'Define what success means to you', done: Boolean(destination()) },
+    { name: 'Founder reality', detail: 'Start with the resources you have', done: Boolean(reality()) },
+    { name: 'Route portfolio', detail: 'Compare possible paths', done: routes.length > 0 },
+    { name: 'Next turn', detail: 'Choose an evidence-based move', done: Boolean(NEXT_TURN?.action || BUSINESS_TWIN.next_turn?.action) },
+    { name: 'Proof checkpoints', detail: 'Record evidence for your active route', done: Object.keys(routeProofs).length > 0 },
+    { name: 'Resource envelope', detail: 'Calculate risk cash from saved limits', done: routes.length > 0 && Boolean(reality() && destination()) },
+    { name: 'Results & evolution', detail: 'Use actuals or a verified action to adapt', done: Boolean(BUSINESS_TWIN.latest_evolution || verifiedAction) },
+  ];
+  const completed = items.filter((item) => item.done).length;
+  const nextIndex = items.findIndex((item) => !item.done);
+  const list = byId('homeProgress');
+  if (list) {
+    list.innerHTML = items.map((item, index) => {
+      const state = item.done ? 'Recorded' : index === nextIndex ? 'Next' : 'Pending';
+      const className = item.done ? 'done' : index === nextIndex ? 'selected' : '';
+      return `<div class="milestone ${className}">
+        <span class="milestone-mark">${item.done ? '✓' : index + 1}</span>
+        <span><b>${escapeHtml(item.name)}</b><small>${escapeHtml(item.detail)}</small></span>
+        <span class="milestone-state">${state}</span>
+      </div>`;
+    }).join('');
+  }
+  text('homeProgressLabel', `${completed} of ${items.length} milestones recorded`);
+  text('homeProgressPercent', `${Math.round((completed / items.length) * 100)}%`);
+  const bar = byId('homeProgressBar');
+  if (bar) bar.style.width = `${(completed / items.length) * 100}%`;
+  const track = document.querySelector('.progress-track[role="progressbar"]');
+  if (track) track.setAttribute('aria-valuenow', String(completed));
+}
+
+function renderJourney() {
+  const stage = displayStage();
+  text('heroYouAreHere', stage.label);
+  text('heroStageDetail', stage.detail);
+  const target = destination();
+  text('homeDestination', target
+    ? `${money(target.target_monthly_owner_income)}/month owner income`
+    : 'Waiting for your destination');
+  document.querySelectorAll('.route-dot').forEach((dot) => {
+    const step = Number(dot.dataset.step);
+    dot.classList.toggle('active', step === Math.min(stage.index, 3));
+    dot.classList.toggle('complete', step < stage.index);
+  });
+
+  const journey = byId('businessJourney');
+  const steps = [
+    ['You Are Here', 'Your current starting point'],
+    ['Setup', 'Save your founder reality'],
+    ['Launch', 'Compare a route to market'],
+    ['Grow', 'Use evidence to adapt'],
+    ['Destination', target ? `${money(target.target_monthly_owner_income)}/month owner income` : 'Set a destination target'],
+  ];
+  if (journey) {
+    journey.innerHTML = steps.map(([title, detail], index) => {
+      const status = index < stage.index ? 'complete' : index === stage.index ? 'now' : '';
+      return `<div class="stage ${status}" ${index === stage.index ? 'aria-current="step"' : ''}>
+        <span class="stage-index">0${index + 1}</span><b>${escapeHtml(title)}</b><small>${escapeHtml(detail)}</small>
+      </div>`;
+    }).join('');
+  }
+  text('journeyStatus', stage.detail);
+
+  const r = reality() || {};
+  const d = target || {};
+  [
+    ['realityCash', r.cash],
+    ['realityReserve', r.reserve_floor],
+    ['realityHours', r.hours_per_week],
+    ['realitySkills', Array.isArray(r.skills) ? r.skills.join(', ') : ''],
+    ['realityAssets', Array.isArray(r.assets) ? r.assets.join(', ') : ''],
+    ['realityLocation', r.location],
+    ['destinationIncome', d.target_monthly_owner_income],
+    ['destinationHorizon', d.horizon_months],
+    ['destinationRiskCash', d.max_risk_cash],
+  ].forEach(([id, value]) => {
+    const input = byId(id);
+    if (input && !input.matches(':focus')) input.value = hasValue({ value }, 'value') ? String(value) : '';
+  });
+
+  const model = BUSINESS_TWIN.business_model || BUSINESS_TWIN.industry || '';
+  const resourceText = r.cash === undefined
+    ? 'Not recorded'
+    : `${money(r.cash)} cash · ${money(r.reserve_floor)} protected · ${r.hours_per_week ?? '—'} hours/week`;
+  const locationText = r.location || 'Not recorded';
+  const facts = byId('businessFacts');
+  if (facts) {
+    facts.innerHTML = [
+      ['Business model', model || 'Not recorded', model ? 'Saved business profile' : 'Add a business model to your profile'],
+      ['Available resources', resourceText, 'From your saved founder reality'],
+      ['Location', locationText, locationText === 'Not recorded' ? 'Requirements depend on location' : 'From your saved founder reality'],
+    ].map(([label, value, detail]) => `<div><small>${escapeHtml(label)}</small><b>${escapeHtml(value)}</b><span>${escapeHtml(detail)}</span></div>`).join('');
+  }
+}
+
+function renderOverview() {
+  const stage = displayStage();
+  const focus = NEXT_TURN?.action || BUSINESS_TWIN.next_turn?.action || '';
+  const tiles = [
+    ['Business stage', stage.label, 'Based on saved journey data'],
+    ['Monthly revenue', hasValue(BUSINESS_TWIN, 'monthly_revenue') ? money(BUSINESS_TWIN.monthly_revenue) : 'Not recorded', 'Owner-reported actual'],
+    ['Customers', hasValue(BUSINESS_TWIN, 'customer_count') ? String(BUSINESS_TWIN.customer_count) : 'Not recorded', 'Owner-reported actual'],
+    ['Key focus', focus || 'Not available', focus ? (NEXT_TURN?.checkpoint || BUSINESS_TWIN.next_turn?.checkpoint || 'Route Engine') : 'Route Engine recommendation'],
+  ];
+  const output = byId('homeBusinessOverview');
+  if (output) output.innerHTML = tiles.map(([label, value, detail]) =>
+    `<div><small>${escapeHtml(label)}</small><b>${escapeHtml(value)}</b><span>${escapeHtml(detail)}</span></div>`).join('');
+  const title = byId('businessPageTitle');
+  if (title && BUSINESS?.name) title.textContent = BUSINESS.name;
+}
+
+function renderNextTurn() {
+  NEXT_TURN = NEXT_TURN || BUSINESS_TWIN.next_turn || null;
+  const turn = NEXT_TURN;
+  const missing = Array.isArray(turn?.proof_missing) ? turn.proof_missing : [];
+  const output = byId('nextTurnDetail');
+  const home = byId('homeNextMove');
+  const proofForm = byId('proofForm');
+  if (!turn) {
+    if (output) output.innerHTML = '<span class="placeholder-title">Your next turn appears after you calculate a route.</span><span class="muted">The Route Engine needs a saved destination and founder reality.</span>';
+    if (home) home.innerHTML = '<span class="placeholder-title">Your next move will appear here</span><span class="muted">Save your destination and founder reality, then compare routes.</span>';
+    if (proofForm) proofForm.classList.remove('ready');
+    text('homeMoveCost', 'Waiting for your route');
+    text('homeMoveTime', 'Not estimated');
+    text('homeMoveOutcome', 'Not yet available');
+    text('why', 'The Route Engine will explain how a recommendation fits your saved destination, constraints and resources.');
+    return;
+  }
+  const commitment = money(turn.max_cash_commitment);
+  const evidence = missing[0] || 'Route complete';
+  if (output) {
+    output.innerHTML = `<div class="next-turn-card">
+      <h3>${escapeHtml(turn.action || 'Next action not available')}</h3>
+      <p><b>Checkpoint:</b> ${escapeHtml(turn.checkpoint || 'Not specified')}</p>
+      <p><b>Evidence needed:</b> ${escapeHtml(missing.length ? missing.join(' · ') : 'No checkpoint evidence is currently required')}</p>
+      <p><b>Maximum cash commitment:</b> ${escapeHtml(commitment)}</p>
+      <p class="muted">${escapeHtml(turn.why || '')}</p>
+    </div>`;
+  }
+  if (home) {
+    home.innerHTML = `<span class="placeholder-title">${escapeHtml(turn.action || 'Next action not available')}</span>
+      <span class="muted"><b>Checkpoint:</b> ${escapeHtml(turn.checkpoint || 'Not specified')} · <b>Evidence:</b> ${escapeHtml(evidence)}</span>`;
+  }
+  text('homeMoveCost', commitment);
+  text('homeMoveTime', 'Not estimated');
+  text('homeMoveOutcome', missing.length ? missing[0] : 'Route complete');
+  text('why', turn.why || 'This next turn is based on your saved route and current checkpoint evidence.');
+  if (proofForm) {
+    const ready = missing.length > 0;
+    proofForm.classList.toggle('ready', ready);
+    text('proofPromptLabel', ready ? `Evidence for: ${missing[0]}` : 'No checkpoint evidence is currently required');
+    const proofName = byId('proofName');
+    if (proofName) proofName.value = ready ? missing[0] : '';
+  }
+}
+
+function renderRoutePortfolio() {
+  const routes = Array.isArray(BUSINESS_TWIN.route_portfolio) ? BUSINESS_TWIN.route_portfolio : [];
+  const output = byId('routePortfolio');
+  if (output) {
+    output.innerHTML = routes.length
+      ? routes.map((route) => `<article class="route-option">
+          <div class="eyebrow">${escapeHtml(route.risk || 'Risk not specified')} · ${escapeHtml(money(route.initial_cash_envelope))} initial cash envelope</div>
+          <h3>${escapeHtml(route.name || 'Route')}</h3>
+          <p class="muted">${escapeHtml(route.reason || '')}</p>
+        </article>`).join('')
+      : '<div class="data-placeholder">No route portfolio has been calculated yet.</div>';
+  }
+  text('routePortfolioStatus', routes.length
+    ? `${routes.length} routes calculated from your saved destination and founder reality.`
+    : 'Save your journey details to calculate a route portfolio.');
+  renderNextTurn();
+}
+
+function renderBusinessState() {
+  if (!BUSINESS_ID) return;
+  renderJourney();
+  renderOverview();
+  renderNextTurn();
+  renderProgress();
+  const twin = BUSINESS_TWIN;
+  setInputValue('metricRevenue', twin.monthly_revenue);
+  setInputValue('metricCustomers', twin.customer_count);
+  setInputValue('metricMargin', twin.gross_margin, 100);
+  setInputValue('metricRepeat', twin.repeat_customer_share, 100);
+  setInputValue('metricCapacity', twin.capacity_used, 100);
+  setInputValue('metricTicket', twin.average_ticket);
+  setInputValue('metricCloseRate', twin.close_rate, 100);
+  const currentReality = reality();
+  if (currentReality) {
+    setInputValue('whatIfCash', currentReality.cash);
+    setInputValue('whatIfHours', currentReality.hours_per_week);
+  }
+  renderRoutePortfolio();
+}
+
+async function seeEvolution() {
   const output = byId('evolutionResult');
+  if (!BUSINESS_ID || !output) return;
   output?.classList.add('on');
-  if (output) output.textContent = 'Comparing possible futures…';
+  const required = [
+    ['monthly_revenue', 'monthly revenue'],
+    ['repeat_customer_share', 'repeat customer share'],
+    ['gross_margin', 'gross margin'],
+    ['capacity_used', 'capacity used'],
+  ];
+  const missing = required.filter(([key]) => !hasValue(BUSINESS_TWIN, key));
+  if (!reality() || !destination() || missing.length) {
+    output.textContent = `Save your founder reality and destination, then record ${missing.length ? missing.map(([, label]) => label).join(', ') : 'the required business actuals'} before comparing futures.`;
+    return;
+  }
+  output.textContent = 'Comparing possible futures from your saved inputs…';
   try {
     const result = await api('/api/route/evolution', {
       method: 'POST',
       body: JSON.stringify({
-        reality: {
-          cash,
-          reserve_floor: reserve,
-          hours_per_week: 15,
-          skills: [],
-          assets: ['phone'],
-          location: '',
-        },
-        destination: {
-          target_monthly_owner_income: goal,
-          horizon_months: 12,
-          max_risk_cash: Math.max(0, cash - reserve),
-        },
-        monthly_revenue: revenue,
-        repeat_customer_share: repeatPercent / 100,
-        gross_margin: marginPercent / 100,
-        capacity_used: capacityPercent / 100,
+        reality: reality(),
+        destination: destination(),
+        monthly_revenue: Number(BUSINESS_TWIN.monthly_revenue),
+        repeat_customer_share: Number(BUSINESS_TWIN.repeat_customer_share),
+        gross_margin: Number(BUSINESS_TWIN.gross_margin),
+        capacity_used: Number(BUSINESS_TWIN.capacity_used),
       }),
     });
     const recommendation = result.recommended_evolution;
@@ -245,7 +432,12 @@ async function seeEvolution() {
       <b>Next:</b> ${escapeHtml(recommendation.next_action)}
       <div style="margin-top:14px" class="muted">Possible futures compared</div>${futures}
       <p class="muted"><b>Business DNA:</b> ${dna || 'No derived signals.'}</p>
-      <small class="muted">${escapeHtml(result.disclaimer)}</small>`;
+      <small class="muted">${escapeHtml(result.disclaimer)} This is a model estimate, not a guaranteed outcome.</small>`;
+    BUSINESS_TWIN = (await api(`/api/businesses/${BUSINESS_ID}/twin`, {
+      method: 'PATCH',
+      body: JSON.stringify({ patch: { latest_evolution: result } }),
+    })).twin;
+    renderBusinessState();
   } catch (error) {
     output.textContent = `Genesis could not calculate the evolution: ${error.message}`;
   }
