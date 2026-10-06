@@ -1,0 +1,1 @@
+- [Gate matrix reconciliation](gate-matrix-reconciliation.md) — Compute Genesis totals from the current full matrix; keep conflicting subset snapshots separate until reconciled.

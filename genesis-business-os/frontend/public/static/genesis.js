@@ -398,7 +398,7 @@ async function loadCommunity() {
 
 async function createCommunityPost(event) {
   event.preventDefault();
-  const form = event.currentTarget;
+  const form = event.target;
   const body = new FormData(form);
   try {
     await api('/api/community', {
@@ -433,7 +433,7 @@ async function loadReplies(postId) {
 
 async function submitReply(event) {
   event.preventDefault();
-  const form = event.currentTarget;
+  const form = event.target;
   const body = new FormData(form);
   const postId = form.dataset.postId;
   try {
