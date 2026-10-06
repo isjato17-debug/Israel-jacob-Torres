@@ -525,7 +525,7 @@ async function refreshRoutes() {
 
 async function saveJourney(event) {
   event.preventDefault();
-  const form = event.currentTarget;
+  const form = event.target;
   const values = new FormData(form);
   const realityNow = {
     cash: Number(values.get('cash')),
