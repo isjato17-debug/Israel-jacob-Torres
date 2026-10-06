@@ -742,19 +742,31 @@ async function loadExecution() {
 }
 
 async function startAction(key, risk) {
-  const payload = { business_name: 'My Business', goal: 'Build a profitable validated business' };
+  const payload = {};
+  if (BUSINESS?.name) payload.business_name = BUSINESS.name;
+  if (NEXT_TURN?.action) payload.goal = NEXT_TURN.action;
   if (key === 'email_send') {
-    payload.to = window.prompt('Recipient email') || '';
-    payload.subject = window.prompt('Subject') || '';
-    payload.body = window.prompt('Message') || '';
+    const to = window.prompt('Recipient email');
+    const subject = window.prompt('Subject');
+    const body = window.prompt('Message');
+    if (to === null || subject === null || body === null) return;
+    payload.to = to.trim();
+    payload.subject = subject.trim();
+    payload.body = body.trim();
   }
   if (key === 'crm_customer_create') {
-    payload.email_address = window.prompt('Customer email') || '';
-    payload.given_name = window.prompt('First name') || '';
+    const email = window.prompt('Customer email');
+    const givenName = window.prompt('First name');
+    if (email === null || givenName === null) return;
+    payload.email_address = email.trim();
+    payload.given_name = givenName.trim();
   }
   if (key === 'payment_link_create') {
-    payload.name = window.prompt('What are you selling?') || 'Service';
-    payload.amount_cents = Number(window.prompt('Price in cents') || 0);
+    const name = window.prompt('What are you selling?');
+    const amount = window.prompt('Price in cents');
+    if (name === null || amount === null || !Number.isFinite(Number(amount)) || Number(amount) <= 0) return;
+    payload.name = name.trim();
+    payload.amount_cents = Number(amount);
     payload.currency = 'USD';
   }
 
@@ -833,11 +845,15 @@ async function confirmGuidedAction(actionId) {
 async function loadActions() {
   if (!BUSINESS_ID) return;
   const actions = await api(`/api/businesses/${BUSINESS_ID}/actions`);
+  ACTIONS = Array.isArray(actions) ? actions : [];
   const output = byId('recentActions');
-  if (!output) return;
-  output.innerHTML = actions.length
-    ? actions.slice(0, 8).map((action) => `<div class="task"><div><b>${escapeHtml(action.point_key)}</b><br><span class="muted">${escapeHtml(action.status)}</span></div></div>`).join('')
-    : 'No execution actions yet.';
+  if (output) {
+    output.innerHTML = ACTIONS.length
+      ? ACTIONS.slice(0, 8).map((action) => `<div class="task"><div><b>${escapeHtml(action.point_key)}</b><br><span class="muted">${escapeHtml(action.status)}</span></div></div>`).join('')
+      : 'No execution actions yet.';
+  }
+  renderProgress();
+  renderOverview();
 }
 
 function appendBubble(kind, value) {
