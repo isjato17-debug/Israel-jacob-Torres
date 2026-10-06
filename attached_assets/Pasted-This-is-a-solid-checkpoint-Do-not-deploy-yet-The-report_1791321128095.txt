@@ -1,0 +1,22 @@
+This is a solid checkpoint. Do not deploy yet. The report shows the actual app is now running locally, with 34 backend tests + 3 execution tests passing, the production frontend build passing, and six signed-in browser flow groups working. Most importantly, provider actions correctly stayed at NEEDS_CONNECTION.
+
+The 400 PASS / 0 FAIL / 600 RELEASE GATE count should remain the authoritative count for now. The conflicting older matrix should be treated as historical until reconciled—not combined with the current matrix.
+
+There are three things I want fixed before production: establish the real PostgreSQL migration/rollback path, clean up the tracked SQLite test modification, and fix the password-field/form warning. Then we can move into production verification.
+
+Give Power this exact instruction:
+
+Proceed with the production-readiness follow-up for the existing GENESIS BUSINESS OS. Do not redesign or replace anything.
+
+1. Create and verify a safe PostgreSQL database migration path for the current Genesis schema.
+2. Establish forward migration and rollback procedures using the existing migration system.
+3. Test upgrade → rollback → upgrade against a disposable PostgreSQL database if PostgreSQL is available. If it is not available, do not claim the PostgreSQL migration passed; keep it as a RELEASE GATE and report exactly what could be verified locally.
+4. Investigate the modified tracked SQLite database. Do not destroy pre-existing data. Ensure generated/local test database changes cannot accidentally be committed or used as production state.
+5. Fix the browser warning about the password field not being inside a form while preserving the current sign-in behavior and design.
+6. Re-run all 34 backend tests, all 3 execution tests, the production frontend build, and the six signed-in browser flow groups after these changes.
+7. Reconcile the conflicting 1,000-gate status files. Preserve historical evidence, but designate one current canonical 1,000-gate matrix. Never convert a RELEASE GATE to PASS without evidence.
+8. Production must use PostgreSQL and fail closed if required production database/security configuration is missing. No silent SQLite production fallback.
+9. Do not configure, simulate, or claim success for external providers without real credentials and real verification.
+10. Do not deploy yet.
+
+At completion report: exact files changed, migration revisions, upgrade/rollback test results, PostgreSQL status, SQLite cleanup status, security changes, test counts, browser-flow results, canonical 1,000-gate counts, remaining RELEASE GATES, external credentials still required, and SAFE FOR PRODUCTION DEPLOYMENT: YES/NO with the specific reason.
