@@ -188,7 +188,6 @@ async function loadBusinessDNA() {
       : entries.length
         ? 'Founder profile is incomplete; complete all four values before using a derived score.'
         : 'No Founder DNA profile has been saved yet.';
-    renderBusinessState();
   } catch (error) {
     output.textContent = `Business DNA unavailable: ${error.message}`;
   }
