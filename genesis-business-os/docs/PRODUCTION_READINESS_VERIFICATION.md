@@ -4,6 +4,8 @@ Verification date: **2026-10-06, America/New_York** (some tool timestamps are 20
 
 **SAFE TO DEPLOY: NO. No deployment was performed.**
 
+> Historical preparation snapshot. The dependency findings below are the pre-remediation baseline. See [DEPENDENCY_SECURITY_REMEDIATION.md](DEPENDENCY_SECURITY_REMEDIATION.md) for the subsequent clean audit, full dependency changes and fresh regression results. Live production certification remains unavailable; no release-gate status was promoted.
+
 ## Canonical gate totals
 
 `REAL_EXECUTION_1000_GATE_MATRIX.json`: **400 PASS / 0 FAIL / 600 RELEASE GATE**, counted from exactly 1,000 distinct gates. No gate status was promoted. Dependency release-gate evidence was updated to reflect the current scans. The conflicting historical subset remains separate.

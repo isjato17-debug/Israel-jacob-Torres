@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "fs";
+import { readdir, realpath, stat } from "node:fs/promises";
 import path from "path";
-import glob from "fast-glob";
 import chokidar from "chokidar";
 import type { FSWatcher } from "chokidar";
 import type { Plugin } from "vite";
@@ -40,10 +40,43 @@ export function mockupPreviewPlugin(): Plugin {
   }
 
   async function discoverComponents(): Promise<Array<DiscoveredComponent>> {
-    const files = await glob(`${MOCKUPS_DIR}/**/*.tsx`, {
-      cwd: root,
-      ignore: ["**/_*/**", "**/_*.tsx"],
-    });
+    const files: string[] = [];
+    // Preserve fast-glob's hidden-file exclusions and symlink discovery without
+    // accepting glob syntax or retaining its vulnerable braces dependency.
+    async function visit(directory: string, relative: string, ancestors: Set<string>) {
+      let canonical: string;
+      try {
+        canonical = await realpath(directory);
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") return;
+        throw error;
+      }
+      if (ancestors.has(canonical)) return;
+      const branch = new Set(ancestors).add(canonical);
+      for (const entry of await readdir(directory, { withFileTypes: true })) {
+        if (entry.name.startsWith("_") || entry.name.startsWith(".")) continue;
+        const absolute = path.join(directory, entry.name);
+        const relativeFile = path.posix.join(relative, entry.name);
+        let isDirectory = entry.isDirectory();
+        let isFile = entry.isFile();
+        if (entry.isSymbolicLink()) {
+          try {
+            const target = await stat(absolute);
+            isDirectory = target.isDirectory();
+            isFile = target.isFile();
+          } catch (error) {
+            if (["ENOENT", "ELOOP"].includes((error as NodeJS.ErrnoException).code ?? "")) continue;
+            throw error;
+          }
+        }
+        if (isDirectory) await visit(absolute, relativeFile, branch);
+        else if (isFile && relativeFile.endsWith(".tsx")) {
+          files.push(path.posix.join(MOCKUPS_DIR, relativeFile));
+        }
+      }
+    }
+    await visit(getMockupsAbsDir(), "", new Set());
+    files.sort();
 
     return files.map((f) => ({
       globKey: "./" + f.slice("src/".length),

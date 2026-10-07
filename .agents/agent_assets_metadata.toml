@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "rKj4J6QByjDHARQFYTH1b"
+uri = "file://genesis-business-os/docs/DEPENDENCY_SECURITY_REMEDIATION.html"
+type = "html"
+title = "Genesis dependency-security report"
+description = "Before/after audit, all 24 dependency changes, advisory exposure, exact regressions and remaining live-infrastructure boundary."
+logical_id = "dcccacc0-76bd-436f-8a15-078c71444a70"
+content_hash = "sha256:edd3a802e3e2437203ef080da154a2e791aa323708a87865c9657106644f79c9"
+size = 16410
+mtime_ms = 1791333093309
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/dcccacc0-76bd-436f-8a15-078c71444a70/222fe551-d985-4a1c-bdfc-b603011987cf"
+storage_version_token = "1791333114421248"
+content_type = "text/html"

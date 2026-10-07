@@ -1,0 +1,133 @@
+{
+  "verificationDate": "2026-10-06 America/New_York",
+  "before": {
+    "raw": {
+      "critical": 1,
+      "high": 4,
+      "info": 0,
+      "low": 0,
+      "moderate": 9
+    },
+    "deduplicated": {
+      "critical": 1,
+      "high": 4,
+      "moderate": 4,
+      "low": 0,
+      "info": 0
+    },
+    "groups": [
+      {
+        "package": "pytest",
+        "version": "8.4.2",
+        "cve": "CVE-2025-71176",
+        "severity": "moderate",
+        "advisories": [
+          "PYSEC-2026-1845",
+          "GHSA-6w46-j5rx-g56g"
+        ],
+        "rawOccurrences": 6
+      },
+      {
+        "package": "brace-expansion",
+        "version": "5.0.9",
+        "cve": "CVE-2026-102276",
+        "severity": "high",
+        "advisories": [
+          "GHSA-6j4f-fj2g-mc7p"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "brace-expansion",
+        "version": "5.0.9",
+        "cve": "CVE-2026-102277",
+        "severity": "moderate",
+        "advisories": [
+          "GHSA-q2hr-2g5m-vwhr"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "brace-expansion",
+        "version": "5.0.9",
+        "cve": "CVE-2026-102278",
+        "severity": "high",
+        "advisories": [
+          "GHSA-qhr7-859c-m2p7"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "braces",
+        "version": "3.0.3",
+        "cve": "CVE-2026-93687",
+        "severity": "high",
+        "advisories": [
+          "GHSA-vfj7-8cjw-p6xm"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "fast-uri",
+        "version": "3.1.7",
+        "cve": "CVE-2026-86472",
+        "severity": "moderate",
+        "advisories": [
+          "GHSA-hrr3-gc8f-f4qj"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "postcss-selector-parser",
+        "version": "6.0.10",
+        "cve": "CVE-2026-104844",
+        "severity": "moderate",
+        "advisories": [
+          "GHSA-rj75-hqrm-r3gf"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "proxy-addr",
+        "version": "2.0.7",
+        "cve": "CVE-2026-90711",
+        "severity": "critical",
+        "advisories": [
+          "GHSA-jqcg-44mw-7w3h"
+        ],
+        "rawOccurrences": 1
+      },
+      {
+        "package": "source-map-js",
+        "version": "1.2.1",
+        "cve": "CVE-2026-93749",
+        "severity": "high",
+        "advisories": [
+          "GHSA-68fv-2mgg-jv7q"
+        ],
+        "rawOccurrences": 1
+      }
+    ]
+  },
+  "after": {
+    "dependency": {
+      "metadata": {
+        "vulnerabilities": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0
+        }
+      },
+      "vulnerabilities": []
+    },
+    "static": {
+      "incomplete": false,
+      "results": []
+    },
+    "privacy": {
+      "vulnerabilities": []
+    }
+  }
+}
