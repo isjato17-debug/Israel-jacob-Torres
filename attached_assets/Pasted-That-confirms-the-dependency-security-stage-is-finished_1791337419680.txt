@@ -1,0 +1,67 @@
+That confirms the dependency-security stage is finished. Don’t run that remediation again. The next instruction should force it forward into live infrastructure, because it appears to have repeated the previous stage instead of beginning Phase 1.
+
+Paste this:
+
+DEPENDENCY REMEDIATION IS COMPLETE AND CLOSED. DO NOT RUN IT AGAIN.
+
+The verified baseline is:
+
+* 0 reported dependency vulnerabilities
+* 39 backend tests passed
+* 3 execution tests passed
+* 9 dependency regression tests passed
+* PostgreSQL migration round-trip passed
+* 7/7 authenticated browser groups passed
+* 5/5 mobile views passed
+* 400 PASS / 0 FAIL / 600 RELEASE GATE
+* SAFE TO BEGIN LIVE INFRASTRUCTURE SETUP: YES
+
+NOW BEGIN LIVE INFRASTRUCTURE PHASE 1.
+
+Use the existing GENESIS BUSINESS OS project and repository exactly as they are.
+
+Do not redesign, rebuild, rename, perform another dependency-remediation cycle, or repeat already-completed local verification unless a production change requires regression testing.
+
+Your next objective is to get GENESIS BUSINESS OS onto real production infrastructure.
+
+Proceed in this order:
+
+1. GitHub/source control
+Verify the current production-ready Genesis source is committed and identify the repository/branch/revision that will be deployed. Do not overwrite newer Genesis work.
+
+2. Hosting
+Prepare the existing application for the available production hosting environment. Use the existing deployment configuration where appropriate.
+
+3. Production PostgreSQL
+Provision/connect the real production PostgreSQL service and configure GENESIS_DATABASE_URL. Run migration g0001 and verify the production schema. Absolutely no production SQLite fallback.
+
+4. Production secrets/config
+Configure GENESIS_ENV=production and a strong production GENESIS_JWT_SECRET, plus the real production host/origin/security configuration. Never expose secret values in output.
+
+5. Domain/TLS
+Establish HTTPS, TLS, host/origin allowlists, secure cookies, HSTS, CSP and trusted-proxy configuration for the real deployment.
+
+6. Backup/recovery
+Configure production database backups and verify restoration against a safe non-production target.
+
+7. Deploy and verify
+Only after the above configuration is valid, deploy the existing Genesis build and run controlled production smoke/security/browser/mobile checks.
+
+8. Providers
+Leave SendGrid and Square as NEEDS_CONNECTION until their genuine credentials are provided and verified. Their absence must not be disguised as successful execution.
+
+9. 1,000 gates
+Start converting the 600 RELEASE GATES only from genuine live-production evidence. Record evidence gate-by-gate. Never bulk-mark them PASS.
+
+IMPORTANT: You are authorized to perform every step available inside the current environment. If you encounter the first step requiring my personal authorization, account login, GitHub authorization, hosting authorization, billing decision, DNS access, domain ownership, or secret/provider credential, STOP THERE.
+
+Do not return another general readiness report.
+
+Instead tell me exactly:
+BLOCKED AT:
+SERVICE:
+WHAT I NEED TO DO:
+EXACT BUTTON/SETTING/CREDENTIAL REQUIRED:
+WHAT YOU WILL DO IMMEDIATELY AFTERWARD:
+
+Begin Phase 1 now.
