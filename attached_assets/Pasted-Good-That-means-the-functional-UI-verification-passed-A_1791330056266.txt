@@ -1,0 +1,29 @@
+Good. That means the functional UI verification passed: Ask Genesis returned a real API response, the 402px mobile layout has no horizontal overflow, the authenticated browser run had no JavaScript exceptions, and nothing was deployed.
+
+One thing should be cleaned up: it says the disposable QA workspace still remains in the development database. Before production work, have it remove that QA data and verify the database is clean.
+
+Then we’re ready for the next phase: production infrastructure, not another redesign.
+
+Give Power this command:
+
+Proceed to GENESIS BUSINESS OS production-readiness preparation. Do not redesign the application.
+
+First remove the disposable QA workspace and all data created solely by the latest authenticated QA run. Verify that no pre-existing user/business/workspace data was changed or deleted.
+
+Then:
+
+1. Finalize and verify the PostgreSQL production migration path.
+2. Verify migration upgrade → rollback → upgrade using a disposable PostgreSQL database where available.
+3. Production must fail closed if PostgreSQL or required security configuration is missing. Never silently fall back to SQLite in production.
+4. Verify production environment configuration, secure cookies, sessions, CSRF, CORS, Trusted Hosts, CSP, HSTS, authentication, authorization, tenant isolation, rate limiting, secrets handling and Lockdown Mode.
+5. Keep external EXECUTE providers at NEEDS_CONNECTION until actual credentials are supplied and verified.
+6. Preserve the approved Genesis interface and all existing functionality.
+7. Rerun the complete backend tests, execution tests, production frontend build and authenticated browser flows.
+8. Recheck iPhone/mobile responsiveness.
+9. Use the canonical 1,000-gate matrix and update gates only from actual evidence.
+10. Do not fabricate production verification and do not deploy automatically.
+
+At completion provide:
+PASS / FAIL / RELEASE GATE totals; PostgreSQL migration results; security results; test totals; browser results; remaining external credentials; remaining production blockers; and SAFE TO DEPLOY: YES/NO.
+
+If deployment requires an external hosting account or credentials that are not available in this workspace, stop at that boundary and tell me exactly what is required rather than substituting another platform or rebuilding Genesis.

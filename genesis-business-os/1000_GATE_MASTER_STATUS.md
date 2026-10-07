@@ -16,4 +16,6 @@ The current full matrix has **400 PASS, 0 FAIL, and 600 RELEASE GATE**. Its rang
 
 Genesis is wired to its local API, and the named signed-in flows plus a disposable PostgreSQL migration/rollback cycle passed local checks. These results do not establish production readiness: production database rollout, verified backup/restore, accessibility, concurrency, live provider behavior, webhook replay, penetration tests, load tests, privacy deletion/export, AI injection suites, and disaster exercises still need production-like evidence before their gates can become PASS. No deployment was performed.
 
+Latest preparation evidence is in `docs/PRODUCTION_READINESS_VERIFICATION.md`: scoped QA cleanup preserved non-target data; 39 backend and 3 execution tests passed; a fresh PostgreSQL migration cycle and signed-in flows were verified; a narrow Home mobile overflow was corrected. Dependency and infrastructure blockers remain. **SAFE TO DEPLOY: NO.**
+
 The value of the 1,000-gate system is that Replit now has a much harder target specification and cannot legitimately treat an unimplemented production control as finished.

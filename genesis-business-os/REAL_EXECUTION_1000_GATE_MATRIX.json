@@ -536,7 +536,7 @@
     "domain": "Dependencies & supply chain",
     "check": "Dependencies & supply chain \u2014 production configuration",
     "status": "RELEASE GATE",
-    "evidence": "Requires additional implementation or production-like/live verification before certification."
+    "evidence": "2026-10-06 readiness verification: unused python-jose/ecdsa removed; dependency audit still reports 1 critical, 4 high and 9 moderate entries (including duplicate pytest advisories). Production dependency remediation and runtime exposure review remain required. See docs/PRODUCTION_READINESS_VERIFICATION.md."
   },
   {
     "gate": 78,
@@ -550,7 +550,7 @@
     "domain": "Dependencies & supply chain",
     "check": "Dependencies & supply chain \u2014 live-environment verification",
     "status": "RELEASE GATE",
-    "evidence": "Requires additional implementation or production-like/live verification before certification."
+    "evidence": "2026-10-06: local SAST and privacy scans returned no findings after narrow fixes; dependency findings remain. No deployed/live environment was verified. See docs/PRODUCTION_READINESS_VERIFICATION.md."
   },
   {
     "gate": 80,

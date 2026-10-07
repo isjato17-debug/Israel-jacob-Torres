@@ -4,7 +4,11 @@
 
 These totals are counted from the 1,000 rows in `REAL_EXECUTION_1000_GATE_MATRIX.json`, the canonical current matrix. The eight concrete code FAIL findings from the re-audit have been fixed. `GATES_201_1000_MATRIX.json` is preserved as a historical subset snapshot with conflicting totals; see `1000_GATE_MASTER_STATUS.md` and do not combine those snapshots.
 
-## Local verification — 2026-10-06
+## Latest production-readiness preparation
+
+See `docs/PRODUCTION_READINESS_VERIFICATION.md` for the fresh cleanup, PostgreSQL, security, test and browser evidence. The backend now has **39 passing tests**, including five new control regressions. Dependency findings remain release blockers. Gate evidence was updated without promoting any status. **SAFE TO DEPLOY: NO.**
+
+## Earlier local verification — 2026-10-06
 
 - Backend suite: **34 passed** with an isolated temporary SQLite database, removed after the test session.
 - Execution-layer suite: **3 passed**.

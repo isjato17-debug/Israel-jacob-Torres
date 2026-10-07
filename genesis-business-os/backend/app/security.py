@@ -1,14 +1,13 @@
 from datetime import datetime, timedelta, timezone
 import hashlib, secrets
 from passlib.context import CryptContext
-from jose import jwt, JWTError
 from fastapi import HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from .config import settings
 from .db import get_db
 from .models import User, Tenant, SessionRecord
 
-pwd=CryptContext(schemes=['argon2'], deprecated='auto'); ALG='HS256'; COOKIE='genesis_session'; CSRF_COOKIE='genesis_csrf'
+pwd=CryptContext(schemes=['argon2'], deprecated='auto'); COOKIE='genesis_session'; CSRF_COOKIE='genesis_csrf'
 def hash_password(p): return pwd.hash(p)
 def verify_password(p,h): return pwd.verify(p,h)
 def token_hash(v): return hashlib.sha256(v.encode()).hexdigest()

@@ -241,7 +241,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .brand-mark{width:29px;height:34px}.brand-mark svg{width:28px;height:32px}.brand-copy b{font-size:15px}
   .top-tools{gap:12px}.top-tools .tool-icon:first-child{display:none}.profile-badge{width:29px;height:29px}
   .wrap{padding:12px 12px calc(86px + env(safe-area-inset-bottom));}
-  .home-layout{grid-template-columns:1fr;gap:11px}
+  .home-layout{grid-template-columns:minmax(0,1fr);gap:11px}
   .primary-column,.side-column{gap:11px}
   .hero-panel{height:266px;border-radius:12px}
   .hero-art{left:5%;opacity:.77}
@@ -255,7 +255,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .caption-here{left:42%;bottom:13px}.caption-setup{left:58%;bottom:53px}.caption-launch{left:72%;bottom:91px}.caption-grow{right:3%;top:37%}
   .route-line:before{left:23%;top:77%;width:71%;transform:rotate(-29deg)}
   .dot-start{left:22%;top:74%}.dot-setup{left:43%;top:59%}.dot-launch{left:65%;top:43%}.dot-grow{left:84%;top:28%}
-  .home-main-grid{grid-template-columns:1fr;gap:10px}
+  .home-main-grid{grid-template-columns:minmax(0,1fr);gap:10px}
   .next-card,.progress-card,.overview-card,.evolution-card,.route-card{padding:14px}
   .progress-card{order:2}.overview-card{order:3}.evolution-card{order:4}.route-card{order:5}
   .section-heading h2{font-size:17px}
@@ -264,7 +264,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .card-actions{gap:6px}.card-actions .cta{flex:1}
   .overview-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
   .evolution-card{grid-template-columns:28px 1fr;gap:7px}.evolution-actions{grid-column:2}.evolution-actions .cta{padding:8px 10px}.evolution-star{font-size:28px}
-  .route-card{grid-template-columns:35px 1fr}.route-card .sec{grid-column:2}
+  .route-card{grid-column:1;grid-template-columns:35px 1fr}.route-card .sec{grid-column:2}
   .side-column{grid-template-columns:1fr}
   .ask-preview,.community-preview{padding:14px}
   .side-card-heading h2{font-size:17px}

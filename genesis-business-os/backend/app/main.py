@@ -37,7 +37,8 @@ buckets=defaultdict(deque)
 async def harden(request:Request, call_next):
     ip=request.client.host if request.client else 'unknown'; now=time.time(); q=buckets[ip]
     while q and q[0]<now-60:q.popleft()
-    if len(q)>120: raise HTTPException(429,'Rate limit exceeded')
+    if len(q)>=120:
+        return JSONResponse({'detail':'Rate limit exceeded'},status_code=429,headers={'Retry-After':'60','Cache-Control':'no-store'})
     q.append(now)
     response=await call_next(request)
     response.headers['X-Content-Type-Options']='nosniff'; response.headers['X-Frame-Options']='DENY'
