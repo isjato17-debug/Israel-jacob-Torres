@@ -9,6 +9,12 @@ For Genesis production-readiness preparation, preserve the approved interface an
 
 **How to apply:** Keep changes limited to readiness controls, verification and evidence; do not replace the product or hosting platform to bypass an unavailable account or credential.
 
+Use the existing Genesis coding workspace for Git synchronization and live infrastructure work. Do not send the user to a separate GitHub assistant or ask them to reconstruct local Git status/history. Do not rebuild, download or re-upload Genesis merely to synchronize source control.
+
+**Why:** The user explicitly required continuing from the existing coding/project workspace.
+
+**How to apply:** Run local Git commands directly, preserve newer work, and use authorization/linking controls in this workspace when user action is required.
+
 Delete only data created solely by the latest authenticated QA run, and prove pre-existing data unchanged. New browser QA should use a separate disposable database and be destroyed afterward.
 
 **Why:** Earlier browser QA left a disposable workspace in the development database, and the user required scoped cleanup without changing unrelated data.
