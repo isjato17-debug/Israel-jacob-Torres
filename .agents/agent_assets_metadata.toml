@@ -70,3 +70,17 @@ mtime_ms = 1792095313131
 storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/ba234528-66bd-4fc9-a2ca-2a92b1e76ac6/f1692561-a12c-4971-9199-dcf8459f9a7f"
 storage_version_token = "1792095477057044"
 content_type = "text/html"
+
+[[outputs]]
+id = "ZyylLCb_6MgXBKo9s9M2_"
+uri = "file://genesis-business-os/docs/BIG_PHASE1_EXECUTION_VERIFICATION.md"
+type = "text"
+title = "B.I.G. Phase 1 Verification Report"
+description = "Execution evidence and hashes, passing tests, customer-data preservation checks, authorization boundaries and remaining limitations."
+logical_id = "6017b2ed-2108-4a7b-be3f-52f8abcac39d"
+content_hash = "sha256:985afc224563639d6d55fcd7ca9ca0a2ea1c9c6275fe334e35192dde4dad2234"
+size = 11505
+mtime_ms = 1792106196939
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/6017b2ed-2108-4a7b-be3f-52f8abcac39d/0d303ea5-2d42-4614-86a9-96dcd3639a43"
+storage_version_token = "1792106237405073"
+content_type = "text/markdown"
