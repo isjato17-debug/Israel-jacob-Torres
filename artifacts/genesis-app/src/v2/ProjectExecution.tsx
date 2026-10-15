@@ -5,6 +5,7 @@ import type { DocumentRecord, ExecutionContext, FormField } from "./documents-ap
 import "./execution.css";
 import ServiceStandby from "./ServiceStandby";
 import BusinessOrchestrator from "./BusinessOrchestrator";
+import type { Project } from "./ideas-api";
 
 type Draft = Record<string, string>;
 const PASS = [["business_name", "Business name"], ["representative_name", "Representative name"], ["business_email", "Business email"], ["municipality", "Municipality"]] as const;
@@ -25,7 +26,8 @@ const toDraft = (ctx: ExecutionContext): Draft => {
 };
 const fin = (k: string, v: number | null) => v == null ? "n/a" : /cents/.test(k) ? "$" + (v / 100).toLocaleString("en-US", { minimumFractionDigits: 2 }) : String(v);
 
-export default function ProjectExecution({ projectId, onProjectChange }: { projectId: string; onProjectChange?: () => void | Promise<void> }) {
+export default function ProjectExecution({ projectId, onProjectChange, project, refreshToken }: { projectId: string; onProjectChange?: () => void | Promise<void>; project?: Project; refreshToken?: string }) {
+  const [boNext, setBoNext] = useState(false);
   const [ctx, setCtx] = useState<ExecutionContext | null>(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(""); const [kind, setKind] = useState<"" | "401" | "409" | "x">("");
@@ -102,7 +104,8 @@ export default function ProjectExecution({ projectId, onProjectChange }: { proje
       <p className="gx-help">Deterministic checklist logic from your saved project, not AI. Documents are written in English only. Nothing is sent, filed, signed or paid for you.</p>
       {errBox}
       <p className="gx-ok" role="status">{note}</p>
-      <div className="px-next" data-testid="execution-next">Next: {a.next_action ? `${a.next_action}. ` : ""}{stage}</div>
+      <BusinessOrchestrator key={`bo-${projectId}`} projectId={projectId} execution={ctx} docDirty={dirty} onProjectChange={onProjectChange} project={project} refreshToken={refreshToken} onNextAction={setBoNext} />
+      {!boNext && <div className="px-next" data-testid="execution-next">Next: {a.next_action ? `${a.next_action}. ` : ""}{stage}</div>}
       <p style={{ marginTop: 12 }}>{a.summary}</p>
       {a.reasons.length > 0 && <ul>{a.reasons.map((r, i) => <li key={i}>{r}</li>)}</ul>}
       {Object.keys(a.financials).length > 0 && <dl>{Object.entries(a.financials).map(([k, v]) => <div key={k}><dt>{k.replace(/_/g, " ")}</dt><dd>{fin(k, v)}</dd></div>)}</dl>}
@@ -160,7 +163,6 @@ export default function ProjectExecution({ projectId, onProjectChange }: { proje
             <span className="gx-help">{new Date(d.created_at).toLocaleString("en-US")}. {d.approval ? `Approved ${new Date(d.approval.approved_at).toLocaleString("en-US")} (${d.approval.purpose})` : "Not approved"}</span><code>{d.content_hash}</code>
             {" "}<a href={documentDownloadUrl(projectId, d.id)} download={d.filename}>Download</a></li>)}</ol></section>}
       </>}
-       <BusinessOrchestrator key={`bo-${projectId}`} projectId={projectId} execution={ctx} docDirty={dirty} onProjectChange={onProjectChange} />
        <ServiceStandby key={projectId} projectId={projectId} />
     </section>
   );

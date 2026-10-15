@@ -1,4 +1,5 @@
 import { call } from "./journey-api";
+import type { Strategy } from "./ideas-api";
 export interface BusinessAction {
   key: string; id: string; version: number; title: string; subsystem: string; status: string;
   dependencies: string[]; blocked_by: string[]; requirements: Record<string, unknown>;
@@ -28,6 +29,9 @@ export interface OrchestratorView {
   signatures: TestSignature[]; submissions: Submission[]; changes: RegulatoryChange[];
   registry: { key: string; title: string; category: string; status: string; source_url: string | null; [key: string]: unknown }[];
   government_workflows: { key: string; title: string; method: string; fee: string; source_url: string; status: string; prerequisites: string[] }[];
+  business_strategy?: Strategy | null; source_context?: Record<string, unknown> | null;
+  planning_tasks?: { id: string; task: string; status: string; kpi: string }[];
+  next_action?: { key: string; title: string; task_id: string | null } | null;
   collection?: { status: string; added: number; errors: string[] };
 }
 const root = (id: string) => `/v2/projects/${id}/orchestrator`;

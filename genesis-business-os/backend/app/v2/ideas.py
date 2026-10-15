@@ -13,6 +13,7 @@ from ..db import get_db
 from ..models import BusinessIdea, IdeaRevision, BusinessProject, Business, ExecutionTask, AuditEvent, User
 from ..security import current_user, ensure_not_lockdown, require_csrf
 from ..services.idea_planning import prepare_plans
+from ..services.business_strategy import recommendations, selection, source, initialize_roadmap
 from ..services.product_engine import execution_plan
 from .catalog import STATES
 from .journey import utc
@@ -61,6 +62,10 @@ class Selection(Version):
     plan_key: Literal["start_smart", "build_strong", "grow_big"]
 
 
+class StrategySelection(Version):
+    strategy_key: Literal["focused_launch", "contract_first"]
+
+
 def owned_idea(db, user, idea_id):
     item = db.scalar(select(BusinessIdea).where(
         BusinessIdea.id == idea_id, BusinessIdea.tenant_id == user.tenant_id,
@@ -81,6 +86,8 @@ def describe(db, item):
         IdeaRevision.idea_id == item.id).order_by(IdeaRevision.version)).all()
     return {
         **json.loads(item.facts_json), "id": item.id, "version": item.version,
+        "strategies": recommendations(json.loads(item.facts_json)),
+        "selected_strategy": selection(json.loads(item.facts_json)),
         "status": item.status, "selected_plan": item.selected_plan,
         "plans": json.loads(item.plans_json), "project_id": project.id if project else None,
         "created_at": utc(item.created_at), "updated_at": utc(item.updated_at),
@@ -157,8 +164,12 @@ def edit(idea_id: str, payload: EditIdea, user: User = Depends(current_user),
          db: Session = Depends(get_db), _: bool = Depends(require_csrf)):
     item = owned_idea(db, user, idea_id)
     editable(item)
+    facts = payload.model_dump(exclude={"expected_version"})
+    lineage = source(json.loads(item.facts_json))
+    if lineage:
+        facts["_source"] = lineage
     change(db, user, item, payload.expected_version, {
-        "facts_json": json.dumps(payload.model_dump(exclude={"expected_version"})),
+        "facts_json": json.dumps(facts),
         "plans_json": "[]", "selected_plan": None, "status": "DRAFT",
     }, "edited")
     return finish(db, item)
@@ -208,6 +219,17 @@ def choose(idea_id: str, payload: Selection, user: User = Depends(current_user),
     return finish(db, item)
 
 
+@router.post("/ideas/{idea_id}/strategy")
+def choose_strategy(idea_id: str, payload: StrategySelection, user: User = Depends(current_user),
+                    db: Session = Depends(get_db), _: bool = Depends(require_csrf)):
+    item = owned_idea(db, user, idea_id)
+    editable(item)
+    facts = json.loads(item.facts_json)
+    facts["_strategy"] = next(x for x in recommendations(facts) if x["key"] == payload.strategy_key)
+    change(db, user, item, payload.expected_version, {"facts_json": json.dumps(facts)}, "strategy_selected")
+    return finish(db, item)
+
+
 def describe_project(db, project):
     tasks = db.scalars(select(ExecutionTask).where(
         ExecutionTask.tenant_id == project.tenant_id,
@@ -236,6 +258,10 @@ def develop(idea_id: str, payload: Version, user: User = Depends(current_user),
     if not chosen:
         raise HTTPException(409, "Select a prepared plan before creating a project")
     facts = json.loads(item.facts_json)
+    if source(facts) and not selection(facts):
+        raise HTTPException(409, "Choose a business strategy before creating the consultation-linked roadmap")
+    if selection(facts):
+        chosen = {**chosen, "business_strategy": selection(facts), "source_context": source(facts)}
     change(db, user, item, payload.expected_version, {"status": "DEVELOPED"}, "developed")
     twin = {
         "monthly_revenue": chosen["monthly_revenue_cents"] / 100,
@@ -252,6 +278,8 @@ def develop(idea_id: str, payload: Version, user: User = Depends(current_user),
                               business_id=business.id, name=business.name,
                               plan_json=json.dumps(chosen), budget_cents=facts["budget_cents"])
     db.add(project)
+    db.flush()
+    initialize_roadmap(db, user, project)
     # No task budget authorizes spending. Existing Mission Control provides status persistence.
     for task in execution_plan(facts["concept"], 0):
         db.add(ExecutionTask(

@@ -6,3 +6,4 @@
 - [Genesis OS 2.0 scope](genesis-2-scope.md) — Follow explicit milestone authorization; preserve app/data; paid services, consequential external actions and publishing retain approval gates.
 - [B.I.G. brand and budget](big-brand-and-budget.md) — Permanent customer identity; Phase 2 is no-cost, simulated and non-autonomous; 5% revenue allocation is planning, not permission to spend.
 - [Document integrity](document-source-integrity.md) — Preserve old rendering versions and immutable revision hashes; customer approval never transfers to corrected content.
+- [Hands-on assistance](hands-on-assistance.md) — B.I.G. must help perform permitted work with saved context, not only provide static recommendations or checklists.

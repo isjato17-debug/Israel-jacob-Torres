@@ -10,7 +10,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from ..db import get_db
-from ..models import AIConsultation, AuditEvent, OnboardingJourney, User
+from ..models import AIConsultation, AuditEvent, OnboardingJourney, User, BusinessIdea
 from ..security import current_user, ensure_not_lockdown, require_csrf
 from ..services.consultation_engine import (
     MAX_TURNS, Recommendation, get_consultation_provider,
@@ -18,8 +18,67 @@ from ..services.consultation_engine import (
 from ..services.official_resources import public_resources
 from .journey import owned, utc, QUESTIONS
 from .consultation_privacy import privacy_state
+from . import ideas
 
 router = APIRouter(prefix="/api/v2/journeys", tags=["B.I.G. consultation foundation"])
+
+
+class BusinessPathRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    expected_version: int = Field(ge=1, strict=True)
+    consultation_version: int = Field(ge=1, strict=True)
+    privacy_version: int = Field(ge=0, strict=True)
+    budget_cents: int = Field(ge=0, le=100_000_000, strict=True)
+    consent: Literal[True]
+
+
+@router.get("/{journey_id}/business-path")
+def business_path(journey_id: str, user: User = Depends(current_user), db: Session = Depends(get_db)):
+    journey = owned(db, user, journey_id)
+    facts = json.loads(journey.answers_json)
+    linked = facts.get("_business_idea_id")
+    idea = ideas.owned_idea(db, user, linked) if linked else None
+    return {"concept": facts.get("goal", ""), "jurisdiction": facts.get("state"),
+            "idea": ideas.describe(db, idea) if idea else None,
+            "classification": "SAVED_CUSTOMER_INPUT_NOT_VERIFIED"}
+
+
+@router.post("/{journey_id}/business-path")
+def prepare_business_path(journey_id: str, payload: BusinessPathRequest, user: User = Depends(current_user),
+                          db: Session = Depends(get_db), _: bool = Depends(require_csrf)):
+    ensure_not_lockdown(db, user)
+    journey = owned(db, user, journey_id)
+    answers = json.loads(journey.answers_json)
+    if answers.get("_business_idea_id"):
+        return ideas.describe(db, ideas.owned_idea(db, user, answers["_business_idea_id"]))
+    privacy = privacy_state(db, user, journey_id)
+    consultation = find(db, user, journey_id)
+    if (privacy["status"] in ("REVOKED", "DELETED") or privacy["version"] != payload.privacy_version
+        or not consultation or consultation.version != payload.consultation_version
+        or consultation.journey_version != journey.version or journey.version != payload.expected_version):
+        raise HTTPException(409, "Consultation or consent changed. Refresh before saving a separate business idea.")
+    try:
+        facts = ideas.IdeaFacts(concept=answers.get("goal", ""), jurisdiction=answers.get("state", ""),
+                               budget_cents=payload.budget_cents, goals=answers.get("goal", "")).model_dump()
+    except ValidationError:
+        raise HTTPException(422, "Save a business goal of at least five characters and a valid state first.") from None
+    facts["_source"] = {"journey_id": journey.id, "consultation_version": consultation.version,
+                        "journey_version": journey.version}
+    item = BusinessIdea(tenant_id=user.tenant_id, user_id=user.id, facts_json=json.dumps(facts),
+                        plans_json=json.dumps(ideas.prepare_plans(facts)), status="PLANNED")
+    db.add(item); db.flush()
+    answers["_business_idea_id"] = item.id
+    result = db.execute(update(OnboardingJourney).where(
+        OnboardingJourney.id == journey.id, OnboardingJourney.version == payload.expected_version
+    ).values(answers_json=json.dumps(answers), version=payload.expected_version + 1)
+        .execution_options(synchronize_session=False))
+    if result.rowcount != 1:
+        db.rollback()
+        raise HTTPException(409, "A business path was saved in another session. Refresh; no duplicate was created.")
+    # Link metadata changes no intake facts; do not mark an unchanged consultation stale.
+    consultation.journey_version = payload.expected_version + 1
+    ideas.record(db, user, item, "consultation_handoff")
+    return ideas.finish(db, item)
 
 
 class ConsultationRequest(BaseModel):

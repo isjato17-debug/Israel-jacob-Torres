@@ -6,6 +6,7 @@ import { decideConsultationPrivacy, fetchConsultation, sendConsultation } from "
 import type { ConsultationState } from "./consultation-api";
 import { consultationText } from "./consultation-i18n";
 import { isRtl } from "./journey-api";
+import BusinessPath from "./BusinessPath";
 import PrivacyControls from "./PrivacyControls";
 import type { PrivacyAction } from "./PrivacyControls";
 import { privacyText } from "./privacy-i18n";
@@ -150,6 +151,9 @@ function Inner({ journey, lang, accountId, onUnauthorized, onRefreshJourney, sta
           ) : <p className="gx-help" data-testid="text-consultation-empty">{t.none}</p>}
           {!showDetail && last && last.assumptions.length > 0 && <><h4>{t.assumptions}</h4><ul>{last.assumptions.map((a, k) => <li key={k}>{a}</li>)}</ul></>}
           <p className="gx-warn" role="note">{t.reviewNote}</p>
+          {c && last && !blocked && !stale && !c.context_stale && (
+            <BusinessPath journey={journey} lang={lang} consultation={c} privacy={data.privacy} onUnauthorized={onUnauthorized} onStale={load} />
+          )}
           {last && !full && (
             <div data-testid="consultation-next">
               <h4>{t.next}</h4><p>{last.next_question}</p>

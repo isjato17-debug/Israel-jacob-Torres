@@ -3,6 +3,8 @@ import { ApiError } from "./journey-api";
 import type { ExecutionContext } from "./documents-api";
 import * as O from "./orchestrator-api";
 import type { OrchestratorView, BusinessAction } from "./orchestrator-api";
+import { setProjectTask } from "./ideas-api";
+import type { Project } from "./ideas-api";
 import "./orchestrator.css";
 
 const TERMINAL = ["COMPLETED_VERIFIED", "CANCELLED", "CANCELED", "FAILED"];
@@ -17,7 +19,7 @@ const label = (a: BusinessAction, view: OrchestratorView) => {
 };
 const money = (c: number) => "$" + (c / 100).toLocaleString("en-US", { minimumFractionDigits: 2 });
 
-export default function BusinessOrchestrator({ projectId, execution, docDirty = false, onProjectChange }: { projectId: string; execution: ExecutionContext; docDirty?: boolean; onProjectChange?: () => void | Promise<void> }) {
+export default function BusinessOrchestrator({ projectId, execution, docDirty = false, onProjectChange, project, refreshToken, onNextAction }: { project?: Project; refreshToken?: string; onNextAction?: (has: boolean) => void; projectId: string; execution: ExecutionContext; docDirty?: boolean; onProjectChange?: () => void | Promise<void> }) {
   const [view, setView] = useState<OrchestratorView | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -50,6 +52,11 @@ export default function BusinessOrchestrator({ projectId, execution, docDirty = 
     finally { if (ep === epoch.current && alive.current) setLoading(false); }
   }, [projectId]);
   useEffect(() => { void load(); }, [load, wfVersion]);
+  const first = useRef(true);
+  useEffect(() => { if (first.current) { first.current = false; return; } void load(true); }, [load, refreshToken]);
+  const nextRef = useRef(onNextAction); nextRef.current = onNextAction;
+  const hasNext = !!view?.next_action;
+  useEffect(() => { nextRef.current?.(hasNext); return () => nextRef.current?.(false); }, [hasNext]);
   useEffect(() => {
     const f = () => { if (document.visibilityState === "visible" && !busy) void load(true); };
     window.addEventListener("focus", f); document.addEventListener("visibilitychange", f);
@@ -92,6 +99,16 @@ export default function BusinessOrchestrator({ projectId, execution, docDirty = 
       {errBox}
       <p className="gx-ok" role="status">{note}</p>
 
+      {view.initialized && view.next_action && <div className="px-next" data-testid="orchestrator-primary-next"><b>Next:</b> {view.next_action.title}</div>}
+      {view.initialized && view.business_strategy && <div data-testid="orchestrator-business-strategy"><h4>Chosen business strategy</h4>
+        <p><b>{view.business_strategy.name}</b>. {view.business_strategy.approach}</p>
+        <p className="gx-help">Selected by you in the Idea Vault. Strategy review is already complete.</p></div>}
+      {view.initialized && (view.planning_tasks ?? []).length > 0 && <div data-testid="orchestrator-planning-tasks"><h4>Planning tasks</h4>
+        {view.planning_tasks!.map((p) => <div className="bo-item" key={p.id} data-testid={`planning-task-${p.id}`}>
+          <b>{p.task}</b> <span className="gx-badge">{p.status === "done" ? "Done" : "To do"}</span> <span className="gx-help">{p.kpi}</span>
+          {p.status !== "done" && project && <div className="gx-row"><button type="button" className="gx-btn sec" disabled={busy} data-testid={`planning-task-done-${p.id}`}
+            onClick={() => void mut(async () => { await setProjectTask(project, p.id, "done"); return O.loadOrchestrator(projectId); }, "Task marked done by you.")}>Mark done</button></div>}
+        </div>)}</div>}
       {!view.initialized ? <div>
         <p>The orchestrator has not been started for this project. Starting creates the action list; it does not file or send anything.</p>
         <div className="gx-row"><button type="button" className="gx-btn" disabled={busy} data-testid="orchestrator-start" onClick={() => void mut(() => O.startOrchestrator(projectId), "Orchestrator started.")}>{busy ? "Starting..." : "Start orchestrator"}</button></div>
@@ -111,7 +128,7 @@ export default function BusinessOrchestrator({ projectId, execution, docDirty = 
           <div className="gx-row"><button type="button" className="gx-btn" disabled={busy || !stratOk} data-testid="strategy-accept" onClick={() => void mut(() => O.acceptStrategy(projectId, stratN.version), "Strategy confirmed.", () => setStratOk(false))}>Confirm selected plan</button></div></>}
 
         <h4 style={{ marginTop: 20 }}>Actions</h4>
-        {view.next_actions.length > 0 && <p data-testid="orchestrator-next"><b>Next:</b> {view.next_actions.join("; ")}</p>}
+        {!view.next_action && view.next_actions.length > 0 && <p data-testid="orchestrator-next"><b>Next:</b> {view.next_actions.join("; ")}</p>}
         {acts.map((a) => {
           const cancellable = (a.key === "sign" || a.key === "submit") && !TERMINAL.includes(a.status);
           return <div className="bo-item" key={a.key} data-testid={`action-${a.key}`}>

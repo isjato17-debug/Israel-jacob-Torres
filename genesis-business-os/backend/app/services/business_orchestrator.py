@@ -174,7 +174,20 @@ def view(db, user, p):
             "content_hash": source.content_hash, "checked_at": source.checked_at, "change_type": c.change_type,
             "legal_status": c.legal_status, "effective_date": c.effective_date, "review_status": c.review_status,
             "previous_revision_id": c.previous_revision_id, "facts": facts})
+    plan = json.loads(p.plan_json)
+    planning = db.scalars(select(ExecutionTask).where(
+        ExecutionTask.tenant_id == user.tenant_id, ExecutionTask.business_id == p.business_id,
+        ExecutionTask.kpi.in_(("unified:strategy", "unified:funding")))
+        .order_by(ExecutionTask.kpi.desc())).all()
+    remaining = next((t for t in planning if t.status != "done"), None)
+    actionable = next((a for a in actions if not a["blocked_by"] and a["status"] in
+                       ("READY", "INFORMATION_REQUIRED", "AWAITING_CUSTOMER_APPROVAL", "AUTHORIZED", "AWAITING_EXTERNAL_RESULT")), None)
+    next_action = ({"key": remaining.kpi, "title": remaining.task, "task_id": remaining.id} if remaining else
+                   {"key": actionable["key"], "title": actionable["title"], "task_id": None} if actionable else None)
     return {"initialized": bool(nodes), "scope": "INTERNAL_PREPARATION_AND_EXPLICIT_TESTS_ONLY", "actions": actions,
+            "business_strategy": plan.get("business_strategy"), "source_context": plan.get("source_context"),
+            "planning_tasks": [{"id": t.id, "task": t.task, "status": t.status, "kpi": t.kpi} for t in planning],
+            "next_action": next_action,
             "next_actions": [a["title"] for a in actions if not a["blocked_by"] and a["status"] in
                              ("READY", "INFORMATION_REQUIRED", "AWAITING_CUSTOMER_APPROVAL", "AUTHORIZED", "AWAITING_EXTERNAL_RESULT")],
             "strategy": strategy(db, p), "signing": {"disclosure": DISCLOSURE, "disclosure_version": DISCLOSURE_VERSION,

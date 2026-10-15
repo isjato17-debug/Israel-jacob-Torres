@@ -19,14 +19,20 @@ export interface BusinessPlan {
   service_needs: { category: string; reason: string }[];
   classification: string; recommended: boolean; recommendation_reason: string;
 }
+export interface Strategy {
+  key: "focused_launch" | "contract_first"; name: string; approach: string; target: string;
+  advantages: string[]; disadvantages: string[]; preferred: boolean; classification: string;
+  reason: string; validation: string; jurisdiction: string; budget_cents: number;
+}
 export interface Idea extends IdeaInput {
   id: string; version: number; status: "DRAFT" | "PLANNED" | "DEVELOPED" | "ARCHIVED";
   selected_plan: string | null; plans: BusinessPlan[]; created_at: string; updated_at: string;
+  strategies?: Strategy[]; selected_strategy?: Strategy | null;
   project_id: string | null; history: { version: number; action: string; created_at: string }[];
 }
 export interface Project {
   id: string; business_id: string; idea_id: string; name: string; stage: string;
-  plan: BusinessPlan; budget_cents: number; created_at: string;
+  plan: BusinessPlan & { business_strategy?: Strategy | null; source_context?: Record<string, unknown> | null }; budget_cents: number; created_at: string;
   checklist: { id: string; horizon: string; task: string; budget: number; status: string; kpi: string }[];
 }
 export const listIdeas = () => call<{ ideas: Idea[] }>("/v2/ideas");
@@ -44,3 +50,11 @@ export const listProjects = () => call<{ projects: Project[] }>("/v2/projects");
 export const getProject = (id: string) => call<Project>(`/v2/projects/${id}`);
 export const setProjectTask = (project: Project, taskId: string, status: "todo" | "done") =>
   call<{ ok: boolean }>(`/businesses/${project.business_id}/execution/${taskId}`, "PATCH", { status });
+export const selectStrategy = (idea: Idea, strategy_key: Strategy["key"]) =>
+  call<Idea>(`/v2/ideas/${idea.id}/strategy`, "POST", { expected_version: idea.version, strategy_key });
+export interface BusinessPath {
+  concept: string; jurisdiction: string; idea: Idea | null; classification: string;
+}
+export const getBusinessPath = (journeyId: string) => call<BusinessPath>(`/v2/journeys/${journeyId}/business-path`);
+export const createBusinessPath = (journeyId: string, d: { expected_version: number; consultation_version: number; privacy_version: number; budget_cents: number }) =>
+  call<Idea>(`/v2/journeys/${journeyId}/business-path`, "POST", { ...d, consent: true });

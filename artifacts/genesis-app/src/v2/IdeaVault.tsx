@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { ApiError, getSession, signIn, signOut } from "./journey-api";
 import type { Account } from "./journey-api";
-import { createIdea, editIdea, getIdea, getProject, ideaAction, listIdeas, listProjects, developIdea, selectPlan, setProjectTask } from "./ideas-api";
+import { createIdea, editIdea, getIdea, getProject, ideaAction, listIdeas, listProjects, developIdea, selectPlan, selectStrategy, setProjectTask } from "./ideas-api";
 import type { BusinessPlan, Idea, IdeaInput, Project } from "./ideas-api";
 import ProjectExecution from "./ProjectExecution";
 import OwnerAccessLink from "./OwnerAccessLink";
@@ -82,6 +82,11 @@ function PlanCard({ p, t, sel, idea, busy, onSelect }: { p: BusinessPlan; t: (k:
     </article>
   );
 }
+
+const SX = {
+  en: { h: "Two business strategies", p: "These are business approaches, separate from the three financial plans below. Choose either one; B.I.G. shows its preferred option but never selects for you.", pref: "B.I.G. preferred", adv: "Advantages", dis: "Disadvantages", target: "Target", valid: "Validation", pick: "Choose this strategy", picked: "Chosen strategy", need: "Choose a strategy and a financial plan, then develop the project." },
+  es: { h: "Dos estrategias de negocio", p: "Son enfoques de negocio, separados de los tres planes financieros de abajo. Elija cualquiera; B.I.G. muestra su opción preferida pero nunca elige por usted.", pref: "Preferida por B.I.G.", adv: "Ventajas", dis: "Desventajas", target: "Objetivo", valid: "Validación", pick: "Elegir esta estrategia", picked: "Estrategia elegida", need: "Elija una estrategia y un plan financiero, luego desarrolle el proyecto." },
+} as const;
 
 export default function IdeaVault() {
   const [lang, setLang] = useState<L>("en");
@@ -264,6 +269,14 @@ export default function IdeaVault() {
     catch (x) { if (ep === epoch.current) fail(x); } finally { end(ep); }
   };
   const reloadLatest = async () => { if (cur) await openIdea(cur.id); else { const ep = begin(); if (ep === null) return; try { await refresh(); setConflict(false); setErr(""); } finally { end(ep); } } };
+  const deepLink = useRef<string | null>(new URLSearchParams(window.location.search).get("idea"));
+  useEffect(() => {
+    const id = deepLink.current;
+    if (!id || !account || !loaded || busyRef.current) return;
+    deepLink.current = null;
+    void openIdea(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account, loaded]);
   const goMine = () => { setView("mine"); setCur(null); setProject(null); setFormMode(false); setErr(""); setMsg(""); setConflict(false); void refresh(); };
   const goReview = () => { setView("review"); setCur(null); setProject(null); setFormMode(false); setErr(""); setMsg(""); setConflict(false); void refresh(); };
   const fmt = (s: string) => { const d = new Date(s); return Number.isNaN(d.getTime()) ? s : d.toLocaleString(lang); };
@@ -308,6 +321,21 @@ export default function IdeaVault() {
         {cur.status === "ARCHIVED" && <button type="button" className="gx-btn" disabled={busy} data-testid="restore" onClick={() => act(() => ideaAction(cur, "restore"))}>{t("restore")}</button>}
         {cur.status === "PLANNED" && cur.selected_plan && <button type="button" className="gx-btn" disabled={busy} data-testid="develop" onClick={develop}>{t("develop")}</button>}
       </div>
+      {(cur.strategies ?? []).length > 0 && <section aria-labelledby="iv-sh" data-testid="strategy-section">
+        <h3 id="iv-sh" style={{ marginTop: 20 }}>{SX[lang].h}</h3><p className="gx-help">{SX[lang].p}</p>
+        {cur.status === "PLANNED" && !cur.selected_strategy && <p className="gx-warn">{SX[lang].need}</p>}
+        <div className="iv-grid">{cur.strategies!.map((st) => { const on = cur.selected_strategy?.key === st.key; return (
+          <article className="iv-plan" data-sel={on} key={st.key} data-testid={`strategy-${st.key}`} aria-label={st.name}>
+            {st.preferred && <span className="gx-badge" data-testid={`strategy-preferred-${st.key}`}>{SX[lang].pref}</span>}
+            <h4 className="serif">{st.name}</h4><p>{st.approach}</p>
+            <p className="gx-help">{SX[lang].target}: {st.target}</p>
+            {st.preferred && <p className="gx-help">{st.reason}</p>}
+            <h5>{SX[lang].adv}</h5><ul>{st.advantages.map((a, n) => <li key={n}>{a}</li>)}</ul>
+            <h5>{SX[lang].dis}</h5><ul>{st.disadvantages.map((a, n) => <li key={n}>{a}</li>)}</ul>
+            <p className="gx-help">{SX[lang].valid}: {st.validation}</p>
+            {cur.status === "PLANNED" && <button type="button" className="gx-btn" disabled={busy || on} aria-pressed={on} data-testid={`select-strategy-${st.key}`} onClick={() => act(() => selectStrategy(cur, st.key))}>{on ? SX[lang].picked : SX[lang].pick}</button>}
+            {cur.status !== "PLANNED" && on && <span className="gx-badge">{SX[lang].picked}</span>}
+          </article>); })}</div></section>}
       {cur.plans.length > 0 && <>
         <h3 style={{ marginTop: 20 }}>{t("compare")}</h3>
         <div className="iv-grid three">{cur.plans.map((p) => <PlanCard key={p.key} p={p} t={t} sel={cur.selected_plan === p.key} idea={cur} busy={busy} onSelect={() => act(() => selectPlan(cur, p.key))} />)}</div></>}
@@ -322,7 +350,7 @@ export default function IdeaVault() {
           <label className="iv-task" key={c.id}>
             <input type="checkbox" checked={c.status === "done"} disabled={busy} onChange={() => void toggle(c.id, c.status)} data-testid={`task-${c.id}`} />
             <span><b>{c.task}</b><small className="gx-help">{c.horizon} {c.kpi} {usd(c.budget)} {c.status === "done" ? t("done") : t("todo")}</small></span></label>))}
-        <ProjectExecution key={project.id} projectId={project.id} onProjectChange={async () => { const id = project.id; const p = await getProject(id); if (curId.current) setProject((o) => (o && o.id === id ? p : o)); }} />
+        <ProjectExecution key={project.id} projectId={project.id} project={project} refreshToken={project.checklist.map((c) => `${c.id}:${c.status}`).join(",")} onProjectChange={async () => { const id = project.id; const p = await getProject(id); if (curId.current) setProject((o) => (o && o.id === id ? p : o)); }} />
       </section>}
     </section>);
 
