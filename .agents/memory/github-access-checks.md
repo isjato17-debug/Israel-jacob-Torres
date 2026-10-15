@@ -41,3 +41,14 @@ through Git while both CLI identity checks still requested authentication.
 login message when the user's actual Git operation already works. Treat verified source
 presence, read access and write permission as separate claims; a read alone proves no
 write capability. Preserve remote branch spellings rather than silently renaming them.
+
+An active git-provider connection can supply working Git transport without authenticating
+`gh` or exposing a GitHub API helper in the execution runtime.
+
+**Why:** Connection instructions advertised `connectorFetch`, but that helper was not
+exposed; the GitHub CLI API still required login while remote Git refs were readable.
+
+**How to apply:** Check API availability before promising an automated branch rename.
+Renaming a repository's default branch requires GitHub's rename API or browser control;
+creating another branch is not an equivalent rename. Do not delete/recreate the default
+branch or request repeated device authorization merely to bypass this runtime limitation.
