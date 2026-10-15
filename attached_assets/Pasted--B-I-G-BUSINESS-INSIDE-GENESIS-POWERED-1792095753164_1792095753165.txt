@@ -1,0 +1,811 @@
+===========================================================
+B.I.G. — BUSINESS INSIDE GENESIS
+POWERED BY GENESIS OS 2.0
+
+OWNER'S MASTER EXECUTION DIRECTIVE V9
+
+PROJECT:
+FROM CONNECTED DOCUMENTS TO COMPLETE
+INTELLIGENT BUSINESS EXECUTION
+
+STATUS: DEVELOPMENT AUTHORIZED
+
+===========================================================
+0. READ FIRST — PRESERVE MY APPLICATION
+===========================================================
+
+You have reported successful completion of
+the connected consulting-to-document workflow.
+
+Reported ending commit:
+
+f1ac23e026e6c34ba0c9a8a7a7bcb32248d71af3
+
+Reported results:
+
+162 backend tests passed.
+3 execution-layer tests passed.
+2 database preservation tests passed.
+TypeScript and production build passed.
+Mobile acceptance passed at 360px,
+390px, and 1280px.
+
+All 154 original application rows preserved.
+
+Before changing code, independently verify
+the repository state and these results.
+
+DO NOT REBUILD MY APPLICATION.
+
+DO NOT REPLACE THE ORIGINAL GENESIS OS.
+
+DO NOT DELETE OR DOWNGRADE ANY FEATURES.
+
+DO NOT CHANGE THE EXISTING DESIGN.
+
+DO NOT REMOVE THE PARTNER NETWORK.
+
+DO NOT REMOVE ANY EXISTING INTEGRATIONS.
+
+DO NOT MODIFY PROTECTED MAIN.
+
+DO NOT FORCE-PUSH.
+
+DO NOT DEPLOY.
+
+DO NOT ACTIVATE PAID SERVICES.
+
+DO NOT MAKE REAL EXTERNAL SUBMISSIONS.
+
+All development must be additive,
+tested, reversible, and documented.
+
+===========================================================
+1. THE PRIMARY PRODUCT REQUIREMENT
+===========================================================
+
+B.I.G. IS AN INTELLIGENT BUSINESS CONSULTANT
+AND COMPLETE BUSINESS OPERATING SYSTEM.
+
+It must not become merely a filing application,
+document generator, chatbot, or referral service.
+
+B.I.G. must:
+
+UNDERSTAND THE CUSTOMER.
+ANALYZE THE BUSINESS.
+COMPARE AVAILABLE STRATEGIES.
+WEIGH ADVANTAGES AND DISADVANTAGES.
+RECOMMEND THE STRONGEST SUPPORTED OPTION.
+EXPLAIN THE RECOMMENDATION.
+PREPARE THE REQUIRED WORK.
+OBTAIN NECESSARY AUTHORIZATIONS.
+EXECUTE SUPPORTED ACTIONS.
+VERIFY EXTERNAL RESULTS.
+MANAGE ONGOING BUSINESS OPERATIONS.
+MONITOR APPLICABLE LEGAL CHANGES.
+REASSESS BUSINESS PERFORMANCE.
+RECOMMEND IMPROVEMENTS.
+
+The customer must remain in control
+of consequential decisions.
+
+B.I.G. performs the supported work.
+
+===========================================================
+2. PRESERVE AND CONNECT EXISTING INTELLIGENCE
+===========================================================
+
+Preserve and extend:
+
+Founder DNA
+Digital Twin
+Executive Board
+Battle Mode
+Mission Control
+Idea Vault
+Three-Plan Business Engine
+Business Projects
+Business Passport
+Financial Modeling
+Partner Network
+Government Resource Discovery
+Multilingual Consultation
+Privacy and Consent Controls
+Owner Command Center
+
+Create a shared execution interface between
+these existing systems.
+
+Do not create duplicate versions.
+
+Do not replace genuine AI with
+hardcoded simulated intelligence.
+
+Do not describe deterministic calculations
+as genuine AI reasoning.
+
+Where live AI is unavailable, maintain
+working deterministic capabilities and
+accurately report the limitation.
+
+===========================================================
+3. BUILD THE MASTER BUSINESS ORCHESTRATOR
+===========================================================
+
+Create a persistent business execution
+engine connected to existing Business Projects.
+
+Its purpose is to coordinate every business
+service in the correct dependency order.
+
+Each business action must contain:
+
+- Business Project ID
+- Action type
+- Responsible subsystem
+- Required information
+- Dependencies
+- Current status
+- Customer authorization requirements
+- External provider requirements
+- Applicable deadlines
+- Execution attempts
+- Verification evidence
+- Completion timestamp
+- Next available actions
+
+Support:
+
+NOT_READY
+INFORMATION_REQUIRED
+READY
+AWAITING_CUSTOMER_APPROVAL
+AUTHORIZED
+IN_PROGRESS
+AWAITING_EXTERNAL_RESULT
+COMPLETED_VERIFIED
+CORRECTION_REQUIRED
+FAILED
+CANCELLED
+
+Prevent actions from advancing before
+their prerequisites are satisfied.
+
+Allow independent actions to run
+in parallel where appropriate.
+
+Make execution resumable after logout,
+reconnection, and interrupted requests.
+
+Prevent duplicate external actions.
+
+Use idempotency keys and audit events
+for consequential operations.
+
+The system must distinguish:
+
+PREPARED
+APPROVED
+SIGNED
+SUBMITTED
+ACCEPTED
+COMPLETED
+
+These are not interchangeable statuses.
+
+===========================================================
+4. IMPLEMENT STRATEGIC DECISION INTELLIGENCE
+===========================================================
+
+Extend the existing three-plan engine,
+Executive Board, Digital Twin,
+and financial models.
+
+For every business model, evaluate:
+
+- Customer goals
+- Available capital
+- Startup costs
+- Operating expenses
+- Revenue assumptions
+- Cash-flow requirements
+- Market demand
+- Competition
+- Operational complexity
+- Licensing requirements
+- Business structure
+- Liability exposure
+- Financing costs
+- Growth potential
+- Downside scenarios
+- Long-term sustainability
+
+Compare advantages and disadvantages.
+
+Use business-specific criteria rather
+than a fixed recommendation for everyone.
+
+Present:
+
+RECOMMENDED OPTION
+REASONS
+IMPORTANT ASSUMPTIONS
+ADVANTAGES
+DISADVANTAGES
+RISKS
+RISK MITIGATION
+ALTERNATIVES
+NEXT ACTION
+
+Identify when evidence is insufficient.
+
+Do not fabricate market research.
+
+Do not guarantee profitability.
+
+Do not automatically recommend
+the highest-priced B.I.G. plan.
+
+Connect accepted recommendations
+directly to executable business tasks.
+
+===========================================================
+5. EXTEND THE WORKING AUTOFORM ENGINE
+===========================================================
+
+Preserve the completed
+Cleaning Service Agreement workflow.
+
+Do not break its current functionality.
+
+Build a reusable document registry
+supporting:
+
+- Document categories
+- Verified source information
+- Official form versions
+- Jurisdiction
+- Business eligibility
+- Required fields
+- Conditional questions
+- Validation rules
+- Supporting documents
+- Signature requirements
+- Submission requirements
+- Applicable fees
+- Expiration and renewal rules
+
+The registry must support both:
+
+A. B.I.G.-generated business documents.
+
+B. Verified official government forms.
+
+Never mislabel a B.I.G. template
+as an official government form.
+
+Implement reusable mapping from
+authorized Business Passport information.
+
+Maintain document revisions,
+customer corrections, and approval history.
+
+Preserve existing tenant isolation.
+
+===========================================================
+6. BUILD SECURE ELECTRONIC SIGNATURES
+===========================================================
+
+Extend the existing exact-revision
+document approval workflow.
+
+Implement a standards-aware
+electronic signing capability.
+
+Requirements:
+
+1. Customer opens the final document.
+2. Customer reviews the entire document.
+3. Customer confirms the information.
+4. Customer receives applicable disclosures.
+5. Customer expressly agrees to sign.
+6. Customer authenticates appropriately.
+7. Customer signs using a supported method.
+8. Signature is bound to the exact document.
+9. Final document integrity is recorded.
+10. A tamper-evident audit record is saved.
+11. Customer receives access to a copy.
+
+Support device passkeys through
+WebAuthn where technically available.
+
+Allow supported device biometrics,
+including Face ID and Touch ID.
+
+Do not collect or store raw biometric data.
+
+Do not confuse biometric authentication
+with legally valid electronic consent.
+
+Do not assume every government agency
+accepts ordinary electronic signatures.
+
+Use the correct signing method for
+the receiving organization.
+
+Start with a document category that
+legally supports the chosen signature method.
+
+Do not activate a paid signature provider
+without separate owner approval.
+
+===========================================================
+7. BUILD B.I.G. DIRECTSUBMIT
+===========================================================
+
+Create a reusable government and
+professional submission engine.
+
+It must connect to AutoForm and
+the Master Business Orchestrator.
+
+For each receiving organization, maintain:
+
+- Official organization identity
+- Jurisdiction
+- Supported service
+- Authorized submission method
+- Authentication requirements
+- Required signatures
+- Filing fees
+- API or partner documentation
+- Credential requirements
+- Submission permissions
+- Result-tracking capability
+- Integration verification date
+
+Supported methods:
+
+OFFICIAL_API
+AUTHORIZED_PARTNER
+QUALIFIED_PROFESSIONAL
+CUSTOMER_ASSISTED_OFFICIAL_PORTAL
+
+Never invent an API or connection.
+
+Never bypass agency authentication.
+
+Never store government credentials
+in insecure application fields.
+
+Never submit without explicit
+customer authorization.
+
+Create a test adapter first.
+
+Use clearly labeled synthetic responses.
+
+Do not represent simulated submissions
+as real government filings.
+
+===========================================================
+8. IDENTIFY THE FIRST REAL GOVERNMENT WORKFLOW
+===========================================================
+
+Research and verify the official
+requirements for New York business formation.
+
+Compare the available workflows for:
+
+- Sole proprietorships
+- Limited liability companies
+- Corporations
+
+Identify the appropriate state,
+county, federal, and local authorities.
+
+For each workflow determine:
+
+- Official source
+- Applicable eligibility
+- Required forms
+- Filing prerequisites
+- Submission method
+- Whether third-party submission is permitted
+- Whether an authorized API exists
+- Signature requirements
+- Identity verification requirements
+- Official filing fees
+- Confirmation method
+- Ongoing reporting obligations
+
+Select the first technically feasible
+workflow for an authorized integration.
+
+Do not choose based on popularity alone.
+
+Prioritize verified accessibility,
+customer value, security, and
+end-to-end execution feasibility.
+
+Prepare the adapter and tests.
+
+Do not activate live submission
+without separate owner authorization.
+
+===========================================================
+9. EXPAND VERIFIED LEGAL INTELLIGENCE
+===========================================================
+
+Preserve the existing no-cost,
+read-only Federal Register connection.
+
+Build a regulatory change pipeline.
+
+Start with relevant federal and
+New York business requirements.
+
+Support:
+
+OFFICIAL SOURCE COLLECTION
+CHANGE DETECTION
+SOURCE VERIFICATION
+EFFECTIVE DATE IDENTIFICATION
+JURISDICTION CLASSIFICATION
+INDUSTRY CLASSIFICATION
+BUSINESS IMPACT ANALYSIS
+HUMAN REVIEW WHEN REQUIRED
+VERSIONED REQUIREMENT UPDATE
+CUSTOMER TASK GENERATION
+
+Track:
+
+- Laws
+- Regulations
+- Official agency guidance
+- Filing requirements
+- Form changes
+- Licensing changes
+- Fees
+- Deadlines
+- Relevant funding requirements
+
+Distinguish:
+
+PROPOSED
+ENACTED
+EFFECTIVE
+SUPERSEDED
+REPEALED
+UNVERIFIED
+
+Do not treat a proposed rule
+as an effective obligation.
+
+Do not allow AI-generated legal
+interpretations to silently modify
+production compliance rules.
+
+===========================================================
+10. CONNECT LEGAL CHANGES TO EXECUTION
+===========================================================
+
+When a verified requirement changes:
+
+1. Identify affected jurisdictions.
+2. Identify affected business types.
+3. Check existing Business Projects.
+4. Determine which businesses may be affected.
+5. Compare old and new requirements.
+6. Identify necessary customer actions.
+7. Prepare supported updated documents.
+8. Create compliance tasks.
+9. Notify affected customers.
+10. Request review and authorization.
+11. Track actual completion evidence.
+
+Do not fabricate legal deadlines.
+
+Do not automatically file paperwork.
+
+Preserve the complete change history.
+
+===========================================================
+11. PRESERVE COMPLETE BUSINESS SERVICES
+===========================================================
+
+The architecture must continue supporting:
+
+- Business consulting
+- Business planning
+- Business formation
+- Contracts
+- Licenses
+- Permits
+- Government registrations
+- Grants
+- Loans
+- Banking preparation
+- Insurance preparation
+- Bookkeeping
+- Invoicing
+- Tax preparation coordination
+- Payroll-related administration
+- Marketing
+- Operations
+- Compliance
+- Renewals
+- Expansion
+- Professional outsourcing
+
+Immigrant and visa-holder entrepreneurs
+must remain supported in the same app.
+
+Distinguish immigration status,
+business ownership, work authorization,
+and funding eligibility.
+
+Regulated professional services must
+be handled through appropriately
+authorized providers.
+
+Do not remove existing integrations.
+
+===========================================================
+12. ONE CUSTOMER EXPERIENCE
+===========================================================
+
+Preserve the existing mobile interface.
+
+Do not create another disconnected dashboard.
+
+The customer should interact primarily
+with the existing B.I.G. assistant.
+
+The assistant should be able to:
+
+- Explain the current business status.
+- Recommend the next best action.
+- Initiate supported document workflows.
+- Identify required customer information.
+- Present documents for approval.
+- Explain outstanding requirements.
+- Track authorized submissions.
+- Explain verified regulatory changes.
+- Recommend business improvements.
+
+The customer should see:
+
+MY BUSINESS
+CURRENT STRATEGY
+WORK B.I.G. IS COMPLETING
+APPROVALS REQUIRED
+DOCUMENTS
+SUBMISSION STATUS
+COMPLIANCE
+FINANCIAL HEALTH
+NEXT RECOMMENDED ACTION
+
+Use existing components wherever possible.
+
+===========================================================
+13. EXECUTION ORDER — START NOW
+===========================================================
+
+Do not attempt to implement every
+future capability in one coding session.
+
+Complete the next working vertical slice:
+
+PHASE A:
+Verify and preserve the existing
+committed AutoForm workflow.
+
+PHASE B:
+Implement the Master Business
+Orchestrator's persistent task and
+dependency model.
+
+PHASE C:
+Connect the existing New York
+cleaning-business project to
+the orchestrator.
+
+PHASE D:
+Connect the existing strategic
+recommendation and document workflow
+to real orchestrator actions.
+
+PHASE E:
+Implement secure signature preparation
+and a no-cost test signing flow for
+the supported Cleaning Service Agreement.
+
+PHASE F:
+Build a DirectSubmit test adapter
+with accurate simulated statuses.
+
+PHASE G:
+Extend the existing Federal Register
+feed into a source-backed change record.
+
+PHASE H:
+Demonstrate one verified sample change
+producing an appropriate review task.
+
+PHASE I:
+Run all required tests and preserve data.
+
+PHASE J:
+Commit completed work locally.
+
+Do not mark incomplete phases as complete.
+
+If a phase has an external blocker,
+report it and continue independent
+authorized work.
+
+===========================================================
+14. REQUIRED END-TO-END ACCEPTANCE TEST
+===========================================================
+
+Use the existing test scenario:
+
+New York cleaning business.
+Available capital: $3,000.
+Selected plan: Build Strong.
+
+Demonstrate:
+
+1. Customer opens the existing project.
+2. Existing consultation context loads.
+3. Strategic recommendation is available.
+4. Master Orchestrator identifies next action.
+5. Business Passport data is reused
+   with authorization.
+6. Customer prepares a document.
+7. Customer reviews and corrects it.
+8. Exact revision is approved.
+9. Supported test signing is completed.
+10. Signed revision is stored securely.
+11. Next task becomes available.
+12. DirectSubmit test adapter receives
+    a simulated authorized package.
+13. Simulated submission is clearly labeled.
+14. A source-backed regulatory change
+    is processed.
+15. Relevant compliance task is generated.
+16. Progress survives logout/login.
+17. Another customer cannot access it.
+18. Original customer records remain intact.
+
+Use isolated test data.
+
+===========================================================
+15. REQUIRED ENGINEERING VERIFICATION
+===========================================================
+
+Run:
+
+- Existing regression tests
+- New orchestrator tests
+- Dependency ordering tests
+- Authorization tests
+- Document revision tests
+- Signature integrity tests
+- Submission state tests
+- Duplicate prevention tests
+- Regulatory source verification tests
+- Tenant isolation tests
+- Consent withdrawal tests
+- Database preservation tests
+- TypeScript checks
+- Production build
+- Mobile browser acceptance tests
+
+Test at:
+
+360px
+390px
+1280px
+
+Preserve all original records.
+
+Use additive migrations only.
+
+===========================================================
+16. SOURCE CONTROL AND SAFETY
+===========================================================
+
+Verify:
+
+- Current branch
+- Current HEAD
+- Working tree status
+- Remote configuration
+- GitHub synchronization status
+
+Do not assume a local commit exists
+on GitHub.
+
+Do not delete or rename branches.
+
+Do not change Git credentials.
+
+Do not force-push.
+
+Do not merge into protected main.
+
+Do not deploy.
+
+Do not activate paid services.
+
+Do not make real government filings.
+
+Do not make real financial submissions.
+
+Do not initiate payments.
+
+Commit verified development work locally.
+
+Report the exact steps needed to safely
+back up unsynchronized commits.
+
+===========================================================
+17. REQUIRED PROOF REPORT
+===========================================================
+
+Provide:
+
+1. Starting commit.
+2. Ending commit.
+3. Exact files changed.
+4. Existing features preserved.
+5. Orchestrator functionality implemented.
+6. Strategic intelligence connection.
+7. Document signing status.
+8. DirectSubmit adapter status.
+9. Official government connection findings.
+10. Regulatory intelligence functionality.
+11. Actual versus simulated capabilities.
+12. Customer acceptance test results.
+13. Security test results.
+14. Database preservation results.
+15. Mobile acceptance results.
+16. GitHub synchronization status.
+17. Remaining blockers.
+18. Next authorized implementation step.
+
+Include evidence of working application
+behavior, not just documentation.
+
+===========================================================
+FINAL EXECUTION ORDER
+===========================================================
+
+DO NOT REWRITE MY VISION.
+
+DO NOT STOP AT DOCUMENTATION.
+
+PRESERVE EVERYTHING ALREADY BUILT.
+
+CONNECT THE EXISTING INTELLIGENCE
+TO REAL BUSINESS EXECUTION.
+
+BUILD THE MASTER ORCHESTRATOR.
+
+EXTEND SECURE DOCUMENT SIGNING.
+
+PREPARE DIRECT GOVERNMENT SUBMISSION.
+
+EXPAND VERIFIED LEGAL INTELLIGENCE.
+
+TEST ONE COMPLETE CUSTOMER JOURNEY.
+
+COMMIT VERIFIED WORK.
+
+REPORT THE RESULTS.
+
+BEGIN ACTUAL DEVELOPMENT NOW.
+===========================================================

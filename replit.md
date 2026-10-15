@@ -98,6 +98,15 @@ A founder-focused business operating system that turns a business goal and curre
 
 The app supports founder onboarding, business planning, route evolution, evidence capture, execution preparation, outcomes, and a business-focused community. The imported package is a development/reference implementation, not a production-readiness claim.
 
+### Owner-authorized Master Orchestrator continuation
+
+- Preserve the original application, design, Partner Network, integrations, languages and customer data. Continue additive implementation on `genesis-os-2-development`; do not replace the application.
+- The authorized vertical slice connects existing strategy, private projects, Passport and AutoForm to persistent dependencies, explicit test signing, synthetic DirectSubmit results and official-source review tasks.
+- Signing/submission in this slice is **TEST ONLY**, not a legally executed agreement or an actual agency filing. Do not equate preparation, approval, test signature, test dispatch or synthetic acceptance.
+- Paid providers, live filings, financial submissions, payments and deployment remain unauthorized. Do not change Git credentials, force-push, merge protected main or discard source files.
+- Source observations are not proof of a new effective law or customer applicability. Require human review; never silently apply proposed rules or invent legal deadlines.
+- Finish functioning code and regression/browser verification, not documentation alone. Commit verified work locally and report the actual GitHub synchronization status.
+
 ## User preferences
 
 No additional user preferences recorded.

@@ -392,3 +392,75 @@ class ProviderWebhookEvent(Base):
     verified_signature: Mapped[bool]=mapped_column(Boolean,default=False)
     payload_hash: Mapped[str]=mapped_column(String(64))
     created_at: Mapped[datetime]=mapped_column(DateTime(timezone=True),default=now)
+
+
+class ProjectAction(Base):
+    """Project dependency metadata around the existing shared execution record."""
+    __tablename__ = "project_actions"
+    __table_args__ = (UniqueConstraint("project_id", "action_key", name="uq_project_action_key"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    action_id: Mapped[str] = mapped_column(ForeignKey("execution_action_records.id"), unique=True)
+    action_key: Mapped[str] = mapped_column(String(100))
+    subsystem: Mapped[str] = mapped_column(String(80))
+    dependencies_json: Mapped[str] = mapped_column(Text, default="[]")
+    requirements_json: Mapped[str] = mapped_column(Text, default="{}")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    attempts: Mapped[int] = mapped_column(Integer, default=0)
+    deadline: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
+class TestDocumentSignature(Base):
+    __tablename__ = "test_document_signatures"
+    __table_args__ = (UniqueConstraint("project_id", "request_key", name="uq_test_signature_request"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    document_id: Mapped[str] = mapped_column(ForeignKey("generated_documents.id"))
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    request_key: Mapped[str] = mapped_column(String(80))
+    envelope_json: Mapped[str] = mapped_column(Text)
+    artifact_hash: Mapped[str] = mapped_column(String(64))
+    audit_mac: Mapped[str] = mapped_column(String(64))
+    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class TestSubmission(Base):
+    __tablename__ = "test_submissions"
+    __table_args__ = (UniqueConstraint("project_id", "request_key", name="uq_test_submission_request"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    signature_id: Mapped[str] = mapped_column(ForeignKey("test_document_signatures.id"))
+    request_key: Mapped[str] = mapped_column(String(80))
+    outcome: Mapped[str] = mapped_column(String(40))
+    status: Mapped[str] = mapped_column(String(40), default="AUTHORIZED")
+    package_hash: Mapped[str] = mapped_column(String(64))
+    result_json: Mapped[str] = mapped_column(Text, default="{}")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class RegulatorySourceRevision(Base):
+    __tablename__ = "regulatory_source_revisions"
+    __table_args__ = (UniqueConstraint("project_id", "source_key", "content_hash", name="uq_project_source_hash"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    source_key: Mapped[str] = mapped_column(String(120))
+    source_url: Mapped[str] = mapped_column(Text)
+    content_hash: Mapped[str] = mapped_column(String(64))
+    facts_json: Mapped[str] = mapped_column(Text)
+    checked_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class RegulatoryChangeRecord(Base):
+    __tablename__ = "regulatory_change_records"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    source_revision_id: Mapped[str] = mapped_column(ForeignKey("regulatory_source_revisions.id"), unique=True)
+    previous_revision_id: Mapped[str | None] = mapped_column(ForeignKey("regulatory_source_revisions.id"), nullable=True)
+    change_type: Mapped[str] = mapped_column(String(40))
+    legal_status: Mapped[str] = mapped_column(String(30), default="UNVERIFIED")
+    effective_date: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    review_status: Mapped[str] = mapped_column(String(40), default="PENDING_HUMAN_REVIEW")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

@@ -123,6 +123,9 @@ def context(db, user, p):
 
 def finish(db, user, p):
     try:
+        db.flush()
+        from ..services.business_orchestrator import reconcile
+        reconcile(db, user, p)
         db.commit()
     except IntegrityError:
         db.rollback()

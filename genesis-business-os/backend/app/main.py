@@ -29,6 +29,7 @@ from .v2.partner_promotions import router as partner_promotions_router
 from .v2.ideas import router as ideas_router
 from .v2.consultation_privacy import router as consultation_privacy_router
 from .v2.documents import router as documents_router
+from .v2.orchestrator import router as orchestrator_router
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
 if settings.env == 'production':
@@ -45,6 +46,7 @@ app.include_router(partner_promotions_router)
 app.include_router(ideas_router)
 app.include_router(consultation_privacy_router)
 app.include_router(documents_router)
+app.include_router(orchestrator_router)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PUT','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
 PRODUCT_ROOT = Path(__file__).resolve().parents[2]
@@ -310,7 +312,7 @@ def execution_catalog(u:User=Depends(current_user)):
 def execution_actions(bid:str,u:User=Depends(current_user),db:Session=Depends(get_db)):
     business_for(db,bid,u)
     rows=db.scalars(select(ExecutionActionRecord).where(ExecutionActionRecord.tenant_id==u.tenant_id,ExecutionActionRecord.business_id==bid).order_by(ExecutionActionRecord.created_at.desc())).all()
-    return [{'id':r.id,'point_key':r.point_key,'mode':r.mode,'risk_tier':r.risk_tier,'status':r.status,'result':json.loads(r.result_json or '{}'),'created_at':r.created_at} for r in rows]
+    return [{'id':r.id,'point_key':r.point_key,'mode':r.mode,'risk_tier':r.risk_tier,'status':r.status,'result':json.loads(r.result_json or '{}'),'created_at':r.created_at} for r in rows if not r.point_key.startswith('orchestrator.') or r.user_id==u.id]
 
 @app.post('/api/execution/actions')
 def propose_execution(x:ExecutionProposeIn,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
@@ -327,6 +329,8 @@ def propose_execution(x:ExecutionProposeIn,u:User=Depends(current_user),db:Sessi
 def approve_execution(aid:str,x:ExecutionApproveIn,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
     ensure_not_lockdown(db,u); a=ensure_tenant(db.get(ExecutionActionRecord,aid),u)
     business_for(db,a.business_id,u)
+    if a.point_key.startswith('orchestrator.'):
+        raise HTTPException(409,'Use the project orchestrator for scoped action authorization')
     if not x.confirm: raise HTTPException(400,'Explicit confirmation required')
     if a.risk_tier>=3 and u.role not in ('owner','admin'): raise HTTPException(403,'Owner/admin approval required')
     a.approved_by=u.id; a.status='APPROVED'; audit(db,u,'approve','execution_action',a.id,{'point':a.point_key}); db.commit(); return {'id':a.id,'status':a.status}

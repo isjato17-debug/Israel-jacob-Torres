@@ -11,7 +11,9 @@ from sqlalchemy.orm import Session
 
 from app.models import (Tenant, User, Business, OnboardingJourney, GrowthCampaign, AIConsultation,
                         PartnerApplication, PartnerPromotion, BusinessIdea, IdeaRevision,
-                        BusinessProject, ConsultationPrivacy)
+                        BusinessProject, ConsultationPrivacy, BusinessPassport, DocumentWorkflow,
+                        GeneratedDocument, DocumentApproval)
+from app.services.document_engine import AgreementFields, canonical, digest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -87,25 +89,50 @@ def verify_upgrade(url):
         db.add(ConsultationPrivacy(tenant_id=saved.tenant_id, user_id=saved.user_id,
                                    journey_id=saved.id, status="REVOKED", version=2))
         db.commit()
+    alembic("upgrade", "g0007")
+    with Session(engine) as db:
+        project = db.scalar(select(BusinessProject))
+        fields = AgreementFields(business_name="Preserved cleaning", representative_name="Provider",
+                                 client_name="Client", price_cents=10000).model_dump()
+        db.add(BusinessPassport(project_id=project.id, tenant_id=project.tenant_id,
+                               user_id=project.user_id, fields_json=canonical(fields)))
+        workflow = DocumentWorkflow(project_id=project.id, tenant_id=project.tenant_id,
+            user_id=project.user_id, template_key="cleaning_service_agreement",
+            fields_json=canonical(fields), status="READY_FOR_SIGNATURE")
+        db.add(workflow); db.flush()
+        source = {"fields": fields, "template_version": 1, "prepared_at": "2026-10-15",
+                  "project_name": project.name, "plan_name": "Preserved plan", "jurisdiction": "NY"}
+        old_document_hash = digest(source)
+        doc = GeneratedDocument(workflow_id=workflow.id, revision=1, source_json=canonical(source),
+                                content_hash=old_document_hash)
+        db.add(doc); db.flush()
+        db.add(DocumentApproval(document_id=doc.id, user_id=project.user_id, content_hash=old_document_hash))
+        db.commit()
     def all_original_rows():
         with engine.connect() as conn:
             return {name: [tuple(row) for row in conn.execute(text(f'SELECT * FROM "{name}" ORDER BY 1'))]
                     for name in inspect(engine).get_table_names()
                     if name != "alembic_version" and name not in (
-                        "business_passports", "document_workflows", "generated_documents", "document_approvals")}
+                        "project_actions", "test_document_signatures", "test_submissions",
+                        "regulatory_source_revisions", "regulatory_change_records")}
     before_m0 = all_original_rows()
     alembic("upgrade", "head")
     assert all_original_rows() == before_m0
     assert snapshot() == before
     with engine.connect() as conn:
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0007"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0008"
         assert conn.scalar(text("SELECT COUNT(*) FROM ai_consultations")) == 1
         assert conn.scalar(text("SELECT COUNT(*) FROM partner_applications")) == 1
         assert conn.scalar(text("SELECT COUNT(*) FROM partner_promotions")) == 1
         for name in ("business_ideas", "idea_revisions", "business_projects", "consultation_privacy"):
             assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 1
         for name in ("business_passports", "document_workflows", "generated_documents", "document_approvals"):
+            assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 1
+        for name in ("project_actions", "test_document_signatures", "test_submissions",
+                     "regulatory_source_revisions", "regulatory_change_records"):
             assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 0
+    with Session(engine) as db:
+        assert digest(json.loads(db.scalar(select(GeneratedDocument)).source_json)) == old_document_hash
     assert "No new upgrade operations detected" in alembic("check")
     engine.dispose()
 

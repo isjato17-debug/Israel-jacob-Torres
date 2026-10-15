@@ -4,6 +4,7 @@ import { approveDocument, documentDownloadUrl, generateDocument, loadExecution, 
 import type { DocumentRecord, ExecutionContext, FormField } from "./documents-api";
 import "./execution.css";
 import ServiceStandby from "./ServiceStandby";
+import BusinessOrchestrator from "./BusinessOrchestrator";
 
 type Draft = Record<string, string>;
 const PASS = [["business_name", "Business name"], ["representative_name", "Representative name"], ["business_email", "Business email"], ["municipality", "Municipality"]] as const;
@@ -159,6 +160,7 @@ export default function ProjectExecution({ projectId, onProjectChange }: { proje
             <span className="gx-help">{new Date(d.created_at).toLocaleString("en-US")}. {d.approval ? `Approved ${new Date(d.approval.approved_at).toLocaleString("en-US")} (${d.approval.purpose})` : "Not approved"}</span><code>{d.content_hash}</code>
             {" "}<a href={documentDownloadUrl(projectId, d.id)} download={d.filename}>Download</a></li>)}</ol></section>}
       </>}
+       <BusinessOrchestrator key={`bo-${projectId}`} projectId={projectId} execution={ctx} docDirty={dirty} onProjectChange={onProjectChange} />
        <ServiceStandby key={projectId} projectId={projectId} />
     </section>
   );

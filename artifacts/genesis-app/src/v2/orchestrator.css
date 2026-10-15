@@ -1,0 +1,10 @@
+.bo{min-width:0;overflow-wrap:anywhere}
+.bo *{min-width:0}
+.bo input.bo-in,.bo select.bo-in{width:100%;min-height:48px;padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:#fffdf8;color:var(--ink);font:inherit}
+.bo .bo-item{border-top:1px solid var(--line);padding:12px 0}
+.bo .gx-btn{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.bo summary{min-height:44px;cursor:pointer;display:flex;align-items:center}
+.bo code{overflow-wrap:anywhere;font-size:.8rem}
+.bo .gx-check{min-height:44px}
+.bo ul{margin:6px 0}
+.bo .bo-disc{white-space:pre-wrap;border:2px solid var(--acc2);border-radius:10px;padding:12px;background:#fffdf8}

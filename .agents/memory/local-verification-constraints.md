@@ -14,3 +14,14 @@ Disposable PostgreSQL initialized in this workspace uses the `runner` role rathe
 **Why:** The default database role and process lifetime do not match common local PostgreSQL assumptions.
 
 **How to apply:** For temporary migration tests, use the initialized workspace role and keep the server process persistent until migration and startup checks finish.
+
+Workspace restarts can remove `/tmp` data and terminate background processes and
+in-flight helper assignments. Keep recovery copies in an excluded workspace
+directory, not solely under `/tmp`.
+
+**Why:** A workspace restart removed a disposable PostgreSQL data directory and
+interrupted browser acceptance even though source files and workspace SQLite
+fixtures survived.
+
+**How to apply:** Resume the same saved QA journey where possible; distinguish
+an interrupted verification session from an application failure.

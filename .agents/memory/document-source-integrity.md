@@ -15,3 +15,13 @@ old renderer would otherwise invalidate existing downloads and approved evidence
 **How to apply:** Version output-changing template edits, retain compatible old
 rendering paths, and verify old byte hashes. Corrections create a new revision and
 require new approval; historical approvals remain evidence, not current readiness.
+
+Keep test-signature renderers reproducible too. Coordinate any audit-key rotation
+with preserved historical verification access or a reviewed evidence migration;
+do not silently relabel unverifiable history as verified.
+
+**Why:** Private test copies bind both the original document and a server audit
+MAC. A key change can make an otherwise unchanged historical copy fail verification.
+
+**How to apply:** Treat key lifecycle as an operational prerequisite before
+production signing; this development test mechanism is not independent legal proof.
