@@ -327,6 +327,7 @@ export default function GuidedExperience() {
     <header className="gx-top">
       <span className="gx-brand">{t("brand")} <span className="gx-badge" data-testid="text-mode">{t("mode")}</span> <small className="gx-help" data-testid="text-powered">Powered by Genesis OS 2.0</small></span>
       <div className="gx-tools">
+        <a className="gx-btn sec" href={`${base}next/ideas/`} data-testid="link-idea-vault">Idea Vault</a>
         <a className="gx-btn sec" href={`${base}next/partners/`} data-testid="link-partners">Partner Network <small>{t("legacyNote")}</small></a>
         <OwnerAccessLink accountId={account?.id ?? null} language={lang} />
         <label>{t("language")}

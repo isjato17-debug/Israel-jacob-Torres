@@ -5,11 +5,11 @@ import subprocess
 from pathlib import Path
 
 import pytest
-from sqlalchemy import create_engine, text, select
+from sqlalchemy import create_engine, text, select, inspect
 from sqlalchemy.engine import make_url
 from sqlalchemy.orm import Session
 
-from app.models import Tenant, User, Business, OnboardingJourney, GrowthCampaign, AIConsultation
+from app.models import Tenant, User, Business, OnboardingJourney, GrowthCampaign, AIConsultation, PartnerApplication, PartnerPromotion
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -60,13 +60,35 @@ def verify_upgrade(url):
             turns_json='[]',
         ))
         db.commit()
+    alembic("upgrade", "g0005")
+    with Session(engine) as db:
+        saved = db.scalar(select(OnboardingJourney))
+        partner = PartnerApplication(
+            tenant_id=saved.tenant_id, applicant_id=saved.user_id, details_json='{"preserve":true}',
+        )
+        db.add(partner); db.flush()
+        db.add(PartnerPromotion(
+            tenant_id=saved.tenant_id, partner_id=partner.id,
+            title="Preserve private promotion", content="Preserved internal content",
+        ))
+        db.commit()
+    def all_original_rows():
+        with engine.connect() as conn:
+            return {name: [tuple(row) for row in conn.execute(text(f'SELECT * FROM "{name}" ORDER BY 1'))]
+                    for name in inspect(engine).get_table_names()
+                    if name != "alembic_version" and name not in (
+                        "business_ideas", "idea_revisions", "business_projects", "consultation_privacy")}
+    before_m0 = all_original_rows()
     alembic("upgrade", "head")
+    assert all_original_rows() == before_m0
     assert snapshot() == before
     with engine.connect() as conn:
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0005"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0006"
         assert conn.scalar(text("SELECT COUNT(*) FROM ai_consultations")) == 1
-        assert conn.scalar(text("SELECT COUNT(*) FROM partner_applications")) == 0
-        assert conn.scalar(text("SELECT COUNT(*) FROM partner_promotions")) == 0
+        assert conn.scalar(text("SELECT COUNT(*) FROM partner_applications")) == 1
+        assert conn.scalar(text("SELECT COUNT(*) FROM partner_promotions")) == 1
+        for name in ("business_ideas", "idea_revisions", "business_projects", "consultation_privacy"):
+            assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 0
     assert "No new upgrade operations detected" in alembic("check")
     engine.dispose()
 

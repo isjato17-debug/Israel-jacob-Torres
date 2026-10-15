@@ -26,6 +26,8 @@ from .v2.consultation import router as consultation_router
 from .services.readiness import check_readiness
 from .v2.partners import router as partners_router
 from .v2.partner_promotions import router as partner_promotions_router
+from .v2.ideas import router as ideas_router
+from .v2.consultation_privacy import router as consultation_privacy_router
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
 if settings.env == 'production':
@@ -39,6 +41,8 @@ app.include_router(growth_router)
 app.include_router(consultation_router)
 app.include_router(partners_router)
 app.include_router(partner_promotions_router)
+app.include_router(ideas_router)
+app.include_router(consultation_privacy_router)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PUT','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
 PRODUCT_ROOT = Path(__file__).resolve().parents[2]
@@ -63,7 +67,12 @@ async def harden(request:Request, call_next):
 def audit(db,user,action,rtype,rid,details=None):
     db.add(AuditEvent(tenant_id=user.tenant_id,actor_id=user.id,action=action,resource_type=rtype,resource_id=rid,details_json=json.dumps(details or {})))
 
-def business_for(db,bid,user): return ensure_tenant(db.get(Business,bid),user)
+def business_for(db,bid,user):
+    business = ensure_tenant(db.get(Business,bid),user)
+    private = db.scalar(select(BusinessProject).where(BusinessProject.business_id == bid))
+    if private and private.user_id != user.id:
+        raise HTTPException(404, "Business not found")
+    return business
 
 @app.get('/')
 def home(): return FileResponse(FRONTEND_ROOT / 'index.html')
@@ -104,7 +113,8 @@ def create_business(x:BusinessIn,u:User=Depends(current_user),db:Session=Depends
     ensure_not_lockdown(db,u); b=Business(tenant_id=u.tenant_id,name=x.name,twin_json=json.dumps(x.twin)); db.add(b); db.flush(); audit(db,u,'create','business',b.id); db.commit(); return {'id':b.id,'name':b.name,'state':b.lifecycle_state,'twin':x.twin}
 @app.get('/api/businesses')
 def list_businesses(u:User=Depends(current_user),db:Session=Depends(get_db)):
-    rows=db.scalars(select(Business).where(Business.tenant_id==u.tenant_id)).all(); return [{'id':r.id,'name':r.name,'state':r.lifecycle_state,'twin_version':r.twin_version,'twin':json.loads(r.twin_json)} for r in rows]
+    private_others=select(BusinessProject.business_id).where(BusinessProject.user_id != u.id)
+    rows=db.scalars(select(Business).where(Business.tenant_id==u.tenant_id, Business.id.not_in(private_others))).all(); return [{'id':r.id,'name':r.name,'state':r.lifecycle_state,'twin_version':r.twin_version,'twin':json.loads(r.twin_json)} for r in rows]
 
 @app.post('/api/evidence')
 def add_evidence(x:EvidenceIn,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
@@ -120,6 +130,7 @@ def create_decision(x:DecisionIn,u:User=Depends(current_user),db:Session=Depends
 @app.post('/api/decisions/{did}/approve')
 def approve(did:str,x:ApproveIn,u:User=Depends(require_owner),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
     ensure_not_lockdown(db,u); d=ensure_tenant(db.get(Decision,did),u)
+    business_for(db,d.business_id,u)
     if not x.confirm: raise HTTPException(400,'Explicit confirmation required')
     d.status='approved'; d.approved_by=u.id; capability=secrets.token_urlsafe(24) if d.risk_tier<=3 else None
     audit(db,u,'approve','decision',d.id,{'capability_issued':bool(capability),'tier':d.risk_tier}); db.commit()
@@ -313,6 +324,7 @@ def propose_execution(x:ExecutionProposeIn,u:User=Depends(current_user),db:Sessi
 @app.post('/api/execution/actions/{aid}/approve')
 def approve_execution(aid:str,x:ExecutionApproveIn,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
     ensure_not_lockdown(db,u); a=ensure_tenant(db.get(ExecutionActionRecord,aid),u)
+    business_for(db,a.business_id,u)
     if not x.confirm: raise HTTPException(400,'Explicit confirmation required')
     if a.risk_tier>=3 and u.role not in ('owner','admin'): raise HTTPException(403,'Owner/admin approval required')
     a.approved_by=u.id; a.status='APPROVED'; audit(db,u,'approve','execution_action',a.id,{'point':a.point_key}); db.commit(); return {'id':a.id,'status':a.status}
@@ -320,6 +332,7 @@ def approve_execution(aid:str,x:ExecutionApproveIn,u:User=Depends(current_user),
 @app.post('/api/execution/actions/{aid}/perform')
 async def perform_execution(aid:str,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
     ensure_not_lockdown(db,u); a=ensure_tenant(db.get(ExecutionActionRecord,aid),u); point=CATALOG.get(a.point_key)
+    business_for(db,a.business_id,u)
     if not point: raise HTTPException(409,'Execution point no longer available')
     if a.status in ('EXECUTED','PREPARED','GUIDED','VERIFIED'): return {'id':a.id,'status':a.status,'result':json.loads(a.result_json or '{}'),'replayed':True}
     if a.risk_tier>=2 and a.status!='APPROVED': raise HTTPException(403,'Explicit approval required before this action')
@@ -362,6 +375,7 @@ def add_execution_evidence(aid:str,x:ExecutionEvidenceIn,u:User=Depends(current_
 @app.post('/api/execution/actions/{aid}/verify')
 def verify_execution(aid:str,u:User=Depends(current_user),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
     a=ensure_tenant(db.get(ExecutionActionRecord,aid),u); point=CATALOG.get(a.point_key)
+    business_for(db,a.business_id,u)
     if not point: raise HTTPException(409,'Execution point no longer available')
     allowed_terminal={'EXECUTED','PREPARED','GUIDED'}
     if a.status not in allowed_terminal:
@@ -411,6 +425,7 @@ def _apply_execution_feedback(db:Session,u:User,a:ExecutionActionRecord,point,re
 @app.post('/api/execution/actions/{aid}/reconcile')
 def reconcile_execution(aid:str,x:ExecutionReconcileIn,u:User=Depends(require_owner),db:Session=Depends(get_db),_:bool=Depends(require_csrf)):
     ensure_not_lockdown(db,u); a=ensure_tenant(db.get(ExecutionActionRecord,aid),u); point=CATALOG.get(a.point_key)
+    business_for(db,a.business_id,u)
     if a.status!='NEEDS_RECONCILIATION': raise HTTPException(409,'Action is not awaiting reconciliation')
     if x.outcome=='unknown':
         audit(db,u,'reconcile_unknown','execution_action',a.id,{'note':x.note}); db.commit()

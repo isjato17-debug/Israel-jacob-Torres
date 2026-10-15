@@ -17,6 +17,7 @@ from ..services.consultation_engine import (
 )
 from ..services.official_resources import public_resources
 from .journey import owned, utc, QUESTIONS
+from .consultation_privacy import privacy_state
 
 router = APIRouter(prefix="/api/v2/journeys", tags=["B.I.G. consultation foundation"])
 
@@ -26,6 +27,7 @@ class ConsultationRequest(BaseModel):
     consent: Literal[True]
     expected_version: int = Field(ge=0, strict=True)
     journey_version: int = Field(ge=1, strict=True)
+    privacy_version: int = Field(default=0, ge=0, strict=True)
     message: str = Field(min_length=5, max_length=1200)
 
     @field_validator("message", mode="before")
@@ -61,6 +63,7 @@ def get(journey_id: str, user: User = Depends(current_user), db: Session = Depen
         "availability": {"mode": "SIMULATION_ONLY", "live_enabled": False,
                          "max_turns": MAX_TURNS, "external_actions_enabled": False},
         "resources": public_resources(journey.language),
+        "privacy": privacy_state(db, user, journey_id),
     }
 
 
@@ -70,6 +73,9 @@ def send(journey_id: str, payload: ConsultationRequest, user: User = Depends(cur
          provider=Depends(get_consultation_provider)):
     ensure_not_lockdown(db, user)
     journey = owned(db, user, journey_id)
+    privacy = privacy_state(db, user, journey_id)
+    if privacy["status"] in ("REVOKED", "DELETED") or privacy["version"] != payload.privacy_version:
+        raise HTTPException(409, "Consultation consent is withdrawn or changed. Review privacy controls before continuing.")
     facts = json.loads(journey.answers_json)
     if not all(facts.get(key) for key in QUESTIONS):
         raise HTTPException(409, "Finish and save intake before consulting")
@@ -105,6 +111,12 @@ def send(journey_id: str, payload: ConsultationRequest, user: User = Depends(cur
     if context_guard.rowcount != 1:
         db.rollback()
         raise HTTPException(409, "Business context changed. Reload before continuing.")
+    # Serialize privacy decisions and saves on the same journey lock. A delayed
+    # save must not restore content after withdrawal, deletion, or later re-consent.
+    current_privacy = privacy_state(db, user, journey_id)
+    if current_privacy != privacy:
+        db.rollback()
+        raise HTTPException(409, "Consultation privacy changed. Reload before continuing.")
     if item:
         changed = db.execute(update(AIConsultation).where(
             AIConsultation.id == item.id, AIConsultation.user_id == user.id,

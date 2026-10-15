@@ -1,0 +1,58 @@
+import type { Language } from "./journey-api";
+
+export interface PrivacyText {
+  h: string; status: string; s_NOT_WITHDRAWN: string; s_GRANTED: string; s_REVOKED: string; s_DELETED: string;
+  revoke: string; del: string; grant: string; revokeNote: string; delNote: string; grantNote: string;
+  confirmRevoke: string; confirmDel: string; confirmGrant: string; run: string; cancel: string; working: string;
+  blocked: string; done: string; conflict: string; fail: string;
+}
+export const privacyText: Record<Language, PrivacyText> = {
+  en: { h: "Consultation privacy", status: "Status", s_NOT_WITHDRAWN: "Consent active", s_GRANTED: "Consent granted again", s_REVOKED: "Consent withdrawn", s_DELETED: "Saved transcript erased",
+    revoke: "Withdraw consent", del: "Erase saved transcript", grant: "Give consent again",
+    revokeNote: "Withdrawing keeps your saved transcript visible and read-only, and blocks new messages and saving until you consent again.",
+    delNote: "Erasing permanently removes only your saved consultation messages. Your intake answers, business and financial records are kept. Backups may retain earlier data until reviewed retention and restore procedures remove it.",
+    grantNote: "Consenting again lets B.I.G. save and process your new messages with the simulated consultation (rule-based, not live AI) so you can resume.",
+    confirmRevoke: "I confirm I want to withdraw consent for consultation saving.", confirmDel: "I confirm I want to permanently erase my saved consultation transcript.", confirmGrant: "I consent to B.I.G. saving and processing my new consultation messages.",
+    run: "Confirm", cancel: "Cancel", working: "Working...", blocked: "Consultation messages are blocked while consent is withdrawn or the transcript is erased.", done: "Privacy choice saved.",
+    conflict: "Your privacy state changed elsewhere. The latest version was loaded; review it and choose again.", fail: "The privacy choice was not saved." },
+  es: { h: "Privacidad de la consulta", status: "Estado", s_NOT_WITHDRAWN: "Consentimiento activo", s_GRANTED: "Consentimiento otorgado de nuevo", s_REVOKED: "Consentimiento retirado", s_DELETED: "Transcripción guardada borrada",
+    revoke: "Retirar consentimiento", del: "Borrar transcripción guardada", grant: "Dar consentimiento otra vez",
+    revokeNote: "Al retirarlo, su transcripción guardada sigue visible solo para lectura, y se bloquean mensajes nuevos y el guardado hasta que consienta de nuevo.",
+    delNote: "Borrar elimina de forma permanente solo sus mensajes de consulta guardados. Se conservan sus respuestas iniciales y los registros de negocio y financieros. Las copias de seguridad pueden conservar datos anteriores hasta que procedimientos revisados de retención y restauración los eliminen.",
+    grantNote: "Al consentir de nuevo, B.I.G. puede guardar y procesar sus mensajes nuevos con la consulta simulada (basada en reglas, no IA en vivo) para que pueda continuar.",
+    confirmRevoke: "Confirmo que quiero retirar el consentimiento para guardar la consulta.", confirmDel: "Confirmo que quiero borrar de forma permanente mi transcripción guardada.", confirmGrant: "Consiento que B.I.G. guarde y procese mis mensajes nuevos de consulta.",
+    run: "Confirmar", cancel: "Cancelar", working: "Procesando...", blocked: "Los mensajes de consulta están bloqueados mientras el consentimiento esté retirado o la transcripción borrada.", done: "Elección de privacidad guardada.",
+    conflict: "Su estado de privacidad cambió en otro lugar. Se cargó la versión más reciente; revísela y elija de nuevo.", fail: "No se guardó la elección de privacidad." },
+  zh: { h: "咨询隐私", status: "状态", s_NOT_WITHDRAWN: "同意有效", s_GRANTED: "已重新同意", s_REVOKED: "已撤回同意", s_DELETED: "已删除保存的记录",
+    revoke: "撤回同意", del: "删除保存的记录", grant: "重新同意",
+    revokeNote: "撤回后，已保存的记录仍可只读查看，在您再次同意之前将禁止发送新消息和保存。",
+    delNote: "删除将永久移除您已保存的咨询消息。您的初始问答、业务和财务记录会保留。备份可能保留较早的数据，直到经审核的保留和恢复流程将其清除。",
+    grantNote: "再次同意后，B.I.G. 可以保存并处理您的新消息，用于模拟咨询（基于规则，非实时 AI），以便您继续。",
+    confirmRevoke: "我确认要撤回保存咨询的同意。", confirmDel: "我确认要永久删除已保存的咨询记录。", confirmGrant: "我同意 B.I.G. 保存并处理我的新咨询消息。",
+    run: "确认", cancel: "取消", working: "处理中...", blocked: "同意被撤回或记录已删除时，无法发送咨询消息。", done: "隐私选择已保存。",
+    conflict: "您的隐私状态已在别处更改。已加载最新版本，请查看后重新选择。", fail: "隐私选择未保存。" },
+  ar: { h: "خصوصية الاستشارة", status: "الحالة", s_NOT_WITHDRAWN: "الموافقة سارية", s_GRANTED: "تمت الموافقة مجددًا", s_REVOKED: "تم سحب الموافقة", s_DELETED: "تم مسح النص المحفوظ",
+    revoke: "سحب الموافقة", del: "مسح النص المحفوظ", grant: "الموافقة مرة أخرى",
+    revokeNote: "عند السحب يبقى النص المحفوظ ظاهرًا للقراءة فقط، وتُمنع الرسائل الجديدة والحفظ حتى توافق مجددًا.",
+    delNote: "يؤدي المسح إلى إزالة رسائل الاستشارة المحفوظة نهائيًا فقط. تبقى إجاباتك الأولية وسجلات العمل والسجلات المالية. قد تحتفظ النسخ الاحتياطية ببيانات سابقة إلى أن تزيلها إجراءات احتفاظ واستعادة تمت مراجعتها.",
+    grantNote: "عند الموافقة مجددًا يمكن لـ B.I.G. حفظ رسائلك الجديدة ومعالجتها ضمن الاستشارة المحاكاة (قائمة على قواعد وليست ذكاءً اصطناعيًا مباشرًا) لتتمكن من المتابعة.",
+    confirmRevoke: "أؤكد رغبتي في سحب الموافقة على حفظ الاستشارة.", confirmDel: "أؤكد رغبتي في مسح نص الاستشارة المحفوظ نهائيًا.", confirmGrant: "أوافق على أن يحفظ B.I.G. رسائل الاستشارة الجديدة ويعالجها.",
+    run: "تأكيد", cancel: "إلغاء", working: "جارٍ التنفيذ...", blocked: "رسائل الاستشارة محظورة أثناء سحب الموافقة أو مسح النص.", done: "تم حفظ اختيار الخصوصية.",
+    conflict: "تغيّرت حالة الخصوصية في مكان آخر. تم تحميل أحدث نسخة؛ راجعها ثم اختر مجددًا.", fail: "لم يتم حفظ اختيار الخصوصية." },
+  hi: { h: "परामर्श गोपनीयता", status: "स्थिति", s_NOT_WITHDRAWN: "सहमति सक्रिय है", s_GRANTED: "सहमति फिर से दी गई", s_REVOKED: "सहमति वापस ली गई", s_DELETED: "सहेजा गया ट्रांसक्रिप्ट मिटाया गया",
+    revoke: "सहमति वापस लें", del: "सहेजा गया ट्रांसक्रिप्ट मिटाएँ", grant: "फिर से सहमति दें",
+    revokeNote: "वापस लेने पर सहेजा गया ट्रांसक्रिप्ट केवल पढ़ने के लिए दिखता रहेगा, और आपके फिर सहमति देने तक नए संदेश व सहेजना रुके रहेंगे।",
+    delNote: "मिटाने से केवल आपके सहेजे गए परामर्श संदेश स्थायी रूप से हटते हैं। आपके प्रारंभिक उत्तर, व्यवसाय और वित्तीय रिकॉर्ड बने रहते हैं। बैकअप में पुराना डेटा तब तक रह सकता है जब तक समीक्षित प्रतिधारण और पुनर्स्थापना प्रक्रियाएँ उसे हटा न दें।",
+    grantNote: "फिर सहमति देने पर B.I.G. आपके नए संदेश सहेज और संसाधित कर सकता है, सिमुलेटेड परामर्श (नियम-आधारित, लाइव AI नहीं) के साथ, ताकि आप जारी रख सकें।",
+    confirmRevoke: "मैं पुष्टि करता/करती हूँ कि परामर्श सहेजने की सहमति वापस लेना चाहता/चाहती हूँ।", confirmDel: "मैं पुष्टि करता/करती हूँ कि सहेजा गया परामर्श ट्रांसक्रिप्ट स्थायी रूप से मिटाना चाहता/चाहती हूँ।", confirmGrant: "मैं सहमति देता/देती हूँ कि B.I.G. मेरे नए परामर्श संदेश सहेजे और संसाधित करे।",
+    run: "पुष्टि करें", cancel: "रद्द करें", working: "प्रक्रिया जारी...", blocked: "सहमति वापस होने या ट्रांसक्रिप्ट मिटने पर परामर्श संदेश बंद रहते हैं।", done: "गोपनीयता विकल्प सहेजा गया।",
+    conflict: "आपकी गोपनीयता स्थिति कहीं और बदल गई। नवीनतम संस्करण लोड हुआ; देखकर फिर चुनें।", fail: "गोपनीयता विकल्प सहेजा नहीं गया।" },
+  sw: { h: "Faragha ya mashauriano", status: "Hali", s_NOT_WITHDRAWN: "Idhini inatumika", s_GRANTED: "Idhini imetolewa tena", s_REVOKED: "Idhini imeondolewa", s_DELETED: "Nakala iliyohifadhiwa imefutwa",
+    revoke: "Ondoa idhini", del: "Futa nakala iliyohifadhiwa", grant: "Toa idhini tena",
+    revokeNote: "Kuondoa idhini huacha nakala yako iliyohifadhiwa ionekane kwa kusomwa tu, na huzuia ujumbe mpya na kuhifadhi hadi utoe idhini tena.",
+    delNote: "Kufuta huondoa kabisa ujumbe wako wa mashauriano uliohifadhiwa tu. Majibu yako ya awali, rekodi za biashara na za fedha hubaki. Nakala za akiba zinaweza kuhifadhi data ya awali hadi taratibu zilizokaguliwa za uhifadhi na urejeshaji ziiondoe.",
+    grantNote: "Ukitoa idhini tena, B.I.G. inaweza kuhifadhi na kuchakata ujumbe wako mpya kwa mashauriano ya kuigiza (yanayotegemea kanuni, si AI ya moja kwa moja) ili uendelee.",
+    confirmRevoke: "Nathibitisha ninataka kuondoa idhini ya kuhifadhi mashauriano.", confirmDel: "Nathibitisha ninataka kufuta kabisa nakala yangu ya mashauriano iliyohifadhiwa.", confirmGrant: "Nakubali B.I.G. ihifadhi na kuchakata ujumbe wangu mpya wa mashauriano.",
+    run: "Thibitisha", cancel: "Ghairi", working: "Inafanya kazi...", blocked: "Ujumbe wa mashauriano umezuiwa idhini ikiwa imeondolewa au nakala imefutwa.", done: "Chaguo la faragha limehifadhiwa.",
+    conflict: "Hali ya faragha ilibadilika mahali pengine. Toleo jipya limepakiwa; liangalie kisha chagua tena.", fail: "Chaguo la faragha halikuhifadhiwa." },
+};

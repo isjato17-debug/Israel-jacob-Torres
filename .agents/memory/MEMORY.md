@@ -3,5 +3,5 @@
 - [Production-readiness scope](production-readiness-scope.md) — Preserve the approved UI and unrelated data; isolate QA and stop at unavailable credentials without publishing.
 - [Dependency verification](dependency-verification.md) — A clean lockfile audit is insufficient; verify patched versions through the runtime's actual dependency paths.
 - [GitHub access checks](github-access-checks.md) — Healthy connector authorization does not prove that gh is authenticated; do not request duplicate OAuth solely from a local CLI error.
-- [Genesis OS 2.0 scope](genesis-2-scope.md) — Reconstruction is authorized on a separate branch; preserve the existing app and require approval for paid services, filings and publishing.
+- [Genesis OS 2.0 scope](genesis-2-scope.md) — Current scope is M0 plus the first M1 journey on the existing development branch; preserve features/data and keep paid/external actions and publishing blocked.
 - [B.I.G. brand and budget](big-brand-and-budget.md) — Permanent customer identity; Phase 2 is no-cost, simulated and non-autonomous; 5% revenue allocation is planning, not permission to spend.

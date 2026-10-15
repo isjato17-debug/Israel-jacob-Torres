@@ -66,3 +66,22 @@ formation, OnePay/marketplace/admin, broader management and advanced growth auto
 
 **How to apply:** Follow the complete phase order, preserve earlier safe work, and
 do not let a verified payment automatically mark a purchased service completed.
+
+The current master directive authorizes M0 and the first working vertical slice
+of M1 only: inspect/preserve existing capabilities, repair missing consultation
+privacy controls, and deliver a saved idea → three-plan comparison → selected
+Business Project journey. M2 through M10 remain architecture, not authorized
+implementation or live activation. Keep the full lifelong business vision; do not
+substitute a generic roadmap for verified working customer flows.
+
+**Why:** The user completed the truncated master directive with explicit bounded
+execution and the acceptance scenario “I want to start a cleaning business in
+New York with $3,000.”
+
+**How to apply:** Preserve advanced Genesis features, Partner Network, languages
+and existing records. Use isolated QA data; commit verified local work on the
+existing development branch. Do not change Git credentials, repeatedly retry
+failed pushes, create replacement branches, force-push, merge protected main,
+deploy, publish or activate paid/external actions. Leave the two directive
+uploads untouched unless removal is separately authorized. If the milestone
+exceeds a safe session, deliver a coherent tested portion and disclose the rest.

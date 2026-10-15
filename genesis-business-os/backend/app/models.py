@@ -82,6 +82,55 @@ class AIConsultation(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
+class ConsultationPrivacy(Base):
+    __tablename__ = "consultation_privacy"
+    journey_id: Mapped[str] = mapped_column(ForeignKey("onboarding_journeys.id"), primary_key=True)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    status: Mapped[str] = mapped_column(String(20))
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class BusinessIdea(Base):
+    __tablename__ = "business_ideas"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    facts_json: Mapped[str] = mapped_column(Text)
+    plans_json: Mapped[str] = mapped_column(Text, default="[]")
+    selected_plan: Mapped[str | None] = mapped_column(String(30), nullable=True)
+    status: Mapped[str] = mapped_column(String(20), default="DRAFT")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class IdeaRevision(Base):
+    __tablename__ = "idea_revisions"
+    __table_args__ = (UniqueConstraint("idea_id", "version", name="uq_idea_revision"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    idea_id: Mapped[str] = mapped_column(ForeignKey("business_ideas.id"), index=True)
+    version: Mapped[int] = mapped_column(Integer)
+    facts_json: Mapped[str] = mapped_column(Text)
+    action: Mapped[str] = mapped_column(String(30))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class BusinessProject(Base):
+    __tablename__ = "business_projects"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    idea_id: Mapped[str] = mapped_column(ForeignKey("business_ideas.id"), unique=True)
+    business_id: Mapped[str] = mapped_column(ForeignKey("businesses.id"), unique=True)
+    name: Mapped[str] = mapped_column(String(160))
+    plan_json: Mapped[str] = mapped_column(Text)
+    budget_cents: Mapped[int] = mapped_column(Integer)
+    stage: Mapped[str] = mapped_column(String(20), default="PLANNING")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class PartnerApplication(Base):
     __tablename__ = "partner_applications"
     id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)

@@ -15,7 +15,8 @@ def check_readiness(engine, environment):
             # Development has no migration stamping; check the active schema, not just process life.
             tables = set(inspect(engine).get_table_names())
             if not {"users", "onboarding_journeys", "growth_campaigns", "ai_consultations",
-                    "partner_applications", "partner_promotions"} <= tables:
+                    "partner_applications", "partner_promotions", "consultation_privacy",
+                    "business_ideas", "idea_revisions", "business_projects"} <= tables:
                 return checks
         checks["schema"] = True
     except Exception:

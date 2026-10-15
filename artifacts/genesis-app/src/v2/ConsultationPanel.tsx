@@ -2,10 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { ApiError } from "./journey-api";
 import type { Journey, Language } from "./journey-api";
-import { fetchConsultation, sendConsultation } from "./consultation-api";
+import { decideConsultationPrivacy, fetchConsultation, sendConsultation } from "./consultation-api";
 import type { ConsultationState } from "./consultation-api";
 import { consultationText } from "./consultation-i18n";
 import { isRtl } from "./journey-api";
+import PrivacyControls from "./PrivacyControls";
+import type { PrivacyAction } from "./PrivacyControls";
+import { privacyText } from "./privacy-i18n";
 
 
 
@@ -23,6 +26,8 @@ function Inner({ journey, lang, accountId, onUnauthorized, onRefreshJourney, sta
   const [stale, setStale] = useState(false);
   const [refreshErr, setRefreshErr] = useState("");
   const [conflicts, setConflicts] = useState(0);
+  const [privMsg, setPrivMsg] = useState("");
+  const [privErr, setPrivErr] = useState("");
   const alive = useRef(true);
   const requestSerial = useRef(0);
   const unauth = useRef(onUnauthorized); unauth.current = onUnauthorized;
@@ -65,13 +70,14 @@ function Inner({ journey, lang, accountId, onUnauthorized, onRefreshJourney, sta
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     if (busyRef.current || busy || !data || stale) return;
+    if (data.privacy.status === "REVOKED" || data.privacy.status === "DELETED") return;
     const m = draft.trim();
     if (m.length < 5 || m.length > 1200) { setErr(t.len); return; }
     if (!ok) { setErr(t.needConsent); return; }
     ++requestSerial.current; // A late focus GET must not replace a successful mutation.
     setBusy(true); busyRef.current = true; setErr(""); setConflict(false); setRefreshErr("");
     try {
-      const r = await sendConsultation(journey, c?.version ?? 0, m);
+      const r = await sendConsultation(journey, c?.version ?? 0, m, data.privacy.version);
       if (!alive.current) return;
       setData((d) => d && { ...d, consultation: r }); setDraft(""); setOk(false); setConflicts(0);
     } catch (x) {
@@ -86,6 +92,30 @@ function Inner({ journey, lang, accountId, onUnauthorized, onRefreshJourney, sta
       else setErr(`${t.sendErr} ${x instanceof Error ? x.message : ""}`);
     } finally { busyRef.current = false; if (alive.current) setBusy(false); }
   };
+
+  const runPrivacy = async (action: PrivacyAction): Promise<boolean> => {
+    if (busyRef.current || !data) return false;
+    const pt = privacyText[lang];
+    ++requestSerial.current; // Invalidate any in-flight GET so it cannot overwrite the result.
+    setBusy(true); busyRef.current = true; setPrivMsg(""); setPrivErr("");
+    try {
+      await decideConsultationPrivacy(journey.id, data, action);
+      if (!alive.current) return true;
+      if (action !== "grant") { setDraft(""); setOk(false); }
+      setErr(""); setStale(false);
+      const fresh = await load();
+      if (!alive.current) return true;
+      if (fresh) setPrivMsg(pt.done); else setRefreshErr(t.refreshFail);
+      return true;
+    } catch (x) {
+      if (!alive.current) return false;
+      if (x instanceof ApiError && (x.status === 401 || x.status === 403)) { unauth.current(); return false; }
+      if (x instanceof ApiError && x.status === 409) { setPrivErr(pt.conflict); await load(); }
+      else setPrivErr(`${pt.fail} ${x instanceof Error ? x.message : ""}`);
+      return false;
+    } finally { busyRef.current = false; if (alive.current) setBusy(false); }
+  };
+  const blocked = data?.privacy.status === "REVOKED" || data?.privacy.status === "DELETED";
 
   const showDetail = journey.detail_mode === "details";
   void accountId;
@@ -130,7 +160,7 @@ function Inner({ journey, lang, accountId, onUnauthorized, onRefreshJourney, sta
             <><h3>{t.official}</h3><p className="gx-help">{t.officialNote}</p>
               <ul>{data.resources.map((r) => <li key={r.id}><a href={r.url} target="_blank" rel="noopener noreferrer">{r.title}</a></li>)}</ul></>
           )}
-          {full ? <p className="gx-warn" role="status" data-testid="text-consultation-max">{t.max}</p> : (
+          {blocked ? null : full ? <p className="gx-warn" role="status" data-testid="text-consultation-max">{t.max}</p> : (
             <form onSubmit={submit} noValidate>
               <label className="gx-field" htmlFor="cons-q">{t.ask}</label>
               <p className="gx-help" id="cons-hint">{t.hint}</p>
@@ -144,6 +174,7 @@ function Inner({ journey, lang, accountId, onUnauthorized, onRefreshJourney, sta
               <div className="gx-row"><button type="submit" className="gx-btn" disabled={busy || stale} data-testid="consultation-send">{busy ? t.sending : t.send}</button></div>
             </form>
           )}
+          <PrivacyControls lang={lang} data={data} busy={busy} message={privMsg} error={privErr} onRun={runPrivacy} />
         </>
       )}
     </section>

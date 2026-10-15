@@ -30,7 +30,7 @@ export default defineConfig({
     configureServer(server) {
       server.middlewares.use((request, _response, next) => {
         const url = request.url ?? '';
-        if (['/next', '/next/draft', '/next/draft/', '/next/owner', '/next/owner/', '/next/partners', '/next/partners/', '/next/owner/partners', '/next/owner/partners/'].includes(url.split('?')[0])) {
+        if (['/next', '/next/draft', '/next/ideas', '/next/ideas/', '/next/draft/', '/next/owner', '/next/owner/', '/next/partners', '/next/partners/', '/next/owner/partners', '/next/owner/partners/'].includes(url.split('?')[0])) {
           const query = url.indexOf('?');
           request.url = `/next/index.html${query >= 0 ? url.slice(query) : ''}`;
         }
