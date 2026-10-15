@@ -9,6 +9,45 @@ NY_WAGE_URL = "https://dol.ny.gov/minimum-wage"
 LEGAL_STATES = ("PROPOSED", "ENACTED", "EFFECTIVE", "SUPERSEDED", "REPEALED", "UNVERIFIED")
 
 
+def store_sources(db, user, p, items):
+    """One recording path for manual and automatic bounded public reads."""
+    from sqlalchemy import select
+    from ..models import RegulatorySourceRevision, RegulatoryChangeRecord, ExecutionTask
+    from . import business_orchestrator as engine
+    from .document_engine import canonical
+    from .test_signing import sha
+    added = 0
+    for item in items:
+        facts = item["facts"]
+        content_hash = sha(canonical(facts).encode())
+        exists = db.scalar(select(RegulatorySourceRevision).where(
+            RegulatorySourceRevision.project_id == p.id, RegulatorySourceRevision.source_key == item["key"],
+            RegulatorySourceRevision.content_hash == content_hash))
+        if exists:
+            continue
+        previous = db.scalar(select(RegulatorySourceRevision).where(
+            RegulatorySourceRevision.project_id == p.id, RegulatorySourceRevision.source_key == item["key"])
+                             .order_by(RegulatorySourceRevision.checked_at.desc()))
+        source = RegulatorySourceRevision(project_id=p.id, source_key=item["key"], source_url=item["url"],
+                                         facts_json=canonical(facts), content_hash=content_hash)
+        db.add(source); db.flush()
+        change = RegulatoryChangeRecord(project_id=p.id, source_revision_id=source.id,
+            previous_revision_id=previous.id if previous else None,
+            change_type="SOURCE_CONTENT_CHANGED" if previous else "FIRST_SOURCE_OBSERVATION",
+            legal_status=facts["legal_status"], effective_date=facts.get("effective_date"))
+        db.add(change); db.flush()
+        action, record = engine.create_action(db, user, p, "regulatory:" + change.id,
+            "Review official source: " + facts["title"], "Regulatory intelligence / Mission Control", [])
+        engine.set_state(action, record, "AWAITING_CUSTOMER_APPROVAL")
+        db.add(ExecutionTask(tenant_id=user.tenant_id, business_id=p.business_id, horizon="today",
+            task="Review possible regulatory relevance: " + facts["title"], budget="0", kpi="regulatory:" + change.id))
+        engine.evidence(db, user, p, action, "official_source_observed",
+            "Official source collected; legal applicability NOT verified",
+            {"source_hash": content_hash, "change_type": change.change_type})
+        added += 1
+    return added
+
+
 def collect_sources():
     results, errors = [], []
     feed = fetch_public_notices()

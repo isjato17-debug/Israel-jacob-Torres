@@ -19,6 +19,12 @@ export interface RegulatoryChange {
   checked_at: string; change_type: string; legal_status: string; effective_date: string | null;
   review_status: string; previous_revision_id: string | null; facts: Record<string, unknown>;
 }
+export interface Autonomous {
+  enabled: boolean; mode: "NO_PAID_AI_INTERNAL_TOOLS_ONLY";
+  outputs: { key: string; title: string; content_hash: string; integrity_verified: boolean; output: Record<string, unknown> }[];
+  requests: { key: string; kind: string; title: string; fields: { key: string; label: string }[]; reason: string }[];
+  restrictions: string[];
+}
 export interface OrchestratorView {
   initialized: boolean; scope: string; actions: BusinessAction[]; next_actions: string[];
   strategy: { selected: string; recommended: string; reason: string; classification: string;
@@ -32,6 +38,7 @@ export interface OrchestratorView {
   business_strategy?: Strategy | null; source_context?: Record<string, unknown> | null;
   planning_tasks?: { id: string; task: string; status: string; kpi: string }[];
   next_action?: { key: string; title: string; task_id: string | null } | null;
+  autonomous?: Autonomous;
   collection?: { status: string; added: number; errors: string[] };
 }
 const root = (id: string) => `/v2/projects/${id}/orchestrator`;
@@ -50,3 +57,4 @@ export const cancelBusinessAction = (id: string, key: string, version: number) =
 export const collectRegulatorySources = (id: string) => call<OrchestratorView>(`${root(id)}/regulatory/collect`, "POST", {});
 export const reviewRegulatoryChange = (id: string, change: string, version: number, decision: string) =>
   call<OrchestratorView>(`${root(id)}/regulatory/${change}/review`, "POST", { expected_version: version, decision, confirmed: true });
+export const runOrchestrator = (id: string, retryFailed = false) => call<OrchestratorView>(`${root(id)}/run`, "POST", { retry_failed: retryFailed });

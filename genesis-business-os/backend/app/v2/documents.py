@@ -124,6 +124,8 @@ def context(db, user, p):
 def finish(db, user, p):
     try:
         db.flush()
+        from ..services.project_execution import advance
+        advance(db, user, p)
         from ..services.business_orchestrator import reconcile
         reconcile(db, user, p)
         db.commit()
@@ -223,13 +225,19 @@ def start(project_id: str, payload: Start, user: User = Depends(current_user),
     p = owned(db, user, project_id)
     if not context(db, user, p)["supported"]:
         raise HTTPException(422, "Only the cleaning-service agreement template is supported")
+    ensure_workflow(db, user, p)
+    return finish(db, user, p)
+
+
+def ensure_workflow(db, user, p):
+    """Shared AutoForm operation, also used by the bounded internal executor."""
     w = workflow(db, p)
     if w:
-        return context(db, user, p)
+        return w
     saved = passport(db, p)
     fields = forms.AgreementFields(**(json.loads(saved.fields_json) if saved else {})).model_dump()
     w = DocumentWorkflow(project_id=p.id, tenant_id=user.tenant_id, user_id=user.id,
-                         template_key=payload.template_key, fields_json=forms.canonical(fields))
+                         template_key=forms.TEMPLATE_KEY, fields_json=forms.canonical(fields))
     db.add(w)
     try:
         db.flush()
@@ -239,7 +247,7 @@ def start(project_id: str, payload: Start, user: User = Depends(current_user),
     sync_project(db, p, w)
     audit(db, user, "document_workflow_started", w.id, 1,
           passport_version=saved.version if saved else 0)
-    return finish(db, user, p)
+    return w
 
 
 @router.patch("/{project_id}/execution/document")
@@ -258,13 +266,19 @@ def generate(project_id: str, payload: Version, user: User = Depends(current_use
              db: Session = Depends(get_db), _: bool = Depends(require_csrf)):
     ensure_not_lockdown(db, user)
     p = owned(db, user, project_id); w = workflow(db, p)
+    generate_document(db, user, p, w, payload.expected_version)
+    return finish(db, user, p)
+
+
+def generate_document(db, user, p, w, expected_version):
+    """Generate one immutable unsigned revision using the existing renderer."""
     if not w:
         raise HTTPException(409, "Start the document workflow first")
     fields = forms.AgreementFields(**json.loads(w.fields_json)).model_dump()
     absent = forms.missing(fields)
     if absent:
         raise HTTPException(422, "Complete required fields: " + ", ".join(forms.LABELS[k] for k in absent))
-    change(db, w, payload.expected_version, status="GENERATED")
+    change(db, w, expected_version, status="GENERATED")
     previous = db.scalars(select(GeneratedDocument).where(GeneratedDocument.workflow_id == w.id)).all()
     facts = json.loads(db.get(BusinessIdea, p.idea_id).facts_json)
     source = {"template_version": forms.TEMPLATE_VERSION, "fields": fields,
@@ -274,7 +288,6 @@ def generate(project_id: str, payload: Version, user: User = Depends(current_use
                              source_json=forms.canonical(source), content_hash=forms.digest(source)))
     sync_project(db, p, w)
     audit(db, user, "document_generated", w.id, w.version, revision=len(previous) + 1)
-    return finish(db, user, p)
 
 
 @router.post("/{project_id}/execution/approve")

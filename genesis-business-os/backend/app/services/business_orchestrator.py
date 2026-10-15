@@ -11,7 +11,7 @@ from .idea_planning import prepare_plans
 from .test_signing import verify, sha, DISCLOSURE, DISCLOSURE_VERSION
 from .business_registry import registry, government_workflows
 
-STATES = ("NOT_READY", "INFORMATION_REQUIRED", "READY", "AWAITING_CUSTOMER_APPROVAL", "AUTHORIZED",
+STATES = ("NOT_READY", "BLOCKED", "INFORMATION_REQUIRED", "READY", "AWAITING_CUSTOMER_APPROVAL", "AUTHORIZED",
           "IN_PROGRESS", "AWAITING_EXTERNAL_RESULT", "COMPLETED_VERIFIED", "CORRECTION_REQUIRED", "FAILED", "CANCELLED")
 SPECS = {
     "strategy": ("Review selected strategy and alternatives", "Executive Board / Three-Plan Engine", []),
@@ -90,7 +90,8 @@ def reconcile(db, user, p):
             if r.status != "COMPLETED_VERIFIED":
                 set_state(a, r, "AWAITING_CUSTOMER_APPROVAL")
         elif key == "prepare":
-            set_state(a, r, "COMPLETED_VERIFIED" if d and w.status != "DRAFT" else "INFORMATION_REQUIRED")
+            if r.status not in ("FAILED", "BLOCKED"):
+                set_state(a, r, "COMPLETED_VERIFIED" if d and w.status != "DRAFT" else "INFORMATION_REQUIRED")
         elif key == "approve":
             set_state(a, r, "COMPLETED_VERIFIED" if w.status == "READY_FOR_SIGNATURE" else "AWAITING_CUSTOMER_APPROVAL")
         elif key == "sign":
@@ -143,6 +144,7 @@ def strategy(db, p):
 
 
 def view(db, user, p):
+    from .project_execution import execution_view
     nodes = rows(db, p)
     actions = []
     for key, (a, r) in nodes.items():
@@ -175,6 +177,12 @@ def view(db, user, p):
             "legal_status": c.legal_status, "effective_date": c.effective_date, "review_status": c.review_status,
             "previous_revision_id": c.previous_revision_id, "facts": facts})
     plan = json.loads(p.plan_json)
+    autonomous = execution_view(db, user, p, nodes)
+    invalid = {o["key"] for o in autonomous["outputs"] if not o["integrity_verified"]}
+    for action in actions:
+        if action["key"] in invalid:
+            action["status"] = "FAILED"
+            action["verification_error"] = "Stored output integrity failed"
     planning = db.scalars(select(ExecutionTask).where(
         ExecutionTask.tenant_id == user.tenant_id, ExecutionTask.business_id == p.business_id,
         ExecutionTask.kpi.in_(("unified:strategy", "unified:funding")))
@@ -185,6 +193,7 @@ def view(db, user, p):
     next_action = ({"key": remaining.kpi, "title": remaining.task, "task_id": remaining.id} if remaining else
                    {"key": actionable["key"], "title": actionable["title"], "task_id": None} if actionable else None)
     return {"initialized": bool(nodes), "scope": "INTERNAL_PREPARATION_AND_EXPLICIT_TESTS_ONLY", "actions": actions,
+            "autonomous": autonomous,
             "business_strategy": plan.get("business_strategy"), "source_context": plan.get("source_context"),
             "planning_tasks": [{"id": t.id, "task": t.task, "status": t.status, "kpi": t.kpi} for t in planning],
             "next_action": next_action,

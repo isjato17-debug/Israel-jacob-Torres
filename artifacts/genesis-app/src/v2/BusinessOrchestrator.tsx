@@ -19,10 +19,10 @@ const label = (a: BusinessAction, view: OrchestratorView) => {
 };
 const money = (c: number) => "$" + (c / 100).toLocaleString("en-US", { minimumFractionDigits: 2 });
 
-export default function BusinessOrchestrator({ projectId, execution, docDirty = false, onProjectChange, project, refreshToken, onNextAction }: { project?: Project; refreshToken?: string; onNextAction?: (has: boolean) => void; projectId: string; execution: ExecutionContext; docDirty?: boolean; onProjectChange?: () => void | Promise<void> }) {
+export default function BusinessOrchestrator({ projectId, execution, docDirty = false, onProjectChange, onExecutionChange, project, refreshToken, onNextAction }: { project?: Project; refreshToken?: string; onNextAction?: (has: boolean) => void; projectId: string; execution: ExecutionContext; docDirty?: boolean; onProjectChange?: () => void | Promise<void>; onExecutionChange?: () => void | Promise<void> }) {
   const [view, setView] = useState<OrchestratorView | null>(null);
   const [loading, setLoading] = useState(true);
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(false); const [running, setRunning] = useState(false);
   const [err, setErr] = useState(""); const [kind, setKind] = useState<"" | "401" | "409" | "x">("");
   const [note, setNote] = useState("");
   const [stratOk, setStratOk] = useState(false);
@@ -52,6 +52,26 @@ export default function BusinessOrchestrator({ projectId, execution, docDirty = 
     finally { if (ep === epoch.current && alive.current) setLoading(false); }
   }, [projectId]);
   useEffect(() => { void load(); }, [load, wfVersion]);
+  const execRef = useRef(onExecutionChange); execRef.current = onExecutionChange;
+  const projRef = useRef(onProjectChange); projRef.current = onProjectChange;
+  const ran = useRef(""); const inflight = useRef(false); const sig = useRef("");
+  const initialized = !!view?.initialized;
+  const signature = (v: OrchestratorView) => JSON.stringify([v.autonomous?.outputs.map((o) => o.content_hash), v.actions.map((a) => a.key + a.status + a.version), v.autonomous?.requests.map((r) => r.key)]);
+  const autoRun = useCallback(async (retry: boolean) => {
+    if (inflight.current) return; inflight.current = true; const ep = ++epoch.current; setRunning(true); setErr(""); setKind("");
+    try {
+      const v = await O.runOrchestrator(projectId, retry); if (ep !== epoch.current || !alive.current) return;
+      const s = signature(v); const changed = sig.current !== "" && sig.current !== s; sig.current = s; setView(v);
+      if (changed || retry) { await projRef.current?.(); await execRef.current?.(); }
+    } catch (e) { if (ep === epoch.current && alive.current) fail(e); }
+    finally { inflight.current = false; if (alive.current) setRunning(false); }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectId]);
+  useEffect(() => { sig.current = ""; ran.current = ""; }, [projectId]);
+  useEffect(() => {
+    if (!initialized || busy) return; const k = `${projectId}:${wfVersion}`;
+    if (ran.current === k) return; ran.current = k; void autoRun(false);
+  }, [initialized, busy, projectId, wfVersion, autoRun]);
   const first = useRef(true);
   useEffect(() => { if (first.current) { first.current = false; return; } void load(true); }, [load, refreshToken]);
   const nextRef = useRef(onNextAction); nextRef.current = onNextAction;
@@ -114,6 +134,21 @@ export default function BusinessOrchestrator({ projectId, execution, docDirty = 
         <div className="gx-row"><button type="button" className="gx-btn" disabled={busy} data-testid="orchestrator-start" onClick={() => void mut(() => O.startOrchestrator(projectId), "Orchestrator started.")}>{busy ? "Starting..." : "Start orchestrator"}</button></div>
       </div> : <>
         <p className="gx-help">Scope: {view.scope}</p>
+
+        {view.autonomous && <div data-testid="orchestrator-execution">
+          <h4 style={{ marginTop: 20 }}>Execution checklist and results</h4>
+          <p className="gx-help">Mode: {view.autonomous.mode}. {view.autonomous.enabled ? "Runs automatically with internal tools only." : "Automatic run is off."} {running ? "Running..." : ""}</p>
+          {view.autonomous.restrictions.length > 0 && <ul>{view.autonomous.restrictions.map((r, i) => <li key={i} className="gx-help">{r}</li>)}</ul>}
+          {acts.map((a) => <div key={a.key} data-testid={`checklist-${a.key}`}><b>{a.title}</b> <span className="gx-badge">{label(a, view)}</span>
+            {a.blocked_by.length > 0 && <span className="gx-warn"> Blocked: {a.blocked_by.join(", ")}</span>}</div>)}
+          <div className="gx-row"><button type="button" className="gx-btn sec" disabled={busy || running || !acts.some((a) => a.status === "FAILED" && a.attempts < 3)} data-testid="orchestrator-retry-failed" onClick={() => void autoRun(true)}>Retry failed actions</button></div>
+          {(["inputs", "approvals", "system"] as const).map((g) => { const rs = view.autonomous!.requests.filter((r) => (r.kind === "approval" ? "approvals" : r.kind === "information" ? "inputs" : "system") === g); return rs.length > 0 && <div key={g} data-testid={`requests-${g}`}><h5>{g === "inputs" ? "Missing inputs from you" : g === "approvals" ? "Waiting for your approval" : "Failed or unsupported work — independent tasks continue"}</h5>
+            {rs.map((r) => <div className="bo-item" key={r.key}><b>{r.title}</b> <span className="gx-tag">{r.kind}</span><p className="gx-help">{r.reason}</p>
+              {r.fields.length > 0 && <ul>{r.fields.map((f) => <li key={f.key}>{f.label}</li>)}</ul>}</div>)}</div>; })}
+          {view.autonomous.outputs.length === 0 ? <p className="gx-help">No stored outputs yet. Market validation and funding review are never completed automatically.</p> : view.autonomous.outputs.map((o) => <details key={o.key} data-testid={`output-${o.key}`}><summary>{o.title} <span className="gx-tag">{o.integrity_verified ? "hash integrity verified" : "integrity NOT verified"}</span></summary>
+            <p className="gx-help">Hash <code>{o.content_hash}</code></p>
+            <dl>{Object.entries(o.output).map(([k, v]) => <div key={k}><dt>{k.replace(/_/g, " ")}</dt><dd>{typeof v === "object" ? <pre>{JSON.stringify(v, null, 2)}</pre> : String(v)}</dd></div>)}</dl></details>)}
+        </div>}
 
         <h4 style={{ marginTop: 20 }}>Strategy</h4>
         <p>Recommended: <b>{strat.recommended}</b>. Selected: <b>{strat.selected || "none yet"}</b>. <span className="gx-tag">{strat.classification}</span></p>

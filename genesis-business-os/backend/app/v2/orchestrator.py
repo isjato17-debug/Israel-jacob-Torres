@@ -54,9 +54,15 @@ class Review(Accept):
     decision: Literal["REVIEWED", "NOT_APPLICABLE", "NEEDS_PROFESSIONAL_REVIEW"]
 
 
+class Run(Strict):
+    retry_failed: bool = Field(default=False, strict=True)
+
+
 def finish(db, user, p, action):
     try:
         db.flush()
+        from ..services.project_execution import advance
+        advance(db, user, p)
         engine.reconcile(db, user, p)
         audit(db, user, action, p.id, 1)
         db.commit()
@@ -96,6 +102,15 @@ def accept_strategy(project_id: str, data: Accept, user: User = Depends(current_
     engine.evidence(db, user, p, a, "selected_plan_review", "Customer reviewed alternatives and retained the saved selected plan",
                     {"selected": json.loads(p.plan_json)["key"]})
     return finish(db, user, p, "strategy_reviewed")
+
+
+@router.post("/run")
+def run(project_id: str, data: Run, user: User = Depends(current_user),
+        db: Session = Depends(get_db), _: bool = Depends(require_csrf)):
+    from ..services.project_execution import advance
+    p = writable(db, user, project_id)
+    advance(db, user, p, enable=True, retry_failed=data.retry_failed)
+    return finish(db, user, p, "internal_execution_resumed")
 
 
 def approved_document(db, p, document_id=None, content_hash=None):
@@ -222,10 +237,16 @@ def latest_submission(db, p):
 @router.post("/submission/dispatch")
 def dispatch(project_id: str, data: Version, user: User = Depends(current_user), db: Session = Depends(get_db),
              _: bool = Depends(require_csrf)):
-    p = writable(db, user, project_id); t = latest_submission(db, p); package_current(db, p, t)
+    p = writable(db, user, project_id)
+    dispatch_package(db, user, p, data.expected_version)
+    return finish(db, user, p, "test_package_dispatched")
+
+
+def dispatch_package(db, user, p, expected_version):
+    t = latest_submission(db, p); package_current(db, p, t)
     if t.status in ("AWAITING_EXTERNAL_RESULT", "SIMULATED_ACCEPTED", "SIMULATED_REJECTED", "SIMULATED_CORRECTION_REQUIRED"):
-        return engine.view(db, user, p)
-    a, r = engine.checked_node(db, p, "submit", data.expected_version, {"AUTHORIZED"})
+        return
+    a, r = engine.checked_node(db, p, "submit", expected_version, {"AUTHORIZED"})
     if t.status != "AUTHORIZED":
         raise HTTPException(409, "Test dispatch is not authorized")
     engine.set_state(a, r, "IN_PROGRESS")
@@ -235,16 +256,21 @@ def dispatch(project_id: str, data: Version, user: User = Depends(current_user),
     engine.set_state(a, r, "AWAITING_EXTERNAL_RESULT")
     engine.evidence(db, user, p, a, "test_package_received", "Synthetic adapter received immutable package; result not yet verified",
                     {"package_hash": t.package_hash}, synthetic=True)
-    return finish(db, user, p, "test_package_dispatched")
 
 
 @router.post("/submission/verify")
 def verify_result(project_id: str, data: Version, user: User = Depends(current_user),
                   db: Session = Depends(get_db), _: bool = Depends(require_csrf)):
-    p = writable(db, user, project_id); t = latest_submission(db, p); package_current(db, p, t)
+    p = writable(db, user, project_id)
+    verify_package(db, user, p, data.expected_version)
+    return finish(db, user, p, "test_result_verified")
+
+
+def verify_package(db, user, p, expected_version):
+    t = latest_submission(db, p); package_current(db, p, t)
     if t.status.startswith("SIMULATED_"):
-        return engine.view(db, user, p)
-    a, r = engine.checked_node(db, p, "submit", data.expected_version, {"AWAITING_EXTERNAL_RESULT"})
+        return
+    a, r = engine.checked_node(db, p, "submit", expected_version, {"AWAITING_EXTERNAL_RESULT"})
     if t.status != "AWAITING_EXTERNAL_RESULT":
         raise HTTPException(409, "No test-adapter result is available")
     t.status = "SIMULATED_" + t.outcome
@@ -255,7 +281,6 @@ def verify_result(project_id: str, data: Version, user: User = Depends(current_u
                            "CORRECTION_REQUIRED": "CORRECTION_REQUIRED"}[t.outcome])
     engine.evidence(db, user, p, a, "synthetic_result", t.status + " — verified local TEST result only",
                     json.loads(t.result_json), synthetic=True)
-    return finish(db, user, p, "test_result_verified")
 
 
 @router.post("/actions/{key}/cancel")
@@ -280,33 +305,8 @@ def collect(project_id: str, user: User = Depends(current_user), db: Session = D
     if not engine.rows(db, p):
         raise HTTPException(409, "Start the orchestrator first")
     items, errors = collect_sources()
-    added = 0
-    for item in items:
-        facts = item["facts"]; content_hash = signing.sha(canonical(facts).encode())
-        exists = db.scalar(select(RegulatorySourceRevision).where(
-            RegulatorySourceRevision.project_id == p.id, RegulatorySourceRevision.source_key == item["key"],
-            RegulatorySourceRevision.content_hash == content_hash))
-        if exists:
-            continue
-        previous = db.scalar(select(RegulatorySourceRevision).where(
-            RegulatorySourceRevision.project_id == p.id, RegulatorySourceRevision.source_key == item["key"])
-                             .order_by(RegulatorySourceRevision.checked_at.desc()))
-        s = RegulatorySourceRevision(project_id=p.id, source_key=item["key"], source_url=item["url"],
-                                      facts_json=canonical(facts), content_hash=content_hash)
-        db.add(s); db.flush()
-        c = RegulatoryChangeRecord(project_id=p.id, source_revision_id=s.id,
-            previous_revision_id=previous.id if previous else None,
-            change_type="SOURCE_CONTENT_CHANGED" if previous else "FIRST_SOURCE_OBSERVATION",
-            legal_status=facts["legal_status"], effective_date=facts.get("effective_date"))
-        db.add(c); db.flush()
-        a, r = engine.create_action(db, user, p, "regulatory:" + c.id, "Review official source: " + facts["title"],
-                                    "Regulatory intelligence / Mission Control", [])
-        engine.set_state(a, r, "AWAITING_CUSTOMER_APPROVAL")
-        db.add(ExecutionTask(tenant_id=user.tenant_id, business_id=p.business_id, horizon="today",
-            task="Review possible regulatory relevance: " + facts["title"], budget="0", kpi="regulatory:" + c.id))
-        engine.evidence(db, user, p, a, "official_source_observed", "Official source collected; legal applicability NOT verified",
-                        {"source_hash": content_hash, "change_type": c.change_type})
-        added += 1
+    from ..services.regulatory_collection import store_sources
+    added = store_sources(db, user, p, items)
     result = finish(db, user, p, "official_sources_collected")
     result["collection"] = {"status": "VERIFIED_PUBLIC_SOURCES_COLLECTED" if items else "UNAVAILABLE_NOT_VERIFIED",
                             "added": added, "errors": errors}

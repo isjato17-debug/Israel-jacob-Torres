@@ -1,0 +1,27 @@
+B.I.G. — PHASE 1: VERIFIED AUTONOMOUS BUSINESS EXECUTION
+
+CORE MISSION: Genesis OS 2.0 / B.I.G. must remain one intelligent, hands-on business consultant, developer, and operator that helps customers create, launch, manage, and grow businesses. The customer provides the idea; B.I.G. performs every supported, authorized task.
+
+1. INSPECT FIRST: Audit existing consultation, Master Orchestrator, Business Passport, AutoForm, Executive Board, Founder DNA, Digital Twin, Mission Control, Partner Network, document workflows, and execution tools. Reuse existing systems. Identify only missing connections and capabilities.
+
+2. UNIFY THE JOURNEY: Connect the saved business idea to two strategic recommendations, B.I.G.’s preferred strategy, and the existing three financial plans. Preserve explicit customer selections and generate one persistent, personalized execution workflow without repeated data entry.
+
+3. EXECUTE INTELLIGENTLY: Implement a dependency-aware checklist that automatically performs eligible tasks through existing authorized tools, stores outputs, verifies results, and advances to the next eligible task. Continue independent tasks when another task is blocked.
+
+4. VERIFY REQUIREMENTS: Associate business requirements with jurisdiction, official source, effective date, and verification status. Never present unverified legal or regulatory guidance as confirmed.
+
+5. CONTROL AUTHORIZATION: Reuse existing consent and approval mechanisms. Require scoped customer authorization for consequential actions. Record approval history and support revocation where applicable.
+
+6. VERIFY REAL RESULTS: Distinguish planned, prepared, awaiting approval, submitted, confirmed, completed, failed, and blocked states. Store supporting evidence and never claim external execution without actual confirmation.
+
+7. MINIMIZE CUSTOMER INTERRUPTION: Ask only for genuinely missing information, decisions, signatures, payments, or permissions. Group requests when practical and resume automatically after approval.
+
+8. PROTECT RELIABILITY: Enforce customer isolation, idempotency, retry safety, secure information handling, audit logs, spending restrictions, and recovery from interrupted workflows.
+
+9. PROVE THE EXPERIENCE: Demonstrate the existing $3,000 New York cleaning-business journey from consultation through strategy selection, financial plan selection, automatic checklist execution, document generation, verified saved results, approval pause, and resume after login.
+
+10. TEST AND REPORT: Run relevant backend, frontend, database, mobile, security, and regression tests. Preserve existing customer data. Commit verified changes only to genesis-os-2-development. Report actual execution evidence, passing and failing tests, remaining limitations, and final commit ID.
+
+STRICT SCOPE: Complete Phase 1 only. Do not activate paid AI, customer billing, government submissions, external spending, deployment, or modify protected main. Do not create duplicate systems or begin Phase 2.
+
+ACCEPTANCE STANDARD: B.I.G. must complete every currently supported, authorized task it can perform, accurately identify what it cannot perform, and continue progressing without unnecessary customer intervention. Demonstrate this behavior before declaring Phase 1 complete.

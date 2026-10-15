@@ -319,7 +319,7 @@ export default function IdeaVault() {
         {(cur.status === "DRAFT" || cur.status === "PLANNED") && <button type="button" className="gx-btn" disabled={busy} data-testid="generate" onClick={() => act(() => ideaAction(cur, "generate"))}>{cur.plans.length ? t("regen") : t("gen")}</button>}
         {cur.status !== "ARCHIVED" && <button type="button" className="gx-btn sec" disabled={busy} data-testid="archive" onClick={() => act(() => ideaAction(cur, "archive"))}>{t("archive")}</button>}
         {cur.status === "ARCHIVED" && <button type="button" className="gx-btn" disabled={busy} data-testid="restore" onClick={() => act(() => ideaAction(cur, "restore"))}>{t("restore")}</button>}
-        {cur.status === "PLANNED" && cur.selected_plan && <button type="button" className="gx-btn" disabled={busy} data-testid="develop" onClick={develop}>{t("develop")}</button>}
+        {cur.status === "PLANNED" && cur.selected_plan && <button type="button" className="gx-btn" disabled={busy || ((cur.strategies ?? []).length > 0 && !cur.selected_strategy)} data-testid="develop" onClick={develop}>{t("develop")}</button>}
       </div>
       {(cur.strategies ?? []).length > 0 && <section aria-labelledby="iv-sh" data-testid="strategy-section">
         <h3 id="iv-sh" style={{ marginTop: 20 }}>{SX[lang].h}</h3><p className="gx-help">{SX[lang].p}</p>
@@ -345,7 +345,7 @@ export default function IdeaVault() {
       {project && <section aria-labelledby="iv-ph" data-testid="project-detail">
         <h3 id="iv-ph" style={{ marginTop: 22 }}>{project.name}</h3>
         <p className="gx-help">{project.stage} {usd(project.budget_cents)} {project.plan.name}</p>
-        <h4>{t("checklist")}</h4>
+        <h4>{t("checklist")} (manual, optional)</h4>
         {project.checklist.map((c) => (
           <label className="iv-task" key={c.id}>
             <input type="checkbox" checked={c.status === "done"} disabled={busy} onChange={() => void toggle(c.id, c.status)} data-testid={`task-${c.id}`} />

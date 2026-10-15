@@ -35,6 +35,7 @@ export default function ProjectExecution({ projectId, onProjectChange, project, 
   const [draft, setDraft] = useState<Draft>({}); const [dirty, setDirty] = useState(false);
   const [review, setReview] = useState(false); const [busy, setBusy] = useState(false);
   const [fe, setFe] = useState<Record<string, string>>({}); const [note, setNote] = useState("");
+  const dirtyRef = useRef(false); dirtyRef.current = dirty;
   const epoch = useRef(0); const alive = useRef(true);
   const cbRef = useRef(onProjectChange); cbRef.current = onProjectChange;
   useEffect(() => { alive.current = true; return () => { alive.current = false; epoch.current++; }; }, []);
@@ -58,6 +59,9 @@ export default function ProjectExecution({ projectId, onProjectChange, project, 
   }, [projectId, adopt]);
   useEffect(() => { void load(); }, [load]);
 
+  const syncCtx = useCallback(async () => {
+    try { const c = await loadExecution(projectId); if (!alive.current) return; setCtx(c); if (!dirtyRef.current) setDraft(toDraft(c)); } catch { /* next load reports */ }
+  }, [projectId]);
   const run = async (fn: () => Promise<ExecutionContext>, keepDraft = false, refreshParent = false) => {
     if (busy) return; const ep = epoch.current; setBusy(true); setErr(""); setKind(""); setNote("");
     try {
@@ -104,7 +108,7 @@ export default function ProjectExecution({ projectId, onProjectChange, project, 
       <p className="gx-help">Deterministic checklist logic from your saved project, not AI. Documents are written in English only. Nothing is sent, filed, signed or paid for you.</p>
       {errBox}
       <p className="gx-ok" role="status">{note}</p>
-      <BusinessOrchestrator key={`bo-${projectId}`} projectId={projectId} execution={ctx} docDirty={dirty} onProjectChange={onProjectChange} project={project} refreshToken={refreshToken} onNextAction={setBoNext} />
+      <BusinessOrchestrator key={`bo-${projectId}`} projectId={projectId} execution={ctx} docDirty={dirty} onProjectChange={onProjectChange} onExecutionChange={syncCtx} project={project} refreshToken={refreshToken} onNextAction={setBoNext} />
       {!boNext && <div className="px-next" data-testid="execution-next">Next: {a.next_action ? `${a.next_action}. ` : ""}{stage}</div>}
       <p style={{ marginTop: 12 }}>{a.summary}</p>
       {a.reasons.length > 0 && <ul>{a.reasons.map((r, i) => <li key={i}>{r}</li>)}</ul>}

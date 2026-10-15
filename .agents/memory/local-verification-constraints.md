@@ -15,6 +15,15 @@ Disposable PostgreSQL initialized in this workspace uses the `runner` role rathe
 
 **How to apply:** For temporary migration tests, use the initialized workspace role and keep the server process persistent until migration and startup checks finish.
 
+Disposable PostgreSQL databases must use UTF-8 rather than SQL_ASCII.
+
+**Why:** Locale-free PostgreSQL initialization here can default to SQL_ASCII;
+psycopg then returns bytes where SQLAlchemy expects text, causing connection
+initialization errors unrelated to the app's migrations.
+
+**How to apply:** Check the disposable database encoding before interpreting
+PostgreSQL connection failures as application regressions.
+
 Workspace restarts can remove `/tmp` data and terminate background processes and
 in-flight helper assignments. Keep recovery copies in an excluded workspace
 directory, not solely under `/tmp`.

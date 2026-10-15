@@ -13,8 +13,10 @@ PASSWORD = "BIG-foundation-safe-2026!"
 
 
 @pytest.fixture
-def env():
+def env(monkeypatch):
     buckets.clear()
+    monkeypatch.setattr("app.services.regulatory_collection.collect_sources",
+                        lambda: ([], ["Offline test: public sources unavailable"]))
     c, h, u = account()
     j = prepare(c, h)
     j = c.patch(f"/api/v2/journeys/{j['id']}/answer", headers=h, json={
@@ -64,7 +66,7 @@ def test_goal_once_two_strategies_three_plans_auto_roadmap_and_resume(env):
     assert project["plan"]["source_context"]["consultation_version"] == consultation["version"]
     orchestrator = f"/api/v2/projects/{project['id']}/orchestrator"
     view = c.get(orchestrator).json()
-    assert view["initialized"] and len(view["actions"]) == 5
+    assert view["initialized"] and len(view["actions"]) == 13
     assert next(a for a in view["actions"] if a["key"] == "strategy")["status"] == "COMPLETED_VERIFIED"
     assert view["next_action"]["key"] == "unified:strategy" and len(view["planning_tasks"]) == 2
     assert all(t["budget"] == 0 for t in project["checklist"])

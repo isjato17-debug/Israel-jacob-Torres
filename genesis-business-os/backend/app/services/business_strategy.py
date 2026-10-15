@@ -68,3 +68,5 @@ def initialize_roadmap(db, user, project):
                             horizon="today", task=task, budget="0", status="todo", kpi=kpi))
     db.flush()
     engine.reconcile(db, user, project)
+    from .project_execution import advance
+    advance(db, user, project, enable=True)
