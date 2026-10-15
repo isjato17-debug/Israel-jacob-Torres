@@ -49,6 +49,23 @@ class Business(Base):
     next_turn_json: Mapped[str]=mapped_column(Text, default='{}')
     created_at: Mapped[datetime]=mapped_column(DateTime(timezone=True), default=now)
 
+class OnboardingJourney(Base):
+    __tablename__ = 'onboarding_journeys'
+    __table_args__ = (UniqueConstraint('tenant_id', 'user_id', 'stage', name='uq_journey_user_stage'),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey('tenants.id'), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey('users.id'), index=True)
+    business_id: Mapped[str] = mapped_column(ForeignKey('businesses.id'), index=True)
+    stage: Mapped[str] = mapped_column(String(8))
+    answers_json: Mapped[str] = mapped_column(Text, default='{}')
+    language: Mapped[str] = mapped_column(String(5), default='en')
+    detail_mode: Mapped[str] = mapped_column(String(12), default='simple')
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    consent_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class Evidence(Base):
     __tablename__='evidence'
     id: Mapped[str]=mapped_column(String, primary_key=True, default=uid)

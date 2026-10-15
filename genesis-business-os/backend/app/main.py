@@ -20,6 +20,7 @@ from .services.security_runtime import production_guard, login_guard, login_fail
 from .services.migration_runtime import assert_current_revision
 from .services.execution_hub import CATALOG, public_catalog, connection_status, prepare as prepare_execution, execute as execute_provider
 from .v2.router import router as v2_router
+from .v2.journey import router as journey_router
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
 if settings.env == 'production':
@@ -28,6 +29,7 @@ else:
     Base.metadata.create_all(engine)
 app=FastAPI(title='Genesis Business OS',version='0.1.0',docs_url='/docs' if settings.env!='production' else None,redoc_url=None)
 app.include_router(v2_router)
+app.include_router(journey_router)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
 PRODUCT_ROOT = Path(__file__).resolve().parents[2]

@@ -1,0 +1,48 @@
+.gx{--bg:#f4ede1;--ink:#1d2a2e;--mut:#5b665f;--card:#fbf7ef;--line:#d9ccb6;--acc:#b4482a;--acc2:#1f5c58;--ok:#1f5c58;--bad:#9b2226;
+  min-height:100dvh;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Gill Sans",Verdana,sans-serif;font-size:17px;line-height:1.5}
+.gx *{box-sizing:border-box}
+.gx h1,.gx h2,.gx h3,.gx .serif{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:700;letter-spacing:-.01em;margin:0}
+.gx h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.05}
+.gx h2{font-size:1.6rem;line-height:1.2}.gx h3{font-size:1.2rem}
+.gx-wrap{max-width:1040px;margin:0 auto;padding:16px 18px 64px}
+.gx-top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:8px 0 20px;border-bottom:2px solid var(--ink)}
+.gx-brand{font-family:Georgia,serif;font-weight:700;font-size:1.3rem}
+.gx-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.gx-tools label{display:flex;gap:6px;align-items:center;font-size:.9rem}
+.gx select,.gx input[type=text],.gx input[type=email],.gx input[type=password],.gx textarea{width:100%;min-height:48px;padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:#fffdf8;color:var(--ink);font:inherit}
+.gx-tools select{width:auto;min-height:44px}
+.gx textarea{min-height:160px;resize:vertical}
+.gx :focus-visible{outline:4px solid var(--acc);outline-offset:2px}
+.gx-btn{min-height:48px;padding:10px 20px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);font:inherit;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.gx-btn:hover{background:var(--acc);border-color:var(--acc)}
+.gx-btn.sec{background:transparent;color:var(--ink)}.gx-btn.sec:hover{background:var(--ink);color:var(--bg)}
+.gx-btn:disabled{opacity:.55;cursor:not-allowed}
+.gx a{color:var(--acc2)}
+.gx-hero{padding:36px 0 20px}.gx-hero p{max-width:60ch;color:var(--mut);font-size:1.1rem}
+.gx-badge{display:inline-block;padding:4px 10px;border:2px solid var(--acc2);color:var(--acc2);border-radius:99px;font-size:.8rem;font-weight:700;letter-spacing:.04em}
+.gx-card{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:20px;margin-top:20px;box-shadow:6px 6px 0 var(--line)}
+.gx-stages{display:grid;gap:14px;grid-template-columns:1fr;margin-top:20px}
+@media(min-width:760px){.gx-stages{grid-template-columns:1.3fr 1fr 1fr}.gx-two{display:grid;grid-template-columns:1fr 1fr;gap:20px}}
+.gx-stage{text-align:left;min-height:120px;padding:18px;border:2px solid var(--ink);border-radius:12px;background:var(--card);cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:6px}
+.gx-stage:first-child{background:var(--acc);color:#fff8ee}
+.gx-stage[aria-pressed=true]{outline:4px solid var(--acc2);outline-offset:2px}
+.gx-stage b{font-family:Georgia,serif;font-size:1.25rem}
+.gx-field{display:block;margin-top:14px;font-weight:700}
+.gx-field small,.gx-help{display:block;font-weight:400;color:var(--mut)}
+.gx-err{color:var(--bad);font-weight:700;margin:8px 0 0}
+.gx-ok{color:var(--ok);font-weight:700}
+.gx-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.gx-check{display:flex;gap:12px;align-items:flex-start;margin-top:14px}
+.gx-check input{width:28px;height:28px;flex:none;accent-color:var(--acc2)}
+.gx-bar{height:10px;border-radius:9px;background:var(--line);overflow:hidden;margin:8px 0}
+.gx-bar i{display:block;height:100%;background:var(--acc2);transform-origin:left}
+.gx-q{font-size:clamp(1.6rem,5vw,2.4rem);outline:none}
+.gx-step{padding:14px 0;border-top:1px solid var(--line)}
+.gx-tag{display:inline-block;margin:2px 6px 2px 0;padding:2px 8px;border:1px solid var(--ink);border-radius:6px;font-size:.8rem}
+.gx-skel{height:90px;border-radius:12px;background:linear-gradient(90deg,var(--line),var(--card),var(--line));background-size:200% 100%;animation:gxs 1.4s linear infinite;margin-top:20px}
+@keyframes gxs{to{background-position:-200% 0}}
+.gx-warn{border-left:6px solid var(--acc);padding:8px 12px;background:#f1dfc9;margin-top:14px}
+.gx ol,.gx ul{padding-left:22px}
+.gx dl{margin:0}.gx dt{font-weight:700;margin-top:10px}.gx dd{margin:0;overflow-wrap:anywhere}
+@media(prefers-reduced-motion:reduce){.gx *{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:no-preference){.gx-card{animation:gxin .35s ease-out}@keyframes gxin{from{opacity:0;transform:translateY(8px)}}.gx-bar i{transition:transform .5s}}

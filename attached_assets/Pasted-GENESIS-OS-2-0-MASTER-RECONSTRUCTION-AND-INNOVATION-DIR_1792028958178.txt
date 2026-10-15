@@ -1,0 +1,171 @@
+GENESIS OS 2.0 — MASTER RECONSTRUCTION AND INNOVATION DIRECTIVE
+
+Reconstruct my existing Genesis OS application into a next-generation AI-powered business operating system.
+
+The goal is to create an exceptionally simple, comprehensive, intelligent platform that helps anyone start, operate, and grow a business.
+
+Do not simply copy existing business-formation or management applications.
+
+Build Genesis around a unified AI execution experience that minimizes the work customers must perform.
+
+CORE EXPERIENCE
+
+The customer interface must revolve around three primary actions:
+
+START MY BUSINESS
+RUN MY BUSINESS
+GROW MY BUSINESS
+
+Genesis AI must guide customers through natural conversation using simple language, voice, and text.
+
+Ask one question at a time.
+
+Automatically save progress.
+
+Remember authorized business information.
+
+Adapt explanations and interface complexity to the customer’s preferences.
+
+Never assume the customer’s education, experience, or technical knowledge.
+
+CORE INNOVATIONS
+
+Develop these interconnected systems:
+
+1. GENESIS MISSION CONTROL
+
+One intelligent action center showing customers what Genesis is doing, what it costs, and what happens next.
+
+2. GENESIS ADAPTIVE INTELLIGENCE
+
+Personalized AI guidance, communication, accessibility, and interface behavior.
+
+3. GENESIS BUSINESS AUTOPILOT
+
+AI-assisted coordination of authorized business tasks, registrations, documents, service providers, and ongoing operations.
+
+4. GENESIS FIRST CUSTOMER ENGINE
+
+Tools that help entrepreneurs develop customer acquisition plans, establish marketing channels, manage outreach, and track actual sales opportunities.
+
+5. GENESIS BUSINESS HEALTH MONITOR
+
+Proactive monitoring of compliance deadlines, business finances, incomplete tasks, and operational risks.
+
+6. GENESIS BUSINESS PASSPORT
+
+Secure, permission-controlled reuse of verified business information and documents across supported services.
+
+7. GENESIS BUSINESS EXPANSION ARCHITECT
+
+Multi-company management, parent companies, subsidiaries, ownership records, brands, and expansion planning.
+
+COMPLETE BUSINESS SERVICES
+
+Integrate or coordinate:
+
+Business formation, LLCs, corporations, partnerships, nonprofits, holding companies, EIN applications, tax registration, licenses, permits, registered agents, legal documents, banking, accounting, payroll, insurance, payment processing, websites, domains, branding, marketing, financing resources, business credit, compliance, and professional services.
+
+Support jurisdiction-specific requirements throughout all 50 U.S. states.
+
+Use authorized APIs and service-provider partnerships wherever available.
+
+Keep customers inside Genesis whenever legally and technically possible.
+
+Never misrepresent an incomplete integration or government filing as completed.
+
+CUSTOMER EXPERIENCE
+
+The application must be mobile-first, visually premium, accessible, multilingual, and extremely easy to understand.
+
+Use short instructions, large buttons, minimal navigation, and clear progress indicators.
+
+Provide beginner-friendly guidance without limiting advanced functionality.
+
+Implement secure document storage, transparent pricing, and explicit customer approval for consequential actions.
+
+BUSINESS MODEL
+
+Create configurable subscriptions, business formation packages, consulting services, service fees, eligible partner commissions, and premium business management features.
+
+Include an owner administration dashboard for customers, revenue, services, integrations, and operational reporting.
+
+GITHUB AND EXISTING APPLICATION
+
+Preserve the current Genesis OS application and source history.
+
+The correct repository is:
+
+isjato17-debug/Israel-jacob-Torres
+
+The previously reported local commit is:
+
+7a09fa54d0a18dad7f5b6cca184d8258f7c47418
+
+GitHub authentication previously failed with an invalid username or token.
+
+Diagnose the authentication context and provide the exact browser authorization action if required.
+
+Do not request passwords or expose credentials.
+
+After successful authorization, safely synchronize and verify the repository.
+
+Do not force-push, delete branches, overwrite source history, or create another application.
+
+RECONSTRUCTION PROCESS
+
+First, audit the existing codebase and preserve a recoverable backup.
+
+Identify reusable components, existing integrations, database structures, security controls, and deployment readiness.
+
+Then design the new architecture and customer experience.
+
+Develop the reconstruction in a separate branch or environment.
+
+Prioritize a complete, reliable initial customer journey before adding advanced capabilities.
+
+Use real integrations, genuine status tracking, and verifiable completion records.
+
+Do not deploy, purchase services, submit government filings, or make destructive changes without explicit approval.
+
+SUCCESS CRITERIA
+
+A first-time entrepreneur must understand how to begin within seconds.
+
+Customers must be able to complete the supported startup workflow without unnecessary navigation or repetitive data entry.
+
+Genesis must accurately distinguish prepared, submitted, pending, approved, and completed services.
+
+Every major workflow must have automated tests and clear acceptance criteria.
+
+Accessibility and usability must be tested with real users.
+
+The application must be secure, reliable, scalable, and designed for ongoing expansion.
+
+EXECUTION INSTRUCTIONS
+
+Begin immediately with the existing application audit, GitHub authentication diagnosis, and reconstruction blueprint.
+
+Complete safe, non-destructive work independently.
+
+Provide a concise report showing:
+
+What already works.
+What can be reused.
+What needs rebuilding.
+What integrations are available.
+What requires external authorization.
+What development work is complete.
+What remains before launch.
+
+Do not claim that planned features are implemented.
+
+FINAL OBJECTIVE
+
+Genesis OS must become an AI-powered business execution platform that makes entrepreneurship remarkably simple.
+
+Customers bring their business ideas.
+
+Genesis coordinates the work required to turn those ideas into operating businesses.
+
+Build the platform around simplicity, accessibility, verified execution, customer ownership, and measurable business results.

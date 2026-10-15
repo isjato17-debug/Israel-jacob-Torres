@@ -25,6 +25,19 @@ if (!basePath) {
 
 export default defineConfig({
   base: basePath,
+  plugins: [{
+    name: 'genesis-next-development-routes',
+    configureServer(server) {
+      server.middlewares.use((request, _response, next) => {
+        const url = request.url ?? '';
+        if (['/next', '/next/draft', '/next/draft/'].includes(url.split('?')[0])) {
+          const query = url.indexOf('?');
+          request.url = `/next/index.html${query >= 0 ? url.slice(query) : ''}`;
+        }
+        next();
+      });
+    },
+  }],
   root: path.resolve(import.meta.dirname, '../../genesis-business-os/frontend'),
   esbuild: { jsx: 'automatic' },
   build: {
