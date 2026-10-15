@@ -1,0 +1,1189 @@
+╔══════════════════════════════════════════════════╗
+║                                                  ║
+║          B.I.G. — BUSINESS INSIDE GENESIS         ║
+║             POWERED BY GENESIS OS 2.0             ║
+║                                                  ║
+║       MASTER DEVELOPMENT DIRECTIVE — V3.0         ║
+║                                                  ║
+║       PRESERVE • INTELLIGENCE • AUTOMATION        ║
+║          INTEGRATION • EXECUTION • GROWTH         ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
+
+
+PART 1 — EXECUTIVE MANDATE
+==================================================
+
+You are the principal engineering team responsible
+for continuing the existing Genesis OS 2.0 platform.
+
+Operate as:
+
+- Principal Software Architect
+- Senior Full-Stack Engineer
+- AI Systems Architect
+- API and Integration Engineer
+- Database Architect
+- Security and Privacy Engineer
+- Product Experience Designer
+- Quality Assurance Engineer
+
+PROJECT NAME:
+
+B.I.G. — Business Inside Genesis
+
+POWERED BY:
+
+Genesis OS 2.0
+
+PRODUCT MISSION:
+
+Create an intelligent, automated, connected
+business development and management platform
+that supports customers throughout the
+entire lifecycle of their businesses.
+
+B.I.G. must eventually help customers:
+
+DREAM → PLAN → BUILD → REGISTER → LAUNCH →
+OPERATE → EARN → MANAGE → EXPAND
+
+B.I.G. is not simply a chatbot.
+
+B.I.G. is not simply a business planner.
+
+B.I.G. is not simply a service marketplace.
+
+B.I.G. is an intelligent business operating
+system that coordinates business development,
+administration, professional services,
+authorized execution, and ongoing management.
+
+CORE PRODUCT PHILOSOPHY:
+
+THE CUSTOMER EXPLAINS THE GOAL.
+
+B.I.G. DEVELOPS THE STRATEGY.
+
+B.I.G. PREPARES THE WORK.
+
+B.I.G. COORDINATES VERIFIED PROVIDERS.
+
+THE CUSTOMER APPROVES IMPORTANT DECISIONS.
+
+B.I.G. TRACKS VERIFIED RESULTS.
+
+B.I.G. CONTINUES SUPPORTING THE BUSINESS.
+
+
+PART 2 — ABSOLUTE PRESERVATION ORDER
+==================================================
+
+THIS IS AN EXISTING APPLICATION.
+
+DO NOT REBUILD FROM SCRATCH.
+
+DO NOT REPLACE WORKING SYSTEMS.
+
+DO NOT DELETE EXISTING FUNCTIONALITY.
+
+DO NOT DESTROY EXISTING CUSTOMER RECORDS.
+
+DO NOT SIMPLIFY THE PRODUCT BY REMOVING
+ADVANCED FEATURES.
+
+Current development branch:
+
+genesis-os-2-development
+
+Last reported local and GitHub commit:
+
+9a81e39e2314365a02d22369946314b3c32bd4f4
+
+Verify the actual repository state.
+
+The previous GitHub HTTPS push failed with:
+
+"Invalid username or token.
+Password authentication is not supported
+for Git operations."
+
+Despite this error, subsequent read-only
+checks reported matching local and remote
+commit IDs.
+
+Do not assume authentication is repaired.
+
+Do not repeatedly retry failed pushes.
+
+Do not modify Git credentials.
+
+Do not create replacement branches.
+
+Do not force-push.
+
+Do not merge into protected main.
+
+Do not deploy or publish.
+
+Preserve the existing Git history.
+
+Use safe, additive database migrations.
+
+Before development, create a complete
+inventory of the actual application.
+
+
+PART 3 — COMPLETE EXISTING FEATURE PRESERVATION
+==================================================
+
+The following inventory is based on previously
+reported development.
+
+Verify each feature against the actual code.
+
+Do not assume every reported feature is
+complete or production-ready.
+
+PRESERVE AND VERIFY:
+
+BUSINESS INTELLIGENCE:
+
+- Founder DNA
+- Business creation and context
+- Business readiness assessments
+- Digital Twin
+- Executive Board
+- Battle Mode
+- Business strategy generation
+- Financial scenario modeling
+- Deterministic financial estimates
+- Business execution plans
+- Results and progress tracking
+
+CUSTOMER EXPERIENCE:
+
+- Existing customer accounts
+- Account authentication
+- Customer sessions
+- Start / Run / Grow
+- Guided onboarding
+- Saved customer intake
+- Guest business planning
+- Mission Control
+- Customer checklists
+- Consultation features
+- Multilingual consultations
+- English and Spanish functionality
+- Previously reported six-language support
+- Existing voice capabilities
+- Customer consent management
+- Existing approval workflows
+
+PARTNER NETWORK:
+
+- Partner applications
+- Partner evidence
+- Partner agreements
+- Owner review
+- Partner approval
+- Partner suspension
+- Partner invalidation
+- Partner records
+- Internal co-marketing drafts
+- Attribution codes
+- Government resource discovery
+- Federal resource references
+- Previously reported coverage for
+  all 50 states and Washington, DC
+
+OWNER CONTROLS:
+
+- Private owner console
+- Owner-only administration
+- Campaign planning
+- Campaign budgets
+- Internal campaign reviews
+- Edit protection
+- Reversible archives
+- Internal marketing drafts
+- Existing owner audit controls
+
+PAYMENTS AND INTEGRATIONS:
+
+- Existing payment adapter foundations
+- Existing Square-related architecture
+- Existing API integration foundations
+- Existing service provider records
+
+SECURITY:
+
+- Argon2 password protections
+- Existing session protections
+- CSRF defenses
+- Tenant isolation
+- Security headers
+- Rate limiting
+- Audit logging
+- Existing authorization controls
+
+DATABASE AND TESTING:
+
+- Existing database schemas
+- Existing migration history
+- Existing customer records
+- Existing regression tests
+- Existing release verification
+- Existing browser tests
+
+ALSO PRESERVE ALL OTHER FUNCTIONALITY
+DISCOVERED DURING THE CODEBASE INSPECTION.
+
+Create a FEATURE PRESERVATION MATRIX:
+
+Feature name
+Existing route or module
+Current implementation status
+Dependencies
+Reuse strategy
+Required modifications
+Regression test
+Result
+
+No feature may be silently removed.
+
+If a proposed change conflicts with an
+existing feature, choose a compatible
+solution or report the conflict.
+
+
+PART 4 — B.I.G. ONE: CUSTOMER EXPERIENCE
+==================================================
+
+The customer experience must be radically simple.
+
+A customer should not need business expertise
+to operate the application.
+
+The primary interface must be mobile-first.
+
+HOME SCREEN:
+
+B.I.G.
+Business Inside Genesis
+
+"What would you like to accomplish?"
+
+[Speak or type your business idea]
+
+[BUILD MY BUSINESS]
+
+For returning customers:
+
+"Welcome back. Here's where we stand."
+
+Display:
+
+- Active business
+- Current progress
+- Important pending decisions
+- One recommended next action
+
+PRIMARY NAVIGATION:
+
+1. ASK B.I.G.
+2. MY BUSINESSES
+3. REVIEW DECISIONS
+
+All advanced features remain available
+through secondary navigation.
+
+Do not expose unnecessary technical complexity.
+
+Avoid overwhelming dashboards.
+
+Avoid requiring customers to repeat
+information already provided with consent.
+
+Preserve existing localization.
+
+Support voice input where implemented.
+
+Provide accessible controls.
+
+Design for excellent iPhone usability.
+
+TARGET:
+
+A customer should be able to enter an idea
+and begin reviewing three business plans
+within approximately five minutes.
+
+Measure this goal through usability testing.
+
+Do not promise a fixed processing time.
+
+
+PART 5 — B.I.G. IDEA VAULT
+==================================================
+
+Customers must be able to save and manage
+multiple business ideas.
+
+Each idea must contain:
+
+- Customer ownership
+- Business concept
+- Industry
+- Proposed jurisdiction
+- Available startup budget
+- Goals
+- Preferences
+- Notes
+- Planning assumptions
+- Creation history
+- Revision history
+- Development status
+
+CUSTOMER CAPABILITIES:
+
+Create
+Save
+Edit
+Archive
+Restore
+Compare
+Resume
+Develop
+
+Avoid arbitrary product-level limits.
+
+Use reasonable technical safeguards
+against abuse and excessive resource use.
+
+All customer data must remain isolated.
+
+
+PART 6 — THREE-PLAN INTELLIGENCE ENGINE
+==================================================
+
+For every business idea, B.I.G. must
+prepare three meaningfully different plans.
+
+PLAN A — START SMART
+
+Practical low-cost entry.
+
+Focus on minimum feasible startup capital.
+
+PLAN B — BUILD STRONG
+
+Balanced investment.
+
+Focus on sustainable operations and growth.
+
+PLAN C — GROW BIG
+
+Scalable strategy.
+
+Focus on expansion opportunities and
+clearly identified capital requirements.
+
+EACH PLAN MUST INCLUDE:
+
+- Business concept
+- Business model
+- Market assumptions
+- Target customers
+- Startup costs
+- Monthly expenses
+- Pricing strategy
+- Revenue scenarios
+- Break-even estimates
+- Cash-flow assumptions
+- Funding requirements
+- Funding gaps
+- Required services
+- Regulatory considerations
+- Marketing approach
+- Launch milestones
+- Operational risks
+- Next actions
+
+Reuse existing financial modeling.
+
+Do not generate three nearly identical plans.
+
+Do not invent verified financial information.
+
+Clearly distinguish:
+
+CUSTOMER PROVIDED
+SYSTEM CALCULATED
+AI ESTIMATED
+OFFICIALLY VERIFIED
+
+Allow customers to compare plans.
+
+Recommend a feasible option with reasons.
+
+Allow the customer to choose any plan.
+
+Preserve the selected plan and its assumptions.
+
+
+PART 7 — BUSINESS PASSPORT
+==================================================
+
+Build or extend a reusable, secure
+Business Passport.
+
+Organize authorized customer information:
+
+- Business identity
+- Ownership
+- Business activities
+- Addresses
+- Registration records
+- Licenses
+- Permits
+- Tax information
+- Professional relationships
+- Relevant documents
+- Verified business details
+
+Every important data field should track:
+
+- Source
+- Verification status
+- Update date
+- Customer authorization
+- Appropriate retention rules
+
+Reuse verified information when permitted.
+
+Never fabricate missing information.
+
+Never share sensitive information
+without appropriate authorization.
+
+Support customer correction, export,
+consent withdrawal, and applicable deletion.
+
+Investigate the previously reported
+missing consultation consent-revocation
+and deletion controls.
+
+Recover existing changes safely if available.
+
+Otherwise implement appropriate controls.
+
+
+PART 8 — B.I.G. REQUIREMENTS INTELLIGENCE
+==================================================
+
+B.I.G. must determine what each business
+actually needs.
+
+Requirements must depend on:
+
+- Industry
+- Location
+- Business structure
+- Ownership
+- Employees
+- Products
+- Services
+- Sales channels
+- Business activities
+- Applicable current regulations
+
+Create a versioned requirements registry.
+
+Each requirement must identify:
+
+- Jurisdiction
+- Applicability conditions
+- Official source
+- Verification date
+- Required information
+- Dependencies
+- Applicable costs
+- Submission options
+- Evidence requirements
+
+CLASSIFICATIONS:
+
+REQUIRED
+CONDITIONALLY REQUIRED
+OPTIONAL
+NOT APPLICABLE
+NEEDS VERIFICATION
+
+Do not treat all businesses alike.
+
+Do not present uncertain legal requirements
+as established facts.
+
+Escalate professional legal questions
+when qualified review is necessary.
+
+
+PART 9 — B.I.G. CONNECT
+DIRECT OUTSOURCING NETWORK
+==================================================
+
+THIS IS A CORE PRODUCT REQUIREMENT.
+
+B.I.G. must coordinate actual business
+services through verified providers.
+
+Extend the existing Partner Network.
+
+Do not build a duplicate partner marketplace.
+
+PROVIDER CATEGORIES:
+
+GOVERNMENT:
+
+- Federal services
+- State services
+- Local services
+- Business registrations
+- Tax registrations
+- Licenses
+- Permits
+- Industry-specific compliance
+
+LEGAL:
+
+- Attorneys
+- Registered agents
+- Business agreements
+- Intellectual property
+- Legal document review
+
+ACCOUNTING AND TAX:
+
+- Bookkeepers
+- Accountants
+- CPAs
+- Tax preparers
+- Authorized filing providers
+
+BANKING AND FINANCE:
+
+- Business banking
+- Financial data connections
+- Funding applications
+- Financing providers
+
+PAYMENTS:
+
+- Payment processors
+- Checkout
+- Invoicing
+- Refunds
+- Provider payouts
+
+INSURANCE:
+
+- Commercial insurance
+- Coverage quotations
+- Applications
+- Policy management
+
+EMPLOYMENT:
+
+- Hiring
+- Payroll
+- Employee onboarding
+- Benefits administration
+
+MARKETING:
+
+- Website development
+- Advertising
+- CRM
+- Customer acquisition
+- Marketing services
+
+OPERATIONS:
+
+- Suppliers
+- Scheduling
+- Inventory
+- Fulfillment
+- Industry-specific services
+
+Create a reusable PROVIDER CONNECTION ENGINE.
+
+Each provider record must contain:
+
+- Provider identity
+- Verification status
+- Supported jurisdictions
+- Service categories
+- Qualifications
+- Integration capabilities
+- Authentication requirements
+- Customer consent requirements
+- Pricing or quote status
+- Service request history
+- Evidence records
+- Error states
+- Suspension controls
+- Audit history
+
+STANDARD ADAPTER CAPABILITIES:
+
+DISCOVER
+CONNECT
+QUOTE
+PREPARE
+REQUEST_APPROVAL
+SUBMIT
+CHECK_STATUS
+RECEIVE_EVIDENCE
+CANCEL
+RECONCILE
+
+Adapters must declare supported operations.
+
+Do not assume every provider supports
+every capability.
+
+DISTINGUISH:
+
+OFFICIAL_RESOURCE
+PUBLIC_DATA_CONNECTION
+CONNECTED_ACCOUNT
+AUTHORIZED_EXECUTION
+VERIFIED_COMPLETION
+
+A website link is not a live integration.
+
+A simulated adapter is not a live integration.
+
+Partner approval does not automatically
+authorize access to customer information.
+
+A provider is not considered operational
+until the integration has been tested.
+
+
+PART 10 — INTELLIGENT PROVIDER MATCHING
+==================================================
+
+B.I.G. should identify suitable providers
+for each business.
+
+Evaluate:
+
+- Service requirements
+- Jurisdiction
+- Industry
+- Provider qualifications
+- Eligibility
+- Actual availability
+- Pricing
+- Customer budget
+- Customer preferences
+- Integration capabilities
+- Potential conflicts of interest
+
+Never automatically favor the
+most expensive provider.
+
+Disclose platform compensation
+and relevant referral relationships.
+
+Require appropriate customer approval
+before engaging outside providers.
+
+Track service completion using evidence.
+
+
+PART 11 — B.I.G. AUTOFORM
+==================================================
+
+Build a reusable document preparation engine.
+
+Capabilities:
+
+- Identify required documents
+- Reference official forms
+- Track form versions
+- Reuse authorized Passport information
+- Validate required fields
+- Identify missing information
+- Prepare supported drafts
+- Request customer review
+- Collect required authorization
+- Coordinate supported submissions
+- Track receipts and confirmations
+
+Applicable categories may include:
+
+- Business formation
+- EIN preparation
+- Tax registrations
+- Licenses
+- Permits
+- Insurance applications
+- Financing applications
+- Employment documents
+- Trademark preparation
+- Business agreements
+
+Never fabricate customer identity.
+
+Never fabricate signatures.
+
+Never fabricate official approval.
+
+Never represent an unsubmitted document
+as an accepted filing.
+
+Use licensed professionals when required.
+
+
+PART 12 — B.I.G. AUTOPILOT
+==================================================
+
+B.I.G. must support two modes.
+
+GUIDED MODE:
+
+The customer participates in each
+important step.
+
+AUTOPILOT MODE:
+
+B.I.G. automatically performs permitted,
+reversible preparatory work.
+
+Examples:
+
+- Research organization
+- Budget calculations
+- Internal document preparation
+- Information validation
+- Task creation
+- Progress tracking
+- Deadline organization
+- Internal recommendations
+
+Use a durable workflow engine.
+
+Track:
+
+- Task ID
+- Customer and business ownership
+- Dependencies
+- Status
+- Required information
+- Authorization requirements
+- Estimated costs
+- Retry state
+- External request references
+- Completion evidence
+- Audit history
+
+SUPPORTED WORKFLOW STATES:
+
+QUEUED
+IN_PROGRESS
+WAITING_FOR_INFORMATION
+WAITING_FOR_APPROVAL
+SUBMITTED
+COMPLETED
+FAILED
+CANCELLED
+
+Use evidence-backed state transitions.
+
+Prevent duplicate external submissions.
+
+Prevent duplicate charges.
+
+Require appropriate authorization for:
+
+- Spending money
+- Government filings
+- Tax filings
+- Binding agreements
+- Signatures
+- Sensitive data transfers
+- Public marketing publication
+
+Allow customers to pause Autopilot.
+
+Do not activate unauthorized external actions.
+
+
+PART 13 — BUSINESS LAUNCH ENGINE
+==================================================
+
+B.I.G. must help customers become
+operationally ready.
+
+Support planning and authorized setup for:
+
+- Business registration
+- Banking
+- Insurance
+- Payment acceptance
+- Invoicing
+- Websites
+- Branding
+- Marketing
+- Booking systems
+- Customer acquisition
+- Supplier relationships
+- Service delivery
+
+Connect all recommendations to the
+customer's selected plan and budget.
+
+Track verified completion.
+
+Never guarantee income or business success.
+
+
+PART 14 — B.I.G. FINANCIAL MANAGEMENT
+==================================================
+
+Design for ongoing:
+
+- Startup budgeting
+- Operating budgets
+- Cash-flow tracking
+- Revenue tracking
+- Expense tracking
+- Invoicing
+- Payment reconciliation
+- Bookkeeping
+- Financial reporting
+- Funding readiness
+- Payroll preparation
+
+Separate projected financial data
+from verified transactions.
+
+Preserve existing Square architecture.
+
+Evaluate Stripe Connect for future
+multi-provider payment operations.
+
+Do not activate live payment processing
+without explicit authorization.
+
+
+PART 15 — B.I.G. TAX AUTOPILOT
+==================================================
+
+Tax management is a core lifelong feature.
+
+Design for:
+
+- Tax-ready bookkeeping
+- Transaction categorization
+- Estimated taxes
+- Federal obligations
+- State obligations
+- Applicable local taxes
+- Sales taxes
+- Payroll taxes
+- Tax document organization
+- Tax return preparation
+- Qualified professional review
+- Authorized electronic filing
+- Filing acceptance tracking
+- Tax deadlines
+- Payment reminders
+
+Live tax filing requires:
+
+- Appropriate compliant integrations
+- Required taxpayer authorization
+- Required signatures
+- Applicable professional qualifications
+- Verified submission evidence
+
+Never claim a tax return was filed
+without confirmation.
+
+Never fabricate deductions or expenses.
+
+Do not activate live tax filing
+during the current milestone.
+
+
+PART 16 — LIFELONG BUSINESS OPERATIONS
+==================================================
+
+Every Business Project must support
+the full business lifecycle.
+
+STAGES:
+
+IDEA
+PLANNING
+FORMATION
+LAUNCH
+OPERATIONS
+COMPLIANCE
+GROWTH
+EXPANSION
+
+Future capabilities must include:
+
+- Business administration
+- Financial monitoring
+- Compliance deadlines
+- License renewals
+- Insurance management
+- Payroll
+- Tax preparation
+- Marketing
+- Customer relationships
+- Growth strategy
+- Expansion planning
+
+Support multiple businesses per customer.
+
+Keep business records appropriately separated.
+
+Do not create empty dashboards that
+misrepresent unfinished functionality.
+
+
+PART 17 — ADVANCED GENESIS INTELLIGENCE
+==================================================
+
+Preserve and integrate the existing
+advanced intelligence features.
+
+FOUNDER DNA:
+
+Use existing founder assessments to
+inform relevant business guidance.
+
+DIGITAL TWIN:
+
+Preserve business simulation and
+scenario-modeling capabilities.
+
+EXECUTIVE BOARD:
+
+Preserve structured business analysis
+and specialized advisory perspectives.
+
+BATTLE MODE:
+
+Preserve strategy comparison and
+competitive scenario functionality.
+
+MISSION CONTROL:
+
+Use existing execution and progress
+systems wherever possible.
+
+FINANCIAL ENGINE:
+
+Reuse deterministic calculations
+rather than replacing them with
+unverified AI-generated numbers.
+
+These advanced capabilities should
+support the unified B.I.G. experience.
+
+They should not disappear.
+
+Do not claim that existing features
+use live AI unless verified.
+
+
+PART 18 — AI ARCHITECTURE
+==================================================
+
+Build toward ONE customer-facing
+B.I.G. assistant.
+
+Behind that assistant, support
+specialized capabilities for:
+
+- Business strategy
+- Financial analysis
+- Regulatory research
+- Document preparation
+- Provider coordination
+- Operations
+- Tax preparation
+- Marketing
+- Growth
+
+Use existing AI adapters where possible.
+
+Require:
+
+- Structured outputs
+- Schema validation
+- Tool permission boundaries
+- Cost controls
+- Usage accounting
+- Secure credential storage
+- Tenant isolation
+- Audit logging
+- Error handling
+- Human approval for consequential actions
+
+Do not activate paid AI providers
+without explicit owner authorization.
+
+Do not assume any AI spending percentage
+has been approved.
+
+Avoid expensive, unnecessary AI calls.
+
+Prefer deterministic systems for
+calculations and workflow rules.
+
+
+PART 19 — OWNER COMMAND CENTER
+==================================================
+
+Preserve all existing owner functionality.
+
+Extend the owner architecture to support
+future management of:
+
+- Provider verification
+- Partner approvals
+- Integration activation
+- AI budgets
+- External service permissions
+- Customer support
+- Marketing approvals
+- Platform analytics
+- Operational alerts
+- Security events
+- Revenue reporting
+
+Maintain strict owner authorization.
+
+Do not grant real customer accounts
+temporary owner permissions.
+
+Do not expose owner tools to customers.
+
+
+PART 20 — SECURITY, PRIVACY & RELIABILITY
+==================================================
+
+Preserve and strengthen:
+
+- Authentication
+- Tenant isolation
+- CSRF protection
+- Authorization
+- Data minimization
+- Consent records
+- Privacy controls
+- Secure secrets management
+- Audit history
+- Rate limiting
+- Safe database migrations
+- Workflow recovery
+- Idempotency
+- Accessibility
+- Mobile reliability
+
+Do not expose secrets to the browser.
+
+Do not store sensitive government,
+financial, or tax data without
+appropriate safeguards.
+
+Do not destroy existing records.
+
+Do not execute external paid actions
+without authorization.
+
+Do not deploy or publish.
+
+
+PART 21 — PRODUCT DEVELOPMENT ROADMAP
+==================================================
+
+The complete architecture must support
+the following milestones.
+
+M0:
+Repository verification, feature preservation,
+privacy controls, and integration audit.
+
+M1:
+Idea Vault, three-plan engine, plan selection,
+Business Project, and simplified customer journey.
+
+M2:
+Business Passport, budgets, and requirements engine.
+
+M3:
+Autopilot workflow and unified approval inbox.
+
+M4:
+Provider Connection Engine and Partner Network
+integration.
+
+M5:
+AutoForm and government requirements integration.
+
+M6:
+First verified authorized external
+service integration.
+
+M7:
+Business launch, payments, banking,
+insurance, and operational integrations.
+
+M8:
+Bookkeeping, compliance, and tax preparation.
+
+M9:
+Authorized tax filing and additional
+government and professional integrations.
+
+M10:
+Advanced lifelong AI business management,
+marketing, growth, and expansion.
+
+Every milestone must preserve
+previously working functionality.
+
+Every milestone must include testing.
+
+Do not claim roadmap items are complete
+until actually implemented and verified.
+
+
+PART 22 — CURRENT AUTHORIZED DEVELOPMENT
+==================================================
+
+THE PRODUCT BLUEPRINT IS COMPREHENSIVE.
+
+THE CURRENT EXECUTION MUST REMAIN BOUNDED.
+
+You are authorized to complete:
+
+M0 + THE FIRST WORKING VERTICAL SLICE OF M1.
+
+Do not attempt M2 through M10.
+
+FIRST:
+
+1. Inspect the actual repository.
+
+2. Verify branch and
