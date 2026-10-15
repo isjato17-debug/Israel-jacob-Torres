@@ -7,6 +7,37 @@ intake/review boundaries. Review preserves tenant scope and the explicit operato
 manual evidence is not a connected API or government endorsement. No partner activation,
 external promotion, filing or paid service is authorized.
 
+## Permanent core intelligence directive
+
+The full additive product directive is preserved in
+[`attached_assets/Pasted--B-I-G-GENESIS-OS-2-0-PERMANENT-CORE-INTELLIG-179209375_1792093759891.txt`](attached_assets/Pasted--B-I-G-GENESIS-OS-2-0-PERMANENT-CORE-INTELLIG-179209375_1792093759891.txt).
+
+- B.I.G. is an intelligent, full-service business consultant and operating system,
+  not merely a document-preparation, filing or service-provider application.
+- One persistent, personalized assistant should think and plan with customers,
+  explain decisions, remember authorized business context and adapt recommendations.
+  Connect it to actual Business Projects, financial records, tasks and documents.
+- Preserve the existing design, architecture and every existing feature, including
+  Founder DNA, Digital Twin, Executive Board, Battle Mode, Mission Control and financial
+  intelligence. Reuse these systems; do not create duplicate dashboards or unnecessarily
+  repeat questions. Keep advanced tools available without complicating the main interface.
+- Combine consulting with supported execution: prepare work, obtain review and required
+  signatures, coordinate authorized submissions, track verified outcomes, and help manage
+  operations, finances, compliance, funding and growth throughout the business's lifetime.
+  Never invent financial results or claim an action occurred without evidence.
+- Continuous intelligence must use source-backed, versioned information. With appropriate
+  customer permissions, identify obligations, missing documents, shortfalls, funding matches,
+  unfinished tasks and practical improvements. Do not silently modify production code or
+  activate unverified legal interpretations.
+- Do not substitute scripted responses for genuine AI capabilities. Clearly distinguish
+  connected AI from capabilities not yet activated; existing deterministic features must
+  remain honestly labeled. Paid AI activation requires explicit owner approval.
+- Require explicit approval for external filings, signatures, payments and sensitive
+  information sharing. Deployment and external filings remain blocked without authorization.
+- Implement enhancements in tested, dependency-ordered milestones. Do not interrupt
+  currently authorized AutoForm development. This permanent product direction does not,
+  by itself, expand the separately authorized implementation milestone.
+
 A founder-focused business operating system that turns a business goal and current resources into guided next steps, evidence checkpoints, and rerouted plans.
 
 ## Run & Operate
