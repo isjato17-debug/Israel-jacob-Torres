@@ -28,3 +28,17 @@ mtime_ms = 1792086408088
 storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/7979c431-1643-437d-bdb3-ab3aa9d76240/a29c786f-a50e-408f-9491-cdaba14b574e"
 storage_version_token = "1792086409261434"
 content_type = "text/html"
+
+[[outputs]]
+id = "FcEM7FjgInR6LOaYklM_m"
+uri = "file://generated-artifacts/reports/big-m0-m1-completion.html"
+type = "html"
+title = "B.I.G. M0 + M1 completion report"
+description = "Exact commit IDs, feature-preservation matrix, changed files/models, migration and data-integrity evidence, test results, mobile acceptance, privacy safeguards and remaining limits."
+logical_id = "7d8dd9d7-f75a-4147-918b-ded3a787536b"
+content_hash = "sha256:99b28f4a8dacc7713d33e5bbd76fc3233249c1e909a9306ff0405ef32510fe32"
+size = 26620
+mtime_ms = 1792091640217
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/7d8dd9d7-f75a-4147-918b-ded3a787536b/79c6a0ba-2568-40fa-9081-930577bb49d4"
+storage_version_token = "1792091655437652"
+content_type = "text/html"
