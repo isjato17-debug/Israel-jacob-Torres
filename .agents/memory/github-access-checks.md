@@ -24,6 +24,20 @@ can remove ambiguity without requesting tokens.
 **Why:** A reported reconnection still left no CLI login file visible to the agent in
 either its effective configuration directory or the normal home directory.
 
-**How to apply:** Keep the device-flow process alive through browser approval, configure
-Git through `gh auth setup-git`, then verify identity, repository permissions and remote
-history before attempting a write.
+**How to apply:** First test the actual Git transport with `git ls-remote` against the
+configured origin. Working Git authentication does not require a working `gh` login.
+Compare remote branch commit IDs with local source before requesting more authorization.
+Only when an additional CLI sign-in is actually necessary, keep the device-flow process
+alive through browser approval, configure Git through `gh auth setup-git`, then verify
+identity, repository permissions and remote history before attempting a write.
+
+Git source access can work even when both the default and explicitly selected `gh`
+configuration contexts report no login.
+
+**Why:** Repository refs and the exact latest source commit were successfully verified
+through Git while both CLI identity checks still requested authentication.
+
+**How to apply:** Do not repeat browser-device authorization solely to resolve a `gh`
+login message when the user's actual Git operation already works. Treat verified source
+presence, read access and write permission as separate claims; a read alone proves no
+write capability. Preserve remote branch spellings rather than silently renaming them.
