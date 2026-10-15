@@ -5,7 +5,8 @@
 The master directive authorizes reconstruction of the existing product, not a second
 project or repository. Start, Run and Grow are the primary customer journeys.
 The supported initial journey is account creation/sign-in, consented one-question intake,
-saved progress and a prepared launch checklist. This is not the completed ecosystem.
+saved progress and a prepared launch checklist. A separate private operator console now
+supports campaign planning and internal content review. This is not the completed ecosystem.
 No paid services, government filings or publication have been authorized or performed.
 
 The existing interface, accounts, business records, community, execution workflows,
@@ -17,7 +18,8 @@ The existing HTML, JavaScript and CSS frontend files are unchanged.
 - Existing application: `/`.
 - Guided development experience in the same application: `/next/`.
 - Preserved original guest draft/service discovery: `/next/draft/`.
-- Latest pre-change local recovery snapshot: `generated-artifacts/backups/20261015T015232Z/`.
+- Private operator planning console: `/next/owner/`.
+- Latest pre-change local recovery snapshot: `generated-artifacts/backups/20261015T021302Z/`.
 - Snapshot includes complete committed Git history and integrity-checked copies of
   the root and backend SQLite databases. Source bundle verification succeeded.
 - This is a local recovery copy, not an off-site or production PostgreSQL backup.
@@ -80,6 +82,15 @@ expired code; the user must receive a new code from a currently waiting CLI proc
   startup manages local SQLite schema; production still requires reviewed explicit
   migrations, never an automatic upgrade of a populated production database.
 - No external execution, checkout, connected AI calls or government submissions.
+- Private Infinite Growth planning: real saved campaigns, original draft content,
+  planned USD budgets stored as integer cents, and a reversible review/archive lifecycle.
+- Platform access is explicitly designated; a customer registering as a business
+  `owner` never automatically receives platform-owner permissions.
+- Internal review requires confirmation. Editing clears prior approval. Archive preserves
+  records; reopen returns them to draft. Stale edits cannot silently replace newer data.
+- Campaign planning does not authorize spending or external publishing. No AI generation,
+  trend detection, social posting, verified performance feed or revenue measurement is connected.
+- Additive `g0003` campaign migration follows `g0002`; neither replaces the `g0001` baseline.
 
 **Important:** State selection is not state-specific formation coverage. The checklist
 is selected by business stage; it is not tailored legal advice or AI-generated advice.
@@ -90,26 +101,89 @@ Journey status `PREPARED` means a preliminary plan exists. Every listed service 
 statuses. Future `SUBMITTED`, `PENDING`, `APPROVED` and `COMPLETED` transitions require
 provider acknowledgments or appropriate professional evidence, not a progress checkbox.
 
-## Seven-system reconstruction blueprint
+## Ten core systems and owner-growth blueprint
 
 | System | Reusable foundation / implemented slice | Remaining work |
 | --- | --- | --- |
 | Mission Control | Existing accounts, businesses, audit/approval/execution records; new saved journey and truthful cost/progress view | Unified service orders, deadlines, provider receipts, owner reporting and alerts |
+| Business Brain | Account-scoped consented intake and user-provided context | Permission-controlled business memory, explicit sharing/retention/revocation, authorized personalized consulting and source provenance |
 | Adaptive Intelligence | Saved language/detail preferences, progressive intake, optional browser speech | Authorized model, conversational reasoning, grounded personalization and accessibility research with real users |
 | Business Autopilot | Existing risk tiers, explicit approvals and SendGrid/Square execution adapters | Durable task orchestration, provider contracts, consent scopes, idempotent submissions/webhooks and reconciliation |
 | First Customer Engine | Existing business/route context | Consent-aware lead/opportunity records, outreach planning, connected channels and actual opportunity/sales evidence |
+| Financial Command | Existing business records; no connected financial feed claimed | Authorized accounting/banking data, sourced cash-flow analysis, invoicing/payroll coordination, refunds and separate government/provider/platform fees |
 | Business Health Monitor | Existing business records and security controls | Verified jurisdictional obligations, sourced deadlines, finance feeds, scheduled checks and explainable risk alerts |
 | Business Passport | Consented reuse of the same user's self-reported intake | Private document vault; field-level sharing permissions; provenance, verification, expiry and revocation |
-| Expansion Architect | Existing multiple-business records; distinct legal-entity/ownership choices | Parent/subsidiary/brand relationships, ownership interests, permissions and professionally reviewed expansion plans |
+| Enterprise Architect | Existing multiple-business records; distinct legal-entity/ownership choices | Parent/subsidiary/brand relationships, ownership interests, permissions and professionally reviewed expansion plans |
+| Business Network | Existing community foundation; no approved marketplace claimed | Optional participation, approved/vetted professionals and suppliers, permissioned introductions, provenance and disclosures; no automatic sharing of private business information |
+| Infinite Growth (owner system) | Private campaign drafts, planned budgets, internal review, audit and archive/reopen | Authorized trend discovery, original AI-assisted content, social connections, consented success stories, eligible referrals/affiliates, actual analytics, retention signals and controlled experiments |
 
 Self-reported information is never labelled verified. A holding company is an
 ownership arrangement, not an additional legal entity type.
+
+The subsequent complete reconstruction directive supplies all seven phases and supersedes
+the earlier truncated phase text. Follow this order for remaining work:
+
+1. Preserve/security audit and GitHub recovery. Local safeguards are verified; GitHub
+   browser authorization and synchronization remain outstanding.
+2. Premium customer experience, genuine Genesis AI, Adaptive Intelligence, Mission
+   Control and Business Passport. The saved guided journey is implemented; connected
+   AI, verified document reuse and a secure vault are not complete.
+3. Verified formation and outsourced-service workflows.
+4. OnePay, approved professional marketplace, purchased-service tracking and full
+   owner administration. See `GENESIS_ONEPAY_ARCHITECTURE.md` for the researched Stripe
+   Connect recommendation, Square preservation strategy and required legal/approval gates.
+5. Financial tools, business management, growth intelligence and multi-company support.
+6. Infinite Growth and advanced automation. The already-developed campaign planning
+   foundation is retained, but further automation does not take priority over Phase 2.
+7. Security, accessibility, integration and genuine production testing/acceptance.
+
+Purchased-service states must distinguish PAID, ASSIGNED, IN PROGRESS, SUBMITTED and
+COMPLETED, with additional failure, verification, customer-action and refund states.
+Payment confirmation is not proof of professional delivery or government approval.
+
+## Modular reconstruction and growth boundaries
+
+- Keep legacy functionality operational while the new experience matures. A later
+  default-interface cutover requires acceptance of the completed supported journeys;
+  the current parallel development route is not a claim that reconstruction is finished.
+- Domain boundaries: customer workspace/business memory; consent and document provenance;
+  service orders and evidence-based execution; professional/provider adapters; financial
+  ledger and payments; health monitoring; company relationships; optional network;
+  and platform-operator growth management.
+- Shared foundations: existing authentication/tenant boundaries, explicit operator
+  authorization, audit events, optimistic versions, reviewed migrations, typed client
+  contracts and testable state transitions. Do not embed provider secrets in browser code.
+- Start with English/Spanish. Keep translation keys outside components and extend the
+  supported-locale contract deliberately when additional languages are actually supported.
+- Target **WCAG 2.2 AA**: clear labels, visible/unobscured focus, keyboard operation,
+  appropriate target sizes, contrast, accessible validation, reduced motion and readable
+  language. Automated spot checks are not a conformance certification or participant study.
+- Infinite Growth must not generate fake engagement, misleading testimonials, spam,
+  unauthorized publishing or promises of permanent virality/guaranteed growth.
+- Success stories require recorded permission and appropriate review. Experiments need
+  hypotheses, consent/analytics review, approved limits and real measured outcomes.
+  Internal content approval alone never authorizes external publication or paid spend.
+
+## Private owner authorization
+
+`GENESIS_PLATFORM_OWNER_USER_IDS` is a server-side, non-secret allowlist of explicitly
+approved account IDs. The account must also have an active owner/admin session. It is
+empty by default; no real customer account was designated as operator during development.
+All campaign operations additionally remain tenant scoped, CSRF protected and lockdown aware.
+
+To designate the actual operator, the user signs in to Genesis, visits `/next/owner/`
+and identifies their own account using the Copy ID control. After explicit designation,
+configure the allowlist through the supported environment-variable flow. Never infer the
+platform operator from a newly registered tenant-owner role or read/print credentials.
+
+The access page exposes only the signed-in account's own ID. There is no browser-side
+“make me platform owner” action. Only disposable QA accounts were allowlisted for testing.
 
 ## Target architecture and remaining implementation
 
 1. **Unified workspace:** extend the implemented account-bound intake/progress into
    durable service orders, documents, approvals and team-authorized workspaces.
-   Production must apply `g0001` then reviewed `g0002`; the new head does not replace
+   Production must apply reviewed `g0001` → `g0002` → `g0003`; the new head does not replace
    or rewrite the original baseline.
 2. **Document vault:** private object storage for bytes; tenant-scoped database
    metadata, access checks, malware/file validation, retention and deletion controls.
@@ -151,6 +225,10 @@ plan. Do not downgrade a populated production database to the initial baseline.
   require explicit consent and approved fees; retries cannot duplicate purchases/filings.
 - **Future voice/AI:** unavailable capabilities are explicit; speech requires opt-in;
   model/provider output does not become legal, tax or financial advice by relabelling it.
+- **Private growth:** customer owners are denied without explicit platform designation;
+  campaign records persist; budgets are validated exactly; review needs confirmation;
+  edits invalidate approval; stale writes preserve user input; archives are reversible;
+  spending, publication and unverifiable performance remain unavailable.
 - **Launch:** automated critical-journey tests plus actual participant accessibility
   and usability studies, approved production configuration, restore verification,
   provider verification, and explicit publishing approval. Automated browser checks
@@ -162,9 +240,16 @@ plan. Do not downgrade a populated production database to the initial baseline.
   validation, honest availability, no saved plans and no simulated completion.
 - Eleven additional saved-journey tests cover consent, resume, ownership/tenant
   isolation, CSRF, stale-write protection, preferences, lockdown and no fake completion.
+- Fourteen operator tests cover default-deny access, role/allowlist separation,
+  tenant isolation, CSRF, exact budget limits, review, approval invalidation,
+  reversible archives, stale writes, lockdown and disabled external publishing.
+  The combined targeted suite passes 37 cases.
 - Disposable PostgreSQL `g0001` → `g0002` upgrade preserved a seeded baseline business.
   The new table was initially empty, the revision check passed, and `alembic check`
   reported no schema drift.
+- Disposable PostgreSQL `g0002` → `g0003` upgrade preserved both a baseline business
+  and an existing saved journey. The campaign table was initially empty, the revision
+  check passed, and `alembic check` again reported no schema drift.
 - Frontend TypeScript check and multi-entry production build passed using the
   service's declared `PORT=19183` and `BASE_PATH=/`.
 - Both managed services restarted successfully.
@@ -175,6 +260,13 @@ plan. Do not downgrade a populated production database to the initial baseline.
   actual text download, logout/login restoration and a controlled failed-save retry.
 - Mobile 402px checks found no horizontal overflow and confirmed visible keyboard focus.
   Voice was unsupported in the test browser; no external speech request was made.
+- The private owner campaign browser journey passed against isolated PostgreSQL:
+  customer-owner denial, authorized creation/reload, exact budget, review/approval,
+  edit invalidation, actual stale-write conflict/rebase, archive/reopen, Spanish,
+  logout/login restoration and 402px keyboard/overflow spot checks.
+- Pre-existing records matched the latest pre-change snapshots. The actual application
+  campaign table remained empty; QA writes were isolated. Temporary QA routing and
+  servers were removed after testing. No real account was granted operator status.
 - Pre-existing records in both SQLite databases matched the pre-change snapshots.
   The new actual application journey table remained empty: browser-QA writes were
   isolated in disposable PostgreSQL and the temporary QA bridge was removed.

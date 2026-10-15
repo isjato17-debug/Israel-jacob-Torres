@@ -89,6 +89,25 @@ class Decision(Base):
     approved_by: Mapped[str|None]=mapped_column(String, nullable=True)
     created_at: Mapped[datetime]=mapped_column(DateTime(timezone=True), default=now)
 
+class GrowthCampaign(Base):
+    __tablename__ = 'growth_campaigns'
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey('tenants.id'), index=True)
+    creator_id: Mapped[str] = mapped_column(ForeignKey('users.id'), index=True)
+    title: Mapped[str] = mapped_column(String(160))
+    objective: Mapped[str] = mapped_column(String(1200))
+    audience: Mapped[str] = mapped_column(String(500))
+    channel: Mapped[str] = mapped_column(String(20))
+    content: Mapped[str] = mapped_column(Text, default='')
+    planned_budget_cents: Mapped[int] = mapped_column(Integer, default=0)
+    status: Mapped[str] = mapped_column(String(20), default='DRAFT')
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    approved_by: Mapped[str | None] = mapped_column(ForeignKey('users.id'), nullable=True)
+    approved_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class AuditEvent(Base):
     __tablename__='audit_events'
     id: Mapped[str]=mapped_column(String, primary_key=True, default=uid)

@@ -30,7 +30,7 @@ export class ApiError extends Error {
 }
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-async function call<T>(path: string, method = "GET", body?: unknown): Promise<T> {
+export async function call<T>(path: string, method = "GET", body?: unknown): Promise<T> {
   const csrf = document.cookie.split("; ").find((part) => part.startsWith("genesis_csrf="));
   const token = csrf ? decodeURIComponent(csrf.slice("genesis_csrf=".length)) : "";
   const response = await fetch(`${base}/api${path}`, {

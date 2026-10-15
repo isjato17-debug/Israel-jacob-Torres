@@ -9,6 +9,7 @@ import type { Account, DetailMode, Journey, Language, Question } from "./journey
 import { dict } from "./guided-i18n";
 import type { Key } from "./guided-i18n";
 import "./guided.css";
+import OwnerAccessLink from "./OwnerAccessLink";
 
 const ORDER: Question[] = ["state", "entity_type", "ownership_type", "goal"];
 const STAGES: Stage[] = ["start", "run", "grow"];
@@ -323,6 +324,7 @@ export default function GuidedExperience() {
     <header className="gx-top">
       <span className="gx-brand">{t("brand")} <span className="gx-badge" data-testid="text-mode">{t("mode")}</span></span>
       <div className="gx-tools">
+        <OwnerAccessLink accountId={account?.id ?? null} language={lang} />
         <label>{t("language")}
           <select data-testid="language" disabled={busy} value={lang} onChange={(e) => void changePrefs(e.target.value as Language, detail)}>
             <option value="en">English</option><option value="es">Español</option>

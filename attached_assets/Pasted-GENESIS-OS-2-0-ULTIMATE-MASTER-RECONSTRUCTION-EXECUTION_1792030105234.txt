@@ -1,0 +1,149 @@
+GENESIS OS 2.0 — ULTIMATE MASTER RECONSTRUCTION & EXECUTION DIRECTIVE
+
+Act as an elite team of software architects, AI engineers, cybersecurity specialists, UX designers, business strategists, and growth experts.
+
+Your mission is to transform my EXISTING Genesis OS application into an exceptionally innovative, intelligent, simple, secure, and scalable AI-powered business operating system.
+
+Build Genesis OS to become a leading all-in-one platform for starting, operating, growing, and managing businesses.
+
+This is a complete architectural and user-experience reconstruction—not simply adding features.
+
+CORE PHILOSOPHY:
+
+Maximum intelligence. Minimum complexity.
+
+The application must be simple enough for someone with no business experience while powerful enough for entrepreneurs managing multiple companies.
+
+CUSTOMER EXPERIENCE:
+
+Build the entire platform around three primary buttons:
+
+1. START MY BUSINESS
+2. RUN MY BUSINESS
+3. GROW MY BUSINESS
+
+Place Genesis AI at the center of the experience.
+
+Customers should be able to explain what they need through voice or text.
+
+Genesis must ask one simple question at a time, explain complicated matters in everyday language, save progress automatically, and coordinate the necessary work.
+
+Implement Genesis Adaptive Intelligence to personalize communication, assistance, and interface complexity without making assumptions about users’ education or abilities.
+
+Support English and Spanish initially, with architecture for additional languages.
+
+Target WCAG 2.2 AA accessibility.
+
+COMPLETE BUSINESS ECOSYSTEM:
+
+Create one connected platform supporting:
+
+• Business idea development and startup planning.
+• LLCs, corporations, nonprofits, partnerships, holding companies, and subsidiaries.
+• Business registration across all 50 U.S. states.
+• EIN assistance and tax registration.
+• Licenses, permits, registered agents, and ongoing compliance.
+• Legal documents, contracts, trademarks, and intellectual property services.
+• Business banking, accounting, payroll, insurance, and payment processing.
+• Websites, domains, branding, marketing, and e-commerce.
+• Financing resources, business credit, and growth strategies.
+• Employee management, customer management, and business analytics.
+• Multi-company ownership and operational management.
+
+Connect authorized government systems and third-party providers through verified APIs, embedded services, and approved partnerships wherever possible.
+
+Customers should complete as much as legally and technically possible inside Genesis OS.
+
+Never represent a filing, approval, payment, or integration as complete without verification.
+
+CORE INTELLIGENCE SYSTEMS:
+
+1. GENESIS MISSION CONTROL — One simple dashboard showing what Genesis is doing, what it costs, and what happens next.
+2. GENESIS BUSINESS BRAIN — Secure, permission-controlled business memory and personalized consulting.
+3. GENESIS AUTOPILOT — AI-assisted execution of authorized business workflows.
+4. GENESIS ADAPTIVE INTELLIGENCE — Personalized guidance, accessible communication, and intelligent interface behavior.
+5. GENESIS BUSINESS PASSPORT — Secure reuse of verified business information and documents.
+6. GENESIS FIRST CUSTOMER ENGINE — Help new businesses prepare marketing, acquire customers, and track real opportunities.
+7. GENESIS FINANCIAL COMMAND — Accounting integrations, financial analysis, cash-flow monitoring, and operational insights.
+8. GENESIS BUSINESS HEALTH MONITOR — Proactive identification of compliance deadlines, financial concerns, and incomplete business tasks.
+9. GENESIS ENTERPRISE ARCHITECT — Parent companies, subsidiaries, brands, ownership records, and multi-business management.
+10. GENESIS BUSINESS NETWORK — An optional marketplace connecting entrepreneurs with approved professionals, customers, suppliers, and business opportunities.
+
+SELF-GROWTH SYSTEM:
+
+Build GENESIS INFINITE GROWTH, an intelligent marketing and customer acquisition engine designed to continuously improve the platform’s visibility, customer acquisition, retention, and revenue.
+
+Include:
+
+• AI trend discovery.
+• Original content creation.
+• Authorized social media publishing.
+• Referral and affiliate programs.
+• Customer success stories with consent.
+• Community-driven growth.
+• Marketing analytics.
+• Conversion optimization.
+• Customer retention intelligence.
+• Controlled experimentation and continuous improvement.
+
+Create a private owner dashboard to manage campaigns, budgets, approvals, growth performance, and revenue.
+
+Do not use fake engagement, misleading testimonials, spam, or unauthorized publishing.
+
+No system should promise permanent virality or guaranteed growth.
+
+REVENUE SYSTEM:
+
+Support business formation packages, subscriptions, consulting, premium services, eligible referral commissions, partner services, and other lawful revenue opportunities.
+
+Include transparent checkout, separate government fees, secure payments, customer billing, refunds, and administrative financial reporting.
+
+RECONSTRUCTION & SECURITY:
+
+Audit the existing Genesis OS codebase before making changes.
+
+Preserve all existing working features, source history, databases, and configurations.
+
+Create a recoverable backup and use a separate development branch or environment.
+
+Design a modular architecture that can scale without requiring another complete reconstruction.
+
+Implement appropriate encryption, authentication, access controls, audit logs, privacy protections, backups, and recovery testing.
+
+Never expose credentials or store sensitive information unnecessarily.
+
+EXISTING GITHUB ISSUE:
+
+The correct repository is:
+
+isjato17-debug/Israel-jacob-Torres
+
+The previously reported local main commit is:
+
+7a09fa54d0a18dad7f5b6cca184d8258f7c47418
+
+The last GitHub push failed because of invalid authentication.
+
+Investigate the authentication context and request the exact required browser authorization if necessary.
+
+Do not request passwords or tokens in chat.
+
+After successful authentication, safely push and verify the existing source code.
+
+Do not force-push, reset branches, delete source history, or create another repository.
+
+PRODUCTION REQUIREMENTS:
+
+Verify PostgreSQL, database migrations, environment security, HTTPS, domain configuration, production hosting, backups, and restoration procedures.
+
+Review the existing SendGrid and Square integration requirements.
+
+Use genuine production evidence before marking deployment requirements complete.
+
+Do not publish or initiate paid external services without my approval.
+
+EXECUTION STRATEGY:
+
+PHASE 1 — Secure the existing application, diagnose GitHub authentication, audit the codebase, and prepare the reconstruction architecture.
+
+PHASE 2 — Build the premium mobile

@@ -146,6 +146,8 @@ def start(payload: StartJourney, user: User = Depends(current_user),
 
 def save(db, user, item, expected_version, values, action, details):
     ensure_not_lockdown(db, user)
+    if item.version != expected_version:
+        raise HTTPException(409, "Progress changed in another tab. Reload before saving again.")
     result = db.execute(update(OnboardingJourney).where(
         OnboardingJourney.id == item.id,
         OnboardingJourney.tenant_id == user.tenant_id,

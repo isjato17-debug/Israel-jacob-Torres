@@ -1,0 +1,215 @@
+GENESIS OS 2.0 — COMPLETE RECONSTRUCTION & EXECUTION
+
+Act as a senior team of AI engineers, software architects, UX designers, cybersecurity specialists, payment engineers, and business technology experts.
+
+Your mission is to transform my EXISTING Genesis OS application into a world-class, AI-powered, all-in-one business operating system.
+
+The objective is simple:
+
+A customer enters Genesis OS with a business idea and can start, manage, finance, and grow their business through one application.
+
+Make the technology extremely advanced behind the scenes but exceptionally simple for customers.
+
+Do not create a separate application.
+
+1. CUSTOMER EXPERIENCE
+
+Build the entire interface around three primary buttons:
+
+START MY BUSINESS
+RUN MY BUSINESS
+GROW MY BUSINESS
+
+Genesis AI must be the customer’s personal business consultant.
+
+Support voice and text conversations, English and Spanish, simple explanations, one question at a time, automatic progress saving, and accessible navigation.
+
+Implement Genesis Adaptive Intelligence so the application adjusts its guidance and complexity to each customer’s preferences without assuming their education or abilities.
+
+2. COMPLETE BUSINESS ECOSYSTEM
+
+Integrate or coordinate:
+
+LLCs, corporations, partnerships, nonprofits, holding companies, subsidiaries, EIN applications, tax registration, business licenses, permits, registered agents, legal documents, trademarks, business banking, accounting, payroll, insurance, websites, branding, marketing, financing, business credit, customer management, employee management, and ongoing compliance.
+
+Support jurisdiction-specific business requirements across all 50 U.S. states.
+
+Prioritize verified APIs, embedded services, and authorized provider partnerships.
+
+Customers should complete as much as legally and technically possible without leaving Genesis OS.
+
+3. GENESIS INTELLIGENCE
+
+Build these interconnected systems:
+
+GENESIS MISSION CONTROL — One intelligent dashboard showing what Genesis is doing, what it costs, and what happens next.
+
+GENESIS BUSINESS BRAIN — Secure business memory and personalized consulting.
+
+GENESIS AUTOPILOT — AI-assisted execution of approved business workflows.
+
+GENESIS ADAPTIVE INTELLIGENCE — Personalized, accessible guidance.
+
+GENESIS BUSINESS PASSPORT — Secure reuse of verified business information.
+
+GENESIS FIRST CUSTOMER ENGINE — Customer acquisition and marketing assistance.
+
+GENESIS FINANCIAL COMMAND — Financial management and business intelligence.
+
+GENESIS BUSINESS HEALTH MONITOR — Compliance and operational risk alerts.
+
+GENESIS ENTERPRISE ARCHITECT — Multi-company ownership and management.
+
+GENESIS BUSINESS NETWORK — Approved professional services and business marketplace.
+
+4. GENESIS ONEPAY — UNIVERSAL PAYMENT SYSTEM
+
+Create one secure checkout system for eligible Genesis services, outsourced providers, subscriptions, and government filing services.
+
+Include:
+
+• Itemized pricing and transparent fees.
+• Credit cards, debit cards, and supported digital wallets.
+• Authorized marketplace payment processing.
+• Provider onboarding and payouts.
+• Subscriptions and recurring billing.
+• Invoices, receipts, refunds, and disputes.
+• Payment and service-status tracking.
+• Genesis revenue and commission reporting.
+• Customer authorization before charges.
+
+Evaluate Stripe Connect against the existing Square integration and recommend the most suitable payment architecture.
+
+Use authorized payment providers. Never independently hold or transmit customer funds without the required legal arrangements.
+
+Do not store raw payment card data.
+
+5. GENESIS INFINITE GROWTH
+
+Build an intelligent, continuously improving marketing system for Genesis OS itself.
+
+Include:
+
+• AI trend discovery.
+• Original content generation.
+• Authorized social media publishing.
+• Referral and affiliate programs.
+• Customer success stories with consent.
+• Community-driven growth.
+• Marketing and conversion analytics.
+• Customer retention intelligence.
+• Controlled experimentation.
+• Owner-controlled campaign budgets and approvals.
+
+Focus on sustainable customer acquisition, not fake engagement, spam, or promises of permanent virality.
+
+6. GENESIS SERVICE TRACKING
+
+Every purchased service must have a clear status:
+
+PAID
+ASSIGNED
+IN PROGRESS
+SUBMITTED
+COMPLETED
+
+Use additional statuses where necessary for refunds, failed submissions, verification, and customer action.
+
+Never mark a filing or professional service completed without reliable confirmation.
+
+7. ADMINISTRATOR CONTROL
+
+Create a private owner dashboard for managing customers, providers, services, pricing, subscriptions, payments, commissions, refunds, marketing campaigns, revenue, security, and platform performance.
+
+8. RECONSTRUCTION AND SECURITY
+
+Audit the existing application before changing anything.
+
+Preserve all working code, databases, integrations, and source history.
+
+Create a recoverable backup.
+
+Develop the reconstruction in a separate branch or environment.
+
+Implement secure authentication, encryption, access controls, audit logs, privacy protections, database backups, and restoration testing.
+
+Use modular architecture so Genesis can expand without another complete rebuild.
+
+9. EXISTING GITHUB PROBLEM
+
+The correct repository is:
+
+isjato17-debug/Israel-jacob-Torres
+
+The last reported local main commit is:
+
+7a09fa54d0a18dad7f5b6cca184d8258f7c47418
+
+GitHub write authentication previously failed.
+
+Investigate the CLI and agent authentication contexts.
+
+Request the exact browser authorization step if required.
+
+Once authenticated, safely push and verify the source.
+
+Do not force-push, reset branches, delete history, or create another repository.
+
+10. PRODUCTION READINESS
+
+Verify PostgreSQL, migration g0001, environment configuration, secure authentication, HTTPS, hosting, domain configuration, backup recovery, and production deployment requirements.
+
+Review outstanding SendGrid and Square connections.
+
+Use real testing and evidence.
+
+Do not publish, process real payments, submit government filings, purchase services, or make destructive changes without explicit approval.
+
+11. EXECUTION PLAN
+
+PHASE 1: Secure the existing application, resolve GitHub authentication, and audit the codebase.
+
+PHASE 2: Redesign the customer experience and implement Genesis AI, Adaptive Intelligence, Mission Control, and Business Passport.
+
+PHASE 3: Implement verified business formation workflows and outsourced service integrations.
+
+PHASE 4: Build Genesis OnePay, professional marketplace, service tracking, and administrator controls.
+
+PHASE 5: Implement financial tools, business management, growth intelligence, and multi-company support.
+
+PHASE 6: Build Genesis Infinite Growth and advanced automation.
+
+PHASE 7: Complete security, accessibility, integration, and production testing.
+
+12. IMMEDIATE EXECUTION
+
+Begin now.
+
+Complete safe, non-destructive work independently.
+
+Do not repeatedly ask questions that can be answered by inspecting the existing project.
+
+Do not use fake integrations, placeholder services, or simulated completion records.
+
+Provide concise progress reports explaining:
+
+• What is complete.
+• What is being developed.
+• What remains.
+• Which integrations require authorization.
+• What requires my approval.
+• The exact next action I must take.
+
+FINAL OBJECTIVE:
+
+Build Genesis OS into a premium, highly automated, revenue-generating AI business ecosystem.
+
+Customers should be able to start, operate, and grow businesses while Genesis coordinates the complicated processes behind the scenes.
+
+The application must be simple, accessible, secure, intelligent, scalable, and designed for continuous improvement.
+
+GENESIS PROMISE:
+
+“YOU BRING THE VISION. GENESIS HANDLES THE WORK.”
+
+Execute the reconstruction safely and systematically, preserving the existing application while building Genesis OS 2.0.
