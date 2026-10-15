@@ -6,6 +6,8 @@ description: The customer-facing assistant must help do the work, not only suppl
 B.I.G. should provide hands-on AI assistance that uses saved customer context,
 asks only for missing information, and carries out permitted work. Static
 recommendations and more checklists alone do not meet the user's goal.
+The user clarified that a checklist is wanted, with B.I.G. doing the work for
+the customer rather than leaving every item for the customer to complete.
 
 **Why:** The user corrected the Phase 1 direction: “No I want hands on ai assistance
 so the it can get the job done with out the procrastination”.
