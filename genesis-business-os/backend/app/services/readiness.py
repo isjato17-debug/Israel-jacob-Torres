@@ -16,7 +16,8 @@ def check_readiness(engine, environment):
             tables = set(inspect(engine).get_table_names())
             if not {"users", "onboarding_journeys", "growth_campaigns", "ai_consultations",
                     "partner_applications", "partner_promotions", "consultation_privacy",
-                    "business_ideas", "idea_revisions", "business_projects"} <= tables:
+                    "business_ideas", "idea_revisions", "business_projects", "business_passports",
+                    "document_workflows", "generated_documents", "document_approvals"} <= tables:
                 return checks
         checks["schema"] = True
     except Exception:

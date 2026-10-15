@@ -131,6 +131,57 @@ class BusinessProject(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
+class BusinessPassport(Base):
+    """Minimal customer-authorized project profile, not verified identity."""
+    __tablename__ = "business_passports"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), unique=True)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    fields_json: Mapped[str] = mapped_column(Text, default="{}")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    consent_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class DocumentWorkflow(Base):
+    __tablename__ = "document_workflows"
+    __table_args__ = (UniqueConstraint("project_id", "template_key", name="uq_project_document_template"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    template_key: Mapped[str] = mapped_column(String(80))
+    template_version: Mapped[int] = mapped_column(Integer, default=1)
+    fields_json: Mapped[str] = mapped_column(Text, default="{}")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    status: Mapped[str] = mapped_column(String(40), default="DRAFT")
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class GeneratedDocument(Base):
+    """Immutable structured document source; file bytes are rendered on demand."""
+    __tablename__ = "generated_documents"
+    __table_args__ = (UniqueConstraint("workflow_id", "revision", name="uq_document_revision"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    workflow_id: Mapped[str] = mapped_column(ForeignKey("document_workflows.id"), index=True)
+    revision: Mapped[int] = mapped_column(Integer)
+    template_version: Mapped[int] = mapped_column(Integer, default=1)
+    source_json: Mapped[str] = mapped_column(Text)
+    content_hash: Mapped[str] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class DocumentApproval(Base):
+    __tablename__ = "document_approvals"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    document_id: Mapped[str] = mapped_column(ForeignKey("generated_documents.id"), unique=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    content_hash: Mapped[str] = mapped_column(String(64))
+    purpose: Mapped[str] = mapped_column(String(60), default="SIGNATURE_PREPARATION_ONLY")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class PartnerApplication(Base):
     __tablename__ = "partner_applications"
     id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)

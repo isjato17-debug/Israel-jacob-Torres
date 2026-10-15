@@ -9,7 +9,9 @@ from sqlalchemy import create_engine, text, select, inspect
 from sqlalchemy.engine import make_url
 from sqlalchemy.orm import Session
 
-from app.models import Tenant, User, Business, OnboardingJourney, GrowthCampaign, AIConsultation, PartnerApplication, PartnerPromotion
+from app.models import (Tenant, User, Business, OnboardingJourney, GrowthCampaign, AIConsultation,
+                        PartnerApplication, PartnerPromotion, BusinessIdea, IdeaRevision,
+                        BusinessProject, ConsultationPrivacy)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -72,22 +74,37 @@ def verify_upgrade(url):
             title="Preserve private promotion", content="Preserved internal content",
         ))
         db.commit()
+    alembic("upgrade", "g0006")
+    with Session(engine) as db:
+        saved = db.scalar(select(OnboardingJourney))
+        idea = BusinessIdea(tenant_id=saved.tenant_id, user_id=saved.user_id,
+                            facts_json='{"concept":"Preserve private cleaning idea","budget_cents":300000}')
+        db.add(idea); db.flush()
+        db.add(IdeaRevision(idea_id=idea.id, version=1, facts_json=idea.facts_json, action="created"))
+        db.add(BusinessProject(tenant_id=saved.tenant_id, user_id=saved.user_id, idea_id=idea.id,
+                              business_id=saved.business_id, name="Preserved private project",
+                              budget_cents=300000, plan_json='{"key":"start_smart","name":"Preserved plan"}'))
+        db.add(ConsultationPrivacy(tenant_id=saved.tenant_id, user_id=saved.user_id,
+                                   journey_id=saved.id, status="REVOKED", version=2))
+        db.commit()
     def all_original_rows():
         with engine.connect() as conn:
             return {name: [tuple(row) for row in conn.execute(text(f'SELECT * FROM "{name}" ORDER BY 1'))]
                     for name in inspect(engine).get_table_names()
                     if name != "alembic_version" and name not in (
-                        "business_ideas", "idea_revisions", "business_projects", "consultation_privacy")}
+                        "business_passports", "document_workflows", "generated_documents", "document_approvals")}
     before_m0 = all_original_rows()
     alembic("upgrade", "head")
     assert all_original_rows() == before_m0
     assert snapshot() == before
     with engine.connect() as conn:
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0006"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0007"
         assert conn.scalar(text("SELECT COUNT(*) FROM ai_consultations")) == 1
         assert conn.scalar(text("SELECT COUNT(*) FROM partner_applications")) == 1
         assert conn.scalar(text("SELECT COUNT(*) FROM partner_promotions")) == 1
         for name in ("business_ideas", "idea_revisions", "business_projects", "consultation_privacy"):
+            assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 1
+        for name in ("business_passports", "document_workflows", "generated_documents", "document_approvals"):
             assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 0
     assert "No new upgrade operations detected" in alembic("check")
     engine.dispose()

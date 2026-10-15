@@ -67,11 +67,13 @@ formation, OnePay/marketplace/admin, broader management and advanced growth auto
 **How to apply:** Follow the complete phase order, preserve earlier safe work, and
 do not let a verified payment automatically mark a purchased service completed.
 
-The current master directive authorizes M0 and the first working vertical slice
+The initial master directive authorized M0 and the first working vertical slice
 of M1 only: inspect/preserve existing capabilities, repair missing consultation
 privacy controls, and deliver a saved idea → three-plan comparison → selected
-Business Project journey. M2 through M10 remain architecture, not authorized
-implementation or live activation. Keep the full lifelong business vision; do not
+Business Project journey. That instruction did not authorize the whole of M2 through M10.
+Later explicit owner execution orders expand specific supported workflows; consult
+the current execution instructions in `replit.md` rather than treating the initial
+milestone boundary as a permanent refusal to implement them. Keep the full lifelong business vision; do not
 substitute a generic roadmap for verified working customer flows.
 
 **Why:** The user completed the truncated master directive with explicit bounded
@@ -82,6 +84,6 @@ New York with $3,000.”
 and existing records. Use isolated QA data; commit verified local work on the
 existing development branch. Do not change Git credentials, repeatedly retry
 failed pushes, create replacement branches, force-push, merge protected main,
-deploy, publish or activate paid/external actions. Leave the two directive
+deploy, publish or activate paid services/consequential external actions. Leave the two directive
 uploads untouched unless removal is separately authorized. If the milestone
 exceeds a safe session, deliver a coherent tested portion and disclose the rest.

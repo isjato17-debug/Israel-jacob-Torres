@@ -1,0 +1,10 @@
+.px{min-width:0;overflow-wrap:anywhere}
+.px .px-grid{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+.px .px-grid>*{min-width:0}
+@media(min-width:700px){.px .px-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.px .gx-btn{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.px input.px-in,.px textarea.px-in{width:100%;min-height:48px;padding:10px 12px;border:2px solid var(--ink);border-radius:8px;background:#fffdf8;color:var(--ink);font:inherit}
+.px textarea.px-in{min-height:96px}
+.px pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;margin:0}
+.px .px-next{border:3px solid var(--acc2);border-radius:10px;padding:12px;background:#fffdf8;font-weight:700}
+.px code{overflow-wrap:anywhere;font-size:.8rem}

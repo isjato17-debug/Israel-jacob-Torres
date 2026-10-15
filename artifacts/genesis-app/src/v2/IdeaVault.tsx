@@ -4,6 +4,7 @@ import { ApiError, getSession, signIn, signOut } from "./journey-api";
 import type { Account } from "./journey-api";
 import { createIdea, editIdea, getIdea, getProject, ideaAction, listIdeas, listProjects, developIdea, selectPlan, setProjectTask } from "./ideas-api";
 import type { BusinessPlan, Idea, IdeaInput, Project } from "./ideas-api";
+import ProjectExecution from "./ProjectExecution";
 import OwnerAccessLink from "./OwnerAccessLink";
 import "./guided.css";
 import "./ideas.css";
@@ -321,6 +322,7 @@ export default function IdeaVault() {
           <label className="iv-task" key={c.id}>
             <input type="checkbox" checked={c.status === "done"} disabled={busy} onChange={() => void toggle(c.id, c.status)} data-testid={`task-${c.id}`} />
             <span><b>{c.task}</b><small className="gx-help">{c.horizon} {c.kpi} {usd(c.budget)} {c.status === "done" ? t("done") : t("todo")}</small></span></label>))}
+        <ProjectExecution key={project.id} projectId={project.id} onProjectChange={async () => { const id = project.id; const p = await getProject(id); if (curId.current) setProject((o) => (o && o.id === id ? p : o)); }} />
       </section>}
     </section>);
 

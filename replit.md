@@ -38,6 +38,27 @@ The full additive product directive is preserved in
   currently authorized AutoForm development. This permanent product direction does not,
   by itself, expand the separately authorized implementation milestone.
 
+## Owner execution and service-connection direction
+
+The owner explicitly requires functioning application code, not documentation in
+place of implementation: build and verify one connected $3,000 New York cleaning
+business consultation → existing selected plan/project → authorized information reuse
+→ genuine document → corrections/download → explicit review approval → signature
+preparation → persisted next action. Preserve the complete existing app and design;
+use additive migrations, isolated QA and tested local commits on
+`genesis-os-2-development`. Protected main, Git credentials and publishing remain untouched.
+
+**Why:** The owner corrected the earlier documentation-only response and supplied an
+explicit direct execution order.
+
+The owner requests external services on standby for coordinated connection when ready:
+“Yes have them all on stand by so when it's time To connect services we can do it all
+one shot” and “Yes add the external we just wait for the payed ones”.
+Prepare extensible connection requirements and no-cost public reads where supported,
+but wait on paid services. Connection is not permission for filings, signatures,
+payments or sensitive-data sharing. Do not imply every provider can activate in one
+operation or that an unimplemented adapter is ready.
+
 A founder-focused business operating system that turns a business goal and current resources into guided next steps, evidence checkpoints, and rerouted plans.
 
 ## Run & Operate

@@ -1,0 +1,346 @@
+B.I.G. — BUSINESS INSIDE GENESIS
+POWERED BY GENESIS OS 2.0
+
+OWNER'S DIRECT EXECUTION ORDER
+STATUS: IMPLEMENTATION AUTHORIZED
+
+READ THIS CAREFULLY.
+
+I AM NOT ASKING YOU TO DOCUMENT MY VISION.
+
+I AM DIRECTING YOU TO DEVELOP MY APPLICATION.
+
+All previously approved product requirements
+remain in effect.
+
+DO NOT CHANGE MY PRODUCT VISION.
+DO NOT REMOVE EXISTING FEATURES.
+DO NOT REPLACE EXISTING SYSTEMS.
+DO NOT REDESIGN THE APPLICATION.
+DO NOT RESTART DEVELOPMENT.
+
+=================================================
+1. VERIFY WHAT ALREADY EXISTS
+=================================================
+
+Inspect the actual repository and application.
+
+Verify:
+
+- Current development branch
+- Current commit
+- Working tree status
+- Existing database structure
+- Existing application features
+- Existing AutoForm implementation
+- Existing AI integration capabilities
+- Existing Business Passport implementation
+- Existing government and partner connections
+
+Do not assume documentation equals
+implemented functionality.
+
+Use the existing development branch:
+
+genesis-os-2-development
+
+Do not modify protected main.
+
+=================================================
+2. BUILD THE COMPLETE CUSTOMER WORKFLOW
+=================================================
+
+Implement one fully working business
+consulting-to-execution experience.
+
+CUSTOMER SCENARIO:
+
+"I have $3,000 and want to start
+a cleaning business in New York."
+
+B.I.G. MUST:
+
+A. CONSULT
+
+Understand the customer's goals,
+business circumstances, and budget.
+
+Use the existing Founder DNA,
+Digital Twin, Executive Board,
+three-plan engine, and financial tools.
+
+Generate realistic recommendations.
+
+B. PLAN
+
+Create or open the Business Project.
+
+Present the existing three business plans.
+
+Preserve the customer's selected plan.
+
+C. EXECUTE
+
+Determine the next appropriate business
+document or administrative action.
+
+Use existing Business Passport information.
+
+Collect missing information.
+
+Prepare a genuine business document.
+
+Allow customer corrections.
+
+Generate a downloadable document.
+
+Store the document securely.
+
+D. APPROVE
+
+Present the completed document
+for customer review.
+
+Record explicit approval.
+
+Prepare the document for an appropriate
+signature process.
+
+E. CONTINUE
+
+Update the existing Business Project.
+
+Show the next required business action.
+
+Preserve progress across sessions.
+
+The customer must experience this
+as ONE connected workflow.
+
+=================================================
+3. CONNECT THE EXISTING AI CONSULTANT
+=================================================
+
+Do not create a separate assistant.
+
+Extend the existing B.I.G. assistant.
+
+It must be able to:
+
+- Understand a customer's request.
+- Read authorized Business Project context.
+- Identify the next supported action.
+- Explain why that action matters.
+- Initiate the actual workflow.
+- Track its completion.
+- Recommend the next step.
+
+Distinguish genuine AI-generated
+recommendations from deterministic
+calculations and templates.
+
+Do not claim live AI functionality
+unless an actual AI service is connected.
+
+Do not activate paid AI services
+without owner authorization.
+
+=================================================
+4. BUILD THE REUSABLE FOUNDATION
+=================================================
+
+The first working document workflow
+must be designed for future expansion.
+
+Create reusable components for:
+
+- Form field definitions
+- Information reuse
+- Field validation
+- Document generation
+- Customer review
+- Approval tracking
+- Secure storage
+- Workflow status
+- Audit events
+
+This foundation must support future:
+
+- Government forms
+- Business licenses
+- Permits
+- Grants
+- Loans
+- Contracts
+- Tax documents
+- Renewals
+- Professional submissions
+
+Do not falsely represent the first
+document as support for every category.
+
+=================================================
+5. PRESERVE THE COMPLETE B.I.G. VISION
+=================================================
+
+B.I.G. remains:
+
+- AI business consultant
+- Business strategist
+- Business planner
+- Executive assistant
+- Financial planning system
+- Business formation platform
+- Paperwork preparation system
+- Government filing coordinator
+- Funding assistance platform
+- Partner execution network
+- Business operations manager
+- Regulatory intelligence platform
+- Long-term business growth system
+
+Existing integrations and outsourcing
+remain essential components.
+
+Native execution must work alongside
+authorized external providers.
+
+Do not replace one with the other.
+
+=================================================
+6. BUILD FOR SECURE FUTURE EXPANSION
+=================================================
+
+Preserve the architecture for:
+
+- Device passkeys and Face ID
+- Electronic signatures
+- DirectSubmit
+- Government integrations
+- Professional partner connections
+- Verified regulatory monitoring
+- Continuous compliance management
+- Funding application preparation
+- Immigrant entrepreneur services
+- Multilingual support
+
+Do not claim these features are
+operational until implemented and tested.
+
+No biometric images or face templates
+may be stored.
+
+No external filing, signature,
+payment, or sensitive data sharing
+without appropriate authorization.
+
+=================================================
+7. PROVE THE WORK
+=================================================
+
+Create automated tests demonstrating:
+
+1. Existing Business Project loads.
+2. Authorized customer information is reused.
+3. Missing information is collected.
+4. A genuine document is generated.
+5. Customer can review and correct it.
+6. Approval is recorded.
+7. Document persists after logout/login.
+8. Another customer cannot access it.
+9. Existing features remain operational.
+10. Database records remain intact.
+
+Run:
+
+- Relevant backend tests
+- Existing regression tests
+- TypeScript checks
+- Production build
+- Database integrity checks
+- Mobile acceptance tests
+
+Use isolated test data.
+
+=================================================
+8. DEVELOPMENT SAFETY
+=================================================
+
+Use additive database migrations.
+
+Do not delete customer records.
+
+Do not change protected main.
+
+Do not force-push.
+
+Do not alter GitHub credentials.
+
+Do not deploy.
+
+Do not activate paid services.
+
+Do not submit real government forms.
+
+Do not submit real funding applications.
+
+Do not initiate payments.
+
+Commit tested work locally.
+
+=================================================
+9. REQUIRED PROOF OF COMPLETION
+=================================================
+
+When finished, provide:
+
+A. EXACT FILES CHANGED
+
+B. ACTUAL NEW FEATURES
+
+C. DEMONSTRATION OF THE COMPLETE
+   CUSTOMER WORKFLOW
+
+D. NAME OF THE DOCUMENT GENERATED
+
+E. AUTOMATED TEST RESULTS
+
+F. SECURITY VERIFICATION
+
+G. STARTING AND ENDING COMMITS
+
+H. ANY REMAINING BLOCKERS
+
+I. THE NEXT DEPENDENCY REQUIRED
+   FOR LIVE GOVERNMENT SUBMISSION
+
+Do not substitute documentation
+for functioning application code.
+
+Do not report simulated functionality
+as a real external integration.
+
+=================================================
+FINAL OWNER INSTRUCTION
+=================================================
+
+START CODING.
+
+BUILD ONE COMPLETE WORKING
+CONSULTING-TO-EXECUTION EXPERIENCE.
+
+MAKE THE EXISTING GENESIS SYSTEMS
+WORK TOGETHER.
+
+PRESERVE THE COMPLETE ORIGINAL APP.
+
+TEST THE RESULTS.
+
+COMMIT VERIFIED CODE.
+
+SHOW ME WHAT ACTUALLY WORKS.
+
+DO NOT STOP AT replit.md.
+
+BEGIN NOW.
+=================================================

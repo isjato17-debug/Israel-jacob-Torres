@@ -28,6 +28,7 @@ from .v2.partners import router as partners_router
 from .v2.partner_promotions import router as partner_promotions_router
 from .v2.ideas import router as ideas_router
 from .v2.consultation_privacy import router as consultation_privacy_router
+from .v2.documents import router as documents_router
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
 if settings.env == 'production':
@@ -43,6 +44,7 @@ app.include_router(partners_router)
 app.include_router(partner_promotions_router)
 app.include_router(ideas_router)
 app.include_router(consultation_privacy_router)
+app.include_router(documents_router)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PUT','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
 PRODUCT_ROOT = Path(__file__).resolve().parents[2]
