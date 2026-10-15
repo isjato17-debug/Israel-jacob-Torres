@@ -17,7 +17,7 @@ STATES = [
 ]
 ENTITY_TYPES = ["LLC", "Corporation", "Partnership", "Nonprofit", "Sole proprietorship"]
 OWNERSHIP_TYPES = ["Independent business", "Holding company", "Subsidiary"]
-SBA = "https://www.sba.gov/business-guide/launch-your-business"
+SBA = "https://www.sba.gov/counseling/launch-your-business/"
 IRS = "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number"
 
 # key, stage, title, description, availability, review, official guidance

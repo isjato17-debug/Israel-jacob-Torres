@@ -22,6 +22,10 @@ from .services.execution_hub import CATALOG, public_catalog, connection_status, 
 from .v2.router import router as v2_router
 from .v2.journey import router as journey_router
 from .v2.growth import router as growth_router
+from .v2.consultation import router as consultation_router
+from .services.readiness import check_readiness
+from .v2.partners import router as partners_router
+from .v2.partner_promotions import router as partner_promotions_router
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
 if settings.env == 'production':
@@ -32,6 +36,9 @@ app=FastAPI(title='Genesis Business OS',version='0.1.0',docs_url='/docs' if sett
 app.include_router(v2_router)
 app.include_router(journey_router)
 app.include_router(growth_router)
+app.include_router(consultation_router)
+app.include_router(partners_router)
+app.include_router(partner_promotions_router)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PUT','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
 PRODUCT_ROOT = Path(__file__).resolve().parents[2]
@@ -62,6 +69,13 @@ def business_for(db,bid,user): return ensure_tenant(db.get(Business,bid),user)
 def home(): return FileResponse(FRONTEND_ROOT / 'index.html')
 @app.get('/healthz')
 def health(): return {'status':'ok','lockdown':settings.lockdown}
+
+@app.get('/api/readyz')
+def readiness():
+    checks = check_readiness(engine, settings.env)
+    ready = all(checks.values())
+    return JSONResponse({"status": "ready" if ready else "not_ready", "checks": checks},
+                        status_code=200 if ready else 503)
 
 @app.post('/api/auth/register',dependencies=[Depends(require_csrf)] if False else [])
 def register(x:Register, request:Request, db:Session=Depends(get_db)):

@@ -7,9 +7,10 @@
 .ow-top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:3px double var(--ink)}
 .ow-eyebrow{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acc2);font-weight:700}
 .ow-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.ow-card{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:18px;margin-top:18px}
-.ow-grid{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:820px){.ow-grid.two{grid-template-columns:1fr 1fr}.ow-grid.three{grid-template-columns:repeat(3,1fr)}}
+.ow-card{background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:18px;margin-top:18px;min-width:0;overflow-wrap:anywhere}
+.ow-grid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:820px){.ow-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.ow-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ow-row>*{min-width:0;max-width:100%}
 .ow-btn{min-height:48px;padding:10px 18px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);font:inherit;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
 .ow-btn:hover{background:var(--acc);border-color:var(--acc)}
 .ow-btn.sec{background:transparent;color:var(--ink)}.ow-btn.sec:hover{background:var(--ink);color:var(--bg)}

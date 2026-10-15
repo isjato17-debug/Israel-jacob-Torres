@@ -157,11 +157,12 @@ export default function OwnerGrowth() {
     <div className="ow" data-testid="owner-console">
       <div className="ow-wrap">
         <header className="ow-top">
-          <div><div className="ow-eyebrow">Genesis OS - {t.private}</div><h1>{t.title}</h1></div>
+          <div><div className="ow-eyebrow">B.I.G. Business Inside Genesis - Powered by Genesis OS 2.0 - {t.private}</div><h1>{t.title}</h1></div>
           <div className="ow-row">
             <label style={{ margin: 0 }} className="ow-row">{t.lang}
               <select className="ow-lang" value={lang} onChange={(e) => setLang(e.target.value as Lang)} data-testid="owner-lang">
                 <option value="en">English</option><option value="es">Espanol</option></select></label>
+            {signedIn && <a className="ow-btn sec" href={`${import.meta.env.BASE_URL}next/owner/partners/`} data-testid="owner-partners-link">{lang === "es" ? "Revisión de socios" : "Partner review"}</a>}
             {signedIn && <button className="ow-btn sec" onClick={logout} disabled={loggingOut} data-testid="owner-logout">{loggingOut ? t.loggingOut : t.logout}</button>}
           </div>
         </header>

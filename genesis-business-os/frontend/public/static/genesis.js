@@ -394,7 +394,7 @@ function renderSavedEvolution() {
   }).join('');
   output.classList.add('on');
   output.innerHTML = `<div class="eyebrow">${escapeHtml(result.generation)}</div>
-    <h3>Genesis recommends: ${escapeHtml(recommendation.title)}</h3>
+    <h3>B.I.G. recommends: ${escapeHtml(recommendation.title)}</h3>
     <p>${escapeHtml(recommendation.why)}</p>
     <div class="pills"><span class="pill">Fit score ${escapeHtml(recommendation.score)}/100</span>
     <span class="pill">Cash envelope ${escapeHtml(money(recommendation.estimated_cash_needed))}</span></div>
@@ -461,7 +461,7 @@ async function seeEvolution() {
       .map(([key, value]) => `${escapeHtml(key.replaceAll('_', ' '))}: ${escapeHtml(value)}`)
       .join(' · ');
     output.innerHTML = `<div class="eyebrow">${escapeHtml(result.generation)}</div>
-      <h3>Genesis recommends: ${escapeHtml(recommendation.title)}</h3>
+      <h3>B.I.G. recommends: ${escapeHtml(recommendation.title)}</h3>
       <p>${escapeHtml(recommendation.why)}</p>
       <div class="pills"><span class="pill">Fit score ${escapeHtml(recommendation.score)}/100</span>
       <span class="pill">Cash envelope $${escapeHtml(recommendation.estimated_cash_needed)}</span></div>
@@ -475,7 +475,7 @@ async function seeEvolution() {
     })).twin;
     renderBusinessState();
   } catch (error) {
-    output.textContent = `Genesis could not calculate the evolution: ${error.message}`;
+    output.textContent = `B.I.G. could not calculate the evolution: ${error.message}`;
   }
 }
 
@@ -757,18 +757,26 @@ async function loadExecution() {
     const catalog = await api('/api/execution/catalog');
     byId('executionPoints').innerHTML = (catalog.points || []).map((point) => {
       const connection = point.connection?.state || 'UNKNOWN';
-      const connected = connection === 'CONNECTED' || connection === 'READY';
+      const connected = ['VERIFIED_CONNECTED', 'CONFIGURED', 'CONNECTED', 'READY'].includes(connection);
+      const connectionLabel = {
+        CONFIGURED: 'Configured, not verified',
+        VERIFICATION_PENDING: 'Verification pending',
+        VERIFIED_CONNECTED: 'Verified connection',
+        NOT_CONFIGURED: 'Not configured',
+        UNAVAILABLE: 'Unavailable',
+        ERROR: 'Connection error',
+      }[connection] || connection;
       const modeLabel = point.mode === 'GUIDE'
         ? 'Open official step'
         : point.mode === 'PREPARE'
-          ? 'Prepare with Genesis'
-          : 'Execute with Genesis';
+          ? 'Prepare with B.I.G.'
+          : 'Execute with B.I.G.';
       const unavailable = point.mode === 'EXECUTE' && !connected;
       return `<div class="execpoint">
         <div class="eyebrow">${escapeHtml(point.mode)} · Risk ${escapeHtml(point.risk_tier)}</div>
         <h3>${escapeHtml(point.title)}</h3>
         <p class="muted">${escapeHtml(point.provider)} · ${escapeHtml(point.capability)}</p>
-        <div class="${connected ? 'good' : 'warn'}">${escapeHtml(connection)}</div>
+        <div class="${connection === 'CONFIGURED' ? 'warn' : connected ? 'good' : 'warn'}">${escapeHtml(connectionLabel)}</div>
         ${unavailable
           ? `<button class="sec" type="button" disabled>Connection required</button>`
           : `<button class="cta" type="button" data-action="start-action" data-key="${escapeHtml(point.key)}" data-risk="${escapeHtml(point.risk_tier)}">${modeLabel}</button>`}
@@ -816,7 +824,7 @@ async function startAction(key, risk) {
       body: JSON.stringify({ business_id: BUSINESS_ID, point_key: key, payload }),
     });
     if (Number(risk) >= 2) {
-      const approved = window.confirm('Approve this Genesis action? It may create an external record or send/prepare a consequential step.');
+      const approved = window.confirm('Approve this B.I.G. action? It may create an external record or send/prepare a consequential step.');
       if (!approved) {
         await loadActions();
         return;
@@ -831,18 +839,18 @@ async function startAction(key, risk) {
       method: 'POST',
       body: '{}',
     });
-    let message = `Genesis action status: ${performed.status}.`;
+    let message = `B.I.G. action status: ${performed.status}.`;
 
     if (performed.status === 'PREPARED' || performed.status === 'EXECUTED') {
       const verified = await api(`/api/execution/actions/${action.id}/verify`, {
         method: 'POST',
         body: '{}',
       });
-      message = `Genesis verified this action from recorded evidence: ${verified.status}.`;
+      message = `B.I.G. verified this action from recorded evidence: ${verified.status}.`;
     } else if (performed.status === 'GUIDED') {
       const officialUrl = performed.result?.official_url;
       if (officialUrl) {
-        message += ` Complete the step yourself at ${officialUrl}. Genesis has not filed or submitted it.`;
+        message += ` Complete the step yourself at ${officialUrl}. B.I.G. has not filed or submitted it.`;
       }
       message += ' Use “Record official confirmation” only after you complete the step.';
       byId('executionStatus').innerHTML = `${escapeHtml(message)}
@@ -854,7 +862,7 @@ async function startAction(key, risk) {
     if (performed.status !== 'GUIDED') text('executionStatus', message);
     await loadActions();
   } catch (error) {
-    text('executionStatus', `Genesis did not mark this complete. ${error.message}`);
+    text('executionStatus', `B.I.G. did not mark this complete. ${error.message}`);
     await loadActions();
   }
 }
@@ -878,7 +886,7 @@ async function confirmGuidedAction(actionId) {
     text('executionStatus', `Official user-confirmed evidence recorded. Action status: ${verified.status}.`);
     await loadActions();
   } catch (error) {
-    text('executionStatus', `Genesis did not mark this complete. ${error.message}`);
+    text('executionStatus', `B.I.G. did not mark this complete. ${error.message}`);
   }
 }
 
@@ -943,7 +951,7 @@ function askConstraints(question) {
 function renderAskPreview(question, answer) {
   const preview = byId('homeAskPreview');
   if (!preview) return;
-  preview.innerHTML = `<b>Your question</b><p>${escapeHtml(question)}</p><b>Genesis planning options</b><p>${escapeHtml(answer)}</p>
+  preview.innerHTML = `<b>Your question</b><p>${escapeHtml(question)}</p><b>B.I.G. planning options</b><p>${escapeHtml(answer)}</p>
     <small class="muted">Shown for this browser session only.</small>`;
 }
 
@@ -973,12 +981,12 @@ Assumptions: ${assumptions.join(' ') || 'Planning estimates; validate before act
     });
     const answer = candidates.length
       ? `${result.notice || 'Planning values remain assumptions until verified.'}\n\n${candidates.join('\n\n')}`
-      : result.notice || 'Genesis returned no business candidates for this request.';
+      : result.notice || 'B.I.G. returned no business candidates for this request.';
     appendBubble('', answer);
     ASK_LAST_TURN = { question, answer };
     renderAskPreview(question, answer);
   } catch (error) {
-    appendBubble('', `Genesis could not answer this request: ${error.message}`);
+    appendBubble('', `B.I.G. could not answer this request: ${error.message}`);
   }
 }
 

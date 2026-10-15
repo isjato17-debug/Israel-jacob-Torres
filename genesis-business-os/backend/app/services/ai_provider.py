@@ -1,4 +1,11 @@
-import json, os, urllib.request
+"""Retained OpenAI-compatible request contract. Live transport is approval-blocked."""
+import json
+import os
+
+
+class LiveUsageNotAuthorized(RuntimeError):
+    pass
+
 
 class AIProvider:
     def __init__(self):
@@ -7,14 +14,25 @@ class AIProvider:
         self.base_url=os.getenv('GENESIS_AI_BASE_URL','')
         self.model=os.getenv('GENESIS_AI_MODEL','')
     def enabled(self):
-        return bool(self.provider!='disabled' and self.api_key and self.base_url and self.model)
+        # Live activation requires a separately reviewed authorization/budget change.
+        # Credentials or environment flags alone can never authorize a paid request.
+        return False
     def structured_analysis(self, system_prompt, payload):
-        if not self.enabled(): return None
-        # OpenAI-compatible server-side adapter. No key is ever sent to the browser.
-        body=json.dumps({'model':self.model,'messages':[{'role':'system','content':system_prompt},{'role':'user','content':json.dumps(payload)}],'response_format':{'type':'json_object'},'temperature':0.2}).encode()
-        req=urllib.request.Request(self.base_url.rstrip('/')+'/chat/completions',data=body,headers={'Authorization':'Bearer '+self.api_key,'Content-Type':'application/json'})
-        with urllib.request.urlopen(req,timeout=30) as r:
-            data=json.loads(r.read())
-        return json.loads(data['choices'][0]['message']['content'])
+        raise LiveUsageNotAuthorized("Live AI is awaiting explicit owner authorization")
+    def _authorized_transport(self, system_prompt, payload):
+        # No network implementation can run in this phase, including direct calls.
+        raise LiveUsageNotAuthorized("Live AI transport is disabled")
+    def build_request(self, system_prompt, payload):
+        """Offline contract builder for a future reviewed, budget-reserving transport."""
+        return {
+            'model': self.model,
+            'messages': [
+                {'role': 'system', 'content': system_prompt},
+                {'role': 'user', 'content': json.dumps(payload)},
+            ],
+            'response_format': {'type': 'json_object'}, 'temperature': 0.2,
+            'max_tokens': 1200,
+        }
+
 
 ai_provider=AIProvider()

@@ -4,7 +4,17 @@ export interface Account {
   id: string; tenant_id: string; email: string; role: string;
 }
 export type Question = "state" | "entity_type" | "ownership_type" | "goal";
-export type Language = "en" | "es";
+export type Language = "en" | "es" | "zh" | "ar" | "hi" | "sw";
+export const LANGUAGES: { code: Language; label: string; speech: string; rtl: boolean }[] = [
+  { code: "en", label: "English", speech: "en-US", rtl: false },
+  { code: "es", label: "Español", speech: "es-US", rtl: false },
+  { code: "zh", label: "中文（简体）", speech: "zh-CN", rtl: false },
+  { code: "ar", label: "العربية", speech: "ar-SA", rtl: true },
+  { code: "hi", label: "हिन्दी", speech: "hi-IN", rtl: false },
+  { code: "sw", label: "Kiswahili", speech: "sw-KE", rtl: false },
+];
+export const isRtl = (l: Language) => l === "ar";
+export const speechLocale = (l: Language) => LANGUAGES.find((x) => x.code === l)?.speech ?? "en-US";
 export type DetailMode = "simple" | "details";
 export interface Journey {
   id: string;

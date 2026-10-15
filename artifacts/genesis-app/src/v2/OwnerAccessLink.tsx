@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { getOwnerAccess } from "./owner-api";
+import type { Language } from "./journey-api";
+import { dict } from "./guided-i18n";
 
-export default function OwnerAccessLink({ accountId, language }: { accountId: string | null; language: "en" | "es" }) {
+export default function OwnerAccessLink({ accountId, language }: { accountId: string | null; language: Language }) {
   const [allowed, setAllowed] = useState(false);
   useEffect(() => {
     let cancelled = false;
@@ -14,6 +16,6 @@ export default function OwnerAccessLink({ accountId, language }: { accountId: st
     return () => { cancelled = true; };
   }, [accountId]);
   return allowed ? <a className="gx-btn sec" href={`${import.meta.env.BASE_URL}next/owner/`}>
-    {language === "es" ? "Panel del propietario" : "Owner console"}
+    {dict[language].ownerLink} <small>{dict[language].legacyNote}</small>
   </a> : null;
 }

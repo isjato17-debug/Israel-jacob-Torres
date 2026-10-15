@@ -14,6 +14,7 @@ from ..models import AuditEvent, Business, OnboardingJourney, User
 from ..security import current_user, ensure_not_lockdown, require_csrf
 from .catalog import STATES, ENTITY_TYPES, OWNERSHIP_TYPES
 from .router import Intake, plan
+from .locales import Language
 
 router = APIRouter(prefix="/api/v2/journeys", tags=["Saved Genesis journeys"])
 QUESTIONS = ["state", "entity_type", "ownership_type", "goal"]
@@ -25,7 +26,7 @@ def utc(value):
 
 class StartJourney(BaseModel):
     stage: Literal["start", "run", "grow"]
-    language: Literal["en", "es"] = "en"
+    language: Language = "en"
     detail_mode: Literal["simple", "details"] = "simple"
     consent: Literal[True]
 
@@ -37,7 +38,7 @@ class Answer(BaseModel):
 
 
 class Preferences(BaseModel):
-    language: Literal["en", "es"]
+    language: Language
     detail_mode: Literal["simple", "details"]
     expected_version: int = Field(ge=1)
 

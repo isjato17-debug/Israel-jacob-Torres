@@ -5,11 +5,14 @@ import type { Catalog, Stage } from "./api";
 import {
   ApiError, fetchJourneys, getSession, savePreferences, saveAnswer, signIn, signOut, startJourney,
 } from "./journey-api";
+import { LANGUAGES, isRtl, speechLocale } from "./journey-api";
 import type { Account, DetailMode, Journey, Language, Question } from "./journey-api";
+import { CHOICES } from "./loc/choices";
 import { dict } from "./guided-i18n";
 import type { Key } from "./guided-i18n";
 import "./guided.css";
 import OwnerAccessLink from "./OwnerAccessLink";
+import ConsultationPanel from "./ConsultationPanel";
 
 const ORDER: Question[] = ["state", "entity_type", "ownership_type", "goal"];
 const STAGES: Stage[] = ["start", "run", "grow"];
@@ -33,6 +36,11 @@ export default function GuidedExperience() {
   const [lang, setLang] = useState<Language>("en");
   const [detail, setDetail] = useState<DetailMode>("simple");
   const t = useCallback((k: Key) => dict[lang][k], [lang]);
+  useEffect(() => {
+    const el = document.documentElement; const pl = el.lang, pd = el.dir;
+    el.lang = lang; el.dir = isRtl(lang) ? "rtl" : "ltr";
+    return () => { el.lang = pl; el.dir = pd; };
+  }, [lang]);
 
   const [account, setAccount] = useState<Account | null | undefined>(undefined);
   const [initErr, setInitErr] = useState("");
@@ -256,7 +264,7 @@ export default function GuidedExperience() {
   const toggleListen = () => {
     if (listening) { stopSpeech(); return; }
     if (!SRC) return;
-    const r = new SRC(); r.lang = lang === "es" ? "es-US" : "en-US"; r.continuous = false; r.interimResults = false;
+    const r = new SRC(); r.lang = speechLocale(lang); r.continuous = false; r.interimResults = false;
     r.onresult = (ev) => {
       if (recRef.current !== r) return;
       let text = ""; for (let i = 0; i < ev.results.length; i++) text += ev.results[i][0].transcript;
@@ -280,20 +288,15 @@ export default function GuidedExperience() {
 
   const stateName = (code?: string) => catalog?.states.find((s) => s.code === code)?.name ?? code ?? "";
   const choiceName = (value: string) => {
-    const spanish: Record<string, string> = {
-      LLC: "LLC (responsabilidad limitada)", Corporation: "Corporación",
-      Partnership: "Sociedad", Nonprofit: "Organización sin fines de lucro",
-      "Sole proprietorship": "Empresa individual", "Independent business": "Empresa independiente",
-      "Holding company": "Sociedad matriz (holding)", Subsidiary: "Empresa subsidiaria",
-    };
-    return lang === "es" ? spanish[value] ?? value : value;
+    return lang === "en" ? value : CHOICES[lang][value] ?? value;
   };
   const display = (q: Question, j: Journey) => { const v = j.answers[q]; return !v ? "" : q === "state" ? stateName(v) : q === "goal" ? v : choiceName(v); };
 
   const planText = (j: Journey) => {
     const L = [
-      "GENESIS OS SAVED PLAN - PREPARED, NOT SUBMITTED",
-      "Status: SAVED in your Genesis account. NOT submitted to any agency. NOT completed.",
+      "B.I.G. SAVED PLAN - PREPARED, NOT SUBMITTED",
+      "Status: SAVED in your B.I.G. account. NOT submitted to any agency. NOT completed.",
+      "Powered by Genesis OS 2.0",
       "Mode: GUIDED planning, not connected AI. Rule-based checklist, not state-specific legal advice.",
       "Answers are user-provided and not verified.", "",
       `Stage: ${j.stage}`, `Journey status: ${j.status}`, `Last saved: ${j.updated_at}`,
@@ -322,12 +325,13 @@ export default function GuidedExperience() {
   /* ---------- render pieces ---------- */
   const header = (
     <header className="gx-top">
-      <span className="gx-brand">{t("brand")} <span className="gx-badge" data-testid="text-mode">{t("mode")}</span></span>
+      <span className="gx-brand">{t("brand")} <span className="gx-badge" data-testid="text-mode">{t("mode")}</span> <small className="gx-help" data-testid="text-powered">Powered by Genesis OS 2.0</small></span>
       <div className="gx-tools">
+        <a className="gx-btn sec" href={`${base}next/partners/`} data-testid="link-partners">Partner Network <small>{t("legacyNote")}</small></a>
         <OwnerAccessLink accountId={account?.id ?? null} language={lang} />
         <label>{t("language")}
           <select data-testid="language" disabled={busy} value={lang} onChange={(e) => void changePrefs(e.target.value as Language, detail)}>
-            <option value="en">English</option><option value="es">Español</option>
+            {LANGUAGES.map((l) => <option key={l.code} value={l.code} lang={l.code}>{l.label}</option>)}
           </select></label>
         <label>{t("details")}
           <select data-testid="details" disabled={busy} value={detail} onChange={(e) => void changePrefs(lang, e.target.value as DetailMode)}>
@@ -387,8 +391,8 @@ export default function GuidedExperience() {
         <section className="gx-card">
           {stageCardsPreview()}
           <div className="gx-row">
-            <a className="gx-btn sec" href={guestHref} data-testid="link-guest-draft">{t("guest")}</a>
-            <a className="gx-btn sec" href={base} data-testid="link-workspace">{t("workspace")}</a>
+            <a className="gx-btn sec" href={guestHref} data-testid="link-guest-draft">{t("guest")} {lang !== "en" && lang !== "es" && <small>{t("legacyNote")}</small>}</a>
+            <a className="gx-btn sec" href={base} data-testid="link-workspace">{t("workspace")} {lang !== "en" && lang !== "es" && <small>{t("legacyNote")}</small>}</a>
           </div>
         </section>
       </div>
@@ -496,7 +500,7 @@ export default function GuidedExperience() {
         <>
           <h3 style={{ marginTop: 22 }}>{t("checklist")}</h3>
           <p className="gx-help">{t("poweredBy")}</p>
-          {lang === "es" && <p className="gx-warn" role="note" data-testid="text-translation-notice">{t("planEnglish")}</p>}
+          {lang !== "en" && <p className="gx-warn" role="note" data-testid="text-translation-notice" lang={lang}>{t("planEnglish")}</p>}
           <ol style={{ listStyle: "none", padding: 0 }}>
             {j.plan.steps.map((s) => (
               <li className="gx-step" key={s.order} data-testid={`step-${s.order}`}>
@@ -523,16 +527,19 @@ export default function GuidedExperience() {
   const mission = (
     <>
       <section className="gx-hero" style={{ paddingBottom: 0 }}>
-        <h1 data-testid="mission-control">{t("missionH")}</h1><p>{t("missionP")}</p>
+        <h1 data-testid="mission-control">{t("missionH")}</h1><p>{t("missionP")}</p><p className="gx-help">B.I.G. Business Inside Genesis. Powered by Genesis OS 2.0. Think B.I.G. Build B.I.G. Become B.I.G.</p>
         <p className="gx-help">{t("signedAs")} {account?.email}</p>
       </section>
       {stageCards}
       {startPanel}
       {!pendingStage && journeys.length === 0 && <p className="gx-card" data-testid="text-empty">{t("noJourneys")}</p>}
       {!pendingStage && active && planView(active)}
+      {!pendingStage && active && account && active.status === "PREPARED" && active.plan && !active.next_question && (
+        <ConsultationPanel journey={active} lang={lang} accountId={account.id} stateName={stateName} onRefreshJourney={reload} onUnauthorized={() => clearAccount(true)} />
+      )}
       <div className="gx-row">
-        <a className="gx-btn sec" href={guestHref} data-testid="link-guest-draft">{t("guest")}</a>
-        <a className="gx-btn sec" href={base} data-testid="link-workspace">{t("workspace")}</a>
+        <a className="gx-btn sec" href={guestHref} data-testid="link-guest-draft">{t("guest")} {lang !== "en" && lang !== "es" && <small>{t("legacyNote")}</small>}</a>
+        <a className="gx-btn sec" href={base} data-testid="link-workspace">{t("workspace")} {lang !== "en" && lang !== "es" && <small>{t("legacyNote")}</small>}</a>
       </div>
     </>
   );
@@ -547,7 +554,7 @@ export default function GuidedExperience() {
   else body = view === "question" && questionView ? questionView : mission;
 
   return (
-    <div className="gx" lang={lang} data-testid="guided-root">
+    <div className="gx" lang={lang} dir={isRtl(lang) ? "rtl" : "ltr"} data-testid="guided-root">
       <div className="gx-wrap">{header}<main>
         {prefMsg && <p className="gx-help" role="status" data-testid="text-pref">{prefMsg}</p>}
         {conflict && view === "mission" && <p role="alert" className="gx-warn">{t("conflict")} <button type="button" className="gx-btn sec" data-testid="reload" disabled={busy} onClick={reload}>{t("reload")}</button></p>}

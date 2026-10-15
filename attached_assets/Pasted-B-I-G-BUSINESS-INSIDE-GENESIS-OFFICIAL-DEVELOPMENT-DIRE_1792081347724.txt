@@ -1,0 +1,478 @@
+B.I.G. — BUSINESS INSIDE GENESIS
+OFFICIAL DEVELOPMENT DIRECTIVE
+PHASE 2: BRAND INTEGRATION, AI FOUNDATION,
+CUSTOMER INTELLIGENCE AND AUTOMATION READINESS
+
+IMPORTANT OFFICIAL ANNOUNCEMENT:
+
+The customer-facing application previously developed
+as Genesis OS 2.0 is now officially named:
+
+B.I.G. — BUSINESS INSIDE GENESIS
+
+The underlying technology remains Genesis OS 2.0.
+
+Official brand identity:
+
+Product Name: B.I.G.
+Full Name: Business Inside Genesis
+Technology Platform: Genesis OS 2.0
+
+Brand Message:
+Think B.I.G.
+Build B.I.G.
+Become B.I.G.
+
+This is a permanent product-branding decision.
+
+All future customer-facing development should use
+the B.I.G. identity.
+
+Do not rename the GitHub repository, development
+branch, database tables, migration identifiers,
+internal APIs, or existing source-code directories
+merely for branding purposes.
+
+Preserve backward compatibility.
+
+--------------------------------------------------
+1. PRESERVE EXISTING DEVELOPMENT
+--------------------------------------------------
+
+Current GitHub repository:
+isjato17-debug/Israel-jacob-Torres
+
+Development branch:
+genesis-os-2-development
+
+Verified baseline commit:
+b17bb8397a978470c2f57c4b35b3bb562331273e
+
+The GitHub branch rename and synchronization
+have already been completed.
+
+DO NOT repeat the branch-renaming process.
+
+DO NOT delete existing application functionality.
+
+DO NOT overwrite production or development data.
+
+DO NOT force-push.
+
+DO NOT modify the protected main branch.
+
+Preserve the existing migration chain:
+
+g0001 → g0002 → g0003
+
+Preserve the existing application at /.
+
+Preserve the guided customer experience at /next/.
+
+Preserve the owner console at /next/owner/.
+
+Preserve all existing authentication, authorization,
+audit, security, and customer-isolation protections.
+
+--------------------------------------------------
+2. IMPLEMENT THE NEW B.I.G. BRAND
+--------------------------------------------------
+
+Update appropriate customer-facing interfaces to
+reflect the official name:
+
+B.I.G. — Business Inside Genesis
+
+Display:
+
+B.I.G.
+Business Inside Genesis
+Powered by Genesis OS 2.0
+
+Apply the branding consistently to:
+
+- Welcome screens
+- Customer dashboards
+- Start My Business
+- Run My Business
+- Grow My Business
+- Mission Control
+- Navigation
+- Page titles
+- Appropriate customer-facing descriptions
+
+Preserve functional routes and internal identifiers.
+
+Do not remove existing features.
+
+Do not invent or publish a new logo without approval.
+
+Keep the interface professional, modern,
+mobile-friendly, and accessible.
+
+--------------------------------------------------
+3. CORRECT CONFIRMED DEVELOPMENT ISSUES
+--------------------------------------------------
+
+Address the issues documented in the October 15,
+2026 development status report.
+
+A. Provider connection status
+
+Do not report a provider as CONNECTED merely
+because environment variables exist.
+
+Distinguish between:
+
+NOT CONFIGURED
+CONFIGURED
+VERIFICATION PENDING
+VERIFIED CONNECTED
+UNAVAILABLE
+ERROR
+
+Only report VERIFIED CONNECTED after an
+appropriate successful provider verification.
+
+B. Campaign validation
+
+Correct the mismatch between the frontend
+200-character title limit and the API's
+160-character limit.
+
+Ensure frontend and backend validation agree.
+
+C. Security readiness
+
+Review process-memory rate limiting.
+
+Design a shared production-compatible
+rate-limiting architecture.
+
+Do not introduce unnecessary paid services.
+
+D. Health verification
+
+Separate basic process liveness from
+dependency-aware readiness.
+
+Do not expose sensitive configuration details.
+
+--------------------------------------------------
+4. DEVELOP THE B.I.G. AI FOUNDATION
+--------------------------------------------------
+
+The primary objective is to connect genuine AI
+capabilities to the existing customer experience.
+
+Reuse the existing OpenAI-compatible adapter
+where appropriate.
+
+Implement a secure server-side AI integration
+architecture.
+
+IMPORTANT FINANCIAL RESTRICTION:
+
+The owner currently has a very limited budget.
+
+Do not purchase API credits.
+
+Do not activate paid AI requests.
+
+Do not enable automatic billing.
+
+Do not incur external service charges.
+
+Do not create paid subscriptions.
+
+Implement and test the integration using mocks
+or approved no-cost methods until the owner
+explicitly authorizes live API usage.
+
+Never expose API credentials in frontend code.
+
+Do not hardcode secrets.
+
+Design strict usage limits and spending controls.
+
+--------------------------------------------------
+5. B.I.G. CUSTOMER INTELLIGENCE
+--------------------------------------------------
+
+Build upon the existing saved customer intake.
+
+The customer experience should support:
+
+- Conversational business guidance
+- One-question-at-a-time consultations
+- English and Spanish
+- Saved business information
+- Resume functionality
+- Personalized business roadmaps
+- Clear explanations for beginners
+- Advanced guidance when requested
+- Mission Control integration
+- Explicit customer consent
+
+Distinguish between:
+
+AI-generated recommendations
+Verified government information
+Customer-provided information
+Unverified assumptions
+Professional advice requirements
+
+Never represent unverified AI output as
+official government confirmation.
+
+Implement schema validation and reliable
+failure handling.
+
+--------------------------------------------------
+6. B.I.G. AUTOMATION ARCHITECTURE
+--------------------------------------------------
+
+Prepare the foundation for a coordinated
+multi-agent business operating system.
+
+Planned agents:
+
+B.I.G. Commander
+B.I.G. Marketing
+B.I.G. Growth
+B.I.G. Finance
+B.I.G. Compliance
+B.I.G. Intellectual Property
+B.I.G. Operations
+B.I.G. Customer Support
+B.I.G. Security
+
+These are planned capabilities, not existing
+verified production services.
+
+Develop a modular architecture supporting:
+
+- Agent permissions
+- Task coordination
+- Workflow states
+- Event-driven automation
+- Audit logging
+- Failure recovery
+- Budget enforcement
+- Owner oversight
+
+Do not activate autonomous external actions
+during this phase.
+
+--------------------------------------------------
+7. REVENUE-BASED AI OPERATIONS
+--------------------------------------------------
+
+Design B.I.G. to support AI operating budgets
+that increase with actual eligible revenue.
+
+The initial proposed allocation is:
+
+Up to 5% of eligible collected revenue.
+
+This is a configurable planning assumption,
+not authorization to spend money.
+
+The system must eventually support:
+
+- Revenue verification
+- Refund adjustments
+- Processing-fee accounting
+- Operating budget calculations
+- Per-agent usage limits
+- Spending alerts
+- Automatic budget enforcement
+- Owner-controlled allocation changes
+
+Do not activate payments or paid AI usage.
+
+Do not assume projected revenue is available cash.
+
+--------------------------------------------------
+8. OFFICIAL BUSINESS SERVICES FOUNDATION
+--------------------------------------------------
+
+Prepare a modular official-resource architecture
+for future integrations with:
+
+IRS
+USPTO
+SBA
+FinCEN
+State business registration agencies
+State licensing agencies
+Local government agencies
+Relevant federal regulatory agencies
+
+Design for:
+
+Business formation
+EIN guidance
+Licensing
+Permits
+Tax compliance
+Trademark research
+Patent research
+Copyright registration guidance
+Business renewals
+Compliance monitoring
+Official status verification
+
+Prioritize authoritative government sources.
+
+Do not claim that an API connection exists
+unless it has been implemented and verified.
+
+Do not submit government filings.
+
+Do not provide unauthorized legal representation.
+
+--------------------------------------------------
+9. PRESERVE FUTURE ONEPAY DEVELOPMENT
+--------------------------------------------------
+
+Maintain the existing OnePay architecture work.
+
+Preferred future marketplace candidate:
+Stripe Connect.
+
+Preserve existing Square integration code
+and historical records.
+
+Do not activate checkout.
+
+Do not process real payments.
+
+Do not create provider payouts.
+
+Do not modify customer financial records
+without authorization.
+
+--------------------------------------------------
+10. TESTING AND QUALITY ASSURANCE
+--------------------------------------------------
+
+Use isolated, disposable test data.
+
+Verify:
+
+- Existing legacy functionality
+- Authentication
+- Tenant isolation
+- Saved intake
+- Mission Control
+- Owner campaign functionality
+- New B.I.G. branding
+- Provider status accuracy
+- Validation consistency
+- AI integration mock behavior
+- Error recovery
+- English/Spanish interfaces
+- Mobile responsiveness
+- Accessibility basics
+- Security boundaries
+
+Run appropriate automated tests.
+
+Report actual test results.
+
+Do not describe untested functionality
+as verified.
+
+--------------------------------------------------
+11. DEVELOPMENT EXECUTION RULES
+--------------------------------------------------
+
+First inspect the existing implementation.
+
+Create a concise implementation plan.
+
+Then implement the approved,
+non-destructive development changes.
+
+Prefer small, reviewable changes.
+
+Preserve existing functionality.
+
+Do not deploy or publish.
+
+Do not incur charges.
+
+Do not submit external filings.
+
+Do not activate live payment processing.
+
+Do not introduce unauthorized external actions.
+
+If a change requires paid services,
+legal authorization, production credentials,
+or destructive migration, stop that portion
+and request explicit owner approval.
+
+--------------------------------------------------
+12. REQUIRED COMPLETION REPORT
+--------------------------------------------------
+
+After development, provide:
+
+1. Exact files changed.
+2. B.I.G. branding changes completed.
+3. Existing errors corrected.
+4. AI foundation implemented.
+5. Automation architecture prepared.
+6. Security protections verified.
+7. Tests executed and their results.
+8. Any remaining errors.
+9. Features still awaiting authorization.
+10. Git commit identification.
+11. Whether GitHub synchronization occurred.
+12. Recommended next development phase.
+
+Clearly distinguish:
+
+IMPLEMENTED
+TESTED
+VERIFIED
+PLANNED
+BLOCKED
+AWAITING APPROVAL
+
+Do not claim production readiness.
+
+Do not change the canonical release-gate
+counts without evidence.
+
+The October 15 baseline remains:
+
+400 PASS
+0 FAIL
+600 RELEASE GATE
+
+These classifications do not represent
+a percentage of product completion.
+
+FINAL OBJECTIVE:
+
+Advance the existing Genesis OS 2.0 platform
+into the officially branded:
+
+B.I.G. — BUSINESS INSIDE GENESIS
+
+Build a secure, intelligent, automation-first
+business ecosystem capable of supporting
+entrepreneurs from initial business planning
+through ongoing operations and growth.
+
+Prioritize accuracy, affordability, security,
+reliability, accessibility, and scalability.
+
+Preserve all existing development.
+
+BEGIN WITH CODE INSPECTION AND A SAFE
+IMPLEMENTATION PLAN, THEN PROCEED WITH
+THE AUTHORIZED DEVELOPMENT WORK.

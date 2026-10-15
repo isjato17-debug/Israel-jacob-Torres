@@ -1,4 +1,11 @@
-# Genesis Business OS
+# B.I.G. — Business Inside Genesis
+
+See `docs/BIG_PHASE2_IMPLEMENTATION.md` under `genesis-business-os/` for the current
+brand implementation, no-cost development boundaries and remaining production requirements.
+See `docs/BIG_PARTNER_NETWORK_FOUNDATION.md` in the same directory for private partner
+intake/review boundaries. Review preserves tenant scope and the explicit operator allowlist;
+manual evidence is not a connected API or government endorsement. No partner activation,
+external promotion, filing or paid service is authorized.
 
 A founder-focused business operating system that turns a business goal and current resources into guided next steps, evidence checkpoints, and rerouted plans.
 
@@ -46,7 +53,8 @@ No additional user preferences recorded.
 ## Gotchas
 
 - Run each imported test suite from its own directory; the execution-layer test imports are relative to `execution_layer/app`.
-- The Genesis frontend is served from `genesis-business-os/frontend`; keep its product identity and feature set intact when wiring or fixing it.
+- The frontend is served from `genesis-business-os/frontend`; use B.I.G. customer branding
+  while preserving existing features and the `/`, `/next/`, `/next/owner/` routes.
 - External email, payment, AI, and other provider actions remain unavailable until their integrations and production configuration are established.
 
 ## Pointers

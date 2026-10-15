@@ -1,0 +1,255 @@
+B.I.G. — BUSINESS INSIDE GENESIS
+OFFICIAL DEVELOPMENT DIRECTIVE
+PARTNER NETWORK & AUTOMATION FOUNDATION
+
+PRODUCT:
+B.I.G. — Business Inside Genesis
+Powered by Genesis OS 2.0
+
+MISSION:
+Develop a secure, automated partner ecosystem
+that makes business formation, management,
+compliance, protection, and growth as simple
+as possible for customers.
+
+IMPORTANT:
+Preserve all existing Genesis OS functionality.
+
+Repository:
+isjato17-debug/Israel-jacob-Torres
+
+Development branch:
+genesis-os-2-development
+
+Do not rename or delete existing code,
+routes, database tables, or migrations.
+
+Do not modify the protected main branch.
+
+Do not force-push.
+
+Do not deploy or publish.
+
+Do not activate paid services.
+
+------------------------------------------------
+PHASE 1 — PARTNER NETWORK FOUNDATION
+------------------------------------------------
+
+Build the B.I.G. Partner Network architecture.
+
+Partner categories:
+
+1. Government-authorized service providers
+2. Business formation companies
+3. Registered-agent providers
+4. Attorneys and legal professionals
+5. Certified public accountants
+6. Tax professionals
+7. Insurance providers
+8. Banking and lending providers
+9. Payroll and accounting providers
+10. Trademark and patent professionals
+11. AI and technology providers
+12. Marketing and growth partners
+
+Create a secure partner application workflow.
+
+Support:
+
+APPLICATION
+UNDER REVIEW
+VERIFICATION REQUIRED
+VERIFIED
+AGREEMENT PENDING
+APPROVED
+INTEGRATION TESTING
+ACTIVE
+SUSPENDED
+REJECTED
+
+Partner approval must require appropriate
+owner authorization.
+
+Never automatically represent an applicant
+as verified or approved.
+
+------------------------------------------------
+PHASE 2 — PARTNER ONBOARDING PORTAL
+------------------------------------------------
+
+Create an accessible, mobile-friendly
+partner onboarding experience.
+
+Support:
+
+Business information
+Contact information
+Services offered
+Service coverage
+Professional credentials
+License information when applicable
+API capabilities
+Partnership interests
+Pricing information
+Agreement status
+Verification status
+
+Protect sensitive partner information.
+
+Do not request unnecessary identity documents.
+
+Do not expose partner information publicly
+without appropriate authorization.
+
+------------------------------------------------
+PHASE 3 — OWNER PARTNER COMMAND CENTER
+------------------------------------------------
+
+Extend the existing private owner console.
+
+Allow authorized platform operators to:
+
+Review partner applications
+Request additional information
+Approve or reject applications
+Track verification evidence
+Manage partnership agreements
+Review integration readiness
+Monitor partner performance
+Suspend partner access
+Maintain audit histories
+
+Preserve existing owner allowlist,
+tenant isolation, and security controls.
+
+------------------------------------------------
+PHASE 4 — GOVERNMENT CONNECTIONS
+------------------------------------------------
+
+Prepare verified official-resource
+connections for:
+
+SBA
+IRS
+USPTO
+U.S. Copyright Office
+FinCEN
+Relevant federal agencies
+All 50 states and Washington, DC
+Applicable county and municipal agencies
+
+Distinguish:
+
+Official public information
+Verified API connection
+Restricted partner API
+Authorized filing capability
+Manual verification required
+
+Do not claim government endorsement.
+
+Do not submit government filings.
+
+------------------------------------------------
+PHASE 5 — AUTOMATION COORDINATOR
+------------------------------------------------
+
+Prepare the architecture for:
+
+B.I.G. Commander
+B.I.G. Marketing
+B.I.G. Growth
+B.I.G. Finance
+B.I.G. Compliance
+B.I.G. Operations
+B.I.G. Security
+
+Support:
+
+Task coordination
+Permission controls
+Workflow tracking
+Failure recovery
+Audit logging
+Budget enforcement
+Owner oversight
+
+Do not activate paid AI services.
+
+Do not perform unauthorized external actions.
+
+------------------------------------------------
+PHASE 6 — PARTNER PROMOTION SYSTEM
+------------------------------------------------
+
+Prepare a controlled co-marketing system.
+
+Support:
+
+Partner promotional profiles
+Referral tracking architecture
+Approved promotional campaigns
+Co-branded campaign preparation
+Marketing performance reporting
+Partner attribution records
+
+Do not publish advertisements automatically
+without appropriate authorization.
+
+Do not use partner names or logos in a way
+that falsely implies endorsement.
+
+------------------------------------------------
+PHASE 7 — TESTING
+------------------------------------------------
+
+Use disposable test data.
+
+Verify:
+
+Authentication
+Authorization
+Tenant isolation
+Partner application workflow
+Owner approval controls
+Status transitions
+Audit records
+Mobile responsiveness
+Validation
+Error handling
+Existing application compatibility
+
+Do not alter real customer or partner records.
+
+------------------------------------------------
+PHASE 8 — COMPLETION REPORT
+------------------------------------------------
+
+Provide:
+
+1. Features implemented.
+2. Files changed.
+3. Database changes, if any.
+4. Tests executed and results.
+5. Security protections verified.
+6. Partner integrations actually connected.
+7. Features awaiting approval.
+8. Remaining development tasks.
+9. Git commit identification.
+10. GitHub synchronization status.
+
+Do not claim production readiness.
+
+FINAL OBJECTIVE:
+
+Build B.I.G. into a highly automated,
+secure, affordable business ecosystem
+supported by verified professional partners
+and authoritative government resources.
+
+Inspect existing code first.
+
+Implement the bounded, safe foundation.
+
+Preserve all previous development.

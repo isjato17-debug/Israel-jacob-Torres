@@ -20,8 +20,8 @@ function pretty(s: string) { return s.replace(/_/g, ' ').toLowerCase().replace(/
 
 function planText(p: Plan) {
   const L = [
-    'GENESIS OS PRELIMINARY PLAN - UNSAVED DRAFT',
-    'Rule-based checklist. Not AI-generated. Not state-specific legal advice. Not saved by Genesis.',
+    'B.I.G. PRELIMINARY PLAN - UNSAVED DRAFT',
+    'Rule-based checklist. Not AI-generated. Not state-specific legal advice. Not saved by B.I.G..',
     '',
     `Stage: ${p.intake.stage}`, `State: ${p.state_name}`, `Entity type: ${p.intake.entity_type}`,
     `Ownership: ${p.intake.ownership_type}`, `Goal / context: ${p.intake.goal}`, '', 'STEPS',
@@ -85,19 +85,19 @@ export default function GenesisNext() {
   const set = (k: keyof typeof form) => (e: { target: { value: string } }) => setForm({ ...form, [k]: e.target.value });
   const fld = (k: keyof typeof errors) => ({ 'aria-invalid': touched && !!errors[k], 'aria-describedby': `err-${k}` });
   const fe = (k: keyof typeof errors) => <span id={`err-${k}`} className="err" role="alert">{touched ? errors[k] : ''}</span>;
-  const unverified = cat?.providers.filter((p) => p.status === 'NOT_VERIFIED') ?? [];
+  const unverified = cat?.providers.filter((p) => p.status !== 'VERIFIED_CONNECTED') ?? [];
 
   return (
     <div className="genesis-next">
       <main className="wrap">
         <header className="top">
-          <span className="brand">Genesis OS 2.0</span>
+          <span className="brand">B.I.G. · Business Inside Genesis <small>Powered by Genesis OS 2.0</small></span>
           <span className="row"><span className="badge">Development preview</span>
             <a href={home} data-testid="link-workspace">Open current workspace</a></span>
         </header>
 
-        <h1>One clear next step.</h1>
-        <p className="lead">Pick where you are. Genesis builds a preliminary checklist and shows every service with honest availability. Nothing here is saved, filed or paid.</p>
+        <h1>One clear next step.</h1><p className="lead">Think B.I.G. Build B.I.G. Become B.I.G.</p>
+        <p className="lead">Pick where you are. B.I.G. builds a preliminary checklist and shows every service with honest availability. Nothing here is saved, filed or paid.</p>
 
         <div className="stages" role="group" aria-label="Business stage">
           {STAGES.map((s) => (
@@ -194,7 +194,7 @@ export default function GenesisNext() {
                   {s.professional_review && <span className="tag w">Professional review</span>}</div>
                 <h3>{s.title}</h3>
                 <p style={{ margin: 0, color: 'var(--mut)' }}>{s.description}</p>
-                <small>{s.submission_available ? 'Submission available' : 'Genesis cannot submit this for you.'}</small>
+                <small>{s.submission_available ? 'Submission available' : 'B.I.G. cannot submit this for you.'}</small>
                 {s.official_url && <a href={s.official_url} target="_blank" rel="noopener noreferrer">Official link</a>}
               </article>
             ))}

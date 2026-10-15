@@ -66,6 +66,51 @@ class OnboardingJourney(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
+class AIConsultation(Base):
+    __tablename__ = "ai_consultations"
+    __table_args__ = (UniqueConstraint("journey_id", name="uq_consultation_journey"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    journey_id: Mapped[str] = mapped_column(ForeignKey("onboarding_journeys.id"), index=True)
+    turns_json: Mapped[str] = mapped_column(Text, default="[]")
+    journey_version: Mapped[int] = mapped_column(Integer)
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    language: Mapped[str] = mapped_column(String(5))
+    detail_mode: Mapped[str] = mapped_column(String(12))
+    consent_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class PartnerApplication(Base):
+    __tablename__ = "partner_applications"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    applicant_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    details_json: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(String(30), default="APPLICATION")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    review_json: Mapped[str] = mapped_column(Text, default="{}")
+    review_note: Mapped[str] = mapped_column(Text, default="")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class PartnerPromotion(Base):
+    __tablename__ = "partner_promotions"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id"), index=True)
+    partner_id: Mapped[str] = mapped_column(ForeignKey("partner_applications.id"), index=True)
+    title: Mapped[str] = mapped_column(String(160))
+    content: Mapped[str] = mapped_column(Text)
+    partner_permission_reference: Mapped[str] = mapped_column(String(500), default="")
+    status: Mapped[str] = mapped_column(String(20), default="DRAFT")
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    attribution_code: Mapped[str] = mapped_column(String, default=uid, unique=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
 class Evidence(Base):
     __tablename__='evidence'
     id: Mapped[str]=mapped_column(String, primary_key=True, default=uid)

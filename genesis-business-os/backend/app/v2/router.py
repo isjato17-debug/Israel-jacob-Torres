@@ -3,6 +3,9 @@ from typing import Literal
 from fastapi import APIRouter
 from pydantic import BaseModel, Field, field_validator
 from .catalog import STATES, ENTITY_TYPES, OWNERSHIP_TYPES, service_records
+from ..services.execution_hub import CATALOG, connection_status
+from .locales import LANGUAGES
+from ..services.official_resources import public_resources
 
 router = APIRouter(prefix="/api/v2", tags=["Genesis OS 2.0 development"])
 
@@ -45,16 +48,18 @@ class Intake(BaseModel):
 def catalog():
     return {
         "version": "2.0-development",
+        "languages": LANGUAGES,
+        "official_resources": public_resources(),
         "states": [{"code": code, "name": name} for code, name in STATES],
         "entity_types": ENTITY_TYPES,
         "ownership_types": OWNERSHIP_TYPES,
         "services": service_records(),
-        "ai": {"status": "NOT_VERIFIED", "mode": "GUIDED_PLANNING",
-               "notice": "This preview uses transparent planning rules, not a connected AI model."},
+        "ai": {"status": "AWAITING_APPROVAL", "mode": "GUIDED_PLANNING", "live_enabled": False,
+               "notice": "Planning uses transparent rules. Saved consultations offer a labeled no-cost simulation, not live AI."},
         "billing": {"status": "PRICING_NOT_APPROVED", "checkout_enabled": False},
         "providers": [
-            {"name": "SendGrid", "status": "NOT_VERIFIED"},
-            {"name": "Square", "status": "NOT_VERIFIED"},
+            {"name": "SendGrid", "status": connection_status(CATALOG["email_send"])["state"]},
+            {"name": "Square", "status": connection_status(CATALOG["crm_customer_create"])["state"]},
         ],
         "notice": "All 50 states are selectable for planning. No state filing API or legal determination is provided.",
     }

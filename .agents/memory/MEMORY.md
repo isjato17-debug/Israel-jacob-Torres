@@ -4,3 +4,4 @@
 - [Dependency verification](dependency-verification.md) — A clean lockfile audit is insufficient; verify patched versions through the runtime's actual dependency paths.
 - [GitHub access checks](github-access-checks.md) — Healthy connector authorization does not prove that gh is authenticated; do not request duplicate OAuth solely from a local CLI error.
 - [Genesis OS 2.0 scope](genesis-2-scope.md) — Reconstruction is authorized on a separate branch; preserve the existing app and require approval for paid services, filings and publishing.
+- [B.I.G. brand and budget](big-brand-and-budget.md) — Permanent customer identity; Phase 2 is no-cost, simulated and non-autonomous; 5% revenue allocation is planning, not permission to spend.

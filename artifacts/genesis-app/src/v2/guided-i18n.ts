@@ -1,7 +1,11 @@
 import type { Language } from "./journey-api";
+import { zh } from "./loc/guided-zh";
+import { ar } from "./loc/guided-ar";
+import { hi } from "./loc/guided-hi";
+import { sw } from "./loc/guided-sw";
 
 const en = {
-  brand: "Genesis OS", mode: "GUIDED planning. Not connected AI.",
+  brand: "B.I.G. - Business Inside Genesis", mode: "GUIDED planning. Not connected AI.",
   start: "START MY BUSINESS", run: "RUN MY BUSINESS", grow: "GROW MY BUSINESS",
   startB: "Choose a structure and get set up.", runB: "Keep operations, money and compliance steady.", growB: "Add customers, capacity and capital carefully.",
   heroH: "One question at a time.", heroP: "Pick where you are. We ask four short questions, save each answer to your account, and build a preliminary checklist. Nothing is filed, submitted or paid.",
@@ -14,7 +18,7 @@ const en = {
   language: "Language", details: "Detail", simple: "Simple", detailsOpt: "Details", logout: "Sign out",
   loading: "Loading your saved progress...", retry: "Retry", initErr: "We could not load this page.",
   expired: "Your session ended. Sign in again to continue. Nothing unsaved was sent.",
-  consent: "I agree that Genesis may save my answers to my account for this journey. Answers are user-provided and are not verified.",
+  consent: "I agree that B.I.G. may save my answers to my account for this journey. Answers are user-provided and are not verified.",
   startBtn: "Start this journey", startNeed: "Please tick the consent box to start.",
   startingH: "Start", whatSaved: "What is saved: each answer you confirm, your language and your detail setting, tied to your account.",
   next: "What happens next: you answer four questions, then we prepare a preliminary checklist. It is not a filing.",
@@ -39,7 +43,7 @@ const en = {
   yourAnswers: "Your saved answers", edit: "Edit", checklist: "Preliminary checklist", approvals: "Approvals needed from you",
   costs: "Costs", costsText: "Prices are not quoted. No charge is authorized. Nothing here can take payment.",
   workflow: "Service status", notStarted: "Not started", prof: "Professional review", official: "Official source",
-  nextSteps: "Next steps", nextStepsText: "Open the first checklist item and follow its official source. Genesis does not submit anything for you.",
+  nextSteps: "Next steps", nextStepsText: "Open the first checklist item and follow its official source. B.I.G. does not submit anything for you.",
   download: "Download saved plan (.txt)", savedLabel: "Saved in your account. Not submitted.",
   planEnglish: "Translation not available: the checklist content comes from the server in English.",
   dataNote: "Answers are user-provided and not verified. This is not a verified business passport.",
@@ -48,10 +52,11 @@ const en = {
   saveStatus: "Save status", signedAs: "Signed in as",
   poweredBy: "Rule-based checklist. Not state-specific legal advice.",
   updated: "Last saved",
+  legacyNote: "(English or Spanish only)", ownerLink: "Owner console",
 } as const;
 export type Key = keyof typeof en;
 const es: Record<Key, string> = {
-  brand: "Genesis OS", mode: "Planificación GUIADA. No es IA conectada.",
+  brand: "B.I.G. - Business Inside Genesis", mode: "Planificación GUIADA. No es IA conectada.",
   start: "INICIAR MI NEGOCIO", run: "ADMINISTRAR MI NEGOCIO", grow: "HACER CRECER MI NEGOCIO",
   startB: "Elige una estructura y ponte en marcha.", runB: "Mantén estables las operaciones, el dinero y el cumplimiento.", growB: "Suma clientes, capacidad y capital con cuidado.",
   heroH: "Una pregunta a la vez.", heroP: "Elige en qué etapa estás. Hacemos cuatro preguntas cortas, guardamos cada respuesta en tu cuenta y preparamos una lista preliminar. No se presenta, envía ni paga nada.",
@@ -64,7 +69,7 @@ const es: Record<Key, string> = {
   language: "Idioma", details: "Detalle", simple: "Simple", detailsOpt: "Detallado", logout: "Cerrar sesión",
   loading: "Cargando tu progreso guardado...", retry: "Reintentar", initErr: "No pudimos cargar esta página.",
   expired: "Tu sesión terminó. Inicia sesión de nuevo para continuar. No se envió nada sin guardar.",
-  consent: "Acepto que Genesis guarde mis respuestas en mi cuenta para este recorrido. Las respuestas las proporciona el usuario y no están verificadas.",
+  consent: "Acepto que B.I.G. guarde mis respuestas en mi cuenta para este recorrido. Las respuestas las proporciona el usuario y no están verificadas.",
   startBtn: "Iniciar este recorrido", startNeed: "Marca la casilla de consentimiento para comenzar.",
   startingH: "Iniciar", whatSaved: "Qué se guarda: cada respuesta que confirmes, tu idioma y tu nivel de detalle, ligados a tu cuenta.",
   next: "Qué sigue: respondes cuatro preguntas y preparamos una lista preliminar. No es una presentación oficial.",
@@ -89,7 +94,7 @@ const es: Record<Key, string> = {
   yourAnswers: "Tus respuestas guardadas", edit: "Editar", checklist: "Lista preliminar", approvals: "Aprobaciones que necesitas dar",
   costs: "Costos", costsText: "Los precios no están cotizados. No se autoriza ningún cargo. Nada aquí puede cobrar un pago.",
   workflow: "Estado del servicio", notStarted: "No iniciado", prof: "Revisión profesional", official: "Fuente oficial",
-  nextSteps: "Próximos pasos", nextStepsText: "Abre el primer punto de la lista y sigue su fuente oficial. Genesis no envía nada por ti.",
+  nextSteps: "Próximos pasos", nextStepsText: "Abre el primer punto de la lista y sigue su fuente oficial. B.I.G. no envía nada por ti.",
   download: "Descargar plan guardado (.txt)", savedLabel: "Guardado en tu cuenta. No enviado.",
   planEnglish: "Traducción no disponible: el contenido de la lista viene del servidor en inglés.",
   dataNote: "Las respuestas las proporciona el usuario y no están verificadas. Esto no es un pasaporte empresarial verificado.",
@@ -98,5 +103,6 @@ const es: Record<Key, string> = {
   saveStatus: "Estado de guardado", signedAs: "Sesión iniciada como",
   poweredBy: "Lista basada en reglas. No es asesoría legal específica del estado.",
   updated: "Último guardado",
+  legacyNote: "(solo en inglés o español)", ownerLink: "Panel del propietario",
 };
-export const dict: Record<Language, Record<Key, string>> = { en, es };
+export const dict: Record<Language, Record<Key, string>> = { en, es, zh, ar, hi, sw };

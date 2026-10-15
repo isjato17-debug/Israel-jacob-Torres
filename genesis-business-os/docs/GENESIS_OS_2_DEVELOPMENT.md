@@ -1,5 +1,12 @@
 # Genesis OS 2.0 — reconstruction blueprint and development status
 
+> Current customer brand: **B.I.G. — Business Inside Genesis**, powered by Genesis OS 2.0.
+> The newer authorized no-cost Phase 2 slice is documented in `BIG_PHASE2_IMPLEMENTATION.md`.
+> Historical verification below describes earlier milestones, not a new combined certification.
+> GitHub branch rename/synchronization at the prior baseline was completed; do not repeat it.
+> Current additive migrations extend `g0001 → g0002 → g0003` with `g0004 → g0005`.
+> Partner foundation boundaries are in `BIG_PARTNER_NETWORK_FOUNDATION.md`.
+
 ## Scope and safety
 
 The master directive authorizes reconstruction of the existing product, not a second
@@ -11,7 +18,8 @@ No paid services, government filings or publication have been authorized or perf
 
 The existing interface, accounts, business records, community, execution workflows,
 tenant boundaries, CSRF/session controls, approvals and audit system remain in place.
-The existing HTML, JavaScript and CSS frontend files are unchanged.
+The original reconstruction preserved the legacy frontend. The newer B.I.G. phase updates
+customer-facing branding and truthful provider labels while preserving legacy functionality.
 
 - Stable `main` baseline: `7a09fa54d0a18dad7f5b6cca184d8258f7c47418`.
 - Reconstruction branch: `genesis-os-2-development`.
@@ -34,7 +42,7 @@ Only presence metadata was inspected; credential-file contents were not read.
 An account-level GitHub connection is not proof of usable CLI write credentials.
 Different Shell/agent authentication contexts remain a possibility, not a proven cause.
 
-Use one supported GitHub CLI device flow with an explicit configuration directory in
+Historical recovery procedure only (no longer pending): use one supported GitHub CLI device flow with an explicit configuration directory in
 this workspace, then run `gh auth setup-git`. Browser approval must finish while that
 CLI process remains alive. Never request passwords or access tokens in chat.
 After authorization, inspect permissions and remote history again before pushing.
@@ -123,8 +131,9 @@ ownership arrangement, not an additional legal entity type.
 The subsequent complete reconstruction directive supplies all seven phases and supersedes
 the earlier truncated phase text. Follow this order for remaining work:
 
-1. Preserve/security audit and GitHub recovery. Local safeguards are verified; GitHub
-   browser authorization and synchronization remain outstanding.
+1. Preserve/security audit and GitHub recovery. Local safeguards and Git transport
+   synchronization at the prior baseline were verified. Branch rename is complete;
+   a missing CLI login alone is not grounds to repeat authorization.
 2. Premium customer experience, genuine Genesis AI, Adaptive Intelligence, Mission
    Control and Business Passport. The saved guided journey is implemented; connected
    AI, verified document reuse and a secure vault are not complete.

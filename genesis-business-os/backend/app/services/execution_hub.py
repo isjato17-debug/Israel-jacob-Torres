@@ -2,6 +2,7 @@ import os, secrets
 from dataclasses import dataclass
 from typing import Any
 import httpx
+from .provider_status import status as provider_status, record_verification
 
 @dataclass(frozen=True)
 class ExecutionPoint:
@@ -13,7 +14,7 @@ CATALOG={p.key:p for p in [
     ExecutionPoint('crm_customer_create','Create CRM/customer record','EXECUTE',2,'square','customers.create',['provider_object_id'],credential_env=['GENESIS_SQUARE_ACCESS_TOKEN']),
     ExecutionPoint('payment_link_create','Create customer payment link','EXECUTE',3,'square','checkout.payment_link.create',['payment_link','provider_object_id'],credential_env=['GENESIS_SQUARE_ACCESS_TOKEN','GENESIS_SQUARE_LOCATION_ID']),
     ExecutionPoint('ein_apply','Apply for an EIN','GUIDE',4,'irs','ein.apply',['user_confirmation'],'https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number'),
-    ExecutionPoint('business_launch_requirements','Review registration/licenses/permits','GUIDE',2,'sba','business.launch',['user_confirmation'],'https://www.sba.gov/business-guide/launch-your-business'),
+    ExecutionPoint('business_launch_requirements','Review registration/licenses/permits','GUIDE',2,'sba','business.launch',['user_confirmation'],'https://www.sba.gov/counseling/launch-your-business/'),
     ExecutionPoint('business_plan_prepare','Prepare business plan','PREPARE',1,'genesis','document.business_plan',['artifact']),
     ExecutionPoint('offer_prepare','Prepare customer offer','PREPARE',1,'genesis','sales.offer',['artifact']),
     ExecutionPoint('outreach_prepare','Prepare outreach campaign','PREPARE',1,'genesis','sales.outreach',['artifact']),
@@ -23,8 +24,7 @@ CATALOG={p.key:p for p in [
 
 def connection_status(p:ExecutionPoint):
     if p.mode!='EXECUTE': return {'state':'READY','missing':[]}
-    missing=[k for k in (p.credential_env or []) if not os.getenv(k)]
-    return {'state':'CONNECTED' if not missing else 'NEEDS_CONNECTION','missing':missing}
+    return provider_status(p.key, p.credential_env or [])
 
 def public_catalog():
     return [{**p.__dict__,'connection':connection_status(p)} for p in CATALOG.values()]
@@ -47,30 +47,48 @@ def prepare(point:ExecutionPoint,payload:dict[str,Any]):
 
 async def execute(point:ExecutionPoint,payload:dict[str,Any],idempotency_key:str):
     status=connection_status(point)
-    if status['state']!='CONNECTED': raise RuntimeError('Provider is not connected: '+', '.join(status['missing']))
+    # Existing approval/dispatch guards remain authoritative. A configured adapter may
+    # attempt an explicitly approved operation; only its actual response verifies it.
+    if status['state'] not in ('CONFIGURED','VERIFIED_CONNECTED'):
+        raise RuntimeError('Provider is not available for execution')
     timeout=httpx.Timeout(15.0,connect=5.0)
     try:
       async with httpx.AsyncClient(timeout=timeout) as client:
         if point.key=='email_send':
             body={'personalizations':[{'to':[{'email':payload['to']}]}],'from':{'email':os.environ['GENESIS_SENDGRID_FROM_EMAIL']},'subject':payload['subject'],'content':[{'type':'text/plain','value':payload['body']}]}
             r=await client.post('https://api.sendgrid.com/v3/mail/send',headers={'Authorization':'Bearer '+os.environ['GENESIS_SENDGRID_API_KEY'],'Content-Type':'application/json'},json=body)
-            if r.status_code not in (200,202): raise RuntimeError(f'SendGrid rejected request ({r.status_code})')
+            if r.status_code not in (200,202):
+                record_verification(point.key, point.credential_env or [], 'ERROR')
+                raise RuntimeError(f'SendGrid rejected request ({r.status_code})')
+            record_verification(point.key, point.credential_env or [], 'VERIFIED_CONNECTED', successful=True)
             return {'provider':'sendgrid','provider_status':r.status_code,'external_reference':r.headers.get('x-message-id'),'evidence':{'provider_acceptance':r.headers.get('x-message-id') or 'accepted'},'delivery_semantics':'local_at_most_once; ambiguous outcomes require reconciliation'}
         headers={'Authorization':'Bearer '+os.environ['GENESIS_SQUARE_ACCESS_TOKEN'],'Content-Type':'application/json','Square-Version':'2026-09-16'}
         if point.key=='crm_customer_create':
             body={k:payload[k] for k in ('given_name','family_name','company_name','email_address','phone_number','note') if payload.get(k)}; body['idempotency_key']=idempotency_key
             r=await client.post('https://connect.squareup.com/v2/customers',headers=headers,json=body)
-            if r.status_code>=300: raise RuntimeError(f'Square rejected request ({r.status_code})')
-            obj=r.json().get('customer',{}); return {'provider':'square','provider_status':r.status_code,'external_reference':obj.get('id'),'evidence':{'provider_object_id':obj.get('id')}}
+            if r.status_code>=300:
+                record_verification(point.key, point.credential_env or [], 'ERROR')
+                raise RuntimeError(f'Square rejected request ({r.status_code})')
+            obj=r.json().get('customer',{})
+            if not obj.get('id'): raise RuntimeError('Square response missing customer evidence')
+            record_verification(point.key, point.credential_env or [], 'VERIFIED_CONNECTED', successful=True)
+            return {'provider':'square','provider_status':r.status_code,'external_reference':obj.get('id'),'evidence':{'provider_object_id':obj.get('id')}}
         if point.key=='payment_link_create':
             amount=int(payload['amount_cents']);
             if amount<1: raise ValueError('amount_cents must be positive')
             body={'idempotency_key':idempotency_key,'quick_pay':{'name':payload['name'],'price_money':{'amount':amount,'currency':payload.get('currency','USD')},'location_id':os.environ['GENESIS_SQUARE_LOCATION_ID']}}
             r=await client.post('https://connect.squareup.com/v2/online-checkout/payment-links',headers=headers,json=body)
-            if r.status_code>=300: raise RuntimeError(f'Square rejected request ({r.status_code})')
-            obj=r.json().get('payment_link',{}); return {'provider':'square','provider_status':r.status_code,'external_reference':obj.get('id'),'evidence':{'provider_object_id':obj.get('id'),'payment_link':obj.get('url')}}
+            if r.status_code>=300:
+                record_verification(point.key, point.credential_env or [], 'ERROR')
+                raise RuntimeError(f'Square rejected request ({r.status_code})')
+            obj=r.json().get('payment_link',{})
+            if not obj.get('id') or not obj.get('url'): raise RuntimeError('Square response missing payment-link evidence')
+            record_verification(point.key, point.credential_env or [], 'VERIFIED_CONNECTED', successful=True)
+            return {'provider':'square','provider_status':r.status_code,'external_reference':obj.get('id'),'evidence':{'provider_object_id':obj.get('id'),'payment_link':obj.get('url')}}
       raise RuntimeError('Unsupported execution point')
     except httpx.TimeoutException as e:
+      record_verification(point.key, point.credential_env or [], 'UNAVAILABLE')
       raise RuntimeError('AMBIGUOUS_PROVIDER_TIMEOUT: reconcile provider state before retry') from e
     except httpx.HTTPError as e:
+      record_verification(point.key, point.credential_env or [], 'UNAVAILABLE')
       raise RuntimeError('PROVIDER_NETWORK_ERROR: external provider request failed') from e

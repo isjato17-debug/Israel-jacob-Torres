@@ -36,9 +36,11 @@ export default function OwnerEditor({ t, base: initial, onSaved, onClose, onUnau
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!title.trim()) e["campaign-title"] = t.reqTitle;
-    if (!objective.trim()) e["campaign-objective"] = t.reqObjective;
-    if (!audience.trim()) e["campaign-audience"] = t.reqAudience;
+    const tt = title.trim().length, to = objective.trim().length, ta = audience.trim().length;
+    if (!tt) e["campaign-title"] = t.reqTitle; else if (tt < 3 || tt > 160) e["campaign-title"] = t.lenTitle;
+    if (!to) e["campaign-objective"] = t.reqObjective; else if (to < 5 || to > 1200) e["campaign-objective"] = t.lenObjective;
+    if (!ta) e["campaign-audience"] = t.reqAudience; else if (ta < 3 || ta > 500) e["campaign-audience"] = t.lenAudience;
+    if (content.trim().length > 6000) e["campaign-content"] = t.lenContent;
     const p = parseDollars(budget);
     if ("error" in p) e["campaign-budget"] = p.error === "req" ? t.budgetReq : p.error === "max" ? t.budgetMax : t.budgetBad;
     if (needsAck && !ack) e["campaign-ack"] = t.needConfirm;
@@ -98,7 +100,7 @@ export default function OwnerEditor({ t, base: initial, onSaved, onClose, onUnau
         </div>
       )}
       <label htmlFor="f-title">{t.fTitle}</label>
-      <input id="f-title" type="text" maxLength={200} value={title} onChange={(e) => setTitle(e.target.value)} data-testid="campaign-title" {...ia("campaign-title")} />
+      <input id="f-title" type="text" maxLength={160} value={title} onChange={(e) => setTitle(e.target.value)} data-testid="campaign-title" {...ia("campaign-title")} />
       {fe("campaign-title")}
       <label htmlFor="f-obj">{t.fObjective}</label>
       <input id="f-obj" type="text" value={objective} onChange={(e) => setObjective(e.target.value)} data-testid="campaign-objective" {...ia("campaign-objective")} />
@@ -111,7 +113,8 @@ export default function OwnerEditor({ t, base: initial, onSaved, onClose, onUnau
         {channels.map((c) => <option key={c} value={c}>{t[c]}</option>)}
       </select>
       <label htmlFor="f-content">{t.fContent}<span className="ow-help">{t.hContent}</span></label>
-      <textarea id="f-content" value={content} onChange={(e) => setContent(e.target.value)} data-testid="campaign-content" />
+      <textarea id="f-content" value={content} onChange={(e) => setContent(e.target.value)} data-testid="campaign-content" {...ia("campaign-content")} />
+      {fe("campaign-content")}
       <label htmlFor="f-budget">{t.fBudget}<span className="ow-help" id="f-budget-h">{t.hBudget}</span></label>
       <input id="f-budget" type="text" inputMode="decimal" value={budget} onChange={(e) => setBudget(e.target.value)} data-testid="campaign-budget"
         aria-invalid={!!errs["campaign-budget"]} aria-describedby={`f-budget-h${errs["campaign-budget"] ? " campaign-budget-err" : ""}`} />

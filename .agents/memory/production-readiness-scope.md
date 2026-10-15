@@ -21,7 +21,10 @@ Delete only data created solely by the latest authenticated QA run, and prove pr
 
 **How to apply:** Verify exact ownership before cleanup and compare all non-target rows before committing. Keep subsequent browser verification away from the active development database.
 
-External EXECUTE providers must remain NEEDS_CONNECTION until actual credentials are supplied and verified. Do not fabricate production evidence or publish automatically; report deployment safety and stop at unavailable infrastructure boundaries.
+External EXECUTE provider configuration must not be reported as verified connectivity.
+The newer B.I.G. directive distinguishes NOT_CONFIGURED, CONFIGURED, VERIFICATION_PENDING,
+VERIFIED_CONNECTED, UNAVAILABLE and ERROR. Do not fabricate production evidence or
+publish automatically; report deployment safety and stop at unavailable infrastructure boundaries.
 
 **Why:** These are explicit user boundaries for this phase.
 

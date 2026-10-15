@@ -9,7 +9,7 @@ const navItems: { id: ViewId; label: string; Icon: typeof HomeIcon }[] = [
   { id: 'business', label: 'My Business', Icon: BriefcaseBusiness },
   { id: 'do', label: 'Do It', Icon: Play },
   { id: 'community', label: 'Community', Icon: UsersRound },
-  { id: 'ask', label: 'Ask Genesis', Icon: CircleHelp },
+  { id: 'ask', label: 'Ask B.I.G.', Icon: CircleHelp },
 ];
 
 function readCookie(name: string) {
@@ -182,7 +182,7 @@ function App() {
     const margin = Number(window.prompt('Estimated gross margin % (example: 60)') || 50) / 100;
     const capacity = Number(window.prompt('About what % of your current capacity is being used?') || 50) / 100;
     const cash = Number(window.prompt('Cash available for the business') || 300);
-    const reserve = Number(window.prompt('Amount you want Genesis to protect') || 200);
+    const reserve = Number(window.prompt('Amount you want B.I.G. to protect') || 200);
     const goal = Number(window.prompt('Monthly income destination') || 5000);
     setEvolutionOpen(true);
     setEvolutionLoading(true);
@@ -202,7 +202,7 @@ function App() {
       });
       setEvolution(result);
     } catch (error) {
-      setEvolutionError(`Genesis could not calculate the evolution: ${errorMessage(error)}`);
+      setEvolutionError(`B.I.G. could not calculate the evolution: ${errorMessage(error)}`);
     } finally {
       setEvolutionLoading(false);
     }
@@ -229,7 +229,7 @@ function App() {
         body: JSON.stringify({ business_id: businessId, point_key: point.key, payload }),
       });
       if (point.risk_tier >= 2) {
-        if (!window.confirm('Approve this Genesis action? It may create an external record or send/prepare a consequential step.')) {
+        if (!window.confirm('Approve this B.I.G. action? It may create an external record or send/prepare a consequential step.')) {
           await loadActions();
           return;
         }
@@ -242,7 +242,7 @@ function App() {
       window.alert(`${performed.status}${performed.result?.official_url ? `\n${performed.result.official_url}` : ''}`);
       await loadActions();
     } catch (error) {
-      window.alert(`Genesis did not mark this complete. ${errorMessage(error)}`);
+      window.alert(`B.I.G. did not mark this complete. ${errorMessage(error)}`);
       await loadActions();
     }
   }
@@ -254,43 +254,43 @@ function App() {
     <>
       <main className="app-wrap">
         <header className="topbar">
-          <div className="brand"><span className="logo">G</span>Genesis Business OS</div>
+          <div className="brand"><span className="logo">G</span>B.I.G. Business Inside Genesis</div>
           <span className="avatar" aria-label="Owner profile">IJ</span>
         </header>
 
         <section className={`view ${view === 'home' ? 'on' : ''}`} aria-hidden={view !== 'home'}>
           <div className="eyebrow">Start with what you have</div>
           <h1 className="hero">Build toward what you want.</h1>
-          <p className="lead muted">Genesis keeps business simple. Tell it your goal, see your best next move, and let Genesis help you get it done.</p>
+          <p className="lead muted">B.I.G. keeps business simple. Tell it your goal, see your best next move, and let B.I.G. help you get it done.</p>
           <div className="grid">
             <div className="card">
               <div className="eyebrow">Your next best move</div>
               <h2>Get your first 3 paying customers before spending more.</h2>
               <p className="muted">You have enough to test demand now. Validate the service before using more of your startup money.</p>
               <div className="pills"><span className="pill">Est. cost $40</span><span className="pill">1–3 days</span><span className="pill">Low risk</span></div>
-              <button className="cta" data-testid="button-do-it" onClick={() => navigate('do')}>Do it with Genesis <ArrowRight size={16} /></button>{' '}
+              <button className="cta" data-testid="button-do-it" onClick={() => navigate('do')}>Do it with B.I.G. <ArrowRight size={16} /></button>{' '}
               <button className="sec" data-testid="button-see-why" aria-expanded={whyOpen} onClick={() => setWhyOpen(!whyOpen)}>See why</button>
-              <div className={`reveal ${whyOpen ? 'on' : ''}`} id="why">Genesis compared your capital, reserve, time, skills, startup costs and customer path. Real customers give you evidence before you make larger purchases.</div>
+              <div className={`reveal ${whyOpen ? 'on' : ''}`} id="why">B.I.G. compared your capital, reserve, time, skills, startup costs and customer path. Real customers give you evidence before you make larger purchases.</div>
             </div>
             <div className="card center">
               <div className="eyebrow">Business progress</div><div className="ring"><span>42%</span></div>
-              <b>You're moving forward.</b><p className="muted">Genesis tracks the complicated parts in the background.</p>
+              <b>You're moving forward.</b><p className="muted">B.I.G. tracks the complicated parts in the background.</p>
             </div>
           </div>
           <div className="three">
-            <div className="card"><div className="eyebrow">Money available</div><h2>$300</h2><p className="muted">Genesis builds inside your real budget.</p></div>
+            <div className="card"><div className="eyebrow">Money available</div><h2>$300</h2><p className="muted">B.I.G. builds inside your real budget.</p></div>
             <div className="card"><div className="eyebrow">Coming next</div><h3>Set up the business</h3><p className="muted">Requirements appear only when relevant.</p></div>
-            <div className="card"><div className="eyebrow">What if?</div><h3>What if I only spend $100?</h3><button className="sec" onClick={() => navigate('ask')}>Ask Genesis</button></div>
+            <div className="card"><div className="eyebrow">What if?</div><h3>What if I only spend $100?</h3><button className="sec" onClick={() => navigate('ask')}>Ask B.I.G.</button></div>
           </div>
           <div className="card evo" style={{ marginTop: 16 }}>
-            <div className="eyebrow">Genesis Evolution</div><h2>Your business can change as the evidence changes.</h2>
-            <p className="muted">Genesis quietly compares possible futures, then shows you one recommended move. No extra dashboard.</p>
+            <div className="eyebrow">B.I.G. Evolution</div><h2>Your business can change as the evidence changes.</h2>
+            <p className="muted">B.I.G. quietly compares possible futures, then shows you one recommended move. No extra dashboard.</p>
             <button className="cta" data-testid="button-best-future" onClick={() => void seeEvolution()}>See my best future <ArrowRight size={16} /></button>
             <div className={`reveal ${evolutionOpen ? 'on' : ''}`} role="status" data-testid="status-evolution">
               {evolutionLoading && <p>Comparing possible futures…</p>}
               {evolutionError && <p className="error-text">{evolutionError}</p>}
               {selectedEvolution && <>
-                <div className="eyebrow">{evolution.generation}</div><h3>Genesis recommends: {selectedEvolution.title}</h3>
+                <div className="eyebrow">{evolution.generation}</div><h3>B.I.G. recommends: {selectedEvolution.title}</h3>
                 <p>{selectedEvolution.why}</p><div className="pills"><span className="pill">Fit score {selectedEvolution.score}/100</span><span className="pill">Cash envelope ${selectedEvolution.estimated_cash_needed}</span></div>
                 <b>Next:</b> {selectedEvolution.next_action}<div className="muted" style={{ marginTop: 14 }}>Possible futures compared</div>
                 {futureOptions.map((future: AnyRecord, index: number) => <div key={`${future.title}-${index}`}><small>{future.title} · {future.score}/100</small><div className="futurebar"><i style={{ width: `${Math.max(0, Math.min(100, Number(future.score)))}%` }} /></div></div>)}
@@ -302,7 +302,7 @@ function App() {
 
         <section className={`view ${view === 'business' ? 'on' : ''}`} aria-hidden={view !== 'business'}>
           <div className="eyebrow">My Business</div><h1 className="hero">One clear journey.</h1>
-          <p className="lead muted">No giant checklist. Genesis reveals each stage when you need it.</p>
+          <p className="lead muted">No giant checklist. B.I.G. reveals each stage when you need it.</p>
           <div className="journey">
             <div className="stage done"><b>Idea</b><br /><small>Chosen</small></div>
             <div className="stage now"><b>2 Setup</b><br /><small>You're here</small></div>
@@ -316,20 +316,20 @@ function App() {
             <div className="task"><div><h3>Setup &amp; requirements</h3><p className="muted">Only supported requirements for your business and location.</p></div><button className="sec" disabled aria-label="Requirements unavailable">Check</button></div>
           </div>
           <div className="card evo" style={{ marginTop: 15 }}>
-            <div className="eyebrow">Business DNA · Behind the scenes</div><h3>Genesis learns what actually works for this business.</h3>
+            <div className="eyebrow">Business DNA · Behind the scenes</div><h3>B.I.G. learns what actually works for this business.</h3>
             <p className="muted">Customer patterns, margins, capacity and verified results improve future recommendations. You only see the move that matters now.</p>
           </div>
         </section>
 
         <section className={`view ${view === 'do' ? 'on' : ''}`} aria-hidden={view !== 'do'}>
           <div className="eyebrow">Do It</div><h1 className="hero">Real actions. Verified results.</h1>
-          <p className="lead muted">Genesis separates actions it can execute, work it can prepare, and official steps only you can complete.</p>
+          <p className="lead muted">B.I.G. separates actions it can execute, work it can prepare, and official steps only you can complete.</p>
           <div className="status" role="status" data-testid="status-execution">{executionLoading ? 'Checking real execution connections…' : executionStatus}</div>
           <div className="execgrid" data-testid="list-execution-points">
             {executionPoints.map((point: AnyRecord) => {
               const state = point.connection?.state || 'UNKNOWN';
               const connected = state === 'CONNECTED' || state === 'READY';
-              const label = point.mode === 'GUIDE' ? 'Open official step' : point.mode === 'PREPARE' ? 'Prepare with Genesis' : 'Execute with Genesis';
+              const label = point.mode === 'GUIDE' ? 'Open official step' : point.mode === 'PREPARE' ? 'Prepare with B.I.G.' : 'Execute with B.I.G.';
               return <div className="execpoint" key={point.key}>
                 <div className="eyebrow">{point.mode} · Risk {point.risk_tier}</div><h3>{point.title}</h3>
                 <p className="muted">{point.provider} · {point.capability}</p><div className={connected ? 'good' : 'warn'}>{state}</div>
@@ -363,12 +363,12 @@ function App() {
         </section>
 
         <section className={`view ${view === 'ask' ? 'on' : ''}`} aria-hidden={view !== 'ask'}>
-          <div className="eyebrow">Ask Genesis</div><h1 className="hero">Your business consultant.</h1>
+          <div className="eyebrow">Ask B.I.G.</div><h1 className="hero">Your business consultant.</h1>
           <div className="card chat">
             <div className="bubble">Tell me what you're trying to accomplish. You can talk normally: “I have $300 and love cooking,” “I need more customers,” or “What should I do today?”</div>
             <div className="bubble user">What if I only want to risk $100?</div>
             <div className="bubble">Then we protect the other $200. I would redesign the first-customer plan around a $100 maximum and avoid purchases that aren't necessary to validate demand.</div>
-            <div className="compose"><input aria-label="Ask Genesis anything" placeholder="Ask Genesis anything…" disabled /><button className="cta" disabled title="Messaging is not connected in the supplied consumer page">Send</button></div>
+            <div className="compose"><input aria-label="Ask B.I.G. anything" placeholder="Ask B.I.G. anything…" disabled /><button className="cta" disabled title="Messaging is not connected in the supplied consumer page">Send</button></div>
           </div>
         </section>
       </main>
@@ -381,8 +381,8 @@ function App() {
 
       <div className={`authgate ${authVisible ? '' : 'off'}`} aria-hidden={!authVisible}>
         <form className="authcard" onSubmit={(event) => { event.preventDefault(); void authenticate('login'); }}>
-          <div className="eyebrow">Genesis Business OS</div><h2>Open your business workspace</h2>
-          <p className="muted">Sign in, or create an owner workspace. Genesis stores execution state on the server.</p>
+          <div className="eyebrow">B.I.G. Business Inside Genesis</div><h2>Open your business workspace</h2>
+          <p className="muted">Sign in, or create an owner workspace. B.I.G. stores execution state on the server.</p>
           <input aria-label="Business workspace name" placeholder="Business/workspace name" value={tenant} onChange={(event) => setTenant(event.target.value)} data-testid="input-tenant" />
           <input aria-label="Email" type="email" placeholder="Email" required value={email} onChange={(event) => setEmail(event.target.value)} data-testid="input-email" />
           <input aria-label="Password" type="password" placeholder="Password (12+ characters)" required minLength={12} value={password} onChange={(event) => setPassword(event.target.value)} data-testid="input-password" />
