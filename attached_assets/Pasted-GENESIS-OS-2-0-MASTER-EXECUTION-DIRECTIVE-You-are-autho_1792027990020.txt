@@ -1,0 +1,145 @@
+GENESIS OS 2.0 — MASTER EXECUTION DIRECTIVE
+
+You are authorized to plan and develop the complete transformation of my existing Genesis OS application into a premium, AI-powered, all-in-one business consulting, formation, management, and growth platform.
+
+I want Genesis OS to become the single application an entrepreneur needs to start, operate, and grow a business.
+
+EXECUTE THE FOLLOWING:
+
+1. RESOLVE GITHUB
+
+The repository is isjato17-debug/Israel-jacob-Torres.
+
+The local main branch is clean at commit 7a09fa54d0a18dad7f5b6cca184d8258f7c47418.
+
+Investigate the failed GitHub authentication. Determine whether the Shell and Replit agent use different authentication contexts.
+
+Use the supported GitHub CLI authentication process. If browser authorization is required, provide the exact authorization step and wait for my approval.
+
+Never request or expose passwords or access tokens.
+
+Once authenticated, safely push the existing source code and verify it appears in the correct GitHub repository.
+
+Do not force-push, reset branches, delete source files, or create another repository.
+
+2. RECONSTRUCT GENESIS OS
+
+Redesign the existing application into a modern, mobile-first AI business operating system.
+
+The entire customer experience must revolve around three functions:
+
+START MY BUSINESS
+RUN MY BUSINESS
+GROW MY BUSINESS
+
+Genesis AI must function as the central business consultant and guide users through each process.
+
+The platform must be exceptionally simple for beginners while providing advanced capabilities for established businesses.
+
+3. CREATE THE COMPLETE BUSINESS ECOSYSTEM
+
+Include:
+
+Business formation and registration across all 50 states.
+
+LLCs, corporations, partnerships, nonprofits, holding companies, and subsidiaries.
+
+EIN application assistance, federal and state tax registration, business licenses, permits, registered agents, and compliance management.
+
+Legal documents, contracts, intellectual property services, and professional consultations.
+
+Business banking, accounting, bookkeeping, invoicing, payroll, insurance, and payment processing.
+
+Websites, domains, business email, branding, marketing, e-commerce, and customer management.
+
+Business financing resources, business credit, growth planning, and expansion services.
+
+Provide one customer account, one intelligent dashboard, one document vault, and one unified service management experience.
+
+4. CONNECT OUTSOURCED SERVICES
+
+Identify and integrate authorized government services, professional providers, financial services, and third-party platforms.
+
+Prioritize direct APIs, embedded services, and automated workflows.
+
+Customers should complete as much as legally and technically possible without leaving Genesis OS.
+
+Where external verification, signatures, or government submission is mandatory, coordinate those steps inside the customer workflow.
+
+Do not create fake integrations or claim that unverified connections are operational.
+
+5. BUILD THE GENESIS AI EXPERIENCE
+
+Genesis AI should interview customers, understand their goals, identify business requirements, create personalized action plans, prepare documents, coordinate services, explain costs, and track progress.
+
+Use appropriate professional oversight for regulated legal, tax, accounting, and financial services.
+
+6. CREATE THE REVENUE SYSTEM
+
+Implement configurable business formation packages, premium consulting, subscriptions, service fees, eligible referral commissions, and partner revenue tracking.
+
+Include secure payments, customer billing, transaction records, and a comprehensive owner administration dashboard.
+
+7. PREPARE PRODUCTION INFRASTRUCTURE
+
+Verify production PostgreSQL using GENESIS_DATABASE_URL and migration g0001.
+
+Verify GENESIS_ENV=production, secure authentication, JWT secrets, HTTPS, approved origins, secure cookies, backups, and restoration procedures.
+
+Resolve the outstanding SendGrid and Square connection requirements through supported authorization procedures.
+
+Test production build commands, database migrations, application security, and critical customer workflows.
+
+Do not publish or initiate paid services without my explicit approval.
+
+8. PROTECT THE EXISTING APPLICATION
+
+Before reconstruction, create a recoverable backup and inspect the existing architecture.
+
+Preserve all working functionality, source history, configurations, and customer data.
+
+Use a separate development branch or environment for reconstruction.
+
+Do not overwrite the existing working application.
+
+9. IMPLEMENT INTELLIGENTLY
+
+Do not overwhelm me with unnecessary technical questions or repetitive instructions.
+
+Make sound technical decisions independently when safe.
+
+Complete all work that does not require my authorization.
+
+When external authorization, credentials, paid subscriptions, or legal approvals are required, identify the exact action needed.
+
+Do not claim that an incomplete feature is finished.
+
+10. REPORT RESULTS
+
+Provide a concise report containing:
+
+A. GitHub authentication and synchronization status.
+
+B. Existing features that can be preserved.
+
+C. Genesis OS 2.0 architecture and redesign plan.
+
+D. Verified service integrations and missing connections.
+
+E. Development work completed versus pending.
+
+F. Estimated external service costs.
+
+G. The exact remaining actions required from me.
+
+FINAL OBJECTIVE:
+
+Reconstruct Genesis OS into a secure, scalable, revenue-generating, AI-powered business ecosystem.
+
+The customer should be able to enter with a business idea and have Genesis OS coordinate everything necessary to establish, operate, and grow that business.
+
+Keep the customer experience simple, automate the complexity behind the scenes, and preserve my existing investment in the application.
+
+Begin with GitHub authentication diagnosis and the existing application audit. Then proceed with safe, non-destructive development.
+
+Do not publish, make paid purchases, submit government filings, or perform destructive operations without my explicit authorization.

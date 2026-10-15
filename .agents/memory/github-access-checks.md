@@ -14,3 +14,16 @@ An actual authentication rejection from GitHub is different from a local CLI log
 **Why:** Both card paths failed in this workspace after GitHub rejected a normal source push; account-level health did not establish working Git write access.
 
 **How to apply:** Follow authorization recovery for an actual provider rejection. If the supported cards cannot open, stop retrying them, consult current Replit documentation, and direct the user to refresh GitHub under account settings → Git Providers. Do not substitute token handling or another assistant.
+
+When a user reports completed Shell sign-in but the agent cannot authenticate, compare
+effective GitHub CLI configuration directories and credential-file existence only.
+Do not assume that Shell and agent contexts differ, or read credential-file contents.
+An explicitly selected shared configuration directory for a supported device sign-in
+can remove ambiguity without requesting tokens.
+
+**Why:** A reported reconnection still left no CLI login file visible to the agent in
+either its effective configuration directory or the normal home directory.
+
+**How to apply:** Keep the device-flow process alive through browser approval, configure
+Git through `gh auth setup-git`, then verify identity, repository permissions and remote
+history before attempting a write.

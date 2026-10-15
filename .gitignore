@@ -49,6 +49,7 @@ Thumbs.db
 .local/
 
 # Local Genesis development database and SQLite sidecars
+/generated-artifacts/
 /genesis-business-os/backend/genesis_business_os.db
 /genesis-business-os/backend/genesis_business_os.db-shm
 /genesis-business-os/backend/genesis_business_os.db-wal

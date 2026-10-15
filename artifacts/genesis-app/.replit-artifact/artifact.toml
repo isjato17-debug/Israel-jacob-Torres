@@ -20,6 +20,14 @@ serve = "static"
 publicDir = "artifacts/genesis-app/dist/public"
 
 [[services.production.rewrites]]
+from = "/next"
+to = "/next/index.html"
+
+[[services.production.rewrites]]
+from = "/next/*"
+to = "/next/index.html"
+
+[[services.production.rewrites]]
 from = "/*"
 to = "/index.html"
 

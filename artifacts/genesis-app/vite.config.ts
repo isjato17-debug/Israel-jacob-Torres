@@ -26,9 +26,16 @@ if (!basePath) {
 export default defineConfig({
   base: basePath,
   root: path.resolve(import.meta.dirname, '../../genesis-business-os/frontend'),
+  esbuild: { jsx: 'automatic' },
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist/public'),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(import.meta.dirname, '../../genesis-business-os/frontend/index.html'),
+        next: path.resolve(import.meta.dirname, '../../genesis-business-os/frontend/next/index.html'),
+      },
+    },
   },
   server: {
     port,
