@@ -14,3 +14,17 @@ mtime_ms = 1791333093309
 storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/dcccacc0-76bd-436f-8a15-078c71444a70/222fe551-d985-4a1c-bdfc-b603011987cf"
 storage_version_token = "1791333114421248"
 content_type = "text/html"
+
+[[outputs]]
+id = "oXlQXJPZHSeyduuPeSmsn"
+uri = "file://generated-artifacts/reports/big-development-completion.html"
+type = "html"
+title = "B.I.G. Development Completion Report"
+description = "Implemented foundation, exact 68-file manifest, database preservation, test/browser results, limitations, approvals, local commit and GitHub status."
+logical_id = "7979c431-1643-437d-bdb3-ab3aa9d76240"
+content_hash = "sha256:ac9e57d7650cfcfe8575d67e8ca5c8db222630e2d4bacd064b3fbb6ba9b0ac33"
+size = 22123
+mtime_ms = 1792086408088
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/7979c431-1643-437d-bdb3-ab3aa9d76240/a29c786f-a50e-408f-9491-cdaba14b574e"
+storage_version_token = "1792086409261434"
+content_type = "text/html"
