@@ -1,0 +1,94 @@
+B.I.G. — PRECISION GITHUB AUTHENTICATION REPAIR
+
+MISSION:
+Safely synchronize our existing Genesis OS 2.0
+development branch without losing any work.
+
+Repository:
+isjato17-debug/Israel-jacob-Torres
+
+Branch:
+genesis-os-2-development
+
+Expected local commit:
+630435cb701d8f59704b53e7e3cf39239d2d9b5b
+
+IMPORTANT:
+The owner already installed and authorized
+Replit's GitHub integration.
+
+Do not repeat previous authorization steps
+without first identifying why they failed.
+
+STEP 1:
+Fetch and compare the current local and
+remote commit IDs.
+
+If already synchronized, report success
+and stop.
+
+STEP 2:
+Determine whether the Replit Git interface
+and the workspace Git command use different
+authentication mechanisms.
+
+Inspect only non-sensitive configuration
+and supported integration status.
+
+Never display or inspect credentials.
+
+STEP 3:
+Identify whether the failure involves:
+
+- Missing repository write authorization
+- Incorrect Git credential integration
+- Expired or unavailable authorization
+- Different authentication paths
+- Repository access restrictions
+
+Distinguish verified findings from
+possible causes.
+
+STEP 4:
+If a supported, already-authorized push
+method is available, safely push the
+existing commit.
+
+Otherwise, stop and give the owner ONE
+precise corrective action for Replit
+on iPhone.
+
+Do not repeatedly attempt the same
+failed authentication method.
+
+STEP 5:
+Verify synchronization by fetching the
+remote branch and comparing exact
+commit hashes.
+
+SUCCESS REQUIRES:
+Local HEAD equals remote HEAD.
+
+SAFETY RULES:
+Preserve all application code, history,
+customer data, and recovery bundles.
+
+No force-push.
+No branch deletion.
+No main-branch changes.
+No credential exposure.
+No deployment.
+No new development.
+No unnecessary modifications.
+
+FINAL REPORT:
+1. Exact local commit
+2. Exact remote commit
+3. Verified authentication cause,
+   or clearly state if undetermined
+4. Corrective action taken
+5. Whether synchronization succeeded
+6. One next action if still blocked
+
+DO NOT REPORT SUCCESS UNTIL
+THE REMOTE COMMIT IS VERIFIED.
