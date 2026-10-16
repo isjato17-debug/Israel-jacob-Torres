@@ -6,6 +6,8 @@ import type { OrchestratorView, BusinessAction } from "./orchestrator-api";
 import { setProjectTask } from "./ideas-api";
 import type { Project } from "./ideas-api";
 import "./orchestrator.css";
+import IntelligencePanel from "./IntelligencePanel";
+import FundingPanel from "./FundingPanel";
 
 const TERMINAL = ["COMPLETED_VERIFIED", "CANCELLED", "CANCELED", "FAILED"];
 const OUTCOMES = [["ACCEPTED", "Synthetic test: accepted"], ["REJECTED", "Synthetic test: rejected"], ["CORRECTION_REQUIRED", "Synthetic test: correction required"]];
@@ -150,6 +152,8 @@ export default function BusinessOrchestrator({ projectId, execution, docDirty = 
             <dl>{Object.entries(o.output).map(([k, v]) => <div key={k}><dt>{k.replace(/_/g, " ")}</dt><dd>{typeof v === "object" ? <pre>{JSON.stringify(v, null, 2)}</pre> : String(v)}</dd></div>)}</dl></details>)}
         </div>}
 
+        <IntelligencePanel key={projectId} projectId={projectId} onApplied={() => { void load(true); void onExecutionChange?.(); }} />
+        <FundingPanel key={`funding-${projectId}`} projectId={projectId} onUpdated={() => { void load(true); void onProjectChange?.(); }} />
         <h4 style={{ marginTop: 20 }}>Strategy</h4>
         <p>Recommended: <b>{strat.recommended}</b>. Selected: <b>{strat.selected || "none yet"}</b>. <span className="gx-tag">{strat.classification}</span></p>
         <p>{strat.reason}</p>

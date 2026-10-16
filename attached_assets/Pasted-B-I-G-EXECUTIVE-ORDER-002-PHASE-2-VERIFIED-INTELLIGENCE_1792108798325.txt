@@ -1,0 +1,921 @@
+B.I.G. — EXECUTIVE ORDER 002
+PHASE 2: VERIFIED INTELLIGENCE-TO-EXECUTION
+VERSION 4.0 — FINAL ENGINEERING AUTHORIZATION
+
+PROJECT:
+B.I.G. — BUSINESS INSIDE GENESIS
+
+UNDERLYING PLATFORM:
+GENESIS OS 2
+
+AUTHORIZED DEVELOPMENT BRANCH:
+genesis-os-2-development
+
+VERIFIED STARTING HEAD:
+67ccd906d1a80479f3d0b40f96694e75d96e94b9
+
+PRESERVED PHASE 1 COMMIT:
+8c88c71048a8f829f984eb312a1825df85da0826
+
+
+========================================================
+I. EXECUTIVE AUTHORITY AND MISSION
+========================================================
+
+You are authorized to implement, test, document,
+and commit Phase 2 of B.I.G.
+
+This is an engineering execution order.
+
+Do not respond with another general development plan
+instead of performing the authorized work.
+
+B.I.G. is being developed as a persistent,
+AI-powered business consultant, developer,
+and authorized business operator.
+
+Its purpose is to reduce the time, complexity,
+and cost required for customers to establish
+and operate legitimate businesses.
+
+The customer enters a business idea once.
+
+B.I.G. must use saved customer information to:
+
+1. Analyze the proposed business.
+
+2. Generate two meaningfully distinct strategies.
+
+3. Recommend one strategy with transparent reasoning.
+
+4. Present three financial plans:
+
+   START SMART
+   BUILD STRONG
+   GROW BIG
+
+5. Generate itemized startup and operating budgets.
+
+6. Preserve customer selections.
+
+7. Translate the selected strategy into
+   a dependency-aware execution roadmap.
+
+8. Automatically perform supported and authorized
+   preparation tasks.
+
+9. Preserve generated outputs and evidence.
+
+10. Continue independent eligible tasks.
+
+11. Pause for necessary information, authorization,
+    signatures, payments, or unavailable integrations.
+
+12. Resume safely without duplicating work.
+
+The objective is not simply to add a chatbot.
+
+The objective is to establish a verified foundation
+for intelligent, automated business execution.
+
+
+========================================================
+II. NON-NEGOTIABLE RESTRICTIONS
+========================================================
+
+AUTHORIZED EXTERNAL SPENDING: $0.
+
+PROHIBITED:
+
+- Activating paid AI.
+- Sending paid AI requests.
+- Activating customer billing.
+- Charging customers.
+- Making external payments.
+- Submitting real government filings.
+- Activating paid third-party services.
+- Public deployment.
+- Modifying protected main.
+- Force-pushing.
+- Deleting existing customer data.
+- Replacing working systems unnecessarily.
+- Weakening security or authorization.
+- Beginning Phase 3.
+
+Use available no-cost development resources.
+
+Do not assume that a provider's free tier
+authorizes account creation or external usage.
+
+If external credentials, paid access,
+or consequential owner authorization is needed,
+report the dependency without activating it.
+
+Do not bypass these restrictions.
+
+
+========================================================
+III. EXECUTION RULES
+========================================================
+
+Execute five milestones in strict dependency order.
+
+Do not begin the next milestone until the
+preceding milestone's mandatory engineering
+acceptance gates pass.
+
+If a gate fails:
+
+1. Attempt a bounded repair within the
+   authorized scope.
+
+2. Rerun the relevant tests.
+
+3. Record the result.
+
+4. If unresolved, stop dependent work.
+
+5. Continue only independent authorized work
+   that cannot worsen the failure.
+
+6. Report the blocker accurately.
+
+Do not conceal failed tests.
+
+Do not fabricate completion evidence.
+
+Do not add unrelated features.
+
+Do not create unnecessary architecture.
+
+Use the smallest secure, maintainable
+implementation that satisfies the requirements.
+
+Maintain a concise milestone status record.
+
+At each milestone boundary, report:
+
+- Implemented changes
+- Tests passed
+- Tests failed
+- Remaining blockers
+- Next authorized milestone
+
+Continue ordinary authorized development
+without repeatedly requesting permission.
+
+
+========================================================
+MILESTONE 1 — BASELINE PRESERVATION
+========================================================
+
+OBJECTIVE:
+
+Protect the verified Phase 1 foundation.
+
+The development branch has already been
+reported synchronized with GitHub.
+
+Do not repeat GitHub troubleshooting.
+
+Perform only the normal source-control checks
+needed to establish a safe working baseline.
+
+Inspect and reuse existing:
+
+- Master Orchestrator
+- Business Passport
+- AutoForm
+- Executive Board
+- Founder DNA
+- Digital Twin
+- Mission Control
+- Partner Network
+- Consultation system
+- Financial-plan generation
+- Document-preparation tools
+- Authorization controls
+- Audit and evidence systems
+
+Identify existing integration points.
+
+Run relevant baseline regression tests.
+
+Preserve original customer databases.
+
+Do not overwrite customer information.
+
+Prefer additive, reversible migrations.
+
+Do not duplicate existing functionality.
+
+REQUIRED EVIDENCE:
+
+A. Current branch.
+
+B. Current HEAD.
+
+C. Working-tree status.
+
+D. Existing components reused.
+
+E. Baseline test results.
+
+F. Data-preservation safeguards.
+
+ACCEPTANCE GATE 1:
+
+Baseline is understood.
+
+Existing functionality is preserved.
+
+No destructive changes are introduced.
+
+Relevant baseline tests pass.
+
+
+========================================================
+MILESTONE 2 — AI INTELLIGENCE FOUNDATION
+========================================================
+
+OBJECTIVE:
+
+Implement a genuine-provider-compatible
+AI integration layer without activating
+paid external services.
+
+Build a provider-independent interface.
+
+REQUIRED CAPABILITIES:
+
+1. Provider configuration.
+
+2. Model identification.
+
+3. Structured request contracts.
+
+4. Structured response contracts.
+
+5. Schema validation.
+
+6. Timeout handling.
+
+7. Bounded retries.
+
+8. Error classification.
+
+9. Request correlation identifiers.
+
+10. Usage estimation.
+
+11. Cost estimation.
+
+12. Audit records.
+
+13. Output provenance.
+
+14. Customer-context access restrictions.
+
+15. Safe fallback behavior.
+
+Support future AI-assisted:
+
+- Business idea analysis
+- Industry considerations
+- Two strategic alternatives
+- Recommended strategy
+- Three financial plans
+- Startup and operating budgets
+- Business risks
+- Document drafting
+- Execution planning
+
+Reuse authorized Business Passport information.
+
+Do not repeatedly request existing data.
+
+Financial calculations must be validated
+by deterministic software.
+
+Do not accept unsupported regulatory claims
+as verified legal requirements.
+
+Implement a deterministic mock provider
+for automated integration testing.
+
+Clearly distinguish:
+
+DETERMINISTIC OUTPUT
+MOCK / TEST OUTPUT
+GENUINE AI OUTPUT
+
+Mock output must never be represented
+as genuine AI intelligence.
+
+Do not activate paid AI.
+
+Do not require external AI credentials
+to run Phase 2 tests.
+
+REQUIRED TESTS:
+
+- Valid structured output
+- Invalid structured output
+- Missing required fields
+- Malformed provider responses
+- Provider timeout
+- Bounded retries
+- Provider failure
+- Unauthorized customer context
+- Output provenance
+- Paid-provider disabled state
+
+ACCEPTANCE GATE 2:
+
+Provider interface implemented.
+
+Structured contracts validated.
+
+Errors handled safely.
+
+Customer context isolated.
+
+Mock tests pass.
+
+Paid AI remains disabled.
+
+Live AI reasoning quality remains
+explicitly unverified.
+
+
+========================================================
+MILESTONE 3 — INTELLIGENT EXECUTION
+========================================================
+
+OBJECTIVE:
+
+Connect validated AI proposals to the
+existing Phase 1 Master Orchestrator.
+
+AI may recommend tasks and prepare drafts.
+
+AI must not independently authorize
+privileged operations.
+
+The existing execution system remains
+the authority for:
+
+- Customer permissions
+- Task dependencies
+- Tool capability checks
+- Spending authorization
+- Exact-document approval
+- Customer data isolation
+- Evidence verification
+- Duplicate prevention
+- Safe retries
+- Persistent progress
+- Resume after interruption
+
+Treat AI output, uploaded documents,
+retrieved webpages, and external text
+as untrusted input.
+
+Test against:
+
+- Prompt injection
+- Unauthorized tool requests
+- Approval bypass
+- Cross-customer data access
+- Fabricated execution evidence
+- Unauthorized spending proposals
+
+Allow only supported, authorized tools
+to perform real preparation work.
+
+Preserve truthful task states.
+
+Do not mark signing, payments,
+government submissions, or external
+confirmations complete without evidence.
+
+Continue independent eligible tasks
+when another task is blocked.
+
+REQUIRED ACCEPTANCE JOURNEY:
+
+Use the saved $3,000 New York
+cleaning-business project.
+
+Verify:
+
+1. Saved information is reused.
+
+2. Two strategies remain available.
+
+3. Three financial plans remain available.
+
+4. Financial calculations remain valid.
+
+5. Customer selections persist.
+
+6. Structured task proposals are validated.
+
+7. Supported preparation tasks execute.
+
+8. Generated outputs are preserved.
+
+9. Integrity hashes remain valid.
+
+10. Duplicate work is prevented.
+
+11. Approval pauses remain enforced.
+
+12. Unsupported external actions remain blocked.
+
+13. Independent eligible tasks continue.
+
+14. Logout/login resume succeeds.
+
+15. Customer data remains isolated.
+
+16. Malicious task proposals are rejected.
+
+Test additional representative business types
+to ensure the integration is not hard-coded
+to the cleaning-business example.
+
+ACCEPTANCE GATE 3:
+
+Existing execution behavior is preserved.
+
+Validated proposals enter the orchestrator.
+
+Authorized preparation work succeeds.
+
+Unauthorized operations remain blocked.
+
+Customer persistence and isolation pass.
+
+No external submissions occur.
+
+
+========================================================
+MILESTONE 4 — FINANCIAL PROTECTION
+========================================================
+
+OBJECTIVE:
+
+Implement enforceable application-level
+controls for future paid AI usage.
+
+DEFAULT PAID AI AUTHORIZATION: DISABLED.
+
+REQUIRED CONTROLS:
+
+1. Owner-only provider activation.
+
+2. Per-request maximum-cost estimation.
+
+3. Per-task spending limits.
+
+4. Per-customer usage allowances.
+
+5. Daily owner spending limits.
+
+6. Monthly owner spending limits.
+
+7. Global emergency shutdown.
+
+8. Provider and model restrictions.
+
+9. Retry ceilings.
+
+10. Concurrency-safe budget reservations.
+
+11. Usage accounting.
+
+12. Cost reconciliation.
+
+13. Budget-exhaustion handling.
+
+14. Fail-closed authorization behavior.
+
+15. Auditable financial events.
+
+Before any future authorized paid request,
+reserve a conservative maximum estimated cost
+using atomic server-side controls.
+
+Reject requests that cannot be covered
+by available authorized budgets.
+
+Do not rely exclusively on provider
+spending dashboards.
+
+Account for delayed provider billing,
+unknown charges, and interrupted requests.
+
+Document any residual financial exposure.
+
+Do not claim that all possible external
+charges can be eliminated.
+
+REQUIRED TESTS:
+
+- Zero-budget requests
+- Concurrent budget reservations
+- Duplicate requests
+- Retry storms
+- Provider timeouts
+- Interrupted execution
+- Budget exhaustion
+- Emergency shutdown
+- Invalid usage reports
+- Unauthorized activation attempts
+
+ACCEPTANCE GATE 4:
+
+Unauthorized paid requests are blocked.
+
+Concurrency-safe budget enforcement passes.
+
+Budget exhaustion fails closed.
+
+Emergency shutdown works.
+
+No external funds are spent.
+
+
+========================================================
+MILESTONE 5 — ECONOMICS AND MARKET VALIDATION
+========================================================
+
+OBJECTIVE:
+
+Determine the lowest sustainable
+operating costs and customer prices.
+
+PART A — AI PROVIDER ECONOMICS
+
+Research current official pricing
+for suitable AI models and providers.
+
+Compare:
+
+A. ECONOMY-FIRST CONFIGURATION
+
+B. BALANCED CONFIGURATION
+
+C. ADVANCED REASONING CONFIGURATION
+
+Evaluate:
+
+- Input tokens
+- Output tokens
+- Cached tokens
+- Tool charges
+- Document processing
+- Retry assumptions
+- Latency
+- Structured-output reliability
+- Estimated cost per successful workflow
+
+Identify where deterministic software
+is preferable to AI.
+
+Document official sources and access dates.
+
+Distinguish published prices from
+simulated usage and actual measured costs.
+
+Do not claim mock-provider tests
+prove live-model quality.
+
+
+PART B — COMPETITOR RESEARCH
+
+Research official published prices from:
+
+- ZenBusiness
+- LegalZoom
+- Bizee
+- Tailor Brands
+
+Compare equivalent services:
+
+- Formation
+- Registered-agent services
+- Business planning
+- Document preparation
+- Licensing assistance
+- Compliance support
+- Subscriptions
+- Renewal charges
+- Government fees
+- Optional add-ons
+
+Record:
+
+Provider
+Service
+Price
+Billing period
+Included features
+Exclusions
+Renewal terms
+Official source
+Access date
+
+Do not invent unavailable prices.
+
+Distinguish promotional offers
+from standard recurring charges.
+
+Do not claim B.I.G. is cheapest
+without like-for-like evidence.
+
+
+PART C — B.I.G. PRICING
+
+Evaluate provisional memberships:
+
+DISCOVER: FREE
+
+START: $9.99/MONTH
+
+BUILD: $19.99/MONTH
+
+OPERATE: $39.99/MONTH
+
+These prices are hypotheses,
+not approved commercial prices.
+
+Evaluate optional fixed-price services.
+
+Include costs for:
+
+- AI inference
+- Tool execution
+- Payment processing
+- Subscription billing
+- Infrastructure
+- Retries
+- Refunds
+- Disputes
+- Variable customer support
+
+Evaluate customer acquisition costs
+separately when estimating operating profit.
+
+Calculate:
+
+GROSS REVENUE
+
+VARIABLE DELIVERY COST
+
+CONTRIBUTION MARGIN
+
+FIXED OPERATING EXPENSE
+
+CUSTOMER ACQUISITION COST
+
+ESTIMATED OPERATING PROFIT
+
+Model:
+
+LIGHT USAGE
+TYPICAL USAGE
+HEAVY USAGE
+EXTREME USAGE
+
+Identify:
+
+- Cost per customer
+- Cost per completed workflow
+- Break-even usage
+- Included usage allowances
+- Unsustainable subscription tiers
+- Recommended customer prices
+- Recommended optional-service prices
+
+Clearly distinguish contribution margin
+from net profit.
+
+Do not activate billing.
+
+ACCEPTANCE GATE 5:
+
+Official research sources documented.
+
+Three AI configurations compared.
+
+Cost model reproducible.
+
+Competitor matrix completed.
+
+Pricing assumptions transparent.
+
+Unsustainable scenarios identified.
+
+Recommended prices supported by evidence.
+
+
+========================================================
+IV. FINAL REGRESSION AND ACCEPTANCE
+========================================================
+
+After completing the five milestones:
+
+Run all relevant Phase 1 and Phase 2
+regression and acceptance tests.
+
+Verify:
+
+- Backend tests
+- Frontend type checks
+- Production build
+- Security tests
+- Privacy tests
+- Customer isolation
+- Authorization checks
+- Financial-control tests
+- Database integrity
+- Customer data preservation
+- Desktop browser acceptance
+- Signed-in mobile acceptance
+- Same-account resume
+- No duplicate execution
+- No unauthorized external actions
+
+Do not hide failed tests.
+
+Fix regressions introduced by Phase 2.
+
+Report unrelated pre-existing defects
+without expanding scope unnecessarily.
+
+No mock-provider test may be represented
+as proof of live AI reasoning quality.
+
+
+========================================================
+V. EXECUTIVE REPORTING
+========================================================
+
+Produce ONE consolidated executive report.
+
+Include:
+
+1. Executive summary.
+
+2. Baseline preservation results.
+
+3. Implemented components.
+
+4. Reused existing systems.
+
+5. AI provider architecture.
+
+6. Intelligence-to-execution integration.
+
+7. Security and authorization results.
+
+8. Financial-control verification.
+
+9. Official AI pricing research.
+
+10. Competitor pricing comparison.
+
+11. B.I.G. pricing recommendations.
+
+12. Unit economics and assumptions.
+
+13. Automated test results.
+
+14. Desktop and mobile acceptance.
+
+15. Customer data preservation.
+
+16. Remaining limitations.
+
+17. Live AI activation prerequisites.
+
+18. Exact development commit hash.
+
+19. Local and GitHub HEAD values.
+
+20. Working-tree status.
+
+21. Executive decisions still required.
+
+For every deliverable, classify status:
+
+IMPLEMENTED AND VERIFIED
+
+IMPLEMENTED BUT NOT FULLY VERIFIED
+
+RESEARCHED ONLY
+
+BLOCKED
+
+NOT STARTED
+
+Do not declare Phase 2 accepted
+if mandatory gates remain failed.
+
+
+========================================================
+VI. SOURCE CONTROL AND STOP CONDITIONS
+========================================================
+
+Commit verified Phase 2 work to:
+
+genesis-os-2-development
+
+Push only if a normal fast-forward
+update is safe and permitted.
+
+Never force-push.
+
+Never modify protected main.
+
+Never deploy.
+
+Never delete customer data.
+
+If a required operation needs spending
+or consequential authorization,
+stop that operation and report it.
+
+Continue independent authorized work
+where safe.
+
+At completion, provide:
+
+- Final commit hash
+- Local HEAD
+- GitHub HEAD
+- Ahead/behind counts
+- Working-tree status
+- Test totals
+- Remaining blockers
+
+Do not begin Phase 3.
+
+
+========================================================
+VII. EXECUTIVE SUCCESS STANDARD
+========================================================
+
+Phase 2 succeeds only when:
+
+1. Phase 1 remains preserved.
+
+2. Provider-independent AI integration
+   is implemented and tested.
+
+3. Structured output validation works.
+
+4. The existing Master Orchestrator
+   remains execution authority.
+
+5. Supported preparation tasks execute.
+
+6. Unauthorized actions remain blocked.
+
+7. Customer information remains protected.
+
+8. Financial safeguards are tested.
+
+9. Cost estimates are reproducible.
+
+10. Competitor pricing is evidence-backed.
+
+11. Customer pricing recommendations
+    are economically justified.
+
+12. Regression and acceptance tests pass.
+
+13. Remaining live AI requirements
+    are explicitly documented.
+
+14. No unauthorized spending occurs.
+
+15. No public deployment occurs.
+
+PAID AI: OFF
+
+CUSTOMER BILLING: OFF
+
+GOVERNMENT SUBMISSIONS: OFF
+
+PUBLIC DEPLOYMENT: OFF
+
+PHASE 3: NOT AUTHORIZED
+
+DELIVER THE FINAL EXECUTIVE REPORT.
+
+STOP.
+
+END OF EXECUTIVE ORDER 002.

@@ -213,6 +213,8 @@ def advance(db, user, p, *, enable=False, retry_failed=False):
             engine.evidence(db, user, p, action, "internal_failure",
                             "Internal operation failed; no external completion is claimed")
             db.flush()
+    from .funding import refresh
+    refresh(db, user, p)
     engine.reconcile(db, user, p)
 
 

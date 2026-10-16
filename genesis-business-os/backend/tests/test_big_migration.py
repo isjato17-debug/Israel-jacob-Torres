@@ -108,11 +108,12 @@ def verify_upgrade(url):
         db.add(doc); db.flush()
         db.add(DocumentApproval(document_id=doc.id, user_id=project.user_id, content_hash=old_document_hash))
         db.commit()
+    original_names = set(inspect(engine).get_table_names())
     def all_original_rows():
         with engine.connect() as conn:
             return {name: [tuple(row) for row in conn.execute(text(f'SELECT * FROM "{name}" ORDER BY 1'))]
                     for name in inspect(engine).get_table_names()
-                    if name != "alembic_version" and name not in (
+                    if name in original_names and name != "alembic_version" and name not in (
                         "project_actions", "test_document_signatures", "test_submissions",
                         "regulatory_source_revisions", "regulatory_change_records")}
     before_m0 = all_original_rows()
@@ -120,7 +121,7 @@ def verify_upgrade(url):
     assert all_original_rows() == before_m0
     assert snapshot() == before
     with engine.connect() as conn:
-        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0008"
+        assert conn.scalar(text("SELECT version_num FROM alembic_version")) == "g0011"
         assert conn.scalar(text("SELECT COUNT(*) FROM ai_consultations")) == 1
         assert conn.scalar(text("SELECT COUNT(*) FROM partner_applications")) == 1
         assert conn.scalar(text("SELECT COUNT(*) FROM partner_promotions")) == 1
@@ -129,7 +130,9 @@ def verify_upgrade(url):
         for name in ("business_passports", "document_workflows", "generated_documents", "document_approvals"):
             assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 1
         for name in ("project_actions", "test_document_signatures", "test_submissions",
-                     "regulatory_source_revisions", "regulatory_change_records"):
+                     "regulatory_source_revisions", "regulatory_change_records",
+                     "intelligence_records", "ai_cost_policies", "ai_budget_buckets",
+                     "ai_cost_reservations", "funding_profiles", "funding_applications"):
             assert conn.scalar(text(f"SELECT COUNT(*) FROM {name}")) == 0
     with Session(engine) as db:
         assert digest(json.loads(db.scalar(select(GeneratedDocument)).source_json)) == old_document_hash

@@ -1,0 +1,154 @@
+B.I.G. — BUSINESS INSIDE GENESIS
+EXECUTIVE DIRECTIVE 002-A
+MANDATORY ENTREPRENEUR FUNDING & IMMIGRATION SERVICES
+
+This directive supplements the active Phase 2 order.
+Do not restart, replace, or interrupt completed work.
+
+OWNER REQUIREMENT:
+
+B.I.G. must provide integrated, execution-oriented
+services for immigrant entrepreneurs, visa holders,
+business grants, loans, and other legitimate
+business funding opportunities.
+
+These are mandatory application functions,
+not optional features or informational pages.
+
+CORE CUSTOMER EXPERIENCE:
+
+A customer enters a business idea once.
+
+Using authorized Business Passport information,
+B.I.G. must:
+
+1. Analyze business and financing needs.
+2. Identify relevant legal and eligibility requirements.
+3. Discover legitimate funding opportunities.
+4. Match opportunities to published requirements.
+5. Explain eligibility uncertainties and restrictions.
+6. Compare financing terms and affordability.
+7. Identify missing application information.
+8. Prepare supported application forms and documents.
+9. Request customer review and authorization.
+10. Track applications, deadlines, and outcomes.
+11. Resume work without duplicate entry or actions.
+
+IMMIGRATION REQUIREMENTS:
+
+Support entrepreneurs across citizenship and
+immigration circumstances, subject to applicable law.
+
+Distinguish business ownership, work authorization,
+licensing, and funding eligibility.
+
+Do not assume that a visa permits employment or
+guarantees eligibility for loans or grants.
+
+Use authoritative guidance and escalate questions
+requiring individualized immigration-law advice
+to qualified professionals.
+
+FUNDING REQUIREMENTS:
+
+Support verified discovery and matching for:
+
+- Federal, state, and local grant programs.
+- Relevant private and nonprofit grants.
+- SBA-supported financing and microloans.
+- Community development lenders.
+- Credit unions and legitimate business lenders.
+- Other verified entrepreneurship programs.
+
+Each opportunity must include its source,
+eligibility requirements, verification date,
+application requirements, and current status.
+
+Never invent opportunities or guarantee funding.
+
+APPLICATION EXECUTION:
+
+Integrate these workflows with:
+
+- Business Passport
+- AutoForm
+- Master Orchestrator
+- Existing document preparation
+- Customer approvals
+- Mission Control progress tracking
+
+The system must perform supported preparation
+tasks automatically.
+
+AI may recommend actions, but deterministic
+systems must enforce eligibility rules,
+financial calculations, permissions,
+dependencies, and authorization boundaries.
+
+Do not submit real applications, perform credit
+checks, or transmit sensitive documents without
+explicit authorization and approved integrations.
+
+IMPLEMENTATION ORDER:
+
+A. Inspect and reuse existing functionality.
+B. Establish structured funding records.
+C. Build verified eligibility-matching logic.
+D. Connect funding discovery and preparation.
+E. Integrate tasks with Master Orchestrator.
+F. Expose a usable customer workflow.
+G. Test security, accuracy, and persistence.
+
+During Phase 2, implement the maximum safe,
+testable functionality within existing resources.
+
+If unavailable external integrations prevent
+completion, build the internal preparation and
+tracking functions, document the blocker, and
+preserve the remaining work as mandatory scope.
+
+Do not pretend unavailable services are active.
+
+ACCEPTANCE TESTS:
+
+Demonstrate:
+
+- Immigrant and visa-holder customer journeys.
+- Grant and loan opportunity matching.
+- Ineligible and uncertain applicant handling.
+- Accurate loan affordability calculations.
+- Application draft generation.
+- Exact-revision customer approval.
+- Sensitive-data protection.
+- Cross-customer isolation.
+- Resume after logout.
+- Duplicate prevention.
+- No unauthorized submissions.
+- No paid service activation.
+- Preservation of existing Phase 1 and 2 tests.
+
+EXECUTIVE REPORT:
+
+For each capability, report:
+
+IMPLEMENTED AND TESTED
+PARTIALLY IMPLEMENTED
+BLOCKED BY EXTERNAL DEPENDENCY
+NOT IMPLEMENTED
+
+Provide actual test evidence, remaining blockers,
+and the next required development steps.
+
+PROTECTED RESTRICTIONS:
+
+No paid AI activation.
+No customer billing.
+No real applications or financial commitments.
+No deployment.
+No changes to protected main.
+No Phase 3 authorization.
+
+Continue the existing Phase 2 development.
+Do not restart the project.
+
+END DIRECTIVE 002-A.

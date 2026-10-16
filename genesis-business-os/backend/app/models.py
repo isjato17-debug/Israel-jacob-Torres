@@ -1,11 +1,32 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import String, DateTime, ForeignKey, Text, Boolean, Integer, UniqueConstraint
+from sqlalchemy import String, DateTime, ForeignKey, Text, Boolean, Integer, BigInteger, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 from .db import Base
 
 def uid(): return str(uuid.uuid4())
 def now(): return datetime.now(timezone.utc)
+
+class IntelligenceRecord(Base):
+    __tablename__ = "intelligence_records"
+    __table_args__ = (UniqueConstraint("project_id", "request_key"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    tenant_id: Mapped[str] = mapped_column(String, index=True)
+    user_id: Mapped[str] = mapped_column(String, index=True)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    request_key: Mapped[str] = mapped_column(String(80))
+    context_hash: Mapped[str] = mapped_column(String(64))
+    context_json: Mapped[str] = mapped_column(Text)
+    proposal_json: Mapped[str] = mapped_column(Text, default="{}")
+    proposal_hash: Mapped[str] = mapped_column(String(64), default="")
+    status: Mapped[str] = mapped_column(String(24), default="PENDING")
+    classification: Mapped[str] = mapped_column(String(40), default="MOCK_TEST_NOT_GENUINE_AI")
+    provider: Mapped[str] = mapped_column(String(60), default="mock")
+    model: Mapped[str] = mapped_column(String(100), default="deterministic-fixture-v1")
+    attempts: Mapped[int] = mapped_column(Integer, default=0)
+    usage_json: Mapped[str] = mapped_column(Text, default="{}")
+    error_code: Mapped[str | None] = mapped_column(String(60), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 class Tenant(Base):
     __tablename__='tenants'
@@ -13,6 +34,74 @@ class Tenant(Base):
     name: Mapped[str]=mapped_column(String(120))
     lockdown: Mapped[bool]=mapped_column(Boolean, default=False)
     created_at: Mapped[datetime]=mapped_column(DateTime(timezone=True), default=now)
+
+class FundingProfile(Base):
+    __tablename__ = "funding_profiles"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), unique=True)
+    user_id: Mapped[str] = mapped_column(String, index=True)
+    tenant_id: Mapped[str] = mapped_column(String, index=True)
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    profile_json: Mapped[str] = mapped_column(Text)
+    consent_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class FundingApplication(Base):
+    __tablename__ = "funding_applications"
+    __table_args__ = (UniqueConstraint("project_id", "opportunity_id", "revision"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    project_id: Mapped[str] = mapped_column(ForeignKey("business_projects.id"), index=True)
+    tenant_id: Mapped[str] = mapped_column(String, index=True)
+    user_id: Mapped[str] = mapped_column(String, index=True)
+    opportunity_id: Mapped[str] = mapped_column(String(80))
+    revision: Mapped[int] = mapped_column(Integer)
+    source_json: Mapped[str] = mapped_column(Text)
+    content_hash: Mapped[str] = mapped_column(String(64))
+    approved_hash: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    approved_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    deadline: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    reported_outcome: Mapped[str] = mapped_column(String(60), default="NOT_SUBMITTED")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+class AICostPolicy(Base):
+    __tablename__ = "ai_cost_policies"
+    id: Mapped[str] = mapped_column(String, primary_key=True, default="global")
+    owner_id: Mapped[str] = mapped_column(String)
+    version: Mapped[int] = mapped_column(Integer, default=1)
+    shutdown: Mapped[bool] = mapped_column(Boolean, default=True)
+    simulation_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
+    limits_json: Mapped[str] = mapped_column(Text, default="{}")
+    allowed_models_json: Mapped[str] = mapped_column(Text, default='["mock-budget-v1"]')
+    concurrency_limit: Mapped[int] = mapped_column(Integer, default=1)
+    retry_ceiling: Mapped[int] = mapped_column(Integer, default=1)
+
+
+class AIBudgetBucket(Base):
+    __tablename__ = "ai_budget_buckets"
+    __table_args__ = (UniqueConstraint("owner_id", "scope"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    owner_id: Mapped[str] = mapped_column(String, index=True)
+    scope: Mapped[str] = mapped_column(String(180))
+    reserved_microusd: Mapped[int] = mapped_column(BigInteger, default=0)
+    spent_microusd: Mapped[int] = mapped_column(BigInteger, default=0)
+
+
+class AICostReservation(Base):
+    __tablename__ = "ai_cost_reservations"
+    __table_args__ = (UniqueConstraint("owner_id", "request_key"),)
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=uid)
+    owner_id: Mapped[str] = mapped_column(String, index=True)
+    request_key: Mapped[str] = mapped_column(String(80))
+    fingerprint: Mapped[str] = mapped_column(String(64))
+    customer_id: Mapped[str] = mapped_column(String, index=True)
+    task_id: Mapped[str] = mapped_column(String, index=True)
+    model: Mapped[str] = mapped_column(String(100))
+    scopes_json: Mapped[str] = mapped_column(Text)
+    maximum_microusd: Mapped[int] = mapped_column(BigInteger)
+    actual_microusd: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
+    status: Mapped[str] = mapped_column(String(30), default="RESERVED")
+    usage_json: Mapped[str] = mapped_column(Text, default="{}")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 class User(Base):
     __tablename__='users'; __table_args__=(UniqueConstraint('email'),)

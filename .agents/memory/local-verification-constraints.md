@@ -34,3 +34,15 @@ fixtures survived.
 
 **How to apply:** Resume the same saved QA journey where possible; distinguish
 an interrupted verification session from an application failure.
+
+Temporary development environment overrides can leave empty configuration
+tables after deletion. Verify exact configuration restoration, not only that
+the two temporary values disappeared.
+
+**Why:** Removing disposable-QA overrides left empty user-environment tables;
+direct configuration edits are rejected by this workspace.
+
+**How to apply:** Preserve a baseline before temporary QA overrides, remove
+their values with the environment tools, then restore any structural residue
+through the schema-validating configuration replacement callback. Never change
+the normal database target or owner allowlist permanently for a browser test.

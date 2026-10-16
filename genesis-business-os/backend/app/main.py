@@ -30,6 +30,9 @@ from .v2.ideas import router as ideas_router
 from .v2.consultation_privacy import router as consultation_privacy_router
 from .v2.documents import router as documents_router
 from .v2.orchestrator import router as orchestrator_router
+from .v2.intelligence import router as intelligence_router
+from .v2.ai_finance import router as ai_finance_router
+from .v2.funding import router as funding_router
 
 production_guard(settings.env, settings.jwt_secret, settings.database_url, settings.cookie_secure, settings.allowed_origins, settings.allowed_hosts)
 if settings.env == 'production':
@@ -47,6 +50,9 @@ app.include_router(ideas_router)
 app.include_router(consultation_privacy_router)
 app.include_router(documents_router)
 app.include_router(orchestrator_router)
+app.include_router(intelligence_router)
+app.include_router(ai_finance_router)
+app.include_router(funding_router)
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=[x.strip() for x in settings.allowed_hosts.split(',') if x.strip()])
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in settings.allowed_origins.split(',')],allow_credentials=True,allow_methods=['GET','POST','PUT','PATCH','DELETE'],allow_headers=['Content-Type','X-Request-ID','X-CSRF-Token'])
 PRODUCT_ROOT = Path(__file__).resolve().parents[2]

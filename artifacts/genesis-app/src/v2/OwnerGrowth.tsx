@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./owner.css";
+import AIFinancePanel from "./AIFinancePanel";
 import { ApiError, getSession, signOut } from "./journey-api";
 import type { Account } from "./journey-api";
 import { fetchCampaigns, getOwnerAccess, reviewCampaign } from "./owner-api";
@@ -185,6 +186,7 @@ function Console(p: ConsoleProps) {
   const { t, lang, list } = p;
   return (
     <>
+      <AIFinancePanel />
       <div className="ow-grid two" style={{ marginTop: 18 }}>
         <section className="ow-card" aria-labelledby="ow-ov" style={{ marginTop: 0 }} data-testid="owner-overview">
           <h2 id="ow-ov">{t.overview}</h2>
