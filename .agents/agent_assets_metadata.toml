@@ -84,3 +84,17 @@ mtime_ms = 1792106196939
 storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/6017b2ed-2108-4a7b-be3f-52f8abcac39d/0d303ea5-2d42-4614-86a9-96dcd3639a43"
 storage_version_token = "1792106237405073"
 content_type = "text/markdown"
+
+[[outputs]]
+id = "j_34ebIe74S7GaripUw_H"
+uri = "file://generated-artifacts/BIG_PHASE2_EXECUTIVE_REPORT.html"
+type = "html"
+title = "B.I.G. Phase 2 — Consolidated Executive Report"
+description = "Implementation and acceptance evidence, 48 economics scenarios, official competitor research, mandatory funding blockers, preservation proof and exact Git receipt. GitHub push is blocked by authentication."
+logical_id = "dbfd05c6-2361-4637-b5bd-aae8d07f1277"
+content_hash = "sha256:d8323623c9f91c9bc32c05744d3999f7017211b375c602dec4db00fc1f6dc617"
+size = 116407
+mtime_ms = 1792111298715
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:3cc32a48-39e8-48c1-a78b-8881eba1fc32/dbfd05c6-2361-4637-b5bd-aae8d07f1277/6b4aa30b-7f59-4704-8060-eb7c5ba7b1eb"
+storage_version_token = "1792111304445725"
+content_type = "text/html"
